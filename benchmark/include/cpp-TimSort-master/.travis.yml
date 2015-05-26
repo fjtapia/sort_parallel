@@ -1,0 +1,9 @@
+# https://github.com/embarkmobile/android-maven-example
+language: cpp
+compiler:
+    - clang
+install:
+    - sudo apt-get -qq update
+    - sudo apt-get -qq install time libboost-all-dev
+script:
+    - make test

@@ -1,0 +1,45 @@
+#  Boost sort::parallel library test suite Jamfile
+#
+#  Copyright Francisco Tapia 2015. Use, modification and
+#  distribution is subject to the Boost Software License, Version
+#  1.0. (See accompanying file LICENSE_1_0.txt or copy at
+#  http://www.boost.org/LICENSE_1_0.txt)
+#
+#  See http://www.boost.org for updates, documentation, and revision history.
+
+import testing ;
+
+
+project 
+	: requirements
+	  <include>..//include
+	  <optimization>speed	
+      <threading>multi
+      <toolset>msvc:<asynch-exceptions>on
+      #<toolset>msvc:<cxxflags>/EHa 
+      #<toolset>msvc:<cxxflags>/wd4244
+      #<toolset>gcc:<cxxflags>-Wunused-local-typedefs        
+      <toolset>gcc:<cxxflags>-Wno-unused-variable 
+      <toolset>gcc:<cxxflags>-std=c++11 
+      <toolset>clang:<cxxflags>-Wno-unused-variable
+      <toolset>clang:<cxxflags>-Wc++11-compat
+      <toolset>clang:<cxxflags>-std=c++11
+      : default-build release 
+;
+
+test-suite "test"
+:
+[ run test_algorithm.cpp ]
+[ run test_buffer.cpp ]
+[ run test_heap_sort.cpp ]
+[ run test_insertion_sort.cpp ]
+[ run test_intro_sort.cpp ]
+[ run test_parallel_sort.cpp ]
+[ run test_parallel_stable_sort.cpp ]
+[ run test_range.cpp ]
+[ run test_sample_sort.cpp ]
+[ run test_smart_merge_sort.cpp ]
+[ run test_spinlock.cpp ]
+[ run test_stack_cnc.cpp ]
+;
+

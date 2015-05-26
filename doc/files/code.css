@@ -1,0 +1,114 @@
+
+body 
+{ color: #000000; 
+  background-color: #FFFFFF; 
+
+}
+.caja_menu
+{
+    margin-left: 2%;
+    margin-right: 15% ;
+	/*width: 670px;*/
+    color: #0000A0; 
+    padding-left :10px ;
+    border : 1px solid black;
+    font-family: sans-serif; 
+    font-size: 14pt; 
+    font-size-adjust: none; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: normal; 
+    text-align: left; 
+    line-height: normal; 
+    background-color: rgb(241, 243, 241); 
+}
+.caja_codigo
+{
+    margin-left: 2%;
+    width :750px ;
+
+    /*margin-right :15% ; */
+    padding-left :10px ;
+    background-color: rgb(241, 243, 241); 
+    border : 1px solid black;
+    font-family: Courier; 
+    font-size: 10pt; 
+    font-size-adjust: none; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: normal; 
+    text-align: left; 
+    line-height: normal; 
+}
+.texto_codigo
+{
+    font-family: Courier; 
+    font-size: 12t; 
+    font-size-adjust: none; 
+    font-style: normal; 
+    font-variant: normal; 
+    font-weight: bold; 
+    text-align: left; 
+    line-height: normal;
+    color : black; 
+}
+.cuerpo_central 
+{
+  /*margin-left: 15%;*/
+  /*margin-right :10%;*/
+  padding-left :15% ;
+  padding-right :15% ;
+  text-align : justify ;
+}
+.cuerpo_texto
+{ 
+  font-family: Helvetica,sans-serif, Garuda ;
+  font-size: 14pt;
+  font-weight: normal;
+  text-align : justify ;
+  /*padding-left : 50px;*/
+}
+
+.style11 { color: #000000; }
+.style64 { color: #C8C8C8; }
+.style72 { color: #C8C8C8; }
+.style75 { color: #C8C8C8; }
+.style1 { color: #2A4437; }
+.style23 { color: #2A4437; }
+.style65 { color: #2A4437; }
+.style87 { color: #2A4437; }
+.style2 { color: #2A4437; }
+.style66 { color: #2A4437; }
+.style3 { color: #2A4437; }
+.style24 { color: #2A4437; }
+.style67 { color: #2A4437; }
+.style88 { color: #2A4437; }
+.style15 { color: #2A4437; }
+.style79 { color: #2A4437; }
+.style17 { color: #2A4437; font-weight: bold; }
+.style81 { color: #2A4437; font-weight: bold; }
+.style18 { color: #800000; }
+.style82 { color: #800000; }
+.style4 { color: #F000F0; }
+.style68 { color: #F0C8F0; }
+.style5 { color: #0000A0; font-weight: bold; }
+.style69 { color: #8787C8; font-weight: bold; }
+.style16 { color: #000000; }
+.style80 { color: #9AC89A; font-weight: bold; }
+.style19 { color: #BE00BE; font-weight: bold; }
+.style83 { color: #BE89BE; font-weight: bold; }
+.style6 { color: #0000FF; }
+.style12 { color: #0000FF; }
+.style70 { color: #BEBEFF; }
+.style76 { color: #BEBEFF; }
+.style7 { color: #E0A000; }
+.style71 { color: #E0CE9F; }
+.style8 { color: #000000; }
+.style9 { color: #8F022D; }
+.style73 { color: #84A084; }
+.style10 { color: #FF0000; }
+.style74 { color: #FFC8C8; }
+.style34 { color: #000000; background-color: #80FFFF; font-weight: bold; }
+.style35 { color: #FFFFFF; background-color: #FF0000; font-weight: bold; }
+.style50 { color: #404080; font-style: italic; }
+.style114 { color: #8585AC; font-style: italic; }

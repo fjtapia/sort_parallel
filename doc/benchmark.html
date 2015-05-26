@@ -1,0 +1,398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+    <meta name="generator" content="HTML Tidy for Windows (vers 1st November 2003), see www.w3.org" />
+    <title>Boost C++ Libraries</title>
+    <link rel="icon" href="http://www.boost.org/favicon.ico" type="image/ico" />
+    <link rel="stylesheet" type="text/css" href="http://www.boost.org/style-v2/section-welcome.css" />
+    <link href="files/code.css" type="text/css" rel="stylesheet" />
+    <!--[if IE 7]> <style type="text/css"> body { behavior: url(http://www.boost.org/style-v2/csshover3.htc); } </style> <![endif]-->
+    <meta name="google-site-verification" content="mpr2HgFpodnbF_8fv4qXd9roIClVwtX3C-Kd3F6r61w" />
+  </head>
+  <!-- Note: Editing website content is documented at:http://www.boost.org/development/website_updating.html -->
+  <!--***************************************************************************************** -->
+  <!--                                     B O D Y                                              -->
+  <!--***************************************************************************************** -->
+  <body>
+    <div id="heading">
+      <div class="heading-inner">
+        <h1 class="heading-title">  <a href="http://www.boost.org/"> 5<span class="heading-boost">Boost</span>
+            <span class="heading-cpplibraries">C++ Libraries</span>
+            <!-- Removing the next line, deletes the Preliminary text in the decoration od the top odf the page -->
+            <img src="img/preliminary.gif" alt="Preliminary" style="width: 300px; height: 80px;" />
+          </a></h1>
+        <p class="heading-quote"> <q>...one of the most highly regarded and
+            expertly designed C++ library projects in the world.</q> <span class="heading-attribution">—
+            <a href="http://www.gotw.ca/" class="external">Herb Sutter</a> and <a
+              href="http://en.wikipedia.org/wiki/Andrei_Alexandrescu" class="external">Andrei
+              Alexandrescu</a>, <a href="http://safari.awprofessional.com/?XmlId=0321113586"
+              class="external">C++ Coding Standards</a></span></p>
+      </div>
+      <!--  div heading-inner--> </div>
+    <!-- - div  heading -->
+    <!--***************************************************************************************** -->
+    <!--                      T E X T   O F      T H E     P A G E                                -->
+    <!--***************************************************************************************** -->
+    <div class="cuerpo_central">
+      <div class="cuerpo_texto">
+        <!--***************************************************************************************** -->
+        <!--                       M E N U     P R I N C I P A L                                      -->
+        <!--***************************************************************************************** -->
+        <br />
+        <br />
+        <br />
+        <span style="font-size: 32pt;"> <span style="font-weight: bold; color: black;">
+          </span></span><span style="font-size: 32pt;"><span style="font-weight: bold; color: black;"><span
+              style="font-size: 32pt;"> <span style="font-weight: bold; color: black;">
+                <a href="file:///home/paco/Code/Sort/doc/index.html">The
+                  sort::parallel Library</a> </span></span> </span></span>
+        <div>
+          <div class="author">
+            <h3 class="author"><br />
+              <span class="firstname"></span></h3>
+            <h3 style="font-style: italic;" class="author"><span class="firstname">Francisco
+                Jose Tapia</span>   Copyright © 2015 Francisco Jose Tapia</h3>
+          </div>
+        </div>
+        <div>
+          <div class="legalnotice">
+            <p><span style="font-style: italic;">Distributed under the Boost
+                Software License, Version 1.0. (See accompanying file
+                LICENSE_1_0.txt or copy at </span><a style="font-style: italic;"
+                href="file:///LICENSE_1_0.txt" target="_top">
+                http://www.boost.org/LICENSE_1_0.txt </a><span style="font-style: italic;">)</span>
+            </p>
+          </div>
+        </div>
+        <br />
+        <br />
+        <div class="caja_menu"> <a href="ordered.html">  </a><br />
+          <span style="font-size: 16pt;font-weight: bold; color: black;">Table
+            of Contents</span><br />
+          <br />
+          <div style="margin-left: 40px;"> 3<a href="benchmark.html#benchmarks">.-
+              Benchmarks</a> <br />
+            <div style="margin-left: 40px;"> <a href="benchmark.html#linux">3.1.-
+                Linux 64 bits GCC 4.9.</a><br />
+            </div>
+          </div>
+          <div style="margin-left: 40px;">
+            <div style="margin-left: 80px;"><a href="benchmark.html#linux_integer">3.1.1.-
+                Integer benchmarks </a><br />
+              <a href="benchmark.html#linux_string">3.1.2.- Strings benchmarks</a><br />
+              <a href="benchmark.html#linux_object">3.1.3.- Objects benchmarks</a>
+            </div>
+            <div style="margin-left: 40px;"> <br />
+              <a href="benchmark.html#windows">3.2.- Windows7 64 bits Visual
+                Studio 2015</a><br />
+              <div style="margin-left: 40px;"> <a href="benchmark.html#windows_integer">3.2.1.-
+                  Integer benchmarks </a><br />
+                <a href="benchmark.html#windows_string">3.2.2.- Strings
+                  benchmarks</a><br />
+                <a href="benchmark.html#windows_object">3.2.3.- Objects
+                  benchmarks</a></div>
+            </div>
+            <br />
+            <a href="html/index.html">4.- Source code documentation  </a><br />
+            <br />
+            5<a href="benchmark.html#references">.- References and
+              Acknowledgements  </a><br />
+            <br />
+          </div>
+        </div>
+        <!--                         Fin div caja_menu                                                         -->
+        <br />
+        <p><a name="benchmarks"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3..-
+            Benchmarks  </span></p>
+        <br />
+        The benchmark of these algorithms try to measure the speed in a wide
+        range of elements. There are 3 benchmarks ;<br />
+        <div style="margin-left: 40px;">1.- Sort of 100000000 uint64_t numbers
+          randomly generated. The utility of this benchmark is to see the speed
+          with small elements with a very fast comparison.<br />
+          <br />
+          2.- Sort of 15000000 of strings. The strings is a very common element
+          to sort. The comparison is no so easy as the integers.<br />
+          <br />
+          3.- Elements of several sizes. Each size have their own test. The
+          elements are  objects with an arrays of uint64_t numbers inside. You
+          have objects with arrays of 1, 2 ,4,6,8,16 and 32 numbers. This test
+          show how is the response with big objects with complex comparison. The
+          code of the object is</div>
+        <br />
+        <br />
+        <div class="caja_codigo"><br />
+          <pre><code><span class="style5">template </span><span class="style10">&lt;</span><span
+class="style5">uint32_t </span><span class="style11">NN</span><span class="style10">&gt;
+</span><span class="style5">struct </span><span class="style11">int_array
+</span><span class="style10">{   </span><span class="style5">uint64_t </span><span
+class="style11">M</span><span class="style10">[</span><span class="style11">NN</span><span
+class="style10">];
+</span><span class="style2">
+    </span><span class="style11">int_array </span><span class="style10">( </span><span
+class="style5">uint64_t </span><span class="style11">K </span><span class="style10">=</span><span
+class="style4">0 </span><span class="style10">)
+    {   </span><span class="style5">for </span><span class="style10">( </span><span
+class="style5">uint32_t </span><span class="style11">i </span><span class="style10">=</span><span
+class="style4">0 </span><span class="style10">; </span><span class="style11">i </span><span
+class="style10">&lt; </span><span class="style11">NN </span><span class="style10">; ++</span><span
+class="style11">i</span><span class="style10">) </span><span class="style11">M</span><span
+class="style10">[</span><span class="style11">i</span><span class="style10">] = </span><span
+class="style11">K</span><span class="style10">;
+    };
+</span> <span class="style10">   </span><span class="style5">uint64_t </span><span
+class="style11">counter </span><span class="style10">( </span><span class="style5">void</span><span
+class="style10">) </span><span class="style5">const
+    </span><span class="style10">{   </span><span class="style5">uint64_t </span><span
+class="style11">Acc </span><span class="style10">=</span><span class="style4">0 </span><span
+class="style10">;
+        </span><span class="style5">for </span><span class="style10">( </span><span
+class="style5">uint32_t </span><span class="style11">i </span><span class="style10">=</span><span
+class="style4">0 </span><span class="style10">; </span><span class="style11">i </span><span
+class="style10">&lt; </span><span class="style11">NN </span><span class="style10">; </span><span
+class="style11">Acc </span><span class="style10">+= </span><span class="style11">M</span><span
+class="style10">[</span><span class="style11">i</span><span class="style10">++]) ;
+        </span><span class="style5">return </span><span class="style11">Acc </span><span
+class="style10">;
+    };
+</span><span class="style2">
+    </span><span class="style5">bool operator </span><span class="style10">&lt; ( </span><span
+class="style5">const </span><span class="style11">int_array </span><span class="style10">&amp;</span><span
+class="style11">R</span><span class="style10">) </span><span class="style5">const
+    </span><span class="style10">{   </span><span class="style5">return </span><span
+class="style10">( </span><span class="style11">counter</span><span class="style10">() &lt; </span><span
+class="style11">R</span><span class="style10">.</span><span class="style11">counter</span><span
+class="style10">());
+    };
+    ~</span><span class="style11">int_array </span><span class="style10">()
+    {   </span><span class="style5">for </span><span class="style10">( </span><span
+class="style5">uint32_t </span><span class="style11">i </span><span class="style10">=</span><span
+class="style4">0 </span><span class="style10">; </span><span class="style11">i </span><span
+class="style10">&lt; </span><span class="style11">NN </span><span class="style10">; ++</span><span
+class="style11">i</span><span class="style10">)  </span><span class="style11">M</span><span
+class="style10">[</span><span class="style11">i</span><span class="style10">] = </span><span
+class="style4">0</span><span class="style10">;
+    };
+};</span></code></pre>
+          <br />
+          <span class="style9"> </span> </div>
+        <br />
+        For the benchmark I use the next additional code:<br />
+        <ul style="margin-left: 40px;">
+          <li>Threading Building Blocks</li>
+          <li>OpenMP</li>
+          <li>TimSort code (<span style="font-family:verdana,sans-serif"><span lang="en-US"><a
+                  href="https://github.com/gfx/cpp-TimSort" target="_blank">https://github.com/gfx/cpp-<wbr /><span
+                    class="il">TimSort</span></a> </span></span>)</li>
+          <li>Threading Building Block experimental code (
+            https://software.intel.com/sites/default/files/managed/48/9b/parallel_stable_sort.zip
+            )</li>
+        </ul>
+        <br />
+        The benchmark are running on a Quadcore Q6600 2.4 GHz , with DDR3 1333
+        MHz with Ubuntu 14.10 x64. The result in other machine can vary
+        depending of the speed of the processor and memory, and the cache of the
+        processor.<br />
+        <br />
+        The benchmark running in a 16 cores machine ( thanks to Cesvima,
+        Universidad Politécnica de Madrid  ) the results shows the similar
+        performance of the TBB and the boost libraries.The GCC parallel
+        algorihms, shows his qualities being the fastest in several benchmarks
+        with his parallel sort<br />
+        <br />
+        <!--***************************************************************************************** -->
+        <!--                                  I T E R A T O R S                                       -->
+        <!--***************************************************************************************** -->
+        <p><a name="linux"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.1.-
+            Linux 64 bits GCC 4.9  </span></p>
+        <br />
+        <p><a name="linux_integer"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.1.1.-Integer
+            benchmarks </span></p>
+        <br />
+        <img src="spreadsheet/single_numbers_linux64.jpg" alt="single numbers linux" /><br />
+        <br />
+        As you see, the specialized algorithm are much faster then the generic
+        algorithms.<br />
+        The stable sort need additional memory.<br />
+        TimSort it is not good for small size elements. It show its speed when
+        the size of the elements grows.<br />
+        <br />
+        <img src="spreadsheet/parallel_numbers_linux64.jpg" alt="parallel numbers linux" /><br />
+        The additional memory needed for the stable sort is O(N/2) in parallel
+        stable sort, and O(N) in sample sort and TBB highlevel parallel stable
+        sort. <br />
+        <br />
+        <br />
+        <p><a name="linux_string"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.1.2.-
+            Strings benchmarks </span></p>
+        <p><span style="font-size: 18pt;font-weight: bold; color: black;"></span></p>
+        <br />
+        <img src="spreadsheet/single_strings_linux64.jpg" alt="single strings linux" /><br />
+        <br />
+        The new algorithm smart_merge_sort shows its speed with the strings
+        compared with the others.<br />
+        The specialized algorithms as spreadsort are extremely fast. <br />
+        The memory used is similar in all the algorithms<br />
+        <br />
+        <img src="spreadsheet/parallel_strings_linux64.jpg" alt="parallel strings linux" /><br />
+        <br />
+        The memory used in all the algorithms is similar, but the highest speed
+        is with obtained with the stable sort (boost sample sort and TBB
+        highlevel parallel stable sort)<br />
+        <br />
+        <p><a name="linux_object"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.1.3.-Objects
+            benchmarks  </span></p>
+        <br />
+        <img src="spreadsheet/single_objects_linux64.jpg" alt="single objects linux" /><br />
+        The not stable sort algorithms ( std::sort , boost introsort) are faster
+        than the stable algorithms (std::stable sort, boost smart_merge_sort and
+        timsort)<br />
+        In the stable comparison the fastest with all the sizes is
+        smart_merge_sort. This algorithm had been designed and implemented for
+        this library by the author.<br />
+        <br />
+        <img src="spreadsheet/parallel_objects_linux64.jpg" alt="parallel objects linux" /><br />
+        <br />
+        The not stable sort algorithms ( GCC parallel sort, TBB parallel sort
+        boost parallel_introsort) are faster and need less memory than the
+        stable sort algorithms (GCC parallel stable sort, boost
+        parallel_stable_sort, boost sample_sort and TBB parallel_stable_sort).<br />
+        <br />
+        The not stable sort have similar speed but GCC parallel_sort need the
+        double of memory than the TBB parallel sort and boost
+        parallel_introsort.<br />
+        <br />
+        The GCC parallel stable sort is the slowest of the stable algorithms,
+        and need a lot of memory. The others algorithms have similar speed, but
+        with very big objects, boost sample sort and boost paralle_stable_sort
+        are faster due to the introduction of the indirect sort for the very big
+        objects<br />
+        <br />
+        <br />
+        <p><a name="windows"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.2.-Windows
+            7 64 bits  Visual Studio 2015  </span></p>
+        <br />
+        <p><a name="windows_integer"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.2.1.-Integer
+            benchmarks </span></p>
+        <br />
+        <img src="spreadsheet/single_numbers_w7_64.jpg" alt="single numbers windows" /><br />
+        <br />
+        As you see, the specialized algorithm are much faster then the generic
+        algorithms.<br />
+        TimSort it is not good for small size elements. It show its speed when
+        the size of the elements grows.<br />
+        <br />
+        <img src="spreadsheet/parallel_numbers_w7_64.jpg" alt="parallel numbers windoes" /><br />
+        The additional memory needed for the stable sort is O(N/2) in parallel
+        stable sort, and O(N) in sample sort and TBB highlevel parallel stable
+        sort. <br />
+        <br />
+        <br />
+        <p><a name="windows_string"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.2.2.-
+            Strings benchmarks </span></p>
+        <br />
+        <img src="spreadsheet/single_strings_w7_64.jpg" alt="single strings windows" /><br />
+        The specialized algorithms as spreadsort are extremely fast. <br />
+        The time and memory used by timsort is very strange, And I suppose is
+        due to an internal error in the code<br />
+        <br />
+        <img src="spreadsheet/parallel_strings_w7_64.jpg" alt="parallel strings windows" /><br />
+        <br />
+        <p><a name="windows_object"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.2.3.-Objects
+            benchmarks </span></p>
+        <br />
+        <img src="spreadsheet/single_objects_W7_64.jpg" alt="single objects windows" /><br />
+        The not stable sort algorithms ( std::sort , boost introsort) are faster
+        than the stable algorithms (std::stable sort, boost smart_merge_sort and
+        timsort)<br />
+        In the stable comparison the fastest with all the sizes is
+        smart_merge_sort. This algorithm had been designed and implemented for
+        this library by the author.<br />
+        <br />
+        <img src="spreadsheet/parallel_objects_W7_64.jpg" alt="parallel objects windows" /><br />
+        <br />
+        The not stable sort algorithms PPL parallel_sort and boost
+        parallel_introsort) are faster and need less memory than the others
+        algorithms <br />
+        <br />
+        <br />
+        <p><a name="references"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">5.-</span><span
+            style="font-size: 18pt;font-weight: bold; color: black;"> References
+            and</span><span style="font-size: 18pt;font-weight: bold; color: black;">
+            Acknowledgements</span></p>
+        <p><span style="font-size: 18pt;font-weight: bold; color: black;"><br />
+          </span> </p>
+        <h4><span style="text-decoration: underline;"><span style="font-weight: bold;">REFERENCES</span></span></h4>
+          <br />
+        [01] Introduction to Algorithms. ( Cormen, Leiserson , Rivest ) MIT
+        Press<br />
+              <br />
+        [02] C++ STL  Sort Algorithms<br />
+        <br />
+        [03] Algorithm + Data Structures = Programs ( Nicklaus Wirth) Prentice
+        Hall Series in Automatic Computation<br />
+        <br />
+        <br />
+        <p><span style="text-decoration: underline;"><span style="font-weight: bold;">ACKNOWLEDGEMENTS</span></span></p>
+        <p><br />
+        </p>
+        <span style="font-weight: bold;">Steven Ross</span>.<br />
+        Thanks by his generosity and patience, for let me participate in the
+        sort library and the improvements suggested.<br />
+        <br />
+        <span style="font-weight: bold;">Marisa</span>, my love<br />
+        Thanks by her patience and support in the creation of this library.<br />
+        <br />
+        <!--***************************************************************************************** -->
+        <!--                                 E X A M P L E S                                          -->
+        <!--***************************************************************************************** -->
+        <a title="index.html" href="index.html" style="float:right"><img alt="go to head of the page"
+            src="img/up.png" /></a>  <a title="index.html" href="index.html" style="float:right"><img
+            alt="link to index page" src="img/prev.png" /></a> </div>
+    </div>
+    <!--***************************************************************************************** -->
+    <!--                T A B L A    I N F E R I O R   D E   L A    P A G I N A                   -->
+    <!--***************************************************************************************** -->
+    <table width="100%" xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision">
+      <tbody>
+        <tr>
+          <td align="left">
+            <p><small>Last revised: May  20, 2015 <br />
+              </small></p>
+          </td>
+          <td> <br />
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <!-- div cuerpo_texto -->
+    <!-- div cuerpo central -->
+    <!--  div body -->
+    <!--***************************************************************************************** -->
+    <!--                                      F O O T E R                                         -->
+    <!--***************************************************************************************** -->
+    <div id="footer">
+      <div id="footer-left">
+        <div id="copyright">
+          <p>Copyright Francisco Jose Tapia  2015.</p>
+        </div>
+        <div id="license">
+          <p>Distributed under the <a href="/LICENSE_1_0.txt" class="internal">Boost
+              Software License, Version 1.0</a>.</p>
+        </div>
+      </div>
+      <div id="footer-right">
+        <div id="banners">
+          <p id="banner-xhtml"> <a href="http://validator.w3.org/check?uri=referer"
+              class="external">XHTML 1.0</a></p>
+          <p id="banner-css"> <a href="http://jigsaw.w3.org/css-validator/check/referer"
+              class="external">CSS</a></p>
+          <p id="banner-osi"> <a href="http://www.opensource.org/docs/definition.php"
+              class="external">OSI Certified</a></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
