@@ -2,7 +2,7 @@
 /// @file parallel_sort.hpp
 /// @brief Parallel Sort algorithm
 ///
-/// @author Copyright (c) 2010 Francisco José Tapia (fjtapia@gmail.com )\n
+/// @author Copyright (c) 2015 Francisco José Tapia (fjtapia@gmail.com )\n
 ///         Distributed under the Boost Software License, Version 1.0.\n
 ///         ( See accompanyingfile LICENSE_1_0.txt or copy at
 ///           http://www.boost.org/LICENSE_1_0.txt  )
@@ -10,10 +10,11 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __BOOST_SORT_GENERAL_ALGORITHM_PARALLEL_SORT_HPP
-#define __BOOST_SORT_GENERAL_ALGORITHM_PARALLEL_SORT_HPP
+#ifndef __BOOST_SORT_PARALLEL_ALGORITHM_PARALLEL_SORT_HPP
+#define __BOOST_SORT_PARALLEL_ALGORITHM_PARALLEL_SORT_HPP
 
 #include <boost/sort/parallel/util/atomic.hpp>
+#include <boost/sort/parallel/util/nthread.hpp>
 #include <boost/sort/parallel/util/stack_cnc.hpp>
 #include <boost/sort/parallel/algorithm/intro_sort.hpp>
 #include <boost/sort/parallel/algorithm/indirect.hpp>
@@ -29,6 +30,7 @@ namespace parallel
 namespace algorithm
 {
 namespace bspu = boost::sort::parallel::util;
+
 using bspu::NThread ;
 using bspu::NThread_HW ;
 //
@@ -54,7 +56,6 @@ struct parallel_sort_comp
     //-------------------------------------------------------------------------
     stack_cnc <token_t> ST ;
     std::atomic<difference_type > ND ;
-    //std::vector<std::thread> VT ;
 
     //
     //------------------------------------------------------------------------
@@ -108,7 +109,7 @@ struct parallel_sort_comp
 
         std::vector<std::thread> VT (NT());
         for ( uint32_t i  =0  ; i < NT() ; ++i)
-            VT[i] = std::thread ( &parallel_sort_comp::sort_thread, this );
+            VT[i] = std::thread (&parallel_sort_comp::sort_thread, this);
         for ( uint32_t i  =0  ; i < NT() ; ++i)
             VT[i].join();
 
@@ -198,10 +199,7 @@ struct parallel_sort_comp
         }; // end while
     } ;
 };
-//------------------------------------------------------------------------------
-// These functions are for to select the correct format depending of the number
-// and type of the parameters
-//------------------------------------------------------------------------------
+
 //
 //-----------------------------------------------------------------------------
 //  function : parallel_sort
@@ -262,7 +260,8 @@ void parallel_sort ( iter_t first, iter_t last, compare comp1 ,
 /// @remarks
 //-----------------------------------------------------------------------------
 template < class iter_t >
-void indirect_parallel_sort (iter_t first, iter_t last, const NThread &NT = NThread())
+void indirect_parallel_sort ( iter_t first, iter_t last, 
+                              const NThread &NT = NThread() )
 {   //------------------------------- begin--------------------------
     typedef std::less <typename iter_value<iter_t>::type> compare ;
     typedef less_ptr_no_null <iter_t, compare>      compare_ptr ;
@@ -291,7 +290,7 @@ template < class iter_t,
           typename compare = std::less < typename iter_value<iter_t>::type >
         >
 void indirect_parallel_sort ( iter_t first, iter_t last,
-                                    compare comp1, const NThread &NT = NThread() )
+                              compare comp1, const NThread &NT = NThread())
 {   //----------------------------- begin ----------------------------------
     typedef less_ptr_no_null <iter_t, compare>      compare_ptr ;
 

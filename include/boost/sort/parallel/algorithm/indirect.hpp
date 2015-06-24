@@ -10,8 +10,8 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __BOOST_SORT_GENERAL_ALGORITHM_INDIRECT_HPP
-#define __BOOST_SORT_GENERAL_ALGORITHM_INDIRECT_HPP
+#ifndef __BOOST_SORT_PARALLEL_ALGORITHM_INDIRECT_HPP
+#define __BOOST_SORT_PARALLEL_ALGORITHM_INDIRECT_HPP
 
 #include <boost/sort/parallel/util/algorithm.hpp>
 #include <boost/sort/parallel/util/atomic.hpp>

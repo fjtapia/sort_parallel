@@ -1,6 +1,0 @@
-<map id="util/spinlock.hpp" name="util/spinlock.hpp">
-<area shape="rect" id="node2" href="$stack__cnc_8hpp.html" title="This file contains the implementation of the several types of recursive fastmutex for read and write..." alt="" coords="73,80,201,107"/>
-<area shape="rect" id="node3" href="$parallel__sort_8hpp.html" title="Parallel Sort algorithm. " alt="" coords="5,155,125,196"/>
-<area shape="rect" id="node5" href="$parallel__stable__sort_8hpp.html" title="algorithm/parallel\l_stable_sort.hpp" alt="" coords="149,155,269,196"/>
-<area shape="rect" id="node4" href="$sort_8hpp.html" title="This file contains the sort functions of the sort library. " alt="" coords="103,244,172,271"/>
-</map>

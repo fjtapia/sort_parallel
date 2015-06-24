@@ -10,8 +10,8 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __BOOST_SORT_GENERAL_UTIL_SPINLOCK_HPP
-#define __BOOST_SORT_GENERAL_UTIL_SPINLOCK_HPP
+#ifndef __BOOST_SORT_PARALLEL_UTIL_SPINLOCK_HPP
+#define __BOOST_SORT_PARALLEL_UTIL_SPINLOCK_HPP
 
 #include <boost/sort/parallel/util/definition.hpp>
 #include <atomic>
@@ -62,8 +62,7 @@ explicit inline spinlock() NOEXCEPT{ af.clear(); };
 /// @brief  Lock the spinlock
 //---------------------------------------------------------------------------
 inline void lock() NOEXCEPT
-{   //while ( af.test_and_set(std::memory_order_acquire) and wait());
-    if ( af.test_and_set(std::memory_order_acquire))
+{   if ( af.test_and_set(std::memory_order_acquire))
     {   while ( wait() and  af.test_and_set(std::memory_order_relaxed) );
     };
 };

@@ -9,8 +9,8 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __BOOST_SORT_GENERAL_UTIL_UTIL_ITERATOR_HPP
-#define __BOOST_SORT_GENERAL_UTIL_UTIL_ITERATOR_HPP
+#ifndef __BOOST_SORT_PARALLEL_UTIL_UTIL_ITERATOR_HPP
+#define __BOOST_SORT_PARALLEL_UTIL_UTIL_ITERATOR_HPP
 
 #include <cassert>
 #include <utility>

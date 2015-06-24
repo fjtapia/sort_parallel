@@ -1,8 +1,0 @@
-<map id="util/buffer.hpp" name="util/buffer.hpp">
-<area shape="rect" id="node2" href="$merge__sort_8hpp.html" title="Merge Sort algorithm. " alt="" coords="5,87,175,114"/>
-<area shape="rect" id="node3" href="$smart__merge__sort_8hpp.html" title="Quick Sort algorithm. " alt="" coords="199,80,354,121"/>
-<area shape="rect" id="node7" href="$range_8hpp.html" title="util/range.hpp" alt="" coords="377,87,477,114"/>
-<area shape="rect" id="node4" href="$sample__sort_8hpp.html" title="Sample Sort algorithm. " alt="" coords="264,169,439,196"/>
-<area shape="rect" id="node5" href="$parallel__stable__sort_8hpp.html" title="algorithm/parallel\l_stable_sort.hpp" alt="" coords="291,244,411,285"/>
-<area shape="rect" id="node6" href="$sort_8hpp.html" title="This file contains the sort functions of the sort library. " alt="" coords="317,333,386,360"/>
-</map>

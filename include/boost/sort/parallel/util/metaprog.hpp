@@ -72,9 +72,6 @@ static CONSTEXPR inline uint64_t MASK_64 ( uint64_t NBits) NOEXCEPT
 template <int NBits = 16 >
 static CONSTEXPR inline int MS1B_32 ( uint32_t N , int Pos =0) NOEXCEPT
 {   //------------------ begin ----------------------------
-//#if __DEBUG_CNTREE != 0
-//    static_assert ( NBits < 32, " NBits too big ");
-//#endif
     return (((N>>Pos)& (~MASK_32(NBits)))== 0 )?
               MS1B_32<(NBits>>1)>(N,Pos):
               MS1B_32<(NBits>>1)>(N,Pos+NBits);
@@ -94,9 +91,6 @@ CONSTEXPR inline int MS1B_32<0> ( uint32_t  , int Pos) NOEXCEPT
 template <int NBits = 32 >
 static CONSTEXPR inline int MS1B_64 ( uint64_t N , int Pos =0) NOEXCEPT
 {   //------------------ begin ----------------------------
-//#if __DEBUG_CNTREE != 0
-//    static_assert ( NBits < 64, " NBits too big ");
-//#endif
     return (((N>>Pos)& (~MASK_64(NBits)))== 0 )?
               MS1B_64<(NBits>>1)>(N,Pos):
               MS1B_64<(NBits>>1)>(N,Pos+NBits);

@@ -34,7 +34,7 @@
 
 #include "pss_common.h"
 
-namespace pss_omp {
+namespace pss {
 
 namespace internal {
 
@@ -67,10 +67,10 @@ void parallel_move_merge( RandomAccessIterator1 xs, RandomAccessIterator1 xe, Ra
         xs = xm;
         ys = ym;
     }
-    pss::internal::serial_move_merge( xs, xe, ys, ye, zs, comp );
+    serial_move_merge( xs, xe, ys, ye, zs, comp );
     if( destroy ) {
-        pss::internal::serial_destroy( xs, xe );
-        pss::internal::serial_destroy( ys, ye );
+        serial_destroy( xs, xe );
+        serial_destroy( ys, ye );
     }
 #pragma omp taskwait
 }
@@ -82,7 +82,7 @@ void parallel_stable_sort_aux( RandomAccessIterator1 xs, RandomAccessIterator1 x
     typedef typename std::iterator_traits<RandomAccessIterator2>::value_type T;
     const size_t SORT_CUT_OFF = 500;
     if( xe-xs<=SORT_CUT_OFF ) {
-        pss::internal::stable_sort_base_case(xs, xe, zs, inplace, comp);
+        stable_sort_base_case(xs, xe, zs, inplace, comp); 
     } else {
         RandomAccessIterator1 xm = xs + (xe-xs)/2;
         RandomAccessIterator2 zm = zs + (xm-xs);
@@ -103,13 +103,13 @@ void parallel_stable_sort_aux( RandomAccessIterator1 xs, RandomAccessIterator1 x
 template<typename RandomAccessIterator, typename Compare>
 void parallel_stable_sort( RandomAccessIterator xs, RandomAccessIterator xe, Compare comp ) {
     typedef typename std::iterator_traits<RandomAccessIterator>::value_type T;
-    if( pss::internal::raw_buffer z = pss::internal::raw_buffer( sizeof(T)*(xe-xs) ) )
-        if( omp_get_num_threads() > 1 )
+    if( internal::raw_buffer z = internal::raw_buffer( sizeof(T)*(xe-xs) ) )
+        if( omp_get_num_threads() > 1 ) 
             internal::parallel_stable_sort_aux( xs, xe, (T*)z.get(), 2, comp );
         else
             #pragma omp parallel
             #pragma omp master
-           internal::parallel_stable_sort_aux( xs, xe, (T*)z.get(), 2, comp );
+           internal::parallel_stable_sort_aux( xs, xe, (T*)z.get(), 2, comp );  
     else
         // Not enough memory available - fall back on serial sort
         std::stable_sort( xs, xe, comp );

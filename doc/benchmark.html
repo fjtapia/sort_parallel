@@ -1,14 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html lang="en" xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
-    <meta name="generator" content="HTML Tidy for Windows (vers 1st November 2003), see www.w3.org" />
+    <meta content="HTML Tidy for Windows (vers 1st November 2003), see www.w3.org"
+      name="generator" />
     <title>Boost C++ Libraries</title>
-    <link rel="icon" href="http://www.boost.org/favicon.ico" type="image/ico" />
-    <link rel="stylesheet" type="text/css" href="http://www.boost.org/style-v2/section-welcome.css" />
-    <link href="files/code.css" type="text/css" rel="stylesheet" />
+    <link type="image/ico" href="http://www.boost.org/favicon.ico" rel="icon" />
+    <link href="http://www.boost.org/style-v2/section-welcome.css" type="text/css"
+      rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="files/code.css" />
     <!--[if IE 7]> <style type="text/css"> body { behavior: url(http://www.boost.org/style-v2/csshover3.htc); } </style> <![endif]-->
-    <meta name="google-site-verification" content="mpr2HgFpodnbF_8fv4qXd9roIClVwtX3C-Kd3F6r61w" />
+    <meta content="mpr2HgFpodnbF_8fv4qXd9roIClVwtX3C-Kd3F6r61w" name="google-site-verification" />
   </head>
   <!-- Note: Editing website content is documented at:http://www.boost.org/development/website_updating.html -->
   <!--***************************************************************************************** -->
@@ -20,14 +22,14 @@
         <h1 class="heading-title">  <a href="http://www.boost.org/"> 5<span class="heading-boost">Boost</span>
             <span class="heading-cpplibraries">C++ Libraries</span>
             <!-- Removing the next line, deletes the Preliminary text in the decoration od the top odf the page -->
-            <img src="img/preliminary.gif" alt="Preliminary" style="width: 300px; height: 80px;" />
+            <img style="width: 300px; height: 80px;" alt="Preliminary" src="img/preliminary.gif" />
           </a></h1>
         <p class="heading-quote"> <q>...one of the most highly regarded and
             expertly designed C++ library projects in the world.</q> <span class="heading-attribution">—
-            <a href="http://www.gotw.ca/" class="external">Herb Sutter</a> and <a
-              href="http://en.wikipedia.org/wiki/Andrei_Alexandrescu" class="external">Andrei
-              Alexandrescu</a>, <a href="http://safari.awprofessional.com/?XmlId=0321113586"
-              class="external">C++ Coding Standards</a></span></p>
+            <a class="external" href="http://www.gotw.ca/">Herb Sutter</a> and <a
+              class="external" href="http://en.wikipedia.org/wiki/Andrei_Alexandrescu">Andrei
+              Alexandrescu</a>, <a class="external" href="http://safari.awprofessional.com/?XmlId=0321113586">C++
+              Coding Standards</a></span></p>
       </div>
       <!--  div heading-inner--> </div>
     <!-- - div  heading -->
@@ -51,7 +53,7 @@
           <div class="author">
             <h3 class="author"><br />
               <span class="firstname"></span></h3>
-            <h3 style="font-style: italic;" class="author"><span class="firstname">Francisco
+            <h3 class="author" style="font-style: italic;"><span class="firstname">Francisco
                 Jose Tapia</span>   Copyright © 2015 Francisco Jose Tapia</h3>
           </div>
         </div>
@@ -59,8 +61,8 @@
           <div class="legalnotice">
             <p><span style="font-style: italic;">Distributed under the Boost
                 Software License, Version 1.0. (See accompanying file
-                LICENSE_1_0.txt or copy at </span><a style="font-style: italic;"
-                href="file:///LICENSE_1_0.txt" target="_top">
+                LICENSE_1_0.txt or copy at </span><a target="_top" href="file:///LICENSE_1_0.txt"
+                style="font-style: italic;">
                 http://www.boost.org/LICENSE_1_0.txt </a><span style="font-style: italic;">)</span>
             </p>
           </div>
@@ -115,11 +117,12 @@
           2.- Sort of 15000000 of strings. The strings is a very common element
           to sort. The comparison is no so easy as the integers.<br />
           <br />
-          3.- Elements of several sizes. Each size have their own test. The
-          elements are  objects with an arrays of uint64_t numbers inside. You
-          have objects with arrays of 1, 2 ,4,6,8,16 and 32 numbers. This test
-          show how is the response with big objects with complex comparison. The
-          code of the object is</div>
+          3.- Objects of several sizes. Each size have their own test. In the
+          sorting algorithms the operations involved are moving and comparing.
+          This test is done with objects of different sizes, with hard
+          comparison functions and objects of different sizes ( from 8 bytes to
+          256 bytes). This test show how is the response with big objects with
+          complex comparison. The code of the object is</div>
         <br />
         <br />
         <div class="caja_codigo"><br />
@@ -183,10 +186,9 @@ class="style4">0</span><span class="style10">;
           <li>Threading Building Blocks</li>
           <li>OpenMP</li>
           <li>TimSort code (<span style="font-family:verdana,sans-serif"><span lang="en-US"><a
-                  href="https://github.com/gfx/cpp-TimSort" target="_blank">https://github.com/gfx/cpp-<wbr /><span
+                  target="_blank" href="https://github.com/gfx/cpp-TimSort">https://github.com/gfx/cpp-<wbr /><span
                     class="il">TimSort</span></a> </span></span>)</li>
-          <li>Threading Building Block experimental code (
-            https://software.intel.com/sites/default/files/managed/48/9b/parallel_stable_sort.zip
+          <li>Threading Building Block experimental code ( <a href="https://software.intel.com/sites/default/files/managed/48/9b/parallel_stable_sort.zip">https://software.intel.com/sites/default/files/managed/48/9b/parallel_stable_sort.zip</a>
             )</li>
         </ul>
         <br />
@@ -197,7 +199,7 @@ class="style4">0</span><span class="style10">;
         <br />
         The benchmark running in a 16 cores machine ( thanks to Cesvima,
         Universidad Politécnica de Madrid  ) the results shows the similar
-        performance of the TBB and the boost libraries.The GCC parallel
+        performance of the TBB and the boost libraries. The GCC parallel
         algorihms, shows his qualities being the fastest in several benchmarks
         with his parallel sort<br />
         <br />
@@ -207,52 +209,129 @@ class="style4">0</span><span class="style10">;
         <p><a name="linux"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.1.-
             Linux 64 bits GCC 4.9  </span></p>
         <br />
+        Many times the data to sort are previously sorted, and then the fast
+        detection of this is a desirable characteristic of the algorithms. The
+        response of the algorithms used in this benchmark is showed in this
+        table, when tray to sort 25000000 64 bits numbers ordered.<br />
+        <br />
+        <table border="1" style="width: 465px; height: 396px;">
+          <tbody>
+            <tr>
+              <td><span style="font-weight: bold;">ALGORITHM</span></td>
+              <td><span style="font-weight: bold;">Time in seconds</span></td>
+            </tr>
+            <tr>
+              <td style="width: 236.95px;">GCC std::sort  </td>
+              <td style="width: 216.05px;">  1.233 </td>
+            </tr>
+            <tr>
+              <td>Boost introsort   </td>
+              <td>  0.036 </td>
+            </tr>
+            <tr>
+              <td>GCC std::stable_sort </td>
+              <td>  2.340 </td>
+            </tr>
+            <tr>
+              <td>Boost smart_merge_sort </td>
+              <td>  0.032 </td>
+            </tr>
+            <tr>
+              <td>Timsort  </td>
+              <td>  0.032 </td>
+            </tr>
+            <tr>
+              <td>Boost spreadsort </td>
+              <td>  0.048 </td>
+            </tr>
+            <tr>
+              <td>GCC parallel sort   </td>
+              <td>  0.590 </td>
+            </tr>
+            <tr>
+              <td>TBB parallel_sort  </td>
+              <td>  0.025 </td>
+            </tr>
+            <tr>
+              <td>Boost parallel introsort  </td>
+              <td>  0.035 </td>
+            </tr>
+            <tr>
+              <td>GCC parallel stable sort  </td>
+              <td>  2.106 </td>
+            </tr>
+            <tr>
+              <td>Boost parallel stable sort </td>
+              <td>  0.039</td>
+            </tr>
+            <tr>
+              <td>Boost sample sort </td>
+              <td>  0.041</td>
+            </tr>
+            <tr>
+              <td>TBB parallel stable sort  </td>
+              <td>  1.003 </td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <br />
+        <br />
         <p><a name="linux_integer"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.1.1.-Integer
             benchmarks </span></p>
         <br />
-        <img src="spreadsheet/single_numbers_linux64.jpg" alt="single numbers linux" /><br />
+        <img alt="single numbers linux" src="spreadsheet/single_numbers_GCC.jpg" /><br />
         <br />
-        As you see, the specialized algorithm are much faster then the generic
+        As you see, the spreadsort algorithm is much faster than the generic
         algorithms.<br />
-        The stable sort need additional memory.<br />
+        The stable sort algorithms (std::stable_sort, boost smart_merge_sort and
+        Timsort) need additional memory.<br />
         TimSort it is not good for small size elements. It show its speed when
         the size of the elements grows.<br />
         <br />
-        <img src="spreadsheet/parallel_numbers_linux64.jpg" alt="parallel numbers linux" /><br />
-        The additional memory needed for the stable sort is O(N/2) in parallel
-        stable sort, and O(N) in sample sort and TBB highlevel parallel stable
-        sort. <br />
-        <br />
+        <img alt="parallel numbers linux" src="spreadsheet/parallel_numbers_GCC.jpg" /><br />
+        The additional memory needed for the parallel_stable sort is O(N/2), and
+        O(N) in sample sort and TBB parallel stable sort. <br />
+        In the test with 16 cores the GCC parallel_stable_sort have similar
+        performance than the Boost and TBB algorithms. The main difference is
+        the memory used by the algorithms.<br />
         <br />
         <p><a name="linux_string"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.1.2.-
             Strings benchmarks </span></p>
         <p><span style="font-size: 18pt;font-weight: bold; color: black;"></span></p>
         <br />
-        <img src="spreadsheet/single_strings_linux64.jpg" alt="single strings linux" /><br />
+        <img alt="single strings linux" src="spreadsheet/single_strings_GCC.jpg" /><br />
         <br />
         The new algorithm smart_merge_sort shows its speed with the strings
         compared with the others.<br />
-        The specialized algorithms as spreadsort are extremely fast. <br />
+        The spreadsort algorithm is extremely fast. <br />
         The memory used is similar in all the algorithms<br />
         <br />
-        <img src="spreadsheet/parallel_strings_linux64.jpg" alt="parallel strings linux" /><br />
+        <img alt="parallel strings linux" src="spreadsheet/parallel_strings_GCC.jpg" /><br />
         <br />
         The memory used in all the algorithms is similar, but the highest speed
         is with obtained with the stable sort (boost sample sort and TBB
-        highlevel parallel stable sort)<br />
+        parallel stable sort)<br />
         <br />
         <p><a name="linux_object"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.1.3.-Objects
             benchmarks  </span></p>
         <br />
-        <img src="spreadsheet/single_objects_linux64.jpg" alt="single objects linux" /><br />
+        In the sorting algorithms the operations involved are moving and
+        comparing. This test is done with objects of different sizes, with hard
+        comparison functions and objects of different sizes ( from 8 bytes to
+        256 bytes).<br />
+        <br />
+        <br />
+        <img alt="single objects linux" src="spreadsheet/single_objects_GCC.jpg" /><br />
         The not stable sort algorithms ( std::sort , boost introsort) are faster
         than the stable algorithms (std::stable sort, boost smart_merge_sort and
         timsort)<br />
-        In the stable comparison the fastest with all the sizes is
-        smart_merge_sort. This algorithm had been designed and implemented for
-        this library by the author.<br />
+        In the stable comparison the <span style="font-weight: bold;">fastest</span>
+        with all the sizes is <span style="font-weight: bold;">
+          smart_merge_sort</span>. This algorithm had been designed and
+        implemented for this library by the author.<br />
         <br />
-        <img src="spreadsheet/parallel_objects_linux64.jpg" alt="parallel objects linux" /><br />
+        <img alt="parallel objects linux" src="spreadsheet/parallel_objects_GCC.jpg" /><br />
         <br />
         The not stable sort algorithms ( GCC parallel sort, TBB parallel sort
         boost parallel_introsort) are faster and need less memory than the
@@ -265,25 +344,96 @@ class="style4">0</span><span class="style10">;
         <br />
         The GCC parallel stable sort is the slowest of the stable algorithms,
         and need a lot of memory. The others algorithms have similar speed, but
-        with very big objects, boost sample sort and boost paralle_stable_sort
+        with very big objects, boost sample sort and boost parallel_stable_sort
         are faster due to the introduction of the indirect sort for the very big
-        objects<br />
+        objects.<br />
+        <br />
+        In the test with 16 cores the GCC parallel_stable_sort have similar
+        performance than the Boost and TBB algorithms. The main difference is
+        the memory used.<br />
         <br />
         <br />
         <p><a name="windows"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.2.-Windows
             7 64 bits  Visual Studio 2015  </span></p>
         <br />
+        Many times the data to sort are previously sorted, and then the fast
+        detection of this is a desirable characteristic of the algorithms. The
+        response of the algorithms used in this benchmark is showed in this
+        table, when tray to sort 25000000 64 bits numbers ordered.<br />
+        <br />
+        <table border="1" style="width: 465px; height: 396px;">
+          <tbody>
+            <tr>
+              <td><span style="font-weight: bold;">ALGORITHM</span></td>
+              <td><span style="font-weight: bold;">Time in seconds</span></td>
+            </tr>
+            <tr>
+              <td style="width: 236.95px;">VC++ std::sort  </td>
+              <td style="width: 216.05px;">  0.781 </td>
+            </tr>
+            <tr>
+              <td>Boost introsort   </td>
+              <td>  0.046 </td>
+            </tr>
+            <tr>
+              <td>VC++ std::stable_sort </td>
+              <td>  2.638 </td>
+            </tr>
+            <tr>
+              <td>Boost smart_merge_sort </td>
+              <td>  0.042 </td>
+            </tr>
+            <tr>
+              <td>Boost spreadsort </td>
+              <td>  0.038 </td>
+            </tr>
+            <tr>
+              <td>PPL parallel sort   </td>
+              <td>  0.296 </td>
+            </tr>
+            <tr>
+              <td>PPL parallel_buffered_sort  </td>
+              <td>  0.464 </td>
+            </tr>
+            <tr>
+              <td>Boost parallel introsort  </td>
+              <td>  0.047 </td>
+            </tr>
+            <tr>
+              <td>Boost parallel stable sort </td>
+              <td>  0.041</td>
+            </tr>
+            <tr>
+              <td>Boost sample sort </td>
+              <td>  0.044</td>
+            </tr>
+            <tr>
+              <td>PPL parallel radix sort  </td>
+              <td>  0.515 </td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        An important detail is the optimization capability of the compiler. Some
+        algorithms are well optimized, but others not.This transform a fast
+        algorithm in a slow algorithms. The Boost introsort with the GCC
+        compiler for to sort 25000000 64 bits random numbers need 3.638 secs,
+        the VC++ compiler need 3.375, the difference is the 7.7 percent. But
+        with the smart_merge_sort, with GCC spend 2.837 and with VC++ 4.566, the
+        difference is a 61 percent of difference.<br />
+        <br />
+        <br />
         <p><a name="windows_integer"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.2.1.-Integer
             benchmarks </span></p>
         <br />
-        <img src="spreadsheet/single_numbers_w7_64.jpg" alt="single numbers windows" /><br />
+        <img alt="single numbers windows" src="spreadsheet/single_numbers_VC++.jpg" /><br />
         <br />
         As you see, the specialized algorithm are much faster then the generic
         algorithms.<br />
         TimSort it is not good for small size elements. It show its speed when
         the size of the elements grows.<br />
         <br />
-        <img src="spreadsheet/parallel_numbers_w7_64.jpg" alt="parallel numbers windoes" /><br />
+        <img alt="parallel numbers windoes" src="spreadsheet/parallel_numbers_VC++.jpg" /><br />
         The additional memory needed for the stable sort is O(N/2) in parallel
         stable sort, and O(N) in sample sort and TBB highlevel parallel stable
         sort. <br />
@@ -292,17 +442,17 @@ class="style4">0</span><span class="style10">;
         <p><a name="windows_string"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.2.2.-
             Strings benchmarks </span></p>
         <br />
-        <img src="spreadsheet/single_strings_w7_64.jpg" alt="single strings windows" /><br />
+        <img alt="single strings windows" src="spreadsheet/single_strings_VC++.jpg" /><br />
         The specialized algorithms as spreadsort are extremely fast. <br />
         The time and memory used by timsort is very strange, And I suppose is
         due to an internal error in the code<br />
         <br />
-        <img src="spreadsheet/parallel_strings_w7_64.jpg" alt="parallel strings windows" /><br />
+        <img alt="parallel strings windows" src="spreadsheet/parallel_strings_VC++.jpg" /><br />
         <br />
         <p><a name="windows_object"></a> <span style="font-size: 18pt;font-weight: bold; color: black;">3.2.3.-Objects
             benchmarks </span></p>
         <br />
-        <img src="spreadsheet/single_objects_W7_64.jpg" alt="single objects windows" /><br />
+        <img alt="single objects windows" src="spreadsheet/single_objects_VC++.jpg" /><br />
         The not stable sort algorithms ( std::sort , boost introsort) are faster
         than the stable algorithms (std::stable sort, boost smart_merge_sort and
         timsort)<br />
@@ -310,7 +460,7 @@ class="style4">0</span><span class="style10">;
         smart_merge_sort. This algorithm had been designed and implemented for
         this library by the author.<br />
         <br />
-        <img src="spreadsheet/parallel_objects_W7_64.jpg" alt="parallel objects windows" /><br />
+        <img alt="parallel objects windows" src="spreadsheet/parallel_objects_VC++.jpg" /><br />
         <br />
         The not stable sort algorithms PPL parallel_sort and boost
         parallel_introsort) are faster and need less memory than the others
@@ -347,9 +497,10 @@ class="style4">0</span><span class="style10">;
         <!--***************************************************************************************** -->
         <!--                                 E X A M P L E S                                          -->
         <!--***************************************************************************************** -->
-        <a title="index.html" href="index.html" style="float:right"><img alt="go to head of the page"
-            src="img/up.png" /></a>  <a title="index.html" href="index.html" style="float:right"><img
-            alt="link to index page" src="img/prev.png" /></a> </div>
+        <a style="float:right" href="index.html" title="index.html"><img src="img/up.png"
+            alt="go to head of the page" /></a>  <a style="float:right" href="index.html"
+          title="index.html"><img src="img/prev.png" alt="link to index page" /></a>
+      </div>
     </div>
     <!--***************************************************************************************** -->
     <!--                T A B L A    I N F E R I O R   D E   L A    P A G I N A                   -->
@@ -379,18 +530,17 @@ class="style4">0</span><span class="style10">;
           <p>Copyright Francisco Jose Tapia  2015.</p>
         </div>
         <div id="license">
-          <p>Distributed under the <a href="/LICENSE_1_0.txt" class="internal">Boost
+          <p>Distributed under the <a class="internal" href="/LICENSE_1_0.txt">Boost
               Software License, Version 1.0</a>.</p>
         </div>
       </div>
       <div id="footer-right">
         <div id="banners">
-          <p id="banner-xhtml"> <a href="http://validator.w3.org/check?uri=referer"
-              class="external">XHTML 1.0</a></p>
-          <p id="banner-css"> <a href="http://jigsaw.w3.org/css-validator/check/referer"
-              class="external">CSS</a></p>
-          <p id="banner-osi"> <a href="http://www.opensource.org/docs/definition.php"
-              class="external">OSI Certified</a></p>
+          <p id="banner-xhtml"> <a class="external" href="http://validator.w3.org/check?uri=referer">XHTML
+              1.0</a></p>
+          <p id="banner-css"> <a class="external" href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a></p>
+          <p id="banner-osi"> <a class="external" href="http://www.opensource.org/docs/definition.php">OSI
+              Certified</a></p>
         </div>
       </div>
     </div>

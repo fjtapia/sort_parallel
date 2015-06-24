@@ -10,8 +10,8 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __BOOST_SORT_GENERAL_ALGORITHM_HEAP_SORT_HPP
-#define __BOOST_SORT_GENERAL_ALGORITHM_HEAP_SORT_HPP
+#ifndef __BOOST_SORT_PARALLEL_ALGORITHM_HEAP_SORT_HPP
+#define __BOOST_SORT_PARALLEL_ALGORITHM_HEAP_SORT_HPP
 
 #include <boost/sort/parallel/util/definition.hpp>
 #include <boost/sort/parallel/util/config.hpp>
@@ -21,7 +21,7 @@
 #include <stdexcept>
 #include <cstdint>
 #include <cassert>
-#include <utility> // para std::swap
+#include <utility> // for std::swap
 
 namespace boost
 {
@@ -35,7 +35,7 @@ using namespace boost::sort::parallel::util ;
 //
 //------------------------------------------------------------------------------
 //  function : sort
-/// @brief Sort and signal the cjchanges of three values
+/// @brief Sort and signal the changes of three values
 /// @param [in] R0 : first value to compare
 /// @param [in] R1 : second value to compare
 /// @param [in] R2 : third value to compare

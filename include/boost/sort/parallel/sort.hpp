@@ -30,13 +30,12 @@ namespace parallel
 //****************************************************************************
 namespace bs_algo = boost::sort::parallel::algorithm ;
 namespace bspu = boost::sort::parallel::util;
-using bspu::NThread ;
-using bspu::NThread_HW ;
 using bspu::iter_value ;
 //----------------------------------------------------------------------------
 // The code of the class NThread is in boost/sort/parallel/util/atomic.hpp
 //----------------------------------------------------------------------------
-
+using bspu::NThread ;
+using bspu::NThread_HW ;
 
 //
 //-----------------------------------------------------------------------------
@@ -147,8 +146,8 @@ inline void parallel_stable_sort ( iter_t first, iter_t last ,
                                    const NThread &NT = NThread() )
 {   //---------------------------- begin -------------------------------------
     typedef typename iter_value<iter_t>::type   value_t ;
-    if ( sizeof ( value_t) > 64)
-        bs_algo::indirect_parallel_stable_sort ( first, last, NT);
+    if ( sizeof ( value_t) > 64 and NT() <= 8)
+        bs_algo::indirect_sample_sort ( first, last, NT);
     else
        bs_algo::parallel_stable_sort ( first, last, NT);
 };
@@ -176,8 +175,8 @@ inline void parallel_stable_sort ( iter_t first, iter_t last, compare comp ,
                              const NThread &NT = NThread() )
 {   //---------------------------- begin -------------------------------------
     typedef typename iter_value<iter_t>::type   value_t ;
-    if ( sizeof ( value_t) > 64)
-        bs_algo::indirect_parallel_stable_sort ( first, last,comp, NT);
+    if ( sizeof ( value_t) > 64 and NT() <= 8)
+        bs_algo::indirect_sample_sort ( first, last,comp, NT);
     else
         bs_algo::parallel_stable_sort ( first, last,comp, NT);
 };
@@ -200,7 +199,7 @@ template    < class iter_t >
 inline void sample_sort ( iter_t first, iter_t last , const NThread &NT = NThread() )
 {   //---------------------------- begin -------------------------------------
     typedef typename iter_value<iter_t>::type   value_t ;
-    if ( sizeof ( value_t) > 64)
+    if ( sizeof ( value_t) > 64 and NT() <= 8)
         bs_algo::indirect_sample_sort ( first, last, NT);
     else
        bs_algo::sample_sort ( first, last, NT);
@@ -230,7 +229,7 @@ inline void sample_sort ( iter_t first, iter_t last, compare comp ,
                             const NThread &NT = NThread() )
 {   //---------------------------- begin -------------------------------------
     typedef typename iter_value<iter_t>::type   value_t ;
-    if ( sizeof ( value_t) > 64)
+    if ( sizeof ( value_t) > 64 and NT()<= 8)
         bs_algo::indirect_sample_sort ( first, last,comp, NT);
     else
         bs_algo::sample_sort ( first, last,comp, NT);

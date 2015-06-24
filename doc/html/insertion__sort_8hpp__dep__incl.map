@@ -1,9 +1,0 @@
-<map id="algorithm/insertion_sort.hpp" name="algorithm/insertion_sort.hpp">
-<area shape="rect" id="node2" href="$intro__sort_8hpp.html" title="Intro Sort algorithm. " alt="" coords="5,102,164,129"/>
-<area shape="rect" id="node5" href="$merge__sort_8hpp.html" title="Merge Sort algorithm. " alt="" coords="188,102,357,129"/>
-<area shape="rect" id="node6" href="$smart__merge__sort_8hpp.html" title="Quick Sort algorithm. " alt="" coords="382,95,537,136"/>
-<area shape="rect" id="node3" href="$parallel__sort_8hpp.html" title="Parallel Sort algorithm. " alt="" coords="197,259,317,300"/>
-<area shape="rect" id="node4" href="$sort_8hpp.html" title="This file contains the sort functions of the sort library. " alt="" coords="309,348,378,375"/>
-<area shape="rect" id="node7" href="$sample__sort_8hpp.html" title="Sample Sort algorithm. " alt="" coords="357,184,532,211"/>
-<area shape="rect" id="node8" href="$parallel__stable__sort_8hpp.html" title="algorithm/parallel\l_stable_sort.hpp" alt="" coords="370,259,490,300"/>
-</map>

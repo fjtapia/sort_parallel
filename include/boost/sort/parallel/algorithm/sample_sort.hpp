@@ -20,6 +20,7 @@
 #include <thread>
 #include <algorithm>
 #include <boost/sort/parallel/util/atomic.hpp>
+#include <boost/sort/parallel/util/nthread.hpp>
 #include <boost/sort/parallel/util/util_iterator.hpp>
 #include <boost/sort/parallel/util/algorithm.hpp>
 #include <boost/sort/parallel/algorithm/smart_merge_sort.hpp>
@@ -303,7 +304,6 @@ void sample_sort_tag<iter_t,compare>::initial_configuration ( void)
     //------------------------------------------------------------------------
     // Sorting of the ranges
     //------------------------------------------------------------------------
-
     std::vector <std::thread > VThread ( NThr );
     for ( uint32_t i =0  ; i < NThr ; ++i )
     {   VThread [i] = std::thread (smart_merge_sort<iter_t,value_t,compare>,

@@ -10,10 +10,11 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __CNTREE_SORT_GENERAl_PARALLEL_STABLE_SORT_HPP
-#define __CNTREE_SORT_GENERAl_PARALLEL_STABLE_SORT_HPP
+#ifndef __CNTREE_SORT_PARALLEL_STABLE_SORT_HPP
+#define __CNTREE_SORT_PARALLEL_STABLE_SORT_HPP
 
 #include <boost/sort/parallel/util/atomic.hpp>
+#include <boost/sort/parallel/util/nthread.hpp>
 #include <boost/sort/parallel/util/stack_cnc.hpp>
 #include <boost/sort/parallel/algorithm/sample_sort.hpp>
 #include <functional>
@@ -98,7 +99,6 @@ parallel_stable_sort_tag ( iter_t first, iter_t last, compare comp,
     //---------------------------------------------------------------------
     //     Parallel Process
     //---------------------------------------------------------------------
-    //range<iter_t> R1 ( first , first + NPtr), R2 ( first + NPtr + last);
     sample_sort_tag<iter_t, compare> ( first, first + NPtr, comp,NT, Ptr, NPtr);
     sample_sort_tag<iter_t, compare> ( first + NPtr, last , comp, NT,Ptr, NPtr);
 
@@ -121,11 +121,7 @@ parallel_stable_sort_tag ( iter_t first, iter_t last, compare comp,
 //----------------------------------------------------------------------------
 };// end struct parallel_stable_sort_tag
 //----------------------------------------------------------------------------
-//
-//------------------------------------------------------------------------------
-// These functions are for to select the correct format depending of the number
-// and type of the parameters
-//------------------------------------------------------------------------------
+
 //
 //-----------------------------------------------------------------------------
 //  function : parallel_stable_sort
@@ -140,7 +136,8 @@ parallel_stable_sort_tag ( iter_t first, iter_t last, compare comp,
 /// @remarks
 //-----------------------------------------------------------------------------
 template < class iter_t >
-void parallel_stable_sort ( iter_t first, iter_t last , const NThread &NT = NThread() )
+void parallel_stable_sort ( iter_t first, iter_t last , 
+                            const NThread &NT = NThread() )
 {   //------------------------------- begin ----------------------------------
     typedef std::less<typename iter_value<iter_t>::type > compare;
     parallel_stable_sort_tag <iter_t,compare> ( first, last,compare(), NT);

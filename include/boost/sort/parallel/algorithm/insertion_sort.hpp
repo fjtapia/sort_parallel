@@ -10,8 +10,8 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __BOOST_SORT_GENERAL_ALGORITHM_INSERTION_SORT_HPP
-#define __BOOST_SORT_GENERAL_ALGORITHM_INSERTION_SORT_HPP
+#ifndef __BOOST_SORT_PARALLEL_ALGORITHM_INSERTION_SORT_HPP
+#define __BOOST_SORT_PARALLEL_ALGORITHM_INSERTION_SORT_HPP
 
 #include <boost/sort/parallel/util/definition.hpp>
 #include <boost/sort/parallel/util/util_iterator.hpp>

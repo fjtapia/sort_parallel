@@ -35,7 +35,7 @@
 
 #include "parallel_stable_sort/pss_common.h"
 
-namespace pss_tbbl {
+namespace pss {
 
 namespace internal {
 
@@ -58,10 +58,10 @@ tbb::task* merge_task<RandomAccessIterator1,RandomAccessIterator2,RandomAccessIt
     const size_t MERGE_CUT_OFF = 2000;
     auto n = (xe-xs) + (ye-ys);
     if( n <= MERGE_CUT_OFF ) {
-        pss::internal::serial_move_merge( xs, xe, ys, ye, zs, comp );
+        serial_move_merge( xs, xe, ys, ye, zs, comp );
         if( destroy ) {
-            pss::internal::serial_destroy(xs,xe);
-            pss::internal::serial_destroy(ys,ye);
+            serial_destroy(xs,xe);
+            serial_destroy(ys,ye);
         }
         return NULL;
     } else {
@@ -101,7 +101,7 @@ template<typename RandomAccessIterator1, typename RandomAccessIterator2, typenam
 tbb::task* stable_sort_task<RandomAccessIterator1, RandomAccessIterator2, Compare>::execute() {
     const size_t SORT_CUT_OFF = 500;
     if (xe - xs <= SORT_CUT_OFF) {
-        pss::internal::stable_sort_base_case(xs, xe, zs, inplace, comp);
+        stable_sort_base_case(xs, xe, zs, inplace, comp);
         return NULL;
     } else {
         RandomAccessIterator1 xm = xs + (xe - xs) / 2;
@@ -127,11 +127,11 @@ tbb::task* stable_sort_task<RandomAccessIterator1, RandomAccessIterator2, Compar
 template<typename RandomAccessIterator, typename Compare>
 void parallel_stable_sort( RandomAccessIterator xs, RandomAccessIterator xe, Compare comp ) {
     typedef typename std::iterator_traits<RandomAccessIterator>::value_type T;
-    if( pss::internal::raw_buffer z = pss::internal::raw_buffer( sizeof(T)*(xe-xs) ) ) {
+    if( internal::raw_buffer z = internal::raw_buffer( sizeof(T)*(xe-xs) ) ) {
         using tbb::task;
         typedef typename std::iterator_traits<RandomAccessIterator>::value_type T;
-        pss::internal::raw_buffer buf( sizeof(T)*(xe-xs) );
-        task::spawn_root_and_wait(*new( task::allocate_root() ) pss_tbbl::internal::stable_sort_task<RandomAccessIterator,T*,Compare>( xs, xe, (T*)buf.get(), 2, comp ));
+        internal::raw_buffer buf( sizeof(T)*(xe-xs) );
+        task::spawn_root_and_wait(*new( task::allocate_root() ) internal::stable_sort_task<RandomAccessIterator,T*,Compare>( xs, xe, (T*)buf.get(), 2, comp ));
     } else
         // Not enough memory available - fall back on serial sort
         std::stable_sort( xs, xe, comp );

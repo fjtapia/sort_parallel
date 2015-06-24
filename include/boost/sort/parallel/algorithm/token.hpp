@@ -10,8 +10,8 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __BOOST_SORT_GENERAL_ALGORITHM_TOKEN_HPP
-#define __BOOST_SORT_GENERAL_ALGORITHM_TOKEN_HPP
+#ifndef __BOOST_SORT_PARALLEL_ALGORITHM_TOKEN_HPP
+#define __BOOST_SORT_PARALLEL_ALGORITHM_TOKEN_HPP
 
 
 namespace boost

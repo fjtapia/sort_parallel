@@ -10,8 +10,8 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __BOOST_SORT_ALGORITHM_SMART_MERGE_SORT_HPP
-#define __BOOST_SORT_ALGORITHM_SMART_MERGE_SORT_HPP
+#ifndef __BOOST_SORT_PARALLEL_ALGORITHM_SMART_MERGE_SORT_HPP
+#define __BOOST_SORT_PARALLEL_ALGORITHM_SMART_MERGE_SORT_HPP
 
 #include <functional>
 #include <memory>
@@ -445,7 +445,6 @@ void indirect_smart_merge_sort ( iter_t first, iter_t last,
     smart_merge_sort  ( VP.begin() , VP.end(), compare_ptr(comp) );
     sort_index ( first , VP) ;
 };
-
 
 //****************************************************************************
 };//    End namespace algorithm

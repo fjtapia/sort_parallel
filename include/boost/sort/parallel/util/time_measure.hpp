@@ -11,8 +11,8 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __BOOST_SORT_UTIL_TIME_MEASURE_HPP
-#define __BOOST_SORT_UTIL_TIME_MEASURE_HPP
+#ifndef __BOOST_SORT_PARALLEl_UTIL_TIME_MEASURE_HPP
+#define __BOOST_SORT_PARALLEl_UTIL_TIME_MEASURE_HPP
 
 #include <chrono>
 

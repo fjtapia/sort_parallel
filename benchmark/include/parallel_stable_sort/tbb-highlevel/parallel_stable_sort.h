@@ -34,7 +34,7 @@
 
 #include "pss_common.h"
 
-namespace pss_tbbh {
+namespace pss {
 
 namespace internal {
 
@@ -44,10 +44,10 @@ void parallel_merge( RandomAccessIterator1 xs, RandomAccessIterator1 xe, RandomA
     const size_t MERGE_CUT_OFF = 2000;
     auto n = (xe-xs) + (ye-ys);
     if( n <= MERGE_CUT_OFF ) {
-        pss::internal::serial_move_merge( xs, xe, ys, ye, zs, comp );
+        serial_move_merge( xs, xe, ys, ye, zs, comp );
         if( destroy ) {
-            pss::internal::serial_destroy( xs, xe );
-            pss::internal::serial_destroy( ys, ye );
+            serial_destroy( xs, xe );
+            serial_destroy( ys, ye );
         }
     } else {
         RandomAccessIterator1 xm;
@@ -71,7 +71,7 @@ template<typename RandomAccessIterator1, typename RandomAccessIterator2, typenam
 void parallel_stable_sort_aux( RandomAccessIterator1 xs, RandomAccessIterator1 xe, RandomAccessIterator2 zs, int inplace, Compare comp ) {
     const size_t SORT_CUT_OFF = 500;
     if( xe-xs<=SORT_CUT_OFF ) {
-        pss::internal::stable_sort_base_case(xs, xe, zs, inplace, comp);
+        stable_sort_base_case(xs, xe, zs, inplace, comp);
     } else {
        RandomAccessIterator1 xm = xs + (xe-xs)/2;
        RandomAccessIterator2 zm = zs + (xm-xs);
@@ -90,7 +90,7 @@ void parallel_stable_sort_aux( RandomAccessIterator1 xs, RandomAccessIterator1 x
 template<typename RandomAccessIterator, typename Compare>
 void parallel_stable_sort( RandomAccessIterator xs, RandomAccessIterator xe, Compare comp ) {
     typedef typename std::iterator_traits<RandomAccessIterator>::value_type T;
-    if( pss::internal::raw_buffer z = pss::internal::raw_buffer( sizeof(T)*(xe-xs) ) )
+    if( internal::raw_buffer z = internal::raw_buffer( sizeof(T)*(xe-xs) ) )
         internal::parallel_stable_sort_aux( xs, xe, (T*)z.get(), 2, comp );
     else
         // Not enough memory available - fall back on serial sort

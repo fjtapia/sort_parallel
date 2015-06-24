@@ -29,10 +29,6 @@
   WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
   POSSIBILITY OF SUCH DAMAGE.
 */
-#ifndef _PSS_COMMON_H
-#define _PSS_COMMON_H
-
-
 #include <utility>
 #include <iterator>
 
@@ -59,11 +55,11 @@ void serial_move_merge( RandomAccessIterator1 xs, RandomAccessIterator1 xe, Rand
                 if( comp(*ys,*xs) ) {
                     *zs = std::move(*ys);
                     ++zs;
-                    if( ++ys==ye ) break;
+                    if( ++ys==ye ) break;{};
                 } else {
                     *zs = std::move(*xs);
                     ++zs;
-                    if( ++xs==xe ) goto movey;
+                    if( ++xs==xe ) goto movey;{};
                 }
         ys = xs;
         ye = xe;
@@ -113,4 +109,3 @@ void parallel_stable_sort( RandomAccessIterator xs, RandomAccessIterator xe ) {
 }
 
 } // namespace pss
-#endif // _PSS_COMMON_H

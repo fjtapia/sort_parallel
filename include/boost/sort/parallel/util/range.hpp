@@ -10,8 +10,9 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __BOOST_SORT_GENERAL_UTIL_RANGE_HPP
-#define __BOOST_SORT_GENERAL_UTIL_RANGE_HPP
+#ifndef __BOOST_SORT_PARALLEL_UTIL_RANGE_HPP
+#define __BOOST_SORT_PARALLEL_UTIL_RANGE_HPP
+
 #include <functional>
 #include <memory>
 #include <type_traits>
@@ -155,9 +156,6 @@ iter1_t half_merge ( iter1_t it_dest, range<iter2_t>  R1,
     static_assert ( std::is_same<value1_t, value2_t>::value,
                    "Incompatible iterators\n");
     //--------------------- code -------------------------------------------
-    //if (not comp (*R2.first, *(R1.last-1))) return move (move(it_dest,R1),R2);
-    //if (not comp (*R1.first, *(R2.last-1))) return move (move(it_dest,R2),R1);
-
     while ( R1.not_empty() and R2.not_empty() )
     {   *(it_dest++)=(not comp(*R2.first,*R1.first))?std::move(*(R1.first++))
                                                     :std::move(*(R2.first++));
@@ -345,7 +343,7 @@ value_t* uninit_full_merge4 ( value_t* it_dest,  range<iter_t> R[4],
 //-----------------------------------------------------------------------------
 //  function : merge_level4
 /// @brief merge the ranges in Vin using full_merge4, and the ranges obtained
-//         are in Vout.The output ranges are obtained moving the object to the
+///        are in Vout.The output ranges are obtained moving the object to the
 ///        position pointed by it_dest
 /// @tparam iter1_t : iterator to the output
 /// @tparam iter2_t : iterator to the input ranges
@@ -387,7 +385,7 @@ iter1_t merge_level4 ( iter1_t it_dest,
 //-----------------------------------------------------------------------------
 //  function : uninit_merge_level4
 /// @brief merge the ranges in Vin using full_merge4, and the ranges obtained
-//         are in Vout. The output ranges are obtained creating objects in the
+///        are in Vout. The output ranges are obtained creating objects in the
 ///        uninitialized memory pointed by it_dest.
 /// @tparam iter_t : iterator to the input ranges
 /// @tparam value_t : objects pointed by iter_t

@@ -10,8 +10,8 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __BOOST_SORT_GENERAL_ALGORITHM_INTRO_SORT_HPP
-#define __BOOST_SORT_GENERAL_ALGORITHM_INTRO_SORT_HPP
+#ifndef __BOOST_SORT_PARALLEL_ALGORITHM_INTRO_SORT_HPP
+#define __BOOST_SORT_PARALLEL_ALGORITHM_INTRO_SORT_HPP
 
 #include <boost/sort/parallel/util/algorithm.hpp>
 #include <boost/sort/parallel/algorithm/insertion_sort.hpp>
@@ -66,7 +66,6 @@ inline void intro_sort_internal( iter_t first , iter_t last,
     if ( N < NMin)   return insertion_sort(first,last,comp);
     if (  Level == 0)   return heap_sort ( first , last,comp);
 
-
     //------------------- check if sort --------------------------------------
     bool SW = true ;
     for ( iter_t it1 = first, it2 = first+1 ;
@@ -87,11 +86,9 @@ inline void intro_sort_internal( iter_t first , iter_t last,
     if ( c_first == last)
     {   std::swap ( *first , * (last-1));
         intro_sort_internal ( first , last-1, Level -1 , comp);
-
     }
     else
-    {
-        while ( comp (val     ,*c_last )) --c_last ;
+    {	while ( comp (val     ,*c_last )) --c_last ;
         while (not( c_first > c_last ))
         {   std::swap ( *(c_first++), *(c_last--));
             while (comp (*c_first , val) ) ++c_first;
@@ -102,9 +99,7 @@ inline void intro_sort_internal( iter_t first , iter_t last,
         if ((c_last - first ) > 1 )intro_sort_internal (first , c_last , Level -1, comp);
         if ((last - c_first ) > 1 )intro_sort_internal (c_first, last, Level -1 , comp);
     };
-
-} ;
-
+};
 //
 //-----------------------------------------------------------------------------
 //  function : intro_sort

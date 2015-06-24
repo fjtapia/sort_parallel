@@ -11,8 +11,8 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __BOOST_SORT_GENERAL_UTIL_STACK_CNC_HPP
-#define __BOOST_SORT_GENERAL_UTIL_STACK_CNC_HPP
+#ifndef __BOOST_SORT_PARALLEL_UTIL_STACK_CNC_HPP
+#define __BOOST_SORT_PARALLEL_UTIL_STACK_CNC_HPP
 
 #include <boost/sort/parallel/util/spinlock.hpp>
 #include <vector>
