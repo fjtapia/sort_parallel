@@ -20,10 +20,6 @@ template <uint32_t NN>
 struct int_array
 {   uint64_t M[NN];
 
-    int_array ( uint64_t K =0 )
-    {   for ( uint32_t i =0 ; i < NN ; ++i)
-            M[i] = K;
-    };
 
     template <class generator >
     static int_array<NN> & generate (int_array<NN> & K , generator & gen)
@@ -31,11 +27,7 @@ struct int_array
             K.M[i] = gen();
         return K ;
     };
-    int_array & operator = ( uint64_t K)
-    {   for ( uint32_t i =0 ; i < NN ; ++i)
-            M[i] = K;
-        return *this ;
-    };
+
     uint64_t counter ( void) const
     {   uint64_t Acc =0 ;
         for ( uint32_t i =0 ; i < NN ; Acc += M[i++]) ;
@@ -45,9 +37,6 @@ struct int_array
     bool operator < ( const int_array &R) const
     {   return ( counter() < R.counter());
     };
-    
-    ~int_array ()
-    {   for ( uint32_t i =0 ; i < NN ; ++i)  M[i] = 0;
-    };
+
 };
 #endif // end of int_array.hpp
