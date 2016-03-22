@@ -2,7 +2,7 @@
 /// @file test_sample_sort.cpp
 /// @brief
 ///
-/// @author Copyright (c) 2010 2015 Francisco José Tapia (fjtapia@gmail.com )\n
+/// @author Copyright (c) 2010 2015 Francisco Josï¿½ Tapia (fjtapia@gmail.com )\n
 ///         Distributed under the Boost Software License, Version 1.0.\n
 ///         ( See accompanyingfile LICENSE_1_0.txt or copy at
 ///           http://www.boost.org/LICENSE_1_0.txt  )
@@ -14,16 +14,18 @@
 #include <stdio.h>
 #include <time.h>
 #include <iostream>
-#include <boost/sort/parallel/algorithm/sample_sort.hpp>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
+#include <boost/sort/parallel/algorithm/sample_sort.hpp>
+
 #include <vector>
 
 #include <algorithm>
 
 namespace bs_algo = boost::sort::parallel::algorithm;
 namespace bs_util = boost::sort::parallel::util ;
-
+using boost::sort::parallel::tools::NThread ;
+using boost::sort::parallel::util::range ;
 typedef typename std::vector<uint64_t>::iterator iter_t ;
 
 std::mt19937_64 my_rand(0);
@@ -138,9 +140,10 @@ void prueba5 ( void)
     //std::cout<<"sample_sort - random elements ---------------\n";
     uint64_t * Ptr = std::get_temporary_buffer<uint64_t>(KMax ).first ;
     if ( Ptr == nullptr) throw std::bad_alloc() ;
+    range<uint64_t*> Rbuf ( Ptr , Ptr + KMax);
 
-    bs_algo::sample_sort_tag <iter_t,std::less<uint64_t> >(K.begin(),K.end(),
-                        std::less<uint64_t>(), bs_util::NThread(), Ptr, KMax);
+    bs_algo::sample_sort_tag <iter_t,std::less<uint64_t> >(range<iter_t>(K.begin(),K.end()),
+                        std::less<uint64_t>(), NThread(), Rbuf);
     //bs_algo::sample_sort(K.begin(),K.end());
 
 
@@ -202,22 +205,24 @@ void prueba7 ( void)
 
     A.clear() ;
     for ( uint32_t i =0 ; i < NELEM ; ++i) A.push_back ( NELEM - i);
-
-    bs_algo::sample_sort_tag<iter_t,std::less<uint64_t> > ( A.begin(), A.end(),
-                    std::less<uint64_t>(), bs_util::NThread(),&B[1000], NELEM);
+    range<iter_t> R ( A.begin() , A.end());
+    range<uint64_t*> Rbuf (&B[1000], (&B[1000] )+NELEM );
+    bs_algo::sample_sort_tag<iter_t,std::less<uint64_t> > (range<iter_t>( A.begin() , A.end() ),
+                    std::less<uint64_t>(), NThread(),Rbuf);
 
     for ( iter_t it =A.begin() +1 ; it != A.end() ; ++it)
     {   BOOST_CHECK ( (*(it-1)) <= (*it));
     };
-    BOOST_CHECK (B[998] == 0 and B[999] == 0 and B[1000+NELEM] == 0 and B[1001+NELEM] == 0);
+    BOOST_CHECK (B[998] == 0 and B[999] == 0 and
+    		     B[1000+NELEM] == 0 and B[1001+NELEM] == 0);
 
     //------------------------------------------------------------------------
     for ( uint32_t i =0 ; i < B.size() ; ++i)B[i] = 999999999 ;
     A.clear() ;
     for ( uint32_t i =0 ; i < NELEM ; ++i) A.push_back ( NELEM - i);
 
-    bs_algo::sample_sort_tag<iter_t,std::less<uint64_t> > ( A.begin(), A.end(),
-                    std::less<uint64_t>(), bs_util::NThread(), &B[1000], NELEM);
+    bs_algo::sample_sort_tag<iter_t,std::less<uint64_t> > (range<iter_t>( A.begin(), A.end()),
+                    std::less<uint64_t>(), NThread(), Rbuf);
 
     for ( iter_t it =A.begin() +1 ; it != A.end() ; ++it)
     {   if ( (*(it-1)) > (*it)) std::cout<<"error 2\n";

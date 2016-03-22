@@ -13,16 +13,17 @@
 #include <stdlib.h>
 #include <iostream>
 #include <random>
-#include <boost/sort/parallel/algorithm/parallel_sort.hpp>
+#include <cassert>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
-#include  <algorithm>
+#include <boost/sort/parallel/algorithm/parallel_sort.hpp>
+#include <algorithm>
 
-using boost::sort::parallel::util::NThread ;
+using boost::sort::parallel::tools::NThread ;
 using boost::sort::parallel::algorithm::parallel_sort ;
 using namespace std ;
 
-#define NELEM 500000
+#define NELEM 5000000
 
 void Prueba3() ;
 
@@ -80,7 +81,7 @@ void Prueba3 ( void)
 
 	//cout<<"--------------------- parallel_sort --------------------------\n";
 	B = A ;
-	parallel_sort (B.begin() , B.end() ,NThread(2) );
+	parallel_sort (B.begin() , B.end()  );
 	for ( unsigned i = 0 ; i < (B.size() -1) ; i ++ )
 	{	BOOST_CHECK ( B[i] <= B[i+1] )  ;
 	};

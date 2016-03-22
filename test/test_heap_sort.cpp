@@ -2,7 +2,7 @@
 /// @file test_heap_sort.cpp
 /// @brief Test program of the heap sort algorithm
 ///
-/// @author Copyright (c) 2010 2015 Francisco José Tapia (fjtapia@gmail.com )\n
+/// @author Copyright (c) 2010 2015 Francisco Josï¿½ Tapia (fjtapia@gmail.com )\n
 ///         Distributed under the Boost Software License, Version 1.0.\n
 ///         ( See accompanyingfile LICENSE_1_0.txt or copy at
 ///           http://www.boost.org/LICENSE_1_0.txt  )
@@ -14,9 +14,9 @@
 #include <stdio.h>
 #include <time.h>
 //#include <iostream>
-#include "boost/sort/parallel/algorithm/heap_sort.hpp"
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
+#include "boost/sort/parallel/algorithm/heap_sort.hpp"
 #include <vector>
 
 namespace bs_algo = boost::sort::parallel::algorithm ;
@@ -85,7 +85,7 @@ void prueba3 ( void)
 	{	BOOST_CHECK ( A[i] <= A[i+1] ) ;
 	};
 }
-int test_main (int, char*[])
+int test_main( int, char*[] )
 {   //-------------- begin------------
     prueba2() ;
     prueba3() ;

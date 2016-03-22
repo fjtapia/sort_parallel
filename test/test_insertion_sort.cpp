@@ -2,7 +2,7 @@
 /// @file test_insertion_sort.cpp
 /// @brief Test program of the insertion_sort algorithm
 ///
-/// @author Copyright (c) 2010 2012 Francisco José Tapia (fjtapia@gmail.com )\n
+/// @author Copyright (c) 2010 2012 Francisco Josï¿½ Tapia (fjtapia@gmail.com )\n
 ///         Distributed under the Boost Software License, Version 1.0.\n
 ///         ( See accompanyingfile LICENSE_1_0.txt or copy at
 ///           http://www.boost.org/LICENSE_1_0.txt  )
@@ -14,9 +14,11 @@
 #include <stdio.h>
 #include <time.h>
 #include <iostream>
-#include "boost/sort/parallel/algorithm/insertion_sort.hpp"
+#include <vector>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
+#include "boost/sort/parallel/algorithm/insertion_sort.hpp"
+
 
 
 
@@ -29,28 +31,28 @@ void test01(void)
 	//cout<<"Insertion Sort  Unordered, not repeated -----------------------\n";
 	insertion_sort ( &A[0] , &A[22] );
 	for ( unsigned i = 0 ; i < 21 ; i ++ )
-	{	BOOST_CHECK ( A[i] <= A[i+1] )  ;
+	{	assert ( A[i] <= A[i+1] )  ;
 	};
 
     unsigned B[]={1,2,3,5,6,7,8,9,10,11,12,13,14,15,17,18,19,20,21,23,24,25};
 	//cout<<"Insertion Sort  Ordered, not repeated --------------------------\n";
 	insertion_sort ( &B[0] , &B[22] );
 	for ( unsigned i = 0 ; i < 21 ; i ++ )
-	{	BOOST_CHECK ( B[i] <= B[i+1] ) ;
+	{	assert ( B[i] <= B[i+1] ) ;
 	};
 
     unsigned C [] ={27,26,25,23,22,21,19,18,17,16,15,14,13,11,10,9,8,7,6,5,3,2};
 	//cout<<"Insertion Sort reverse sorted , not repeated --------------------\n";
 	insertion_sort (&C[0] , &C[22] );
 	for ( unsigned i = 0 ; i < 21 ; i ++ )
-	{	BOOST_CHECK ( C[i] <= C[i+1] ) ;
+	{	assert ( C[i] <= C[i+1] ) ;
 	};
 
     unsigned D [] ={4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4};
 	//cout<<"Insertion Sort  equal elements ----------------------------\n";
 	insertion_sort ( &D[0] , &D[22]);
 	for ( unsigned i = 0 ; i < 21 ; i ++ )
-	{	BOOST_CHECK ( D[i] <= D[i+1] ) ;
+	{	assert ( D[i] <= D[i+1] ) ;
 	};
 
 	//cout<<"Insertion Sort  100 random elements ----------------------------\n";
@@ -58,7 +60,7 @@ void test01(void)
 	for ( unsigned i = 0 ; i < 100 ; i ++) F[i] = rand()%1000 ;
 	insertion_sort ( &F[0] , &F[100] );
 	for ( unsigned i = 0 ; i < 99 ; i ++ )
-	{	BOOST_CHECK ( F[i] <= F[i+1] ) ;
+	{	assert ( F[i] <= F[i+1] ) ;
 	};
 
 	const unsigned NG= 10000;
@@ -67,7 +69,7 @@ void test01(void)
 	for ( unsigned i = 0 ; i < NG ; i ++) G[i] = rand()%1000 ;
 	insertion_sort ( &G[0] , &G[NG] );
 	for ( unsigned i = 0 ; i < NG-1 ; i ++ )
-	{	BOOST_CHECK ( G[i] <= G[i+1] )  ;
+	{	assert ( G[i] <= G[i+1] )  ;
 	};
 
 };
@@ -84,9 +86,9 @@ void test02 ( void)
     insertion_sort ( A.begin() + 1000, A.begin() + (1000+NELEM));
 
     for ( iter_t it =A.begin() + 1000 ; it != A.begin() + (1000+NELEM) ; ++it)
-    {   BOOST_CHECK ( (*(it-1)) <= (*it)) ;
+    {   assert ( (*(it-1)) <= (*it)) ;
     };
-    BOOST_CHECK (A[998] == 0 and A[999] == 0 and A[1000+NELEM] == 0 and A[1001+NELEM] == 0);
+    assert (A[998] == 0 and A[999] == 0 and A[1000+NELEM] == 0 and A[1001+NELEM] == 0);
 
     //------------------------------------------------------------------------
     A.clear() ;
@@ -97,9 +99,9 @@ void test02 ( void)
     insertion_sort ( A.begin() + 1000, A.begin() + (1000+NELEM));
 
     for ( iter_t it =A.begin() + 1001 ; it != A.begin() + (1000+NELEM) ; ++it)
-    {   BOOST_CHECK ( (*(it-1)) <= (*it));
+    {   assert ( (*(it-1)) <= (*it));
     };
-    BOOST_CHECK (A[998] == 999999999 and A[999] == 999999999 and
+    assert (A[998] == 999999999 and A[999] == 999999999 and
         A[1000+NELEM] == 999999999 and A[1001+NELEM] == 999999999);
 
 };

@@ -16,19 +16,23 @@
 #include <functional>
 #include <memory>
 #include <type_traits>
+#include <iterator>
 #include <vector>
-#include <boost/sort/parallel/util/util_iterator.hpp>
-#include <boost/sort/parallel/util/algorithm.hpp>
-#include <boost/sort/parallel/util/buffer.hpp>
+#include <cassert>
+#include <boost/sort/parallel/util/low_level.hpp>
 
-namespace boost
-{
-namespace sort
-{
-namespace parallel
-{
-namespace util
-{
+#ifndef __DEBUG_SORT
+#define __DEBUG_SORT 0
+#endif
+
+namespace boost		{
+namespace sort		{
+namespace parallel	{
+namespace util		{
+
+using std::iterator_traits ;
+
+
 ///---------------------------------------------------------------------------
 /// @struct range
 /// @brief this represent a range between two iterators
@@ -44,430 +48,277 @@ struct range
     range ( void){};
     range ( iter_t frs, iter_t lst):first ( frs),last (lst){};
 
-    bool empty ( void )const{ return (first == last );};
-    bool not_empty ( void )const{ return (first != last );};
-    size_t size( void) const { return (last-first);}
+    bool 	empty 		( void ) const { return (first == last );};
+    bool 	not_empty	( void ) const { return (first != last );};
+    bool   	valid 		( void ) const { return ((last-first)>= 0 ); };
+    size_t 	size		( void ) const { return (last-first);}
 };
 //
 //-----------------------------------------------------------------------------
-//  function : uninit_move
-/// @brief Move the objets of a range to uninitialized memory
-/// @tparam iter_t : iterator to the elements
-/// @tparam value_t : class of the object to construct
-/// @param [in] Ptr : pointer to the memory where to create the object
-/// @param [in] R : range to move
+//  function : concat
+/// @brief concatebate two contiguous ranges
+/// @tparam value_t : class of the object to create
+/// @param [in] it1 : first range
+/// @param [in] it2 : second range
+/// @return  range resulting of the concatenation
 //-----------------------------------------------------------------------------
-template <class iter_t ,
-          class value_t = typename iter_value<iter_t>::type >
-inline value_t * uninit_move ( value_t *Ptr, const range<iter_t> &R)
-{   //---------------------------- begin -------------------------------------
-    return uninit_move_buf ( Ptr, R.first, R.last);
+template <class iter_t>
+range<iter_t> concat ( const range<iter_t> &it1 , const range <iter_t> &it2 )
+{	//--------------------------- begin -------------------------------------
+#if __DEBUG_SORT != 0
+	assert ( it1.last == it2.first ) ;
+#endif
+	return range<iter_t> ( it1.first , it2.last ) ;
+};
+//
+//-----------------------------------------------------------------------------
+//  function : move
+/// @brief Move objets from the range src to dest
+/// @tparam iter1_t : iterator to the value_t elements
+/// @tparam iter2_t : iterator to the value_t elements
+/// @param [in] dest : range where move the objects
+/// @param [in] src : range from where move the objects
+/// @return range with the objects moved and the size adjusted
+//-----------------------------------------------------------------------------
+template <class iter1_t , class iter2_t >
+inline range<iter2_t> init_move ( const range<iter2_t> & dest,
+		                     const range<iter1_t> & src)
+{   //------------- static checking ------------------------------------------
+	typedef typename iterator_traits<iter1_t>::value_type type1 ;
+    typedef typename iterator_traits<iter2_t>::value_type type2 ;
+    static_assert ( std::is_same<type1, type2>::value,
+                    "Incompatible iterators\n");
+
+    //------------------------------- begin ----------------------------------
+    if ( src.size() == 0 ) return range<iter2_t>(dest.first, dest.first);
+#if __DEBUG_SORT != 0
+    assert ( dest.size() >= src.size() ) ;
+#endif
+    lwl::init_move(dest.first ,src.first, src.last  );
+    return range<iter2_t>(dest.first, dest.first + src.size()) ;
+};
+//-----------------------------------------------------------------------------
+//  function : uninit_move
+/// @brief Move objets from the range src creatinf them in  dest
+/// @tparam iter1_t : iterator to the value_t elements
+/// @tparam iter2_t : iterator to the value_t elements
+/// @param [in] dest : range where move and create the objects
+/// @param [in] src : range from where move the objects
+/// @return range with the objects moved and the size adjusted
+//-----------------------------------------------------------------------------
+template <class iter1_t ,class iter2_t >
+inline range<iter2_t> uninit_move ( const range<iter2_t> &dest,
+		                            const range<iter1_t> &src  )
+{   //------------- static checking ------------------------------------------
+	typedef typename iterator_traits<iter1_t>::value_type type1 ;
+    typedef typename iterator_traits<iter2_t>::value_type type2 ;
+    static_assert ( std::is_same<type1, type2>::value,
+                    "Incompatible iterators\n");
+
+    //------------------------------- begin ----------------------------------
+    if ( src.size() == 0 ) return range<iter2_t>(dest.first, dest.first);
+#if __DEBUG_SORT != 0
+    assert ( dest.size() >= src.size() ) ;
+#endif
+    lwl::uninit_move (dest.first,src.first, src.last  );
+    return range<iter2_t>(dest.first, dest.first + src.size()) ;
 };
 //
 //-----------------------------------------------------------------------------
 //  function : destroy
-/// @brief Destroy the objects of a range, obtaining uninitialized memory
-/// @tparam iter_t : iterator to the elements
-/// @param [in] R : range to move
+/// @brief destroy a range of objects
+/// @param [in] R : range to destroy
 //-----------------------------------------------------------------------------
 template <class iter_t >
-inline void destroy ( const range<iter_t> &R) { destroy ( R.first, R.last ); };
+inline void destroy ( range<iter_t> r)
+{   //----------------- begin ---------------------------
+	lwl::destroy ( r.first, r.last);
+};
 //
 //-----------------------------------------------------------------------------
-//  function : move
-/// @brief Move the objets of a range to the place pointed by it_dest
-/// @tparam iter1_t : type of the iterators of the range
-/// @tparam iter2_t : type of the iterators where move the objects
-/// @param [in] it_dest : iterator to the final place of the objects
-/// @param [in] R : range to move
+//  function : init
+/// @brief initialize a range of objects with the object val moving across them
+
+/// @param [in] r : range of elements not initialized
+/// @param [in] val : object used for the initialization
+/// @return range initialized
 //-----------------------------------------------------------------------------
-template <class iter1_t , class iter2_t >
-inline iter2_t move ( iter2_t it_dest, const range<iter1_t> &R)
-{   //-------------------------- begin -----------------------------------
-    return ( move_buf (it_dest, R.first, R.last));
+template <class iter_t >
+inline range<iter_t> init ( const range<iter_t> & r,
+				            typename iterator_traits< iter_t>::value_type & val)
+{   //----------------- begin ---------------------------
+	lwl::init ( r.first, r.last , val);
+	return r ;
 };
 //
 //-----------------------------------------------------------------------------
 //  function : full_merge
-/// @brief Merge two ranges of iter1_t iterators, in the memory pointed by
-///        the it_out itertor
-/// @tparam iter1_t : iterator to the input buffers
-/// @tparam iter2_t : iterator to the output buffers
-/// @tparam compare : object to compate the elements pointed by iter1_t
-/// @param [in] it_out : iterator where copy the merge of the two ranges
-/// @param [in] R1 : first range to merge
-/// @param [in] R2 : second range to merge
+/// @brief Merge two contiguous ranges src1 and src2 , and put the result in
+///        the range dest, returning the range merged
+/// @param [in] dest : range where locate the lements merged. the size of dest
+///                    must be  greater or equal than the sum of the sizes of
+///                    src1 and src2
+/// @param [in] src1 : first range to merge
+/// @param [in] src2 : second range to merge
 /// @param [in] comp : comparison object
+/// @return range with the elements merged and the size adjusted
 //-----------------------------------------------------------------------------
-template <class iter1_t, class iter2_t, class compare >
-inline iter2_t full_merge ( iter2_t it_out, const range<iter1_t> &R1,
-                            const range<iter1_t> &R2 , compare  comp)
-{   //----------------- checking types -------------------------------
-    typedef typename iter_value<iter1_t>::type value1_t ;
-    typedef typename iter_value<iter2_t>::type value2_t ;
-    static_assert ( std::is_same<value1_t, value2_t>::value,
+template <class iter1_t, class iter2_t, class iter3_t, class compare >
+inline range<iter3_t> full_merge ( const range<iter3_t> &dest,
+                                   const range<iter1_t> &src1,
+                                   const range<iter2_t> &src2, compare  comp )
+{   //------------------- metaprogramming ------------------------------------
+	typedef typename iterator_traits<iter1_t>::value_type type1 ;
+    typedef typename iterator_traits<iter2_t>::value_type type2 ;
+    typedef typename iterator_traits<iter3_t>::value_type type3 ;
+    static_assert ( std::is_same<type1, type2>::value,
+                   "Incompatible iterators\n");
+    static_assert ( std::is_same<type3, type2>::value,
                    "Incompatible iterators\n");
     //--------------------- code -------------------------------------------
-    return full_merge( R1.first, R1.last,R2.first, R2.last, it_out,comp);
+#if __DEBUG_SORT != 0
+    assert ( dest.size() >= ( src1.size() + src2.size() ) ) ;
+#endif
+    return range<iter3_t> (dest.first,lwl::full_merge ( src1.first, src1.last,
+    		               src2.first, src2.last , dest.first, comp) );
 };
+
 //-----------------------------------------------------------------------------
 //  function : uninit_full_merge
-/// @brief Merge two ranges, and put the result in uninitialized memory pointed
-///        by it_out
-/// @tparam iter_t : iterator to the input ranges
-/// @tparam value_t : type of the objects pointed by iter_t,
-/// @tparam compare : object to compate the elements pointed by iter1_t
-/// @param [in] it_out : pointer to the memory where create the objects from
-///                      the merge
-/// @param [in] R1 : first range
-/// @param [in] R2 : second range
-/// @param [in] comp : comparison object of two value_t elements
+/// @brief Merge two contiguous ranges src1 and src2 , and create and move the
+///        result in the range dest, returning the range merged
+/// @param [in] dest : range where locate the lements merged. the size of dest
+///                    must be  greater or equal than the sum of the sizes of
+///                    src1 and src2
+/// @param [in] src1 : first range to merge
+/// @param [in] src2 : second range to merge
+/// @param [in] comp : comparison object
+/// @return range with the elements merged and the size adjusted
 //-----------------------------------------------------------------------------
-template <class iter_t, class value_t, class compare >
-inline value_t* uninit_full_merge ( value_t* it_out,
-                                    const range<iter_t> &R1,
-                                    const range<iter_t> &R2 ,
-                                    compare  comp  )
-{   //----------------------- checking types -------------------------------
-    typedef typename iter_value<iter_t>::type value1_t ;
-    static_assert ( std::is_same<value1_t, value_t>::value,
+template <class iter1_t, class iter2_t, class value_t, class compare >
+inline range<value_t*> uninit_full_merge ( const range<value_t *> &dest,
+                                           const range<iter1_t> &src1,
+                                           const range<iter2_t> &src2,
+										   compare  comp                  )
+{   //------------------- metaprogramming ------------------------------------
+	typedef typename iterator_traits<iter1_t>::value_type type1 ;
+    typedef typename iterator_traits<iter2_t>::value_type type2 ;
+    static_assert ( std::is_same<type1, type2>::value,
+                   "Incompatible iterators\n");
+    static_assert ( std::is_same<value_t, type2>::value,
                    "Incompatible iterators\n");
     //--------------------- code -------------------------------------------
-    return uninit_full_merge (R1.first,R1.last,
-                              R2.first,R2.last, it_out,comp);
+#if __DEBUG_SORT != 0
+    assert ( dest.size() >= ( src1.size() + src2.size() ) ) ;
+#endif
+    return range<value_t *> (dest.first,
+    			             lwl::uninit_full_merge( src1.first, src1.last,
+    			        		                     src2.first, src2.last ,
+												     dest.first, comp      ));
 };
+//
 //---------------------------------------------------------------------------
 //  function : half_merge
-/// @brief : Merge two ranges. The first range is in a separate memory
-/// @tparam iter1_t : iterator to the second range, and the destination
-/// @tparam iter2_t : iterator to the first range
-/// @tparam compare : object to compate the elements pointed by the iterators
-/// @param [in] it_dest : iterator where move the merge
-/// @param [in] R1 : firt range to merge
-/// @param [in] R2 : second range to merge
-/// @param [in] comp : object for to make the comparison
+/// @brief : Merge two buffers. The first buffer is in a separate memory
+/// @param [in] dest : range where finish the two buffers merged
+/// @param [in] src1 : first range to merge in a separate memory
+/// @param [in] src2 : second range to merge, in the final part of the
+///                    range where deposit the final results
+/// @param [in] comp : object for compare two elements of the type pointed
+///                    by the iter1_t and iter2_t
+/// @return : range with the two buffers merged
 //---------------------------------------------------------------------------
 template <class iter1_t, class iter2_t, class compare >
-iter1_t half_merge ( iter1_t it_dest, range<iter2_t>  R1,
-                     range<iter1_t> R2,  compare comp )
-{   //------------------------------- begin ------------------------------------
-    typedef typename iter_value<iter1_t>::type value1_t ;
-    typedef typename iter_value<iter2_t>::type value2_t ;
-    static_assert ( std::is_same<value1_t, value2_t>::value,
+inline range<iter2_t> half_merge ( 	const range<iter2_t> &dest,
+									const range<iter1_t> &src1,
+									const range<iter2_t> &src2, compare  comp )
+{   //---------------------------- begin ------------------------------------
+	typedef typename iterator_traits<iter1_t>::value_type       type1 ;
+	typedef typename iterator_traits<iter2_t>::value_type       type2 ;
+    static_assert ( std::is_same<type1, type2>::value,
+                   "Incompatible iterators\n");
+
+    //--------------------- code -------------------------------------------
+#if __DEBUG_SORT != 0
+    assert (( src2.first - dest.first) >= 0 and
+    		 size_t ( src2.first - dest.first) == src1.size() ) ;
+    assert ( dest.size() >= (src1.size() + src2.size() ) ) ;
+#endif
+    return range<iter2_t>( dest.first ,
+                           lwl::half_merge ( src1.first , src1.last,
+                                             src2.first, src2.last,
+											 dest.first, comp         ) );
+};
+//
+//-----------------------------------------------------------------------------
+//  function : in_place_merge_uncontiguous
+/// @brief : merge two contiguous buffers
+/// @tparam iter_t : iterator to the elements
+/// @tparam compare : object for to compare two elements pointed by iter_t
+///                   iterators
+/// @param [in] first : iterator to the first element
+/// @param [in] last : iterator to the element after the last in the range
+/// @param [in] comp : object for to compare elements
+/// @exception
+/// @return true : not changes done
+///         false : changes in the buffers
+/// @remarks
+//-----------------------------------------------------------------------------
+template <class iter1_t  , class iter2_t , class iter3_t, class compare >
+bool in_place_merge_uncontiguous ( const range<iter1_t> &src1,
+		                           const range<iter2_t> &src2,
+                                   const range<iter3_t> &aux, compare comp)
+{	//------------------- metaprogramming ------------------------------------
+	typedef typename iterator_traits<iter1_t>::value_type type1 ;
+    typedef typename iterator_traits<iter2_t>::value_type type2 ;
+    typedef typename iterator_traits<iter3_t>::value_type type3 ;
+
+    static_assert ( std::is_same<type1, type2>::value,
+                   "Incompatible iterators\n");
+    static_assert ( std::is_same<type3, type2>::value,
                    "Incompatible iterators\n");
     //--------------------- code -------------------------------------------
-    while ( R1.not_empty() and R2.not_empty() )
-    {   *(it_dest++)=(not comp(*R2.first,*R1.first))?std::move(*(R1.first++))
-                                                    :std::move(*(R2.first++));
-    };
-    return ( R2.empty())? move (it_dest, R1):it_dest ;
-};
-//
-//############################################################################
-//                                                                          ##
-//                       F U S I O N     O F                                ##
-//                                                                          ##
-//              F O U R     E L E M E N T S    R A N G E                    ##
-//                                                                          ##
-//############################################################################
-//
-
-//-----------------------------------------------------------------------------
-//  function : less_range
-/// @brief Compare the elements pointed fy it1 and it2, and if they
-///        are equals, compare their position
-/// @tparam iter_t : iterator to compare
-/// @tparam compare : object to compate the elements pointed by iter1_t
-/// @param [in] it1 : iterator to the first element
-/// @param [in] pos1 : position of the object pointed by it1
-/// @param [in] it2 : iterator to the second element
-/// @param [in] pos2 : position of the element ointed by it2
-/// @param [in] comp : comparison object
-//-----------------------------------------------------------------------------
-template < class iter_t,
-           class compare = std::less< typename iter_value<iter_t>::type> >
-inline bool less_range ( iter_t it1, uint32_t pos1 ,
-                         iter_t it2, uint32_t pos2 ,compare comp =compare() )
-{   //----------------------------- begin ------------------------------------
-    if ( comp (*it1, *it2 )) return true ;
-    if ( pos2 < pos1) return false ;
-    return not ( comp (*it2, *it1 )) ;
+#if __DEBUG_SORT != 0
+    assert ( aux.size() >= src1.size() ) ;
+#endif
+	return lwl::in_place_merge_uncontiguous ( src1.first, src1.last,
+	                                          src2.first, src2.last,
+	                                          aux.first, comp );
 };
 
-//-----------------------------------------------------------------------------
-//  function : full_merge4
-/// @brief Merge four ranges
-/// @tparam iter1_t : iterator to the output
-/// @tparam iter2_t : iterator to the input ranges
-/// @tparam compare : object to compate the elements pointed by iter1_t
-/// @param [in] it_dest : iterator where move the elements merged
-/// @param [in] R : array of ranges to merge
-/// @param [in] NR : number of ranges in R
-/// @param [in] comp : comparison object
-//-----------------------------------------------------------------------------
-template <class iter1_t, class iter2_t, class compare >
-iter1_t full_merge4 ( iter1_t it_dest, range<iter2_t> R[4],
-                          uint32_t NR ,compare comp )
-{   //----------------------------- begin ------------------------------------
-    if ( NR == 0 ) return it_dest ;
-    if ( NR == 1 ) return move ( it_dest, R[0]);
-    if ( NR == 2 ) return full_merge ( it_dest, R[0],R[1], comp);
-
-    //------------------------------------------------------------------------
-    // Initial sort
-    //------------------------------------------------------------------------
-    uint32_t Pos[4]={0,1,2,3}, NPos =NR  ;
-
-    if (less_range (R[Pos[1]].first, Pos[1], R[Pos[0]].first,Pos[0],comp))
-        std::swap (Pos[0], Pos[1]);
-    if (less_range (R[Pos[2]].first, Pos[2], R[Pos[1]].first,Pos[1],comp))
-        std::swap (Pos[1], Pos[2]);
-    if ( NPos == 4 and
-        less_range (R[Pos[3]].first, Pos[3],R[Pos[2]].first, Pos[2], comp) )
-        std::swap ( Pos[3], Pos[2]);
-
-    if (less_range (R[Pos[1]].first , Pos[1],R[Pos[0]].first, Pos[0], comp))
-        std::swap (Pos[0], Pos[1]);
-    if (NPos==4 and
-        less_range (R[Pos[2]].first, Pos[2], R[Pos[1]].first,Pos[1],comp))
-        std::swap(Pos[1],Pos[2]);
-
-    if (NPos == 4 and
-        less_range (R [Pos[1]].first, Pos[1],R[Pos[0]].first, Pos[0], comp))
-        std::swap ( Pos[0], Pos[1]);
-
-    while ( NPos > 2)
-    {   *(it_dest++) = std::move ( *(R[Pos[0]].first++));
-        if (R[Pos[0]].size() == 0   )
-        {   Pos[0] = Pos[1];
-            Pos[1] = Pos[2];
-            Pos[2] = Pos[3];
-            --NPos ;
-        }
-        else
-        {   if (less_range(R[Pos[1]].first,Pos[1],R[Pos[0]].first,Pos[0],comp))
-            {   std::swap ( Pos[0], Pos[1]);
-                if (less_range ( R[Pos[2]].first, Pos[2],
-                                 R[Pos[1]].first,Pos[1], comp ))
-                {   std::swap ( Pos[1], Pos[2]);
-                    if (NPos == 4 and
-                        less_range (R[Pos[3]].first,Pos[3],
-                                    R[Pos[2]].first, Pos[2], comp))
-                    {   std::swap ( Pos[2], Pos[3]);
-                    };
-                };
-            };
-        };
-    };
-    if ( Pos[0]< Pos[1])
-        return full_merge ( it_dest, R[Pos[0]],R[Pos[1]], comp);
-    else
-        return full_merge ( it_dest, R[Pos[1]],R[Pos[0]], comp);
-};
 //
 //-----------------------------------------------------------------------------
-//  function : uninit_full_merge4
-/// @brief Merge four ranges and put the result in uninitialized memory
-/// @tparam iter_t : iterator to the input ranges
-/// @tparam value_t : type of object pointed by iter_t
-/// @tparam compare : object to compate the elements pointed by iter_t
-/// @param [in] it_dest : iterator where move the elements merged
-/// @param [in] R : array of ranges to merge
-/// @param [in] NR : number of ranges in R
-/// @param [in] comp : comparison object
+//  function : in_place_merge
+/// @brief : merge two contiguous buffers
+/// @tparam iter_t : iterator to the elements
+/// @tparam compare : object for to compare two elements pointed by iter_t
+///                   iterators
+/// @param [in] first : iterator to the first element
+/// @param [in] last : iterator to the element after the last in the range
+/// @param [in] comp : object for to compare elements
+/// @exception
+/// @return true : not changes done
+///         false : changes in the buffers
+/// @remarks
 //-----------------------------------------------------------------------------
-template <class iter_t, class value_t, class compare >
-value_t* uninit_full_merge4 ( value_t* it_dest,  range<iter_t> R[4],
-                                         uint32_t NR ,compare comp )
-{   //----------------------------- begin ------------------------------------
-    typedef typename iter_value<iter_t>::type value1_t ;
-    static_assert ( std::is_same<value1_t, value_t>::value,
+template <class iter1_t  , class iter2_t , class compare >
+inline range<iter1_t> in_place_merge (const range<iter1_t> &src1,
+									  const range<iter1_t> &src2,
+									  const range<iter2_t> &buf, compare  comp )
+{   //---------------------------- begin ------------------------------------
+	typedef typename iterator_traits<iter1_t>::value_type type1 ;
+    typedef typename iterator_traits<iter2_t>::value_type type2 ;
+
+    static_assert ( std::is_same<type1, type2>::value,
                    "Incompatible iterators\n");
-
-    if ( NR == 0 ) return it_dest ;
-    if ( NR == 1 ) return uninit_move ( it_dest, R[0]);
-    if ( NR == 2 ) return uninit_full_merge ( it_dest, R[0],R[1], comp);
-
-    //------------------------------------------------------------------------
-    // Initial sort
-    //------------------------------------------------------------------------
-    uint32_t Pos[4]={0,1,2,3}, NPos =NR  ;
-
-    if (less_range (R[Pos[1]].first, Pos[1],R[Pos[0]].first,Pos[0],comp))
-        std::swap (Pos[0], Pos[1]);
-    if (less_range (R[Pos[2]].first,Pos[2],R[Pos[1]].first,Pos[1],comp))
-        std::swap (Pos[1], Pos[2]);
-    if (NPos == 4 and
-        less_range (R[Pos[3]].first, Pos[3],R[Pos[2]].first,Pos[2],comp))
-        std::swap ( Pos[3], Pos[2]);
-
-    if (less_range (R[Pos[1]].first,Pos[1],R[Pos[0]].first,Pos[0],comp))
-        std::swap (Pos[0], Pos[1]);
-    if (NPos==4 and
-        less_range (R[Pos[2]].first, Pos[2], R[Pos[1]].first,Pos[1],comp))
-        std::swap(Pos[1],Pos[2]);
-
-    if (NPos == 4 and
-        less_range (R [Pos[1]].first, Pos[1],R[Pos[0]].first, Pos[0], comp))
-        std::swap ( Pos[0], Pos[1]);
-
-    while ( NPos > 2)
-    {   construct ( (it_dest++),std::move ( *(R[Pos[0]].first++)) );
-        if (R[Pos[0]].size() == 0   )
-        {   Pos[0] = Pos[1];
-            Pos[1] = Pos[2];
-            Pos[2] = Pos[3];
-            --NPos ;
-        }
-        else
-        {   if ( less_range (R[Pos[1]].first, Pos[1],
-                             R[Pos[0]].first,Pos[0],comp))
-            {   std::swap ( Pos[0], Pos[1]);
-                if ( less_range (R[Pos[2]].first, Pos[2],
-                                 R[Pos[1]].first, Pos[1], comp ))
-                {   std::swap ( Pos[1], Pos[2]);
-                    if (NPos == 4 and less_range (R[Pos[3]].first, Pos[3],
-                                                  R[Pos[2]].first,Pos[2], comp))
-                    {   std::swap ( Pos[2], Pos[3]);
-                    };
-                };
-            };
-        };
-    };
-    if ( Pos[0] < Pos[1])
-        return uninit_full_merge ( it_dest, R[Pos[0]],R[Pos[1]], comp);
-    else
-        return uninit_full_merge ( it_dest, R[Pos[1]],R[Pos[0]], comp);
-};
-
-//-----------------------------------------------------------------------------
-//  function : merge_level4
-/// @brief merge the ranges in Vin using full_merge4, and the ranges obtained
-///        are in Vout.The output ranges are obtained moving the object to the
-///        position pointed by it_dest
-/// @tparam iter1_t : iterator to the output
-/// @tparam iter2_t : iterator to the input ranges
-/// @tparam compare : object to compate the elements pointed by iter1_t
-/// @param [in] it_dest : iterator where move the elements merged
-/// @param [in] Vin : vector of ranges to merge
-/// @param [in] Vout : vector of ranges obtained
-/// @param [in] comp : comparison object
-//-----------------------------------------------------------------------------
-template <class iter1_t, class iter2_t, class compare >
-iter1_t merge_level4 ( iter1_t it_dest,
-                       std::vector<range<iter2_t> > &Vin,
-                       std::vector<range<iter1_t> >& Vout ,
-                       compare comp )
-{   //------------------------------- begin ----------------------------------
-    Vout.clear() ;
-    if ( Vin.size() == 0) return it_dest;
-    if ( Vin.size() == 1 )
-    {   iter1_t it_aux = move ( it_dest, Vin[0]);
-        Vout.emplace_back ( it_dest, it_aux);
-        return it_aux ;
-    };
-
-    iter1_t it_out = it_dest ;
-    uint32_t Nrange = Vin.size() ;
-    uint32_t PosIni = 0;
-    while ( PosIni < Vin.size())
-    {   uint32_t Nmerge =(Nrange + 3) >> 2 ;
-        uint32_t Nelem =  ( Nrange + Nmerge -1) / Nmerge ;
-        iter1_t it_aux = full_merge4 ( it_out, & Vin[PosIni], Nelem , comp);
-        Vout.emplace_back ( it_out, it_aux );
-        it_out = it_aux ;
-        PosIni += Nelem ;
-        Nrange -= Nelem ;
-    };
-    return it_out ;
-};
-
-//-----------------------------------------------------------------------------
-//  function : uninit_merge_level4
-/// @brief merge the ranges in Vin using full_merge4, and the ranges obtained
-///        are in Vout. The output ranges are obtained creating objects in the
-///        uninitialized memory pointed by it_dest.
-/// @tparam iter_t : iterator to the input ranges
-/// @tparam value_t : objects pointed by iter_t
-/// @tparam compare : object to compate the elements pointed by iter1_t
-/// @param [in] it_dest : iterator where move the elements merged
-/// @param [in] Vin : vector of ranges to merge
-/// @param [in] Vout : vector of ranges obtained
-/// @param [in] comp : comparison object
-//-----------------------------------------------------------------------------
-template <class iter_t, class value_t, class compare >
-value_t* uninit_merge_level4 (  value_t* it_dest,
-                                std::vector<range<iter_t> > &Vin,
-                                std::vector<range<value_t*> >& Vout ,
-                                compare comp  )
-{   //------------------------------- begin ----------------------------------
-    Vout.clear() ;
-    if ( Vin.size() == 0) return it_dest;
-    if ( Vin.size() == 1 )
-    {   value_t * paux = uninit_move ( it_dest, Vin[0]);
-        Vout.emplace_back ( it_dest,paux);
-        return paux ;
-    };
-    value_t * it_out = it_dest ;
-    uint32_t Nrange = Vin.size() ;
-    uint32_t PosIni = 0;
-
-    while ( PosIni < Vin.size())
-    {   uint32_t Nmerge =(Nrange + 3) >> 2 ;
-        uint32_t Nelem =  ( Nrange + Nmerge -1) / Nmerge ;
-        value_t *it_aux = uninit_full_merge4(it_out, &Vin[PosIni], Nelem, comp);
-        Vout.emplace_back ( it_out, it_aux );
-        it_out = it_aux ;
-        PosIni += Nelem ;
-        Nrange -= Nelem ;
-    };
-    return it_out ;
-};
-//
-//-----------------------------------------------------------------------------
-//  function : merge_vector4
-/// @brief This function merge the ranges in Vin and put the final range in Vout
-/// @tparam iter1_t : iterator to the input buffers
-/// @tparam iter2_t : iterator to the output buffers
-/// @tparam compare : object to compate the elements pointed by iter1_t
-/// @param [in] first1 iterator to the first position of the Vin ranges
-/// @param [in] first2 iterator to the first position of the Vout ranges
-/// @param [in] Vin : vector of input ranges
-/// @param [in] Vout : vector of output ranges
-/// @param [in] comp : comparison object
-//-----------------------------------------------------------------------------
-template <class iter1_t , class iter2_t , class compare >
-void merge_vector4 ( iter1_t first1, iter2_t first2,
-                    std::vector<range<iter1_t> > &Vin,
-                    std::vector<range<iter2_t> > &Vout, compare comp)
-{   //---------------------------------- begin -------------------------------
-    typedef typename iter_value<iter1_t>::type value1_t ;
-    typedef typename iter_value<iter2_t>::type value2_t ;
-    static_assert ( std::is_same<value1_t, value2_t>::value,
-                   "Incompatible iterators\n");
-    //--------------------- code -------------------------------------------
-    Vout.clear() ;
-    bool SW = false ;
-    uint32_t Nrange = Vin.size() ;
-    if ( Nrange == 0) return ;
-
-    while ( not SW or Nrange >1)
-    {   if ( Nrange == 1)
-        {   iter2_t it_aux = move ( first2, Vin[0]);
-        	Vout.emplace_back ( first2, it_aux);
-            return;
-        };
-        if ( SW )
-        {   merge_level4 ( first1, Vout, Vin, comp );
-            SW = false ;
-            Nrange = Vin.size() ;
-        }
-        else
-        {   merge_level4 ( first2 , Vin, Vout, comp);
-            SW = true ;
-            Nrange = Vout.size() ;
-        };
-    };
+    //---------------------------- begin --------------------------------------
+#if __DEBUG_SORT != 0
+    assert ( src1.last == src2.first) ;
+    assert ( buf.size() >= src1.size() ) ;
+#endif
+	lwl::in_place_merge ( src1.first , src1.last,
+	                      src2.last, buf.first, comp );
+	return concat ( src1, src2);
 };
 //****************************************************************************
 };//    End namespace util

@@ -10,21 +10,21 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#include <boost/sort/parallel/util/spinlock.hpp>
-#include <boost/test/included/test_exec_monitor.hpp>
-#include <boost/test/test_tools.hpp>
+#include <boost/sort/parallel/tools/spinlock.hpp>
 #include <thread>
 #include <chrono>
 #include <iostream>
 #include <mutex>
 
+#include <boost/test/included/test_exec_monitor.hpp>
+#include <boost/test/test_tools.hpp>
 
 int N =0 ;
 void start ( void);
 int function1() ;
 int function2() ;
 
-typedef boost::sort::parallel::util::spinlock spinlock_t ;
+typedef boost::sort::parallel::tools::spinlock spinlock_t ;
 spinlock_t s ;
 std::chrono::seconds sec(1);
 

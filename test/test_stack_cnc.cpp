@@ -13,19 +13,16 @@
 #include <iostream>
 #include <thread>
 #include <chrono>
-#include <boost/sort/parallel/util/time_measure.hpp>
 #include <mutex>
-#include <cassert>
-#include <boost/sort/parallel/util/stack_cnc.hpp>
+#include <boost/sort/parallel/tools/stack_cnc.hpp>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
 
+namespace bsp_tools = boost::sort::parallel::tools ;
 using std::cout ;
 using std::endl;
-using boost::sort::parallel::util::stack_cnc ;
-using boost::sort::parallel::util::time_point ;
-using boost::sort::parallel::util::now ;
-using boost::sort::parallel::util::subtract_time ;
+using bsp_tools::stack_cnc ;
+
 
 #define NELEM 5000000
 
@@ -62,27 +59,27 @@ void prueba_cnc ( void)
 {   //--------------------------------- begin ------------------
     S.reserve ( (int)NELEM * (int)NCores  );
     //double duracion ;
-	time_point start, finish;
+
     std::thread  T [8] ;
-    start = now();
+
     for (uint32_t i =0 ; i < NCores ; ++i)
     {   T[i] = std::thread ( function1 ) ;
     };
     for (uint32_t i =0 ; i < NCores ; ++i)
     {   T[i].join();
     };
-    finish = now() ;
+
     //duracion =  subtract_time(finish , start) ;
     //cout<<"Time spent :"<<duracion<<" seconds\n";
     //cout<<"The size of S is :"<<S.size()<<endl;
-    start = now();
+
     for (uint32_t i =0 ; i < NCores ; ++i)
     {   T[i] = std::thread ( function2 ) ;
     };
     for (uint32_t i =0 ; i < NCores ; ++i)
     {   T[i].join();
     };
-    finish = now() ;
+
     //duracion =  subtract_time(finish , start) ;
     //cout<<"Time spent :"<<duracion<<" seconds\n";
     //cout<<"The size of S is :"<<S.size()<<endl;

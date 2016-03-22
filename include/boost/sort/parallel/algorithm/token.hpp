@@ -13,15 +13,10 @@
 #ifndef __BOOST_SORT_PARALLEL_ALGORITHM_TOKEN_HPP
 #define __BOOST_SORT_PARALLEL_ALGORITHM_TOKEN_HPP
 
-
-namespace boost
-{
-namespace sort
-{
-namespace parallel
-{
-namespace algorithm
-{
+namespace boost		{
+namespace sort		{
+namespace parallel	{
+namespace algorithm {
 //
 ///---------------------------------------------------------------------------
 /// @struct token
@@ -37,6 +32,8 @@ struct token
     //------------------- Functions -------------------
     token( void){} ;
     token ( iter_t it_f , iter_t it_l):first ( it_f), last ( it_l){};
+    bool   	valid 		( void ) const { return ((last-first)>= 0 ); };
+    size_t 	size		( void ) const { return (last-first);}
 };
 //
 ///---------------------------------------------------------------------------
@@ -50,11 +47,14 @@ struct token_level
 {   //----------- variables -------------
     iter_t first ;
     iter_t last ;
-    int32_t level ;
+    uint32_t level ;
+
     //------------------- Functions -------------------
     token_level( void){} ;
     token_level ( iter_t it_f, iter_t it_l, int32_t lv)
                  :first (it_f),last(it_l),level(lv) {  };
+    bool   	valid 		( void ) const { return ((last-first)>= 0 ); };
+    size_t 	size		( void ) const { return (last-first);}
 };
 //
 //****************************************************************************

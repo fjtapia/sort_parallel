@@ -13,23 +13,46 @@
 #ifndef __BOOST_SORT_PARALLEL_ALGORITHM_INDIRECT_HPP
 #define __BOOST_SORT_PARALLEL_ALGORITHM_INDIRECT_HPP
 
-#include <boost/sort/parallel/util/algorithm.hpp>
-#include <boost/sort/parallel/util/atomic.hpp>
-#include <boost/sort/parallel/util/util_iterator.hpp>
 #include <vector>
 #include <type_traits>
 #include <functional>
+#include <iterator>
+#include <boost/sort/parallel/tools/atomic.hpp>
 
-namespace boost
-{
-namespace sort
-{
-namespace parallel
-{
-namespace algorithm
-{
-namespace bs_util = boost::sort::parallel::util;
 
+
+namespace boost		{
+namespace sort		{
+namespace parallel	{
+namespace algorithm	{
+
+using std::iterator_traits ;
+//
+//##########################################################################
+//                                                                        ##
+//         S T R U C T     L E S S _ P T R _ N O _ N U L L                ##
+//                                                                        ##
+//##########################################################################
+//
+//---------------------------------------------------------------------------
+/// @class less_ptr_no_null
+///
+/// @remarks this is the comparison object for pointers. Receive a object
+///          for to compare the objects pointed. The pointers can't be nullptr
+//---------------------------------------------------------------------------
+template    <   class iter_t ,
+                class comp_t
+				=std::less<typename iterator_traits<iter_t>::value_type> >
+struct less_ptr_no_null
+{   //----------------------------- Variables -----------------------
+    comp_t comp ;
+    //----------------------------- Functions ----------------------
+    inline less_ptr_no_null ( comp_t C1 = comp_t()):comp(C1){};
+    inline bool operator ()( iter_t  T1,  iter_t  T2 ) const
+    {   //-------------------- begin ------------------------------
+        return  comp(*T1 ,*T2);
+    };
+};
 //
 //-----------------------------------------------------------------------------
 //  function : create_index
@@ -38,9 +61,6 @@ namespace bs_util = boost::sort::parallel::util;
 /// @param [in] first : iterator to the first element of the range
 /// @param [in] last : iterator to the element after the last of the range
 /// @param [in/out] VP : vector where store the iterators of the index
-/// @exception
-/// @return
-/// @remarks
 //-----------------------------------------------------------------------------
 template <class iter_t>
 void create_index (iter_t first, iter_t last, std::vector<iter_t> &VP )
@@ -58,14 +78,11 @@ void create_index (iter_t first, iter_t last, std::vector<iter_t> &VP )
 /// @tparam iter_t : iterators of the index
 /// @param [in] first : iterator to the first element of the data
 /// @param [in] VP : vector sorted of the iterators
-/// @exception
-/// @return
-/// @remarks
 //-----------------------------------------------------------------------------
 template <class iter_t>
 void sort_index (iter_t first, std::vector<iter_t> &VP )
 {   //-------------------------- begin -------------------------------------
-    typedef typename bs_util::iter_value<iter_t>::type       value_t ;
+    typedef typename iterator_traits<iter_t>::value_type       value_t ;
     size_t Ax  = 0 , Bx =0 , Pos =0 , N = VP.size();
     iter_t itA, itB ;
     while ( Pos < N )

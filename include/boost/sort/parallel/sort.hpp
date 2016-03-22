@@ -10,36 +10,36 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __BOOST_SORT_GENERAL_SORT_HPP
-#define __BOOST_SORT_GENERAL_SORT_HPP
+#ifndef __BOOST_SORT_PARALLEL_SORT_HPP
+#define __BOOST_SORT_PARALLEL_SORT_HPP
 
-#include <boost/sort/parallel/algorithm/parallel_sort.hpp>
+#include <iterator>
 #include <boost/sort/parallel/algorithm/parallel_stable_sort.hpp>
+#include <boost/sort/parallel/algorithm/block_indirect_sort.hpp>
+#include <boost/sort/parallel/algorithm/parallel_greedy_sort.hpp>
 
-
-
-namespace boost
-{
-namespace sort
-{
-namespace parallel
-{
-
+namespace boost 	{
+namespace sort		{
+namespace parallel	{
+//
 //****************************************************************************
 //             USING AND DEFINITIONS
 //****************************************************************************
 namespace bs_algo = boost::sort::parallel::algorithm ;
-namespace bspu = boost::sort::parallel::util;
-using bspu::iter_value ;
+namespace bs_util = boost::sort::parallel::util;
+namespace bs_tools = boost::sort::parallel::tools;
+
 //----------------------------------------------------------------------------
 // The code of the class NThread is in boost/sort/parallel/util/atomic.hpp
 //----------------------------------------------------------------------------
-using bspu::NThread ;
-using bspu::NThread_HW ;
+using std::iterator_traits ;
+using bs_tools::NThread ;
+using bs_tools::NThread_HW ;
+using bs_algo::less_ptr_no_null;
 
 //
 //-----------------------------------------------------------------------------
-//  function : introsort
+//  function : sort
 /// @brief this function implement a non stable sort, based internally in the
 ///        intro_sort algorithm. Run with 1 thread
 /// @tparam iter_t : iterators for to access to the elements
@@ -48,19 +48,26 @@ using bspu::NThread_HW ;
 /// @param [in] last : iterator after the last element to the range to sort
 /// @param [in] comp : object for to compare two elements pointed by iter_t
 ///                    iterators
-/// @exception
-/// @return
-/// @remarks
 //-----------------------------------------------------------------------------
 template < class iter_t,
-           typename compare = std::less <typename iter_value<iter_t>::type> >
-inline void introsort ( iter_t first, iter_t last,compare comp = compare())
+           typename compare
+		   = std::less <typename iterator_traits<iter_t>::value_type> >
+inline void sort ( iter_t first, iter_t last,compare comp = compare())
 {   //---------------------------- begin -------------------------------------
     bs_algo::intro_sort(first, last,comp);
 };
+
+template < class iter_t,
+           typename compare
+		   = std::less <typename iterator_traits<iter_t>::value_type> >
+inline void indirect_sort ( iter_t first, iter_t last,
+		                         compare comp = compare())
+{   //---------------------------- begin -------------------------------------
+    bs_algo::indirect_intro_sort(first, last,comp);
+};
 //
 //-----------------------------------------------------------------------------
-//  function : paralle_introsort
+//  function : parallel_sort
 /// @brief this function implement a non stable parallel sort. The number of
 ///        threads to use is defined by the NThread parameter
 /// @tparam iter_t : iterators for to access to the elements
@@ -68,18 +75,19 @@ inline void introsort ( iter_t first, iter_t last,compare comp = compare())
 /// @param [in] last : iterator after the last element to the range to sort
 /// @param [in] NT : This object is a integer from the ranges [1, UINT32_MAX].
 ///                  by default is the number of HW threads of the machine
-/// @exception
-/// @return
-/// @remarks
 //-----------------------------------------------------------------------------
-template    < class iter_t >
-inline void parallel_introsort ( iter_t first, iter_t last , const NThread &NT = NThread() )
-{   //---------------------------- begin -------------------------------------
-    bs_algo::parallel_sort ( first, last, NT);
+template < class iter_t >
+inline void parallel_sort ( iter_t first, iter_t last ,
+		                            NThread NT = NThread() )
+{   //----------------------------------- begin ------------------------------
+    if ( NT() < 9 )
+		bs_algo::parallel_greedy_sort( first, last,  NT);
+	else
+        bs_algo::block_indirect_sort ( first, last, NT);
 };
 //
 //-----------------------------------------------------------------------------
-//  function : paralle_introsort
+//  function : parallel_sort
 /// @brief this function implement a non stable parallel sort. The number of
 ///        threads to use is defined by the NThread parameter
 /// @tparam iter_t : iterators for to access to the elements
@@ -90,16 +98,17 @@ inline void parallel_introsort ( iter_t first, iter_t last , const NThread &NT =
 ///                    iterators
 /// @param [in] NT : This object is a integer from the ranges [1, UINT32_MAX].
 ///                  by default is the number of HW threads of the machine
-/// @exception
-/// @return
-/// @remarks
 //-----------------------------------------------------------------------------
 template < class iter_t,
-           typename compare = std::less <typename iter_value<iter_t>::type> >
-inline void parallel_introsort ( iter_t first, iter_t last,
-                            compare comp, const NThread &NT = NThread() )
-{   //---------------------------- begin -------------------------------------
-    bs_algo::parallel_sort ( first, last,comp, NT);
+          typename compare
+		  = std::less <typename iterator_traits<iter_t>::value_type>  >
+inline void parallel_sort ( iter_t first, iter_t last,
+                                           compare comp,  NThread NT= NThread())
+{   //----------------------------- begin ----------------------------------
+    if ( NT() < 9 )
+		bs_algo::parallel_greedy_sort( first, last, comp, NT);
+	else
+        bs_algo::block_indirect_sort ( first, last, comp, NT);
 };
 //
 //-----------------------------------------------------------------------------
@@ -112,21 +121,23 @@ inline void parallel_introsort ( iter_t first, iter_t last,
 /// @param [in] last : iterator after the last element to the range to sort
 /// @param [in] comp : object for to compare two elements pointed by iter_t
 ///                    iterators
-/// @exception
-/// @return
-/// @remarks
 //-----------------------------------------------------------------------------
 template < class iter_t,
-           typename compare = std::less<typename iter_value<iter_t>::type>
-         >
-inline void smart_merge_sort(iter_t first, iter_t last, compare comp = compare() )
+           typename compare
+		   = std::less<typename iterator_traits<iter_t>::value_type>  >
+inline void stable_sort(iter_t first, iter_t last, compare comp = compare() )
 {   //--------------------------------- begin --------------------------------
-    typedef typename iter_value<iter_t>::type   value_t ;
-    if ( sizeof ( value_t) > 128)
-        bs_algo::indirect_smart_merge_sort(first, last,comp);
-    else
-        bs_algo::smart_merge_sort(first, last,comp);
+    bs_algo::spin_sort(first, last,comp);
 };
+template < class iter_t,
+           typename compare
+		   = std::less<typename iterator_traits<iter_t>::value_type>  >
+inline void indirect_stable_sort(iter_t first, iter_t last, 
+                                 compare comp = compare() )
+{   //--------------------------------- begin --------------------------------
+    bs_algo::indirect_spin_sort(first, last,comp);
+};
+
 //
 //-----------------------------------------------------------------------------
 //  function : paralle_stable_sort
@@ -137,19 +148,12 @@ inline void smart_merge_sort(iter_t first, iter_t last, compare comp = compare()
 /// @param [in] last : iterator after the last element to the range to sort
 /// @param [in] NT : This object is a integer from the ranges [1, UINT32_MAX].
 ///                  by default is the number of HW threads of the machine
-/// @exception
-/// @return
-/// @remarks
 //-----------------------------------------------------------------------------
 template    < class iter_t >
 inline void parallel_stable_sort ( iter_t first, iter_t last ,
-                                   const NThread &NT = NThread() )
+                                   NThread NT = NThread() )
 {   //---------------------------- begin -------------------------------------
-    typedef typename iter_value<iter_t>::type   value_t ;
-    if ( sizeof ( value_t) > 64 and NT() <= 8)
-        bs_algo::indirect_sample_sort ( first, last, NT);
-    else
-       bs_algo::parallel_stable_sort ( first, last, NT);
+    bs_algo::parallel_stable_sort ( first, last, NT);
 };
 //
 //-----------------------------------------------------------------------------
@@ -164,21 +168,14 @@ inline void parallel_stable_sort ( iter_t first, iter_t last ,
 ///                    iterators
 /// @param [in] NT : This object is a integer from the ranges [1, UINT32_MAX].
 ///                  by default is the number of HW threads of the machine
-/// @exception
-/// @return
-/// @remarks
 //-----------------------------------------------------------------------------
 template    < class iter_t,
-              typename compare = std::less < typename iter_value<iter_t>::type>
-            >
+              typename compare
+			  = std::less < typename iterator_traits<iter_t>::value_type> >
 inline void parallel_stable_sort ( iter_t first, iter_t last, compare comp ,
-                             const NThread &NT = NThread() )
+                             NThread NT = NThread() )
 {   //---------------------------- begin -------------------------------------
-    typedef typename iter_value<iter_t>::type   value_t ;
-    if ( sizeof ( value_t) > 64 and NT() <= 8)
-        bs_algo::indirect_sample_sort ( first, last,comp, NT);
-    else
-        bs_algo::parallel_stable_sort ( first, last,comp, NT);
+    bs_algo::parallel_stable_sort ( first, last,comp, NT);
 };
 //
 //-----------------------------------------------------------------------------
@@ -191,18 +188,11 @@ inline void parallel_stable_sort ( iter_t first, iter_t last, compare comp ,
 /// @param [in] last : iterator after the last element to the range to sort
 /// @param [in] NT : This object is a integer from the ranges [1, UINT32_MAX].
 ///                  by default is the number of HW threads of the machine
-/// @exception
-/// @return
-/// @remarks
 //-----------------------------------------------------------------------------
 template    < class iter_t >
-inline void sample_sort ( iter_t first, iter_t last , const NThread &NT = NThread() )
+inline void sample_sort ( iter_t first, iter_t last , NThread NT = NThread() )
 {   //---------------------------- begin -------------------------------------
-    typedef typename iter_value<iter_t>::type   value_t ;
-    if ( sizeof ( value_t) > 64 and NT() <= 8)
-        bs_algo::indirect_sample_sort ( first, last, NT);
-    else
-       bs_algo::sample_sort ( first, last, NT);
+    bs_algo::sample_sort ( first, last, NT);
 };
 //
 //-----------------------------------------------------------------------------
@@ -218,26 +208,19 @@ inline void sample_sort ( iter_t first, iter_t last , const NThread &NT = NThrea
 ///                    iterators
 /// @param [in] NT : This object is a integer from the ranges [1, UINT32_MAX].
 ///                  by default is the number of HW threads of the machine
-/// @exception
-/// @return
-/// @remarks
 //-----------------------------------------------------------------------------
-template    < class iter_t,
-              typename compare = std::less < typename iter_value<iter_t>::type>
-            >
+template < class iter_t,
+           typename compare
+		   = std::less<typename iterator_traits<iter_t>::value_type>  >
 inline void sample_sort ( iter_t first, iter_t last, compare comp ,
-                            const NThread &NT = NThread() )
+                            NThread NT = NThread() )
 {   //---------------------------- begin -------------------------------------
-    typedef typename iter_value<iter_t>::type   value_t ;
-    if ( sizeof ( value_t) > 64 and NT()<= 8)
-        bs_algo::indirect_sample_sort ( first, last,comp, NT);
-    else
-        bs_algo::sample_sort ( first, last,comp, NT);
+    bs_algo::sample_sort ( first, last,comp, NT);
 };
 
 //
 //****************************************************************************
-};//    End namespace parallelsort
+};//    End namespace parallel
 };//    End namespace sort
 };//    End namespace boost
 //****************************************************************************

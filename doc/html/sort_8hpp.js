@@ -1,11 +1,13 @@
 var sort_8hpp =
 [
-    [ "introsort", "sort_8hpp.html#afd1f156d9cdddc657cf6cc0e4b09722c", null ],
-    [ "parallel_introsort", "sort_8hpp.html#ab6bfc8fac8a5a9331c5bb13b54f9edc6", null ],
-    [ "parallel_introsort", "sort_8hpp.html#a76f13e99fd0df724c15006d61cca0d23", null ],
-    [ "parallel_stable_sort", "sort_8hpp.html#a6b36ca562b2d2462a4532038d25321e3", null ],
-    [ "parallel_stable_sort", "sort_8hpp.html#a10fcc47222517b62359e6285d59b5957", null ],
-    [ "sample_sort", "sort_8hpp.html#ae8c29e9492c431f986d5b2ec56d438bb", null ],
-    [ "sample_sort", "sort_8hpp.html#a2bc01a01fb6158c2f3db39f19b3dcb10", null ],
-    [ "smart_merge_sort", "sort_8hpp.html#a77807f03aa1b656a6817312543cd357e", null ]
+    [ "indirect_sort", "sort_8hpp.html#a63a20a169c2c3b22ab0b767e20efc5b7", null ],
+    [ "indirect_stable_sort", "sort_8hpp.html#aeee1abae8c51a9522cf14f67161f9dba", null ],
+    [ "parallel_sort", "sort_8hpp.html#a47386092378e7893b710a055233dde47", null ],
+    [ "parallel_sort", "sort_8hpp.html#ac1d6a74f2dd069ce8a7307833ad02b48", null ],
+    [ "parallel_stable_sort", "sort_8hpp.html#a12c0af8e261b287c6168f4436a8d5f20", null ],
+    [ "parallel_stable_sort", "sort_8hpp.html#a9deb0a04b027c24521e07193e17e387c", null ],
+    [ "sample_sort", "sort_8hpp.html#a313d8a725e91f103abdc3c62f5114940", null ],
+    [ "sample_sort", "sort_8hpp.html#a01ca7fd970590728c6b73c382f8dfc22", null ],
+    [ "sort", "sort_8hpp.html#afc8953c0a7e6fdac34c0565fe815173a", null ],
+    [ "stable_sort", "sort_8hpp.html#a5e7e44ecebf896d8f23532cbfa326539", null ]
 ];

@@ -2,7 +2,7 @@
 /// @file sample_sort.hpp
 /// @brief Sample Sort algorithm
 ///
-/// @author Copyright (c) 2010 Francisco José Tapia (fjtapia@gmail.com )\n
+/// @author Copyright (c) 2015 Francisco José Tapia (fjtapia@gmail.com )\n
 ///         Distributed under the Boost Software License, Version 1.0.\n
 ///         ( See accompanyingfile LICENSE_1_0.txt or copy at
 ///           http://www.boost.org/LICENSE_1_0.txt  )
@@ -10,34 +10,37 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#ifndef __BOOST_SORT_GENERAL_ALGORITHM_SAMPLE_SORT_HPP
-#define __BOOST_SORT_GENERAL_ALGORITHM_SAMPLE_SORT_HPP
+#ifndef __BOOST_SORT_PARALLEL_ALGORITHM_SAMPLE_SORT_HPP
+#define __BOOST_SORT_PARALLEL_ALGORITHM_SAMPLE_SORT_HPP
 
 #include <functional>
 #include <memory>
 #include <type_traits>
+#include <iterator>
 #include <vector>
 #include <thread>
+#include <future>
 #include <algorithm>
-#include <boost/sort/parallel/util/atomic.hpp>
-#include <boost/sort/parallel/util/nthread.hpp>
-#include <boost/sort/parallel/util/util_iterator.hpp>
-#include <boost/sort/parallel/util/algorithm.hpp>
-#include <boost/sort/parallel/algorithm/smart_merge_sort.hpp>
+#include <boost/sort/parallel/tools/atomic.hpp>
+#include <boost/sort/parallel/tools/nthread.hpp>
+#include <boost/sort/parallel/algorithm/spin_sort.hpp>
 #include <boost/sort/parallel/util/range.hpp>
+#include <boost/sort/parallel/util/merge_four.hpp>
+#include <boost/sort/parallel/util/merge_vector.hpp>
 #include <boost/sort/parallel/algorithm/indirect.hpp>
 
-namespace boost
-{
-namespace sort
-{
-namespace parallel
-{
-namespace algorithm
-{
-namespace bspu = boost::sort::parallel::util;
-using bspu::NThread ;
-using bspu::NThread_HW ;
+namespace boost		{
+namespace sort		{
+namespace parallel 	{
+namespace algorithm	{
+
+namespace su = boost::sort::parallel::util ;
+using std::iterator_traits ;
+using boost::sort::parallel::tools::NThread ;
+using boost::sort::parallel::tools::NThread_HW ;
+using boost::sort::parallel::tools::atomic_add ;
+using boost::sort::parallel::util::uninit_merge_level4 ;
+using boost::sort::parallel::util::merge_vector4 ;
 //
 ///---------------------------------------------------------------------------
 /// @struct sample_sort_tag
@@ -47,34 +50,33 @@ using bspu::NThread_HW ;
 /// @remarks
 //----------------------------------------------------------------------------
 template < class iter_t,
-           typename compare=std::less<typename iter_value<iter_t>::type >
-         >
+           typename compare
+           =std::less<typename iterator_traits<iter_t>::value_type >   >
 struct sample_sort_tag
 {
 //------------------------------------------------------------------------
 //                     DEFINITIONS
 //------------------------------------------------------------------------
-typedef typename iter_value<iter_t>::type   value_t ;
+typedef typename iterator_traits<iter_t>::value_type   value_t ;
 typedef range <iter_t>                      range_it ;
 typedef range <value_t*>                    range_buf ;
 
 //------------------------------------------------------------------------
 //                VARIABLES AND CONSTANTS
 //------------------------------------------------------------------------
-value_t *Ptr ;
-size_t NElem ;
-uint32_t NThr, Ninterval ;
 static const uint32_t Thread_min = (1<<12) ;
-bool construct = false, owner = false  ;
-compare comp ;
-range_it global_range ;
+uint32_t 	NThr, Ninterval ;
+bool 		construct = false, owner = false  ;
+compare 	comp ;
+range_it 	global_range ;
+range_buf 	global_buf ;
 
 
-std::vector <std::vector <range<iter_t  > > > VMem ;
-std::vector <std::vector <range<value_t*> > > VBuf ;
-std::vector <iter_t>                          VMIni ;
-std::vector <value_t*>                        VBIni ;
-std::atomic<uint32_t> NJobs ;
+std::vector <std::vector <range_it > > 	VMem ;
+std::vector <std::vector <range_buf> > 	VBuf ;
+std::vector <range_it>                  VMIni ;
+std::vector <range_buf>                 VBIni ;
+std::atomic<uint32_t> 					NJobs ;
 
 
 //----------------------------------------------------------------------------
@@ -89,42 +91,149 @@ void initial_configuration ( void);
 //-----------------------------------------------------------------------------
 //  function : sample_sort_tag
 /// @brief constructor of the class
-/// @param [in] first : iterator to the first element of the range
-/// @param [in] last : iterator to next element after the last of the range
+///
+/// @param [in] R : range of objects to sort
 /// @param [in] comp : object for to compare two elements
 /// @param [in] NT : NThread object for to define the number of threads to use
 ///                  in the process. By default is the number of thread HW
+//-----------------------------------------------------------------------------
+sample_sort_tag ( range_it R , compare cmp, NThread  NT);
+//
+//-----------------------------------------------------------------------------
+//  function : sample_sort_tag
+/// @brief constructor of the class
+///
+/// @param [in] R : range of elements to sort
+/// @param [in] comp : object for to compare two elements
+/// @param [in] NT : NThread object for to define the number of threads to use
+///                  in the process. By default is the number of thread HW
+/// @param [in] RB : range used as auxiliary memory
+//-----------------------------------------------------------------------------
+sample_sort_tag ( range_it R, compare cmp, NThread NT,range_buf RB);
+//
+//-----------------------------------------------------------------------------
+//  function :~sample_sort_tag
+/// @brief destructor of the class. The utility is to destroy the temporary
+///        buffer used in the sorting process
+//-----------------------------------------------------------------------------
+~sample_sort_tag ( void);
+
+//
+//-----------------------------------------------------------------------------
+//  function : execute first
+/// @brief this a function to assign to each thread in the first merge
+//-----------------------------------------------------------------------------
+inline void execute_first ( void)
+{   //------------------------------- begin ----------------------------------
+    uint32_t Job =0 ;
+    while ((Job = atomic_add(NJobs, 1)) < Ninterval   )
+    {   uninit_merge_level4( VBIni[Job] , VMem[Job],VBuf[Job] ,comp);
+    };
+};
+//
+//-----------------------------------------------------------------------------
+//  function : execute
+/// @brief this is a function to assignt each thread the final merge
+//-----------------------------------------------------------------------------
+inline void execute ( void)
+{   //------------------------------- begin ----------------------------------
+    uint32_t Job =0 ;
+    while ((Job = atomic_add(NJobs, 1)) < Ninterval   )
+    {   merge_vector4 ( VBIni[Job] , VMIni[Job] ,VBuf[Job], VMem[Job], comp);
+
+    };
+};
+//
+//-----------------------------------------------------------------------------
+//  function : first merge
+/// @brief Implement the merge of the initially sparse ranges
+//-----------------------------------------------------------------------------
+inline void first_merge ( void)
+{   //---------------------------------- begin -------------------------------
+    NJobs =0 ;
+
+	std::vector <std::future <void> > F ( NThr ) ;
+
+	for ( uint32_t i =0 ; i < NThr ; ++i)
+		F[i] = std::async (std::launch::async,
+			   &sample_sort_tag<iter_t,compare>::execute_first , this);
+
+	for ( uint32_t i =0 ; i < NThr ; ++i) F[i].get() ;
+
+};
+//
+//-----------------------------------------------------------------------------
+//  function : final merge
+/// @brief Implement the final merge of the ranges
 /// @exception
 /// @return
 /// @remarks
 //-----------------------------------------------------------------------------
-sample_sort_tag ( iter_t first, iter_t last, compare cmp, const NThread & NT)
-                 :Ptr(nullptr),NElem(0),owner(false),comp( cmp),
-                  global_range(first, last)
+inline void final_merge ( void)
+{   //---------------------------------- begin -------------------------------
+    NJobs =0 ;
+	std::vector <std::future <void> > F ( NThr ) ;
+	for ( uint32_t i =0 ; i < NThr ; ++i)
+		F[i] = std::async (std::launch::async,
+				&sample_sort_tag<iter_t,compare>::execute , this);
+
+	for ( uint32_t i =0 ; i < NThr ; ++i) F[i].get() ;
+
+};
+//
+//----------------------------------------------------------------------------
+};//                    End class sample_sort_tag
+//----------------------------------------------------------------------------
+//
+//
+//############################################################################
+//                                                                          ##
+//              N O N    I N L I N E      F U N C T I O N S                 ##
+//                                                                          ##
+//                      O F   T H E      C L A S S                          ##
+//                                                                          ##
+//                   S A M P L E _ S O R T _ T A G                          ##
+//                                                                          ##
+//############################################################################
+//-----------------------------------------------------------------------------
+//  function : sample_sort_tag
+/// @brief constructor of the class
+///
+/// @param [in] R : range of objects to sort
+/// @param [in] comp : object for to compare two elements
+/// @param [in] NT : NThread object for to define the number of threads to use
+///                  in the process. By default is the number of thread HW
+//-----------------------------------------------------------------------------
+template <class iter_t, typename compare>
+sample_sort_tag<iter_t,compare>:: sample_sort_tag (range_it R ,compare cmp,
+		                                           NThread NT)
+                                                  :owner(false),comp(cmp),
+												   global_range(R),
+				                                   global_buf (nullptr,nullptr)
 {   //-------------------------- begin -------------------------------------
-    auto N = last- first ;
-    assert ( N >=0);
-    NElem = size_t ( N );
+
+	assert ( R.valid());
+    size_t NElem = R.size();
     construct= false ;
     NThr = NT() ;
     Ninterval = ( NThr <<4);
     NJobs = 0 ;
 
     if ( NT() <2 or NElem <= ( Thread_min))
-    {   smart_merge_sort (first, last, comp);
+    {   spin_sort (R.first, R.last, comp);
         return ;
     };
 
     //------------------- check if sort --------------------------------------
     bool SW = true ;
-    for ( iter_t it1 = first, it2 = first+1 ;
-          it2 != last and (SW = not comp(*it2,*it1));it1 = it2++);
+    for ( iter_t it1 = R.first, it2 = R.first+1 ;
+          it2 != R.last and (SW = not comp(*it2,*it1));it1 = it2++);
     if (SW) return ;
 
-    Ptr = std::get_temporary_buffer<value_t>(NElem).first ;
+    value_t * Ptr = std::get_temporary_buffer<value_t>(NElem).first ;
     if ( Ptr == nullptr) throw std::bad_alloc() ;
     owner = true ;
-
+    global_buf = range_buf ( Ptr, Ptr + NElem);
     //------------------------------------------------------------------------
     //                    PROCESS
     //------------------------------------------------------------------------
@@ -139,40 +248,36 @@ sample_sort_tag ( iter_t first, iter_t last, compare cmp, const NThread & NT)
 //-----------------------------------------------------------------------------
 //  function : sample_sort_tag
 /// @brief constructor of the class
-/// @param [in] first : iterator to the first element of the range
-/// @param [in] last : iterator to next element after the last of the range
+///
+/// @param [in] R : range of elements to sort
 /// @param [in] comp : object for to compare two elements
 /// @param [in] NT : NThread object for to define the number of threads to use
 ///                  in the process. By default is the number of thread HW
-/// @param [in] P1 : pointer to the auxiliary memory used in the sorting
-/// @param [in] NP1 : capacity in number of objects  of the auxiliary memory
-///                   pointed by P1
-/// @exception
-/// @return
-/// @remarks This function is for internal use only
+/// @param [in] RB : range used as auxiliary memory
 //-----------------------------------------------------------------------------
-sample_sort_tag ( iter_t first, iter_t last, compare cmp, const NThread &NT,
-                  value_t *P1, size_t NP1)
-                 :Ptr(P1),NElem(0),comp( cmp),global_range(first, last)
+template <class iter_t, typename compare>
+sample_sort_tag<iter_t,compare>::sample_sort_tag ( range_it R, compare cmp,
+		                                           NThread NT, range_buf RB)
+                                                 : comp( cmp), global_range(R),
+												   global_buf ( RB)
 {   //-------------------------- begin -------------------------------------
-    auto N = last - first ;
-    assert ( N >=0);
-    NElem = size_t ( N );
-    assert ( NP1 >= NElem and Ptr != nullptr);
+	assert ( R.valid());
+    size_t NElem = R.size();
     construct= false ;
+    assert ( RB.first != nullptr and RB.size() >= NElem);
     NThr = NT() ;
     Ninterval = ( NThr <<3);
     NJobs = 0 ;
 
     if ( NT() <2 or NElem <= ( Thread_min))
-    {   smart_merge_sort (first, last, comp, Ptr, NP1);
+    {   spin_sort_tag<iter_t, compare> (R, comp, RB);
         return ;
     };
 
     //------------------- check if sort --------------------------------------
     bool SW = true ;
-    for ( iter_t it1 = first, it2 = first+1 ;
-          it2 != last and (SW = not comp(*it2,*it1));it1 = it2++);
+    for ( iter_t it1 = R.first, it2 = R.first+1 ;
+          it2 != R.last and (SW = not comp(*it2,*it1));it1 = it2++);
     if (SW) return ;
 
     //------------------------------------------------------------------------
@@ -189,94 +294,17 @@ sample_sort_tag ( iter_t first, iter_t last, compare cmp, const NThread &NT,
 //  function :~sample_sort_tag
 /// @brief destructor of the class. The utility is to destroy the temporary
 ///        buffer used in the sorting process
-/// @exception
-/// @return
-/// @remarks
 //-----------------------------------------------------------------------------
-~sample_sort_tag ( void)
+template <class iter_t, typename compare>
+sample_sort_tag<iter_t,compare>::~sample_sort_tag ( void)
 {   //----------------------------------- begin -------------------------
     if ( construct)
-    {   destroy ( range<value_t*> ( Ptr, Ptr +NElem));
+    {   destroy ( global_buf);
         construct = false ;
     }
-    if ( Ptr != nullptr and owner ) std::return_temporary_buffer ( Ptr) ;
+    if ( global_buf.first != nullptr and owner )
+    	std::return_temporary_buffer ( global_buf.first) ;
 };
-//
-//-----------------------------------------------------------------------------
-//  function : execute first
-/// @brief this a function to assign to each thread in the first merge
-/// @exception
-/// @return
-/// @remarks
-//-----------------------------------------------------------------------------
-inline void execute_first ( void)
-{   //------------------------------- begin ----------------------------------
-    uint32_t Job =0 ;
-    while ((Job = atomic_add(NJobs, 1)) < Ninterval   )
-    {   uninit_merge_level4( VBIni[Job] , VMem[Job],VBuf[Job] ,comp);
-    };
-};
-//
-//-----------------------------------------------------------------------------
-//  function : execute
-/// @brief this is a function to assignt each thread the final merge
-/// @exception
-/// @return
-/// @remarks
-//-----------------------------------------------------------------------------
-inline void execute ( void)
-{   //------------------------------- begin ----------------------------------
-    uint32_t Job =0 ;
-    while ((Job = atomic_add(NJobs, 1)) < Ninterval   )
-    {   merge_vector4( VBIni[Job], VMIni[Job] ,VBuf[Job], VMem[Job], comp);
-    };
-};
-//
-//-----------------------------------------------------------------------------
-//  function : first merge
-/// @brief Implement the merge of the initially sparse ranges
-/// @exception
-/// @return
-/// @remarks
-//-----------------------------------------------------------------------------
-inline void first_merge ( void)
-{   //---------------------------------- begin -------------------------------
-    NJobs =0 ;
-    std::vector <std::thread > VThread ( NThr);
-    for ( uint32_t i =0  ; i < NThr ; ++i )
-    {   VThread [i] = std::thread
-                     (&sample_sort_tag<iter_t,compare>::execute_first , this);
-    };
-    for ( uint32_t i =0  ; i < NThr ; ++i )
-    {   VThread [i].join();
-    };
-};
-//
-//-----------------------------------------------------------------------------
-//  function : final merge
-/// @brief Implement the final merge of the ranges
-/// @exception
-/// @return
-/// @remarks
-//-----------------------------------------------------------------------------
-inline void final_merge ( void)
-{   //---------------------------------- begin -------------------------------
-    NJobs =0 ;
-
-    std::vector <std::thread > VThread ( NThr);
-    for ( uint32_t i =0  ; i < NThr ; ++i )
-    {   VThread [i] = std::thread (&sample_sort_tag<iter_t,compare>::execute , this);
-    };
-    for ( uint32_t i =0  ; i < NThr ; ++i )
-    {   VThread [i].join();
-    };
-
-};
-//
-//----------------------------------------------------------------------------
-};//                    End class sample_sort_tag
-//----------------------------------------------------------------------------
-//
 //
 //-----------------------------------------------------------------------------
 //  function : initial_configuration
@@ -289,30 +317,35 @@ inline void final_merge ( void)
 template <class iter_t, typename compare>
 void sample_sort_tag<iter_t,compare>::initial_configuration ( void)
 {   //--------------------------- begin --------------------------------------
-    std::vector <range_it> Vrange_thread ;
-    std::vector <value_t*> Vbuf_thread   ;
-
+    std::vector <range_it> 	VMem_thread ;
+    std::vector <range_buf> VBuf_thread   ;
+    size_t NElem = global_range.size() ;
     //------------------------------------------------------------------------
     size_t cupo = (NElem + NThr -1) / NThr ;
-    iter_t it_first = global_range.first ;
+    iter_t 		it_first 	= global_range.first ;
+    value_t * 	buf_first 	= global_buf.first ;
 
-    for ( uint32_t i =0 ; i < NThr ; ++i)
-    {   size_t Nlast = (((i+1)*cupo)< NElem )?((i+1)*cupo):NElem ;
-    	Vrange_thread.emplace_back ( it_first+ (i*cupo) , it_first+Nlast);
-        Vbuf_thread.push_back ( Ptr + ( i*cupo) );
+    for ( uint32_t i =0 ; i < NThr-1 ; ++i, it_first += cupo, buf_first += cupo)
+    {	VMem_thread.emplace_back ( it_first, it_first + cupo) ;
+        VBuf_thread.emplace_back ( buf_first, buf_first + cupo );
     };
+    VMem_thread.emplace_back ( it_first, global_range.last) ;
+    VBuf_thread.emplace_back ( buf_first, global_buf.last );
+
     //------------------------------------------------------------------------
     // Sorting of the ranges
     //------------------------------------------------------------------------
-    std::vector <std::thread > VThread ( NThr );
-    for ( uint32_t i =0  ; i < NThr ; ++i )
-    {   VThread [i] = std::thread (smart_merge_sort<iter_t,value_t,compare>,
-                                   Vrange_thread[i].first,Vrange_thread[i].last, comp,
-                                   Vbuf_thread[i] , Vrange_thread[i].size());
-    };
-    for ( uint32_t i =0  ; i < NThr ; ++i )
-    {   VThread [i].join();
-    };
+	std::vector <std::future <void> > F ( NThr ) ;
+
+	for ( uint32_t i =0 ; i < NThr ; ++i)
+	{	F[i] = std::async (std::launch::async,
+							spin_sort<iter_t,value_t,compare>,
+				            VMem_thread[i].first, VMem_thread[i].last,
+							comp, VBuf_thread[i].first,VBuf_thread[i].size());
+	};
+
+	for ( uint32_t i =0 ; i < NThr ; ++i) F[i].get() ;
+
     //------------------------------------------------------------------------
     // Obtain the vector of milestones
     //------------------------------------------------------------------------
@@ -320,13 +353,13 @@ void sample_sort_tag<iter_t,compare>::initial_configuration ( void)
     Vsample.reserve ( NThr * (Ninterval-1)) ;
 
     for ( uint32_t i =0 ; i < NThr ; ++i)
-    {   size_t distance = Vrange_thread[i].size() / Ninterval ;
+    {   size_t distance = VMem_thread[i].size() / Ninterval ;
         for ( size_t j = 1 ,pos = distance; j < Ninterval; ++j,pos+=distance)
-        {   Vsample.push_back (Vrange_thread[i].first + pos );
+        {   Vsample.push_back (VMem_thread[i].first + pos );
         };
     };
     typedef less_ptr_no_null <iter_t, compare>  compare_ptr ;
-    smart_merge_sort  ( Vsample.begin() , Vsample.end(), compare_ptr(comp) );
+    spin_sort  ( Vsample.begin() , Vsample.end(), compare_ptr(comp) );
 
     //------------------------------------------------------------------------
     // Create the final milestone vector
@@ -343,15 +376,15 @@ void sample_sort_tag<iter_t,compare>::initial_configuration ( void)
     std::vector< std::vector<range <iter_t> > > VR  (NThr);
 
     for ( uint32_t i =0 ; i < NThr; ++i)
-    {   iter_t itaux = Vrange_thread[i].first ;
+    {   iter_t itaux = VMem_thread[i].first ;
         for ( uint32_t k =0 ; k < (Ninterval -1) ; ++k)
         {   iter_t it2 = std::upper_bound ( itaux,
-                                            Vrange_thread[i].last ,
+                                            VMem_thread[i].last ,
                                             * Vmilestone[k], comp );
             VR[i].emplace_back ( itaux, it2);
             itaux = it2 ;
         };
-        VR[i].emplace_back(itaux,Vrange_thread[i].last );
+        VR[i].emplace_back(itaux,VMem_thread[i].last );
     };
 
     //------------------------------------------------------------------------
@@ -367,16 +400,17 @@ void sample_sort_tag<iter_t,compare>::initial_configuration ( void)
         VBuf[i].reserve ( NThr);
     };
     iter_t it = global_range.first ;
-    value_t * it_buf = Ptr ;
+    value_t * it_buf = global_buf.first ;
     for ( uint32_t k =0 ; k < Ninterval ; ++k)
-    {   VMIni.push_back (it );
-        VBIni.push_back (it_buf) ;
-        size_t N =0 ;
+    {   size_t N =0 ;
         for ( uint32_t i = 0 ; i< NThr ; ++i)
         {   size_t N2 = VR[i][k].size();
             if ( N2 != 0 ) VMem[k].push_back(VR[i][k] );
             N += N2 ;
         };
+        VMIni.emplace_back (it,it + N  );
+        VBIni.emplace_back (it_buf , it_buf+ N) ;
+
         it += N ;
         it_buf += N ;
     };
@@ -407,8 +441,8 @@ void sample_sort_tag<iter_t,compare>::initial_configuration ( void)
 template < class iter_t >
 void sample_sort ( iter_t first, iter_t last , const NThread &NT = NThread() )
 {   //----------------------------------- begin ------------------------------
-    typedef std::less<typename iter_value<iter_t>::type > compare;
-    sample_sort_tag <iter_t,compare> ( first, last, compare(),NT);
+    typedef std::less<typename iterator_traits<iter_t>::value_type > compare;
+    sample_sort_tag <iter_t,compare> ( range<iter_t>(first, last), compare(),NT);
 };
 //
 //-----------------------------------------------------------------------------
@@ -426,11 +460,12 @@ void sample_sort ( iter_t first, iter_t last , const NThread &NT = NThread() )
 /// @remarks
 //-----------------------------------------------------------------------------
 template < class iter_t,
-          typename compare = std::less <typename iter_value<iter_t>::type>  >
+          typename compare 
+          = std::less <typename iterator_traits<iter_t>::value_type>  >
 void sample_sort ( iter_t first, iter_t last,
                    compare comp, const NThread &NT = NThread() )
 {   //----------------------------- begin ----------------------------------
-    sample_sort_tag<iter_t,compare> ( first, last,comp,NT);
+    sample_sort_tag<iter_t,compare> (range<iter_t>( first, last),comp,NT);
 };
 
 
@@ -448,15 +483,12 @@ void sample_sort ( iter_t first, iter_t last,
 /// @param [in] last : iterator to next element after the last of the range
 /// @param [in] NT : NThread object for to define the number of threads to use
 ///                  in the process. By default is the number of thread HW
-/// @exception
-/// @return
-/// @remarks
 //-----------------------------------------------------------------------------
 template < class iter_t >
 void indirect_sample_sort ( iter_t first, iter_t last ,
-                                   const NThread &NT = NThread() )
+                                   NThread NT = NThread() )
 {   //------------------------------- begin--------------------------
-    typedef std::less <typename iter_value<iter_t>::type> compare ;
+    typedef std::less <typename iterator_traits<iter_t>::value_type> compare ;
     typedef less_ptr_no_null <iter_t, compare>      compare_ptr ;
 
     std::vector<iter_t> VP ;
@@ -475,14 +507,12 @@ void indirect_sample_sort ( iter_t first, iter_t last ,
 /// @param [in] comp : object for to compare two elements
 /// @param [in] NT : NThread object for to define the number of threads to use
 ///                  in the process. By default is the number of thread HW
-/// @exception
-/// @return
-/// @remarks
 //-----------------------------------------------------------------------------
 template < class iter_t,
-          typename compare = std::less <typename iter_value<iter_t>::type> >
+          typename 
+          compare = std::less <typename iterator_traits<iter_t>::value_type> >
 void indirect_sample_sort ( iter_t first, iter_t last,
-                            compare comp1, const NThread &NT = NThread() )
+                            compare comp1, NThread NT = NThread() )
 {   //----------------------------- begin ----------------------------------
     typedef less_ptr_no_null <iter_t, compare>      compare_ptr ;
 

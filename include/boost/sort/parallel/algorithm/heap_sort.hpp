@@ -13,28 +13,25 @@
 #ifndef __BOOST_SORT_PARALLEL_ALGORITHM_HEAP_SORT_HPP
 #define __BOOST_SORT_PARALLEL_ALGORITHM_HEAP_SORT_HPP
 
-#include <boost/sort/parallel/util/definition.hpp>
-#include <boost/sort/parallel/util/config.hpp>
-#include <boost/sort/parallel/util/util_iterator.hpp>
-#include <boost/sort/parallel/algorithm/token.hpp>
-#include <boost/sort/parallel/algorithm/indirect.hpp>
 #include <stdexcept>
 #include <cstdint>
 #include <cassert>
 #include <utility> // for std::swap
+#include <iterator>
+#include <boost/sort/parallel/algorithm/token.hpp>
+#include <boost/sort/parallel/algorithm/indirect.hpp>
 
-namespace boost
-{
-namespace sort
-{
-namespace parallel
-{
-namespace algorithm
-{
-using namespace boost::sort::parallel::util ;
+
+namespace boost		{
+namespace sort		{
+namespace parallel	{
+namespace algorithm	{
+
+using namespace boost::sort::parallel::tools ;
+using std::iterator_traits ;
 //
 //------------------------------------------------------------------------------
-//  function : sort
+//  function : sort3
 /// @brief Sort and signal the changes of three values
 /// @param [in] R0 : first value to compare
 /// @param [in] R1 : second value to compare
@@ -93,9 +90,7 @@ inline bool sort3 (value_t &R0, value_t &R1, value_t &R2,
                 B0 = B2 = true ;
                 break ;
         default: abort();
-
-    }
-
+    };
     return ( B0 or B1 or B2);
 };
 //
@@ -108,8 +103,8 @@ inline bool sort3 (value_t &R0, value_t &R1, value_t &R2,
 /// @remarks This algorithm is O(NLogN)
 //-----------------------------------------------------------------------------
 template < class iter_t,
-           class Compare = std::less < typename iter_value<iter_t>::type >
-         >
+           class Compare 
+           = std::less < typename iterator_traits<iter_t>::value_type >  >
 void make_heap ( iter_t first , size_t N , Compare comp = Compare())
 {   //-------------------- begin -----------------------------
     size_t pos_father , pos_son ;
@@ -140,8 +135,8 @@ void make_heap ( iter_t first , size_t N , Compare comp = Compare())
 /// @remarks This algorithm is O(NLogN)
 //-----------------------------------------------------------------------------
 template < class iter_t,
-           class Compare =std::less <typename iter_value<iter_t>::type>
-         >
+           class Compare 
+           =std::less <typename iterator_traits<iter_t>::value_type> >
 void heap_sort ( iter_t first , iter_t last , Compare comp= Compare()  )
 {   //--------------------------- begin -----------------------------
     assert ( (last - first) >= 0 );
@@ -196,8 +191,8 @@ void heap_sort ( iter_t first , iter_t last , Compare comp= Compare()  )
 /// @remarks This algorithm is O(NLogN)
 //-----------------------------------------------------------------------------
 template < class iter_t,
-           typename compare = std::less<typename iter_value<iter_t>::type>
-         >
+           typename compare 
+           = std::less<typename iterator_traits<iter_t>::value_type>  >
 void indirect_heap_sort ( iter_t first, iter_t last ,
                                     compare comp = compare() )
 {   //------------------------------- begin--------------------------
@@ -211,7 +206,7 @@ void indirect_heap_sort ( iter_t first, iter_t last ,
 //
 //****************************************************************************
 };//    End namespace algorithm
-};//    End namespace namespace parallel
+};//    End namespace parallel
 };//    End namespace sort
 };//    End namespace boost
 //****************************************************************************

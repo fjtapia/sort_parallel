@@ -13,139 +13,134 @@
 #ifndef __BOOST_SORT_PARALLEL_ALGORITHM_INTRO_SORT_HPP
 #define __BOOST_SORT_PARALLEL_ALGORITHM_INTRO_SORT_HPP
 
-#include <boost/sort/parallel/util/algorithm.hpp>
+#include <algorithm>
+#include <vector>
+#include <type_traits>
+#include <iterator>
+#include <boost/sort/parallel/tools/nbits.hpp>
 #include <boost/sort/parallel/algorithm/insertion_sort.hpp>
 #include <boost/sort/parallel/algorithm/heap_sort.hpp>
 #include <boost/sort/parallel/algorithm/indirect.hpp>
-#include <vector>
-#include <type_traits>
-
-namespace boost
-{
-namespace sort
-{
-namespace parallel
-{
-namespace algorithm
-{
-
-using boost::sort::parallel::util::MS1B;
 
 
-template < class iter_t,
-           typename compare = std::less < typename iter_value<iter_t>::type >
-         >
-bool check_if_sort( iter_t first , iter_t last,compare comp );
+namespace boost		{
+namespace sort		{
+namespace parallel 	{
+namespace algorithm	{
+namespace deep   	{
+
+using std::iterator_traits ;
+using boost::sort::parallel::tools::NBits64;
+
+template< typename iter_t, typename compare>
+inline iter_t mid3(iter_t it_l, iter_t it_m, iter_t it_r,compare comp)
+{	return comp(* it_l, *it_m)
+		?( comp(*it_m, *it_r) ? it_m : ( comp(*it_l, *it_r) ? it_r:it_l))
+        :( comp(*it_r, *it_m) ? it_m : ( comp(*it_r, *it_l) ? it_r:it_l));
+};
+
+//----------------------------------------------------------------------------
+// calculate the pivoting using a mid of 3 and move to the firat position
+//----------------------------------------------------------------------------
+template <class iter_t , class compare >
+inline void pivot3 ( iter_t first, iter_t last, compare comp)
+{   auto N2 = ( last - first ) >>1 ;
+	iter_t it_val = mid3 ( first +1, first + N2, last-1,comp);
+    std::swap ( *first , * it_val);
+};
+
+template <class iter_t , class compare >
+inline iter_t mid9 ( iter_t it1, iter_t it2 , iter_t it3 ,
+		             iter_t it4 , iter_t it5, iter_t it6,
+					 iter_t it7, iter_t it8, iter_t it9, compare comp)
+{	//-------------------------- begin ---------------------------------------
+	return mid3 (mid3(it1, it2, it3, comp ),
+		         mid3(it4, it5, it6,comp  ),
+				 mid3(it7, it8, it9,comp), comp);
+};
+
+template <class iter_t , class compare >
+inline void pivot9 ( iter_t first, iter_t last, compare comp)
+{	//----------------------------- begin ------------------------------------
+	size_t cupo = (last - first) >>3 ;
+	iter_t itaux = mid9 (first+1, first+cupo, first+2*cupo,
+  	                	first+3*cupo, first + 4*cupo, first + 5*cupo,
+						first + 6*cupo, first + 7*cupo,last-1,comp);
+	std::swap ( *first , * itaux);
+};
 //
 //-----------------------------------------------------------------------------
 //  function : intro_sort_internal
 /// @brief : internal function for to divide and sort the ranges
-/// @tparam iter_t : iterator to the elements
-/// @tparam compare : object for to compare two elements pointed by iter_t
-///                   iterators
 /// @param [in] first : iterator to the first element
 /// @param [in] last : iterator to the element after the last in the range
-/// @param [in] Level : Level of deep from the initial range
+/// @param [in] Level : Level of depth from the initial range
 /// @param [in] comp : object for to compare elements
-/// @exception
-/// @return
-/// @remarks This function don't be called directly by the users
 //-----------------------------------------------------------------------------
 template< class iter_t,
-          typename compare = std::less < typename iter_value<iter_t>::type >
-        >
-inline void intro_sort_internal( iter_t first , iter_t last,
-                                  uint32_t Level ,compare comp = compare())
+          typename compare
+          = std::less <typename iterator_traits<iter_t>::value_type >  >
+void intro_sort_internal( iter_t  first , iter_t  last,
+		                         uint32_t Level ,compare comp = compare())
 {   //------------------------------ begin -----------------------------------
-    typedef typename iter_value<iter_t>::type value_t ;
+    typedef typename iterator_traits<iter_t>::value_type       value_t ;
 
-    //-------------------------- sort process --------------------------------
     const uint32_t NMin = 32 ;
     auto N = last - first;
+    if ( N  < NMin )   return insertion_sort( first , last,comp);
+    if ( Level == 0)   return heap_sort     ( first , last,comp);
 
-    if ( N < NMin)   return insertion_sort(first,last,comp);
-    if (  Level == 0)   return heap_sort ( first , last,comp);
+    //--------------------- division ----------------------------------
+    pivot3 ( first, last, comp);
 
-    //------------------- check if sort --------------------------------------
-    bool SW = true ;
-    for ( iter_t it1 = first, it2 = first+1 ;
-          it2 != last and (SW = not comp(*it2,*it1));it1 = it2++);
-    if (SW) return ;
-
-    //----------------------------------------------------------------
-    //                     split
-    //----------------------------------------------------------------
-    size_t N2 = ( size_t (N +1 ) >>1 ) ;
-
-    std::swap ( *first , * (first + N2 ));
-    value_t &  val = const_cast < value_t &>(*first);
-
+    const value_t & val = const_cast < value_t &>(* first);
     iter_t c_first = first+1 , c_last  = last-1;
 
-    while ( c_first != last and comp (*c_first, val    )) ++c_first ;
-    if ( c_first == last)
-    {   std::swap ( *first , * (last-1));
-        intro_sort_internal ( first , last-1, Level -1 , comp);
-    }
-    else
-    {	while ( comp (val     ,*c_last )) --c_last ;
-        while (not( c_first > c_last ))
-        {   std::swap ( *(c_first++), *(c_last--));
-            while (comp (*c_first , val) ) ++c_first;
-            while (comp( val, *c_last ) )  --c_last ;
-        }; // End while
-        std::swap ( *first , * c_last);
-
-        if ((c_last - first ) > 1 )intro_sort_internal (first , c_last , Level -1, comp);
-        if ((last - c_first ) > 1 )intro_sort_internal (c_first, last, Level -1 , comp);
-    };
+    while ( comp(*c_first, val) ) ++c_first ;
+    while ( comp ( val,*c_last ) ) --c_last ;
+    while (not( c_first > c_last ))
+    {   std::swap ( *(c_first++), *(c_last--));
+        while ( comp (*c_first, val) ) ++c_first;
+        while ( comp ( val, *c_last) ) --c_last ;
+    }; // End while
+    std::swap ( *first , * c_last);
+    intro_sort_internal (first , c_last, Level -1, comp);
+    intro_sort_internal (c_first, last, Level -1 , comp);
 };
+//
+//****************************************************************************
+};//    End namespace deep
+//****************************************************************************
+//
+namespace bs_deep = boost::sort::parallel::algorithm::deep ;
 //
 //-----------------------------------------------------------------------------
 //  function : intro_sort
 /// @brief : function for to sort range [first, last )
-/// @tparam iter_t : iterator to the elements
-/// @tparam compare : object for to compare two elements pointed by iter_t
-///                   iterators
 /// @param [in] first : iterator to the first element
 /// @param [in] last : iterator to the element after the last in the range
 /// @param [in] comp : object for to compare elements
-/// @exception
-/// @return
-/// @remarks
 //-----------------------------------------------------------------------------
 template < class iter_t,
-           typename compare = std::less <typename iter_value<iter_t>::type>
+           typename compare
+           = std::less <typename iterator_traits<iter_t>::value_type>
          >
 void intro_sort ( iter_t first, iter_t last,compare comp = compare())
 {   //------------------------- begin ----------------------
     auto N = last - first;
     assert ( N > 0);
+    //------------------- check if sort --------------------------------------
+    //if (std::is_sorted ( first, last ,comp)) return ;
+    //------------------- check if sort --------------------------------------
+    bool SW = true ;
+    for ( iter_t it1 = first, it2 = first+1 ;
+        it2 != last and (SW = not comp(*it2,*it1));it1 = it2++);
+    if (SW) return ;
 
-    uint32_t Level = (MS1B(N) *3);
-    intro_sort_internal ( first , last, Level,comp);
+    uint32_t Level = ((NBits64(N)-4) *3)/2;
+    bs_deep::intro_sort_internal ( first , last, Level,comp);
 };
-//
-//-----------------------------------------------------------------------------
-//  function : sort
-/// @brief : function for to sort range [first, last )
-/// @tparam iter_t : iterator to the elements
-/// @tparam compare : object for to compare two elements pointed by iter_t
-///                   iterators
-/// @param [in] first : iterator to the first element
-/// @param [in] last : iterator to the element after the last in the range
-/// @param [in] comp : object for to compare elements
-/// @exception
-/// @return
-/// @remarks this function is an alias of intro_sort
-//-----------------------------------------------------------------------------
-template< class iter_t,
-          typename compare = std::less < typename iter_value<iter_t>::type > >
-inline void sort( iter_t first , iter_t last,
-                        uint32_t Level ,compare comp = compare())
-{   //------------------------- begin ----------------------
-    intro_sort ( first, last, comp);
-};
+
 
 //############################################################################
 //                                                                          ##
@@ -156,23 +151,24 @@ inline void sort( iter_t first , iter_t last,
 //-----------------------------------------------------------------------------
 //  function : indirect_intro_sort
 /// @brief : function for to implement an indirect sort range [first, last )
-/// @tparam iter_t : iterator to the elements
-/// @tparam compare : object for to compare two elements pointed by iter_t
-///                   iterators
 /// @param [in] first : iterator to the first element
 /// @param [in] last : iterator to the element after the last in the range
 /// @param [in] comp : object for to compare elements
-/// @exception
-/// @return
-/// @remarks
+
 //-----------------------------------------------------------------------------
 template < class iter_t,
-           typename compare = std::less<typename iter_value<iter_t>::type>
-         >
+           typename compare
+           = std::less<typename iterator_traits<iter_t>::value_type>   >
 void indirect_intro_sort ( iter_t first, iter_t last ,
                                     compare comp = compare() )
 {   //------------------------------- begin--------------------------
     typedef less_ptr_no_null <iter_t, compare>      compare_ptr ;
+
+    //------------------- check if sort --------------------------------------
+    bool SW = true ;
+    for ( iter_t it1 = first, it2 = first+1 ;
+        it2 != last and (SW = not comp(*it2,*it1));it1 = it2++);
+    if (SW) return ;
 
     std::vector<iter_t> VP ;
     create_index ( first , last , VP);

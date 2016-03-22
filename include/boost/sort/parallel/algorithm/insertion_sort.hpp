@@ -13,23 +13,22 @@
 #ifndef __BOOST_SORT_PARALLEL_ALGORITHM_INSERTION_SORT_HPP
 #define __BOOST_SORT_PARALLEL_ALGORITHM_INSERTION_SORT_HPP
 
-#include <boost/sort/parallel/util/definition.hpp>
-#include <boost/sort/parallel/util/util_iterator.hpp>
+
+#include <iterator>
 #include <functional>
 #include <stdexcept>
 #include <cstdint>
 #include <cassert>
 #include <utility> // std::swap
 
-namespace boost
-{
-namespace sort
-{
-namespace parallel
-{
-namespace algorithm
-{
-using  boost::sort::parallel::util::iter_value;
+
+namespace boost		{
+namespace sort		{
+namespace parallel	{
+namespace algorithm	{
+
+using  std::iterator_traits;
+
 //-----------------------------------------------------------------------------
 //  function : insertion_sort
 /// @brief : Insertion sort algorithm
@@ -39,11 +38,12 @@ using  boost::sort::parallel::util::iter_value;
 /// @remarks This algorithm is O(N²)
 //-----------------------------------------------------------------------------
 template < class iter_t,
-           typename compare = std::less < typename iter_value<iter_t>::type >
+           typename compare
+		            = std::less <typename iterator_traits<iter_t>::value_type >
          >
 inline void insertion_sort (iter_t first, iter_t last, compare comp=compare())
 {   //------------------------- begin ----------------------
-    typedef typename iter_value<iter_t>::type value_t ;
+    typedef typename iterator_traits<iter_t>::value_type value_t ;
 
     if ( (last-first) < 2 ) return ;
     for ( iter_t Alfa = first +1 ;Alfa != last ; ++Alfa)
