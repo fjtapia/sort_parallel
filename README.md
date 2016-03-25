@@ -54,10 +54,13 @@ The algorithm use as **auxiliary memory a 1024 elements** for each thread. The w
 *You can obtain more information in the Documantation Page of the Project  * [index.html](index.html)
 
 *If you  are interested in a brief description of the algorithm, you can find in the next link* 
-[(Block Indirect Sort )](block_indirect_sort_brief_en.pdf)
+[(block_indirect_sort_brief_en.pdf)](block_indirect_sort_brief_en.pdf)
 
 *If you  are interested in a detailed description of the algorithm, you can find in the next link* 
-[(Block Indirect Sort )](block_indirect_sort_en.pdf)
+[(block_indirect_sort_en.pdf)](block_indirect_sort_en.pdf)
+
+*If you want run the benchmarks in your machine, you have all the code, intructions and procedures in*
+<a href="https://github.com/fjtapia/sort_parallel_benchmark">https://github.com/fjtapia/sort_parallel_benchmark</a>
 
 <h2>Installation </h2>
  * This library is **include only**.  
