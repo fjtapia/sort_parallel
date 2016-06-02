@@ -1,11 +1,18 @@
 
 <h1>Boost Sort Parallel</h1>
-<h2> <a href="https://github.com/fjtapia/sort_parallel">https://github.com/fjtapia/sort_parallel</a> </h2>
+<h3> <a href="https://github.com/fjtapia/sort_parallel">https://github.com/fjtapia/sort_parallel</a> </h3>
 
+<h3>PRELIMINARY</h3>
 
-The **Boost Sort Parallel Library**, had been designed for to be included in the Boost Sort Library, created by Steven Ross. Actually this library have the SpreadSort algorithms designed and implemented by Steven Ross.
+The **Boost Sort Parallel Library**, had been designed for to be included in the Boost Sort Library, created by Steven Ross, which actually have the SpreadSort algorithms.
 
-The intention is to create algorithms only with the utilities provided by C++11, without any other library. **Any compiler C++11  compliant can compile and run these algorithms**. It's pending of the final review, due this can suffer some changes until the final version and definitive approval in the Boost Library.
+This library is pending of the final approval for to be included in the Boost Sort Libray, due this, can suffer some changes until the final version and definitive approval in the Boost Library.
+
+<h3>DESCRIPTION</h3>
+
+This library provide **stable and not stable** sorting algorithms, in **single thread and parallel** versions.
+
+These algorithms do not use any other library or utility. For to **compile and run** only need a **C++11 compliant compiler.**
 
 The algorithms **use an comparison object**, in the same way than the sort algorithms of the standard library. If you don't define it, by default is std::less object, using internally the operator < for to do the comparison.
 
@@ -19,27 +26,42 @@ This table provide you a brief description of the sort algorithms of the library
 | --- | --- | --- | --- | --- |
 | sort | no | no | Log N  | NLogN, NLogN, NLogN |
 | stable\_sort | no | yes| N / 2 | NLogN, NLogN, NLogN   |
-| parallel\_sort | yes | no | 1024\*NThreads | NLogN, NLogN, NLogN  |
+| parallel\_sort | yes | no | 1024\*number_threads | NLogN, NLogN, NLogN  |
 | parallel\_stable\_sort| yes | yes | N / 2 | NLogN, NLogN, NLogN   |
 | sample\_sort | yes | yes | N  | NLogN, NLogN, NLogN  |
 
-In this Parallel library, you can find **stable and not stable sort** algorithms, in a **single thread and parallel** version.
+<h3>PRESENT PERSPECTIVE</h3>
 
-This version have a **new non stable parallel\_sort algorithm** *( internally named Block Indirect)*, created for processors connected with **shared memory**.
 
-In the parallel sorting algorithms, we can find algorithms **fast with a small number of threads**, but with a great number of HW threads , show their lacks
+In the parallel sorting algorithms, we can find two categories of algorithms.
 
-- Intel Threading Building Blocks (TBB)
-- Microsoft PPL Parallel Sort).
+**SUBDIVISION ALGORITHMS**
 
-And others not so fast with small number of HW threads, and **fast with many threads**. These algorithms use an additional memory of the same size than the data.
+Filter the data and generate two or more parts. Each part obtained is filtered and divided by other thread, until the size of the data to sort is smaller than a predefined size, then it is sorted by a single thread. The algorithm most frecuently used in the filter and sorting is quicksort.
+
+These algorithms are  **fast with a small number of threads**, but with a great number of HW threads , show their lacks. Examples of this category are 
+
+ - Intel Threading Building Blocks (TBB) 
+ - Microsoft PPL Parallel Sort.
+
+
+**MERGING ALGORITHMS**
+
+Divide the data in parts, and each part is sorted by a thread. When the parts are sorted, must merge them for obtain the final results. The problem of these algorithms is they need additional memory for the merge, and usually with the same size than the data.
+
+With a small number of threads, have similar speed than the subdivision algorithms, but **with many threads they are  much more faster** . Examples of this category are :
 
  - GCC Parallel Sort (based on OpenMP)
  - Microsoft PPL Parallel Buffered Sort
 
-This generate an **undesirable duality**. With a small number of threads use one algorithm, and with a big number use other. Due this, the SW designed for a small machine is inadequate for a big machine and vice versa. But the main problem, for the algorithms for a big number of HW threads is the memory used, usually of the same size than the data.
+<h3>NEW PARALLEL SORT ALGORITHM</h3>
+This generate an **undesirable duality**. With a small number of threads use one algorithm, and with a big number use other. Due this, the SW designed for a small machine is inadequate for a big machine and vice versa. But the main problem, for the merging algorithms is the memory used, usually of the same size than the data.
 
-This **new parallel sort algorithm** permit **eliminate the duality**.  With  **many threads**, have similar performance than GCC Parallel Sort, and with  **a few threads** have similar performance than TBB, with the **additional advantage** of the **small memory consumption**.
+This version have as novelty a **new parallel\_sort algorithm** *( internally named Block Indirect)*, created for processors connected with **shared memory**.
+
+It is a hybrid algorithm. With small number of threads, it is a subdivision algorithm, but with many threads is a merging algorithms, which need a small  auxiliary memory ( 1024 * number of threads).
+
+This algorithm permit to eliminate the duality. When run in a machine with small number of threads have the performance of TBB, and when run in a machine with many threads, the same code have the performance of GCC Parallel Sort, with the **additional advantage** of the **small memory consumption**.
 
 The algorithm use as **auxiliary memory a 1024 elements** for each thread. The worst case for the algorithm is when have very big elements and many threads. With big elements (512 bytes), and 32 threads, The memory measured was:
 
@@ -47,11 +69,11 @@ The algorithm use as **auxiliary memory a 1024 elements** for each thread. The w
 | --- | --- |
 | GCC Parallel Sort (OpenMP) | 1565 MB |
 | Threading Building Blocks (TBB) | 783 MB |
-| Block Indirect Sort | 814 MB |
+| Block Indirect Sort | 812 MB |
 
 *This **new parallel\_sort algorithm had been  created and implemented specifically for this library** by the author.*
 
-*You can obtain more information in the Documantation Page of the Project  * [index.html](index.html)
+*You can obtain more information in the Documentation Page of the Project  * [index.html](index.html)
 
 *If you  are interested in a brief description of the algorithm, you can find in the next link* 
 [(block_indirect_sort_brief_en.pdf)](block_indirect_sort_brief_en.pdf)
@@ -66,7 +88,7 @@ The algorithm use as **auxiliary memory a 1024 elements** for each thread. The w
  * This library is **include only**.  
  * Don't need to link with any static or dynamic library.
  * Don't have  dependence of any other boost libraries or any other external libraries.
- * For to use, only need a to include the files of the boost/sort/parallel folder, any more.  
+ * For to use, only need include the files of the boost/sort/parallel folder.  
  * This library had been compiled successfully with the next compilers
  
 | Compiler |
