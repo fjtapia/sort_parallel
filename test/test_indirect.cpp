@@ -57,7 +57,7 @@ ostream & operator << ( ostream & out, const member &m)
 };
 
 
-int prueba1 (void )
+int test1 (void )
 {   //---------------------------- Inicio --------------------------------
     std::vector<unsigned> A ={7,4,23,15,17,2,24,13,8,3,11,16,
     		                  6, 14,21,5,1,12,19,22,25,8};
@@ -116,7 +116,7 @@ int prueba1 (void )
 };
 
 
-int prueba2 ( void)
+int test2 ( void)
 {   //------------------------ begin -----------------------
 	// The data are sorted by number
 	vector<member> VM = { {1,"Peter",85.6},   {2,"Hanna", 63.4 },
@@ -147,7 +147,7 @@ int prueba2 ( void)
 };
 int test_main( int, char*[] )
 {   //-------------- begin------------
-    prueba1() ;
-    prueba2() ;
+    test1() ;
+    test2() ;
     return 0 ;
 };

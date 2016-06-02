@@ -16,12 +16,12 @@
 #include <iostream>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
-#include <boost/sort/parallel/util/merge_four.hpp>
+#include <boost/sort/parallel/detail/util/merge_four.hpp>
 #include <vector>
 #include <algorithm>
 
 
-using namespace boost::sort::parallel::util  ;
+using namespace boost::sort::parallel::detail::util  ;
 
 template <class iter_t >
 std::ostream & operator << ( std::ostream & out , range<iter_t>  R)
@@ -45,20 +45,20 @@ std::ostream & operator << ( std::ostream & out , xk x)
 	return out ;
 };
 
-void prueba1( void)
+void test1( void)
 {	//---------------------------------- begin ------------------------------
 	typedef typename std::vector <uint64_t>::iterator 	iter_t ;
-	typedef range<iter_t>  								range_t ;
+	typedef range<iter_t>  								range_it ;
 	typedef std::less<uint64_t>                			compare ;
 
 	std::vector <uint64_t> A, B, C , D , X ;
-	range_t R[4];
+	range_it R[4];
 	compare comp ;
-	range_t RA ( A.begin() , A.end());
-	range_t RB ( B.begin() , B.end());
-	range_t RC ( C.begin() , C.end());
-	range_t RD ( D.begin() , D.end());
-	range_t RX ( X.begin() , X.end());
+	range_it RA ( A.begin() , A.end());
+	range_it RB ( B.begin() , B.end());
+	range_it RC ( C.begin() , C.end());
+	range_it RD ( D.begin() , D.end());
+	range_it RX ( X.begin() , X.end());
 
 	//----------------------------------------------------------------------
 	//   0 ranges
@@ -83,8 +83,8 @@ void prueba1( void)
 	//---------------------------------------------------------------------
 	X.resize ( 10, 0 );
 	for ( uint32_t i =0 ; i < 10 ; ++i)D.push_back ( i);
-	RD = range_t ( D.begin() , D.end());
-	RX = range_t ( X.begin() , X.end());
+	RD = range_it ( D.begin() , D.end());
+	RX = range_it ( X.begin() , X.end());
 	R[0] = RA ;
 	R[1] = RB ;
 	R[2] = RC ;
@@ -101,9 +101,9 @@ void prueba1( void)
 	for ( uint32_t i =0 ; i < 10 ; ++i)A.push_back ( i*2 +1);
 	for ( uint32_t i =0 ; i < 10 ; ++i)D.push_back ( i*2);
 	X.resize ( 20, 0);
-	RA = range_t ( A.begin() , A.end());
-	RD = range_t ( D.begin() , D.end());
-	RX = range_t ( X.begin() , X.end());
+	RA = range_it ( A.begin() , A.end());
+	RD = range_it ( D.begin() , D.end());
+	RX = range_it ( X.begin() , X.end());
 
 	R[0] = RA ;
 	R[1] = RB ;
@@ -123,11 +123,11 @@ void prueba1( void)
 	for ( uint32_t i =0 ; i < 10 ; ++i)B.push_back ( i*3 +1);
 	for ( uint32_t i =0 ; i < 10 ; ++i)D.push_back ( i*3);
 	X.resize ( 30 , 0);
-	RA = range_t ( A.begin() , A.end());
-	RB = range_t ( B.begin() , B.end());
-	RC = range_t ( C.begin() , C.end());
-	RD = range_t ( D.begin() , D.end());
-	RX = range_t ( X.begin() , X.end());
+	RA = range_it ( A.begin() , A.end());
+	RB = range_it ( B.begin() , B.end());
+	RC = range_it ( C.begin() , C.end());
+	RD = range_it ( D.begin() , D.end());
+	RX = range_it ( X.begin() , X.end());
 	R[0] = RA ;
 	R[1] = RB ;
 	R[2] = RC ;
@@ -150,11 +150,11 @@ void prueba1( void)
 	for ( uint32_t i =0 ; i < 10 ; ++i)D.push_back ( i*4);
 
 	X.resize ( 40 , 0);
-	RA = range_t ( A.begin() , A.end());
-	RB = range_t ( B.begin() , B.end());
-	RC = range_t ( C.begin() , C.end());
-	RD = range_t ( D.begin() , D.end());
-	RX = range_t ( X.begin() , X.end());
+	RA = range_it ( A.begin() , A.end());
+	RB = range_it ( B.begin() , B.end());
+	RC = range_it ( C.begin() , C.end());
+	RD = range_it ( D.begin() , D.end());
+	RX = range_it ( X.begin() , X.end());
 	R[0] = RA ;
 	R[1] = RB ;
 	R[2] = RC ;
@@ -177,11 +177,11 @@ void prueba1( void)
 	for ( uint32_t i =0 ; i < 10 ; ++i)D.push_back ( i+30);
 
 	X.resize ( 40 , 0);
-	RA = range_t ( A.begin() , A.end());
-	RB = range_t ( B.begin() , B.end());
-	RC = range_t ( C.begin() , C.end());
-	RD = range_t ( D.begin() , D.end());
-	RX = range_t ( X.begin() , X.end());
+	RA = range_it ( A.begin() , A.end());
+	RB = range_it ( B.begin() , B.end());
+	RC = range_it ( C.begin() , C.end());
+	RD = range_it ( D.begin() , D.end());
+	RX = range_it ( X.begin() , X.end());
 	R[0] = RA ;
 	R[1] = RB ;
 	R[2] = RC ;
@@ -204,11 +204,11 @@ void prueba1( void)
 	for ( uint32_t i =0 ; i < 10 ; ++i)D.push_back ( i);
 
 	X.resize ( 40 , 0);
-	RA = range_t ( A.begin() , A.end());
-	RB = range_t ( B.begin() , B.end());
-	RC = range_t ( C.begin() , C.end());
-	RD = range_t ( D.begin() , D.end());
-	RX = range_t ( X.begin() , X.end());
+	RA = range_it ( A.begin() , A.end());
+	RB = range_it ( B.begin() , B.end());
+	RC = range_it ( C.begin() , C.end());
+	RD = range_it ( D.begin() , D.end());
+	RX = range_it ( X.begin() , X.end());
 	R[0] = RA ;
 	R[1] = RB ;
 	R[2] = RC ;
@@ -218,14 +218,14 @@ void prueba1( void)
 	for ( uint32_t i =0 ; i < X.size() ;++i) BOOST_CHECK ( X[i] == i);
 };
 
-void prueba2 ( void)
+void test2 ( void)
 {	//------------------------------------ begin ----------------------------
 	typedef typename std::vector <xk>::iterator 	iter_t ;
-	typedef range<iter_t>  							range_t ;
+	typedef range<iter_t>  							range_it ;
 	typedef std::less<xk>                			compare ;
 
 	std::vector <xk> A, B, C , D , X ;
-	range_t R[4];
+	range_it R[4];
 	compare comp ;
 
 	for ( uint32_t i =0 ; i < 10 ; ++i)
@@ -235,11 +235,11 @@ void prueba2 ( void)
 		D.emplace_back ( i , 3);
 	};
 	X.resize( 40 );
-	range_t RA ( A.begin() , A.end());
-	range_t RB ( B.begin() , B.end());
-	range_t RC ( C.begin() , C.end());
-	range_t RD ( D.begin() , D.end());
-	range_t RX ( X.begin() , X.end());
+	range_it RA ( A.begin() , A.end());
+	range_it RB ( B.begin() , B.end());
+	range_it RC ( C.begin() , C.end());
+	range_it RD ( D.begin() , D.end());
+	range_it RX ( X.begin() , X.end());
 
 	R[0] = RA ;
 	R[1] = RB ;
@@ -251,21 +251,21 @@ void prueba2 ( void)
 		BOOST_CHECK ( X[i].num == i/4 and X[i].tail == i%4);
 }
 
-void prueba3( void)
+void test3( void)
 {	//---------------------------------- begin ------------------------------
 	typedef typename std::vector <uint64_t>::iterator 	iter_t ;
-	typedef range<iter_t>  								range_t ;
+	typedef range<iter_t>  								range_it ;
 	typedef std::less<uint64_t>                			compare ;
 
 	uint64_t X[40];
 	for ( int i =0 ; i < 40 ; ++i)X[i]=0;
 	std::vector <uint64_t> A, B, C , D  ;
-	range_t R[4];
+	range_it R[4];
 	compare comp ;
-	range_t RA ( A.begin() , A.end());
-	range_t RB ( B.begin() , B.end());
-	range_t RC ( C.begin() , C.end());
-	range_t RD ( D.begin() , D.end());
+	range_it RA ( A.begin() , A.end());
+	range_it RB ( B.begin() , B.end());
+	range_it RC ( C.begin() , C.end());
+	range_it RD ( D.begin() , D.end());
 	range<uint64_t*> RX ( &X[0] , &X[39]);
 
 	//----------------------------------------------------------------------
@@ -291,7 +291,7 @@ void prueba3( void)
 	//---------------------------------------------------------------------
 	//X.resize ( 10, 0 );
 	for ( uint32_t i =0 ; i < 10 ; ++i)D.push_back ( i);
-	RD = range_t ( D.begin() , D.end());
+	RD = range_it ( D.begin() , D.end());
 	RX = range<uint64_t*> ( &X[0] , &X[9]);
 	R[0] = RA ;
 	R[1] = RB ;
@@ -309,8 +309,8 @@ void prueba3( void)
 	for ( uint32_t i =0 ; i < 10 ; ++i)A.push_back ( i*2 +1);
 	for ( uint32_t i =0 ; i < 10 ; ++i)D.push_back ( i*2);
 	//X.resize ( 20, 0);
-	RA = range_t ( A.begin() , A.end());
-	RD = range_t ( D.begin() , D.end());
+	RA = range_it ( A.begin() , A.end());
+	RD = range_it ( D.begin() , D.end());
 	RX = range<uint64_t*> ( &X[0] , &X[19]);
 
 	R[0] = RA ;
@@ -331,10 +331,10 @@ void prueba3( void)
 	for ( uint32_t i =0 ; i < 10 ; ++i)B.push_back ( i*3 +1);
 	for ( uint32_t i =0 ; i < 10 ; ++i)D.push_back ( i*3);
 	//X.resize ( 30 , 0);
-	RA = range_t ( A.begin() , A.end());
-	RB = range_t ( B.begin() , B.end());
-	RC = range_t ( C.begin() , C.end());
-	RD = range_t ( D.begin() , D.end());
+	RA = range_it ( A.begin() , A.end());
+	RB = range_it ( B.begin() , B.end());
+	RC = range_it ( C.begin() , C.end());
+	RD = range_it ( D.begin() , D.end());
 	RX = range<uint64_t*> ( &X[0] , &X[29]);
 	R[0] = RA ;
 	R[1] = RB ;
@@ -358,10 +358,10 @@ void prueba3( void)
 	for ( uint32_t i =0 ; i < 10 ; ++i)D.push_back ( i*4);
 
 	//X.resize ( 40 , 0);
-	RA = range_t ( A.begin() , A.end());
-	RB = range_t ( B.begin() , B.end());
-	RC = range_t ( C.begin() , C.end());
-	RD = range_t ( D.begin() , D.end());
+	RA = range_it ( A.begin() , A.end());
+	RB = range_it ( B.begin() , B.end());
+	RC = range_it ( C.begin() , C.end());
+	RD = range_it ( D.begin() , D.end());
 	RX = range<uint64_t*> ( &X[0], &X[39]);
 	R[0] = RA ;
 	R[1] = RB ;
@@ -385,10 +385,10 @@ void prueba3( void)
 	for ( uint32_t i =0 ; i < 10 ; ++i)D.push_back ( i+30);
 
 	//X.resize ( 40 , 0);
-	RA = range_t ( A.begin() , A.end());
-	RB = range_t ( B.begin() , B.end());
-	RC = range_t ( C.begin() , C.end());
-	RD = range_t ( D.begin() , D.end());
+	RA = range_it ( A.begin() , A.end());
+	RB = range_it ( B.begin() , B.end());
+	RC = range_it ( C.begin() , C.end());
+	RD = range_it ( D.begin() , D.end());
 	RX = range<uint64_t*> ( &X[0], &X[39]);
 	R[0] = RA ;
 	R[1] = RB ;
@@ -412,10 +412,10 @@ void prueba3( void)
 	for ( uint32_t i =0 ; i < 10 ; ++i)D.push_back ( i);
 
 	//X.resize ( 40 , 0);
-	RA = range_t ( A.begin() , A.end());
-	RB = range_t ( B.begin() , B.end());
-	RC = range_t ( C.begin() , C.end());
-	RD = range_t ( D.begin() , D.end());
+	RA = range_it ( A.begin() , A.end());
+	RB = range_it ( B.begin() , B.end());
+	RC = range_it ( C.begin() , C.end());
+	RD = range_it ( D.begin() , D.end());
 	RX = range<uint64_t*> ( &X[0], &X[39]);
 	R[0] = RA ;
 	R[1] = RB ;
@@ -426,15 +426,15 @@ void prueba3( void)
 	for ( uint32_t i =0 ; i < RX.size() ;++i) BOOST_CHECK ( X[i] == i);
 };
 
-void prueba4 ( void)
+void test4 ( void)
 {	//------------------------------------ begin ----------------------------
 	typedef typename std::vector <xk>::iterator 	iter_t ;
-	typedef range<iter_t>  							range_t ;
+	typedef range<iter_t>  							range_it ;
 	typedef std::less<xk>                			compare ;
 
 	xk X[40] ;
 	std::vector <xk> A, B, C , D  ;
-	range_t R[4];
+	range_it R[4];
 	compare comp ;
 
 	for ( uint32_t i =0 ; i < 10 ; ++i)
@@ -444,10 +444,10 @@ void prueba4 ( void)
 		D.emplace_back ( i , 3);
 	};
 	for ( int i =0 ;i < 40 ; ++i) X[i]=0;
-	range_t RA ( A.begin() , A.end());
-	range_t RB ( B.begin() , B.end());
-	range_t RC ( C.begin() , C.end());
-	range_t RD ( D.begin() , D.end());
+	range_it RA ( A.begin() , A.end());
+	range_it RB ( B.begin() , B.end());
+	range_it RC ( C.begin() , C.end());
+	range_it RD ( D.begin() , D.end());
 	range<xk*> RX ( &X[0] , &X[39]);
 
 	R[0] = RA ;
@@ -462,9 +462,9 @@ void prueba4 ( void)
 
 int test_main( int, char*[] )
 {   //-------------- begin------------
-    prueba1() ;
-    prueba2() ;
-    prueba3() ;
-    prueba4() ;
+    test1() ;
+    test2() ;
+    test3() ;
+    test4() ;
     return 0 ;
 };

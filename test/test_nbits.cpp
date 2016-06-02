@@ -21,14 +21,14 @@ int test_main( int, char*[] )
 {    //--------------------------------------------------------------------
     // NBits
     //--------------------------------------------------------------------
-    BOOST_CHECK ( NBits32 (63UL) ==6);
-    BOOST_CHECK ( NBits32 (64UL) ==7);
-    BOOST_CHECK ( NBits32 (65UL) ==7);
+    BOOST_CHECK ( nbits32 (63UL) ==6);
+    BOOST_CHECK ( nbits32 (64UL) ==7);
+    BOOST_CHECK ( nbits32 (65UL) ==7);
     //--------------------------------------------------------------------
     // NBits
     //--------------------------------------------------------------------
-    BOOST_CHECK ( NBits64 (63ULL) ==6);
-    BOOST_CHECK ( NBits64 (64ULL) ==7);
-    BOOST_CHECK ( NBits64 (65ULL) ==7);
+    BOOST_CHECK ( nbits64 (63ULL) ==6);
+    BOOST_CHECK ( nbits64 (64ULL) ==7);
+    BOOST_CHECK ( nbits64 (65ULL) ==7);
     return 0;
 };

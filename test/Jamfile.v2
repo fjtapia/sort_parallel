@@ -31,7 +31,6 @@ test-suite "test"
 :
 [ run test_atomic.cpp ]
 [ run test_block_indirect_sort.cpp ]
-[ run test_deque_cnc.cpp ]
 [ run test_heap_sort.cpp ]
 [ run test_indirect.cpp ]
 [ run test_insertion_sort.cpp ]
@@ -40,8 +39,6 @@ test-suite "test"
 [ run test_merge_four.cpp ]
 [ run test_merge_vector.cpp ]
 [ run test_nbits.cpp ]
-[ run test_parallel_greedy_sort.cpp ]
-[ run test_parallel_sort.cpp ]
 [ run test_parallel_stable_sort.cpp ]
 [ run test_range.cpp ]
 [ run test_sample_sort.cpp ]

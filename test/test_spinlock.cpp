@@ -10,7 +10,7 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#include <boost/sort/parallel/tools/spinlock.hpp>
+#include <boost/sort/parallel/detail/util/spinlock.hpp>
 #include <thread>
 #include <chrono>
 #include <iostream>
@@ -24,7 +24,7 @@ void start ( void);
 int function1() ;
 int function2() ;
 
-typedef boost::sort::parallel::tools::spinlock spinlock_t ;
+using boost::sort::parallel::detail::util::spinlock_t ;
 spinlock_t s ;
 std::chrono::seconds sec(1);
 

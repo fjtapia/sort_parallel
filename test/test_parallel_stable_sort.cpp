@@ -16,13 +16,13 @@
 //#include <iostream>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
-#include <boost/sort/parallel/algorithm/parallel_stable_sort.hpp>
+#include <boost/sort/parallel/detail/parallel_stable_sort.hpp>
 #include <vector>
 
 #include <algorithm>
 
 using namespace std ;
-namespace bsort = boost::sort::parallel::algorithm ;
+namespace bsort = boost::sort::parallel::detail ;
 
 
 typedef typename std::vector<uint64_t>::iterator iter_t ;
@@ -42,10 +42,13 @@ struct xk
 //    return salida ;
 //};
 
-void prueba3 ( )
+void test3 ( )
 {   //---------------------------------- begin ---------------------------
+	typedef typename std::vector< xk>::iterator iter_t;
+	typedef std::less<xk>						compare ;
+
     const uint32_t NMAX = 500000 ;
-    std::vector< xk> V1, V2, V3;
+    std::vector< xk> V1, V2;
     V1.reserve ( NMAX);
     for ( uint32_t i = 0 ; i < 8 ; ++i)
     {   for ( uint32_t k =0 ; k < NMAX; ++k)
@@ -56,8 +59,8 @@ void prueba3 ( )
             V1.push_back(G);
         };
     };
-    V3 =V2 = V1 ;
-    bsort::parallel_stable_sort ( V1.begin() , V1.end());
+    V2 = V1 ;
+    bsort::parallel_stable_sort<iter_t,compare> ( V1.begin() , V1.end());
     std::stable_sort( V2.begin() , V2.end() );
 
     //------------------------------------------------------------------------
@@ -70,15 +73,18 @@ void prueba3 ( )
 
 };
 
-void prueba4(void)
+void test4(void)
 {   //----------------------------- begin-------------------------------------
+	typedef typename std::vector<uint64_t>::iterator iter_t ;
+	typedef std::less<uint64_t>                      compare ;
+
     const uint32_t NElem = 500000 ;
     std::vector<uint64_t>  V1 ;
         std::mt19937_64 my_rand(0);
 
     for ( uint32_t i =0 ; i < NElem ; ++i) V1.push_back(my_rand() %NElem) ;
 	//cout<<"parallel_stable_sort unsorted ---------------\n";
-	bsort::parallel_stable_sort (  V1.begin() , V1.end() );
+	bsort::parallel_stable_sort<iter_t, compare> (  V1.begin() , V1.end() );
 	for ( unsigned i = 1 ; i < NElem ; i ++ )
 	{	BOOST_CHECK ( V1[i-1] <= V1[i] )  ;
 	};
@@ -86,7 +92,7 @@ void prueba4(void)
     V1.clear() ;
     for ( uint32_t i =0 ; i < NElem ; ++i) V1.push_back (i );
 	//cout<<"parallel_stable_sort sorted ---------------\n";
-	bsort::parallel_stable_sort (  V1.begin() , V1.end() );
+	bsort::parallel_stable_sort<iter_t, compare> (  V1.begin() , V1.end() );
 	for ( unsigned i = 1 ; i < NElem ; i ++ )
 	{	BOOST_CHECK ( V1[i-1] <= V1[i] ) ;
 	};
@@ -94,7 +100,7 @@ void prueba4(void)
     V1.clear() ;
     for ( uint32_t i =0 ; i < NElem ; ++i) V1.push_back( NElem-i) ;
 	//cout<<"parallel_stable_sort reverse sorted ---------------\n";
-	bsort::parallel_stable_sort (  V1.begin() , V1.end() );
+	bsort::parallel_stable_sort<iter_t, compare> (  V1.begin() , V1.end() );
 	for ( unsigned i = 1 ; i < NElem ; i ++ )
 	{	BOOST_CHECK ( V1[i-1] <= V1[i] ) ;
 	};
@@ -102,14 +108,17 @@ void prueba4(void)
     V1.clear() ;
     for ( uint32_t i =0 ; i < NElem ; ++i) V1.push_back( 1000) ;
 	//cout<<"parallel_stable_sort equals ---------------\n";
-	bsort::parallel_stable_sort (  V1.begin() , V1.end() );
+	bsort::parallel_stable_sort<iter_t, compare> (  V1.begin() , V1.end() );
 	for ( unsigned i = 1 ; i < NElem ; i ++ )
 	{	BOOST_CHECK ( V1[i-1] == V1[i] )  ;
 	};
 };
 
-void prueba5 ( void)
+void test5 ( void)
 {   //---------------------- begin ------------------------------------
+	typedef typename std::vector<uint64_t>::iterator iter_t ;
+	typedef std::less<uint64_t>                      compare ;
+
     const uint32_t NELEM = 500000 ;
     std::vector <uint64_t>  A ,B;
     A.reserve ( NELEM) ;
@@ -118,7 +127,7 @@ void prueba5 ( void)
 		A.push_back(my_rand() )  ;
     B = A ;
     //cout<<"--------------------- parallel_stable_sort----------------\n";
-	bsort::parallel_stable_sort (A.begin() , A.end()  );
+	bsort::parallel_stable_sort<iter_t, compare> (A.begin() , A.end()  );
 	for ( unsigned i = 0 ; i < (NELEM -1) ; i ++ )
 	{	BOOST_CHECK ( A[i] <= A[i+1] )  ;
 	};
@@ -130,8 +139,11 @@ void prueba5 ( void)
     //cout<<endl;
 };
 
-void prueba6 ( void)
+void test6 ( void)
 {   //---------------------- begin ------------------------------------
+	typedef typename std::vector<uint64_t>::iterator iter_t ;
+	typedef std::less<uint64_t>                      compare ;
+
     const uint32_t NELEM = 500000 ;
     std::vector <uint64_t>  A ;
     A.reserve ( NELEM) ;
@@ -140,7 +152,7 @@ void prueba6 ( void)
 		A.push_back(NELEM - i )  ;
 
     //cout<<"--------------------- parallel_stable_sort----------------\n";
-	bsort::parallel_stable_sort (A.begin() , A.end()  );
+	bsort::parallel_stable_sort<iter_t, compare> (A.begin() , A.end()  );
 	for ( unsigned i = 1 ; i < NELEM ; i ++ )
 	{	BOOST_CHECK ( A[i-1] <= A[i] ) ;
 	};
@@ -151,10 +163,10 @@ void prueba6 ( void)
 
 int test_main( int, char*[] )
 {
-	prueba3() ;
-	prueba4() ;
-	prueba5() ;
-	prueba6() ;
+	test3() ;
+	test4() ;
+	test5() ;
+	test6() ;
 	return 0 ;
 
 }

@@ -25,15 +25,16 @@ int main( void )
 
     const uint32_t NMAX = 1000000 ;
     std::vector <uint64_t> A , B ;
-    for ( uint32_t i =0 ; i < NMAX ; ++i)
-        A.push_back( my_rand() );
+
+    for ( uint32_t i =0 ; i < NMAX ; ++i)  A.push_back( my_rand() );
+
     B = A ;
     //------------------------------------------------------------------------
     // if the thread parameter is not specified, the number of thread used
     // is the number of HW threads of the machine where the program is running.
     // This number is calculate in each execution of the code
     //------------------------------------------------------------------------
-    bsp::parallel_introsort ( A.begin(), A.end());
+    bsp::parallel_sort ( A.begin(), A.end());
     bsp::sample_sort ( B.begin() , B.end());
 
     for ( uint32_t i =0 ; i < NMAX ; ++i )

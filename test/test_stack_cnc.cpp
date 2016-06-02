@@ -14,14 +14,14 @@
 #include <thread>
 #include <chrono>
 #include <mutex>
-#include <boost/sort/parallel/tools/stack_cnc.hpp>
+#include <boost/sort/parallel/detail/util/stack_cnc.hpp>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
 
-namespace bsp_tools = boost::sort::parallel::tools ;
+namespace bsp_util = boost::sort::parallel::detail::util ;
 using std::cout ;
 using std::endl;
-using bsp_tools::stack_cnc ;
+using bsp_util::stack_cnc ;
 
 
 #define NELEM 5000000
@@ -32,14 +32,14 @@ stack_cnc<int> S;
 
 void function1() ;
 void function2() ;
-void prueba_cnc ( void);
-void prueba ( void);
+void test_cnc ( void);
+void test ( void);
 
 
 int test_main( int, char*[] )
 {   //----------------- begin ------------
-    prueba() ;
-    prueba_cnc ();
+    test() ;
+    test_cnc ();
     return 0;
 };
 
@@ -55,7 +55,7 @@ void function2()
 };
 
 
-void prueba_cnc ( void)
+void test_cnc ( void)
 {   //--------------------------------- begin ------------------
     S.reserve ( (int)NELEM * (int)NCores  );
     //double duracion ;
@@ -86,7 +86,7 @@ void prueba_cnc ( void)
 
 };
 
-void prueba ( void)
+void test ( void)
 {   //-------------------------- begin ----------------------
     stack_cnc<int>  A ;
     std::vector<int> V1 = { 0 , 1 , 2};

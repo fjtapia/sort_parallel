@@ -15,14 +15,13 @@
 #include <time.h>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
-//#include <iostream>
-#include <boost/sort/parallel/util/low_level.hpp>
+#include <boost/sort/parallel/detail/util/low_level.hpp>
 #include <vector>
 #include <cassert>
 
 #include <algorithm>
 
-using namespace boost::sort::parallel::util::lwl ;
+using namespace boost::sort::parallel::detail::util ;
 
 
 struct xk
@@ -43,7 +42,7 @@ std::ostream & operator << ( std::ostream & out , xk x)
 //****************************************************************************
 //  TEST MOVE, CONSTRUCT, UNINITIALIZED_MOVE, DESTROY
 //****************************************************************************
-void prueba1 ( void )
+void test1 ( void )
 {   //-------------------- test of move --------------------------------------
     std::vector<uint64_t> A , B;
 
@@ -87,7 +86,7 @@ void prueba1 ( void )
 //****************************************************************************
 //      TEST OF FULL_MERGE
 //****************************************************************************
-void prueba2 ()
+void test2 ()
 {   //---------------------------- begin -------------------------------------
     typedef std::less<uint64_t> compare ;
     std::vector<uint64_t> A , B;
@@ -125,7 +124,7 @@ void prueba2 ()
 //****************************************************************************
 //      TEST OF HALF_MERGE
 //****************************************************************************
-void prueba3 ()
+void test3 ()
 {   //---------------------------- begin -------------------------------------
     typedef std::less<uint64_t> compare ;
     std::vector<uint64_t> A , B;
@@ -164,7 +163,7 @@ void prueba3 ()
 //****************************************************************************
 //      TEST OF UNINITIALIZED_FULL_MERGE
 //****************************************************************************
-void prueba5 ()
+void test5 ()
 {   //---------------------------- begin -------------------------------------
     struct forensic
     {   int64_t N ;
@@ -212,7 +211,7 @@ void prueba5 ()
 //****************************************************************************
 //                    TEST OF in_place_MERGE
 //****************************************************************************
-void prueba6 ()
+void test6 ()
 {   //---------------------------- begin -------------------------------------
     typedef std::less<uint64_t>  compare ;
     std::vector<uint64_t> A , B;
@@ -253,7 +252,7 @@ void prueba6 ()
 //****************************************************************************
 //                          TEST OF in_place_MERGE
 //****************************************************************************
-void prueba7 ()
+void test7 ()
 {   //-------------------------- begin ---------------------------------------
 	typedef std::less<uint64_t>  compare ;
     compare   comp ;
@@ -327,7 +326,7 @@ void prueba7 ()
 //                          TEST OF STABILITY
 //****************************************************************************
 
-void prueba8()
+void test8()
 {	//---------------------------------- begin ------------------------------
 	typedef std::less<xk>  compare ;
     compare   comp ;
@@ -381,7 +380,7 @@ void prueba8()
 //****************************************************************************
 //                    TEST OF IN_PLACE_MERGE_UNCONTIGUOUS
 //****************************************************************************
-void prueba9 ()
+void test9 ()
 {   //---------------------------- begin -------------------------------------
     typedef std::less<uint64_t>  compare ;
     bool SW ;
@@ -430,7 +429,7 @@ void prueba9 ()
 //****************************************************************************
 //                          TEST OF in_place_MERGE
 //****************************************************************************
-void prueba10 ()
+void test10 ()
 {   //-------------------------- begin ---------------------------------------
 	typedef std::less<uint64_t>  compare ;
     compare   comp ;
@@ -508,7 +507,7 @@ void prueba10 ()
 //****************************************************************************
 //                          TEST OF STABILITY
 //****************************************************************************
-void prueba11()
+void test11()
 {	//---------------------------------- begin ------------------------------
 	typedef std::less<xk>  compare ;
     compare   comp ;
@@ -575,7 +574,7 @@ void prueba11()
     	BOOST_CHECK ( B[i]. num == 2*i+100 and B[i].tail == 0);
 }
 
-void prueba12()
+void test12()
 {	//--------------------------- begin ----------------------------------
 	std::vector<uint32_t> A ={2,3,4,6,10,11,12,13};
 	std::vector<uint32_t> B = {5,7,8,9}, C ( 8 , 0);
@@ -590,17 +589,17 @@ void prueba12()
 };
 int test_main( int, char*[] )
 {   //-------------- begin------------
-    prueba1() ;
-    prueba2() ;
-    prueba3() ;
-    prueba5() ;
-    prueba6() ;
-    prueba7() ;
-    prueba8() ;
-    prueba9() ;
-    prueba10() ;
-    prueba11() ;
-    prueba12() ;
+    test1() ;
+    test2() ;
+    test3() ;
+    test5() ;
+    test6() ;
+    test7() ;
+    test8() ;
+    test9() ;
+    test10() ;
+    test11() ;
+    test12() ;
     return 0 ;
 
 };

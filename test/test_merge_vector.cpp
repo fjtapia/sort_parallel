@@ -16,12 +16,12 @@
 #include <iostream>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
-#include <boost/sort/parallel/util/merge_vector.hpp>
+#include <boost/sort/parallel/detail/util/merge_vector.hpp>
 #include <vector>
 #include <algorithm>
 
 
-using namespace boost::sort::parallel::util  ;
+using namespace boost::sort::parallel::detail::util  ;
 
 template <class iter_t >
 std::ostream & operator << ( std::ostream & out , range<iter_t>  R)
@@ -49,7 +49,7 @@ std::ostream & operator << ( std::ostream & out , xk x)
 //****************************************************************************
 //               TEST OF  MERGE_LEVEL4
 //****************************************************************************
-void prueba1 ( void)
+void test1 ( void)
 {   //------------------------------- begin-----------------------------------
     uint64_t X[10][10], Y[100];
     range<uint64_t*> RY ( &Y[0], &Y[100]);
@@ -77,7 +77,7 @@ void prueba1 ( void)
         BOOST_CHECK ( Y[i] == i);
     BOOST_CHECK ( Z.size() == 3 ) ;
 } ;
-void prueba2 ( void)
+void test2 ( void)
 {	//---------------------------------- begin -----------------------------
 	typedef typename std::vector <xk>::iterator iter_t ;
 	typedef range<iter_t >                      rng ;
@@ -116,7 +116,7 @@ void prueba2 ( void)
 // ****************************************************************************
 //               TEST OF  UNINIT_MERGE_LEVEL4
 // ****************************************************************************
-void prueba3 ( void)
+void test3 ( void)
 {   //------------------------------- begin-----------------------------------
     uint64_t X[10][10], Y[100];
     range<uint64_t*> RY ( &Y[0], &Y[100]);
@@ -145,7 +145,7 @@ void prueba3 ( void)
     BOOST_CHECK ( Z.size() == 3 ) ;
 } ;
 
-void prueba4 ( void)
+void test4 ( void)
 {	//---------------------------------- begin -----------------------------
 	typedef typename std::vector <xk>::iterator iter_t ;
 	typedef range<iter_t >                      rng ;
@@ -187,7 +187,7 @@ void prueba4 ( void)
 //                 TEST OF MERGE_VECTOR4
 // ****************************************************************************
 
-void prueba5 ( void)
+void test5 ( void)
 {   //------------------------------- begin-----------------------------------
 	typedef typename std::vector<uint64_t>::iterator 	iter_t ;
 	typedef range<iter_t > 								rng ;
@@ -219,7 +219,7 @@ void prueba5 ( void)
 };
 
 
-void prueba6 ( void)
+void test6 ( void)
 {	//---------------------------------- begin -----------------------------
 	typedef typename std::vector <xk>::iterator iter_t ;
 	typedef range<iter_t >                      rng ;
@@ -254,11 +254,11 @@ void prueba6 ( void)
 
 int test_main( int, char*[] )
 {   //-------------- begin------------
-    prueba1() ;
-    prueba2() ;
-    prueba3() ;
-    prueba4() ;
-    prueba5() ;
-    prueba6() ;
+    test1() ;
+    test2() ;
+    test3() ;
+    test4() ;
+    test5() ;
+    test6() ;
     return 0 ;
 };

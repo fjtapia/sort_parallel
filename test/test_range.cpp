@@ -16,13 +16,14 @@
 #include <iostream>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
-#include <boost/sort/parallel/util/range.hpp>
+#include <boost/sort/parallel/detail/util/range.hpp>
 #include <vector>
 #include <algorithm>
 #include <iostream>
 
-using boost::sort::parallel::util::range ;
-namespace bs_util = boost::sort::parallel::util ;
+
+namespace bs_util = boost::sort::parallel::detail::util ;
+using bs_util::range ;
 
 template <class iter_t >
 std::ostream & operator << ( std::ostream & out , range<iter_t>  R)
@@ -50,22 +51,22 @@ std::ostream & operator << ( std::ostream & out , xk x)
 //****************************************************************************
 //          TEST MOVE, UNINITIALIZED_MOVE, DESTROY
 //****************************************************************************
-void prueba1 ( void )
+void test1 ( void )
 {   //-------------------------------------- begin --------------------------
     typedef typename std::vector<uint64_t>::iterator iter_t ;
-    typedef range<iter_t>  range_t ;
+    typedef range<iter_t>  range_it ;
 
     std::vector<uint64_t> A , B;
 
     A.resize ( 10, 0);
     B.resize ( 10, 0);
     for ( uint32_t i =0 ; i < 10 ; ++i) A[i] = i ;
-    range_t RA (A.begin() , A.end()), RB ( B.begin() , B.end());
+    range_it RA (A.begin() , A.end()), RB ( B.begin() , B.end());
     std::cout<<RA<<std::endl;
 	//------------------------------------------------------------------------
 	// test copy copy constructor
 	//------------------------------------------------------------------------
-	range_t RC ( RA);
+	range_it RC ( RA);
 	BOOST_CHECK ( RC.size() == RA.size());
     std::cout<<RC<<std::endl;
     RC.first = RC.last ;
@@ -106,7 +107,7 @@ void prueba1 ( void )
     //        std::cout<<"Error in the destroy function \n";
     //};
 };
-void prueba2 ( )
+void test2 ( )
 {	//---------------------------------- begin -----------------------------
 	typedef typename std::vector <uint64_t >::iterator iter_t ;
 	std::vector <uint64_t > V1 ;
@@ -121,7 +122,7 @@ void prueba2 ( )
 //****************************************************************************
 //                          TEST OF HALF_MERGE
 //****************************************************************************
-void prueba3 ()
+void test3 ()
 {   //-------------------------- begin ---------------------------------------
 	typedef typename std::vector<uint64_t>::iterator iter_t ;
     typedef range<iter_t> rng ;
@@ -221,7 +222,7 @@ void prueba3 ()
 //****************************************************************************
 //                          TEST OF STABILITY
 //****************************************************************************
-void prueba4()
+void test4()
 {	//---------------------------------- begin ------------------------------
 	typedef typename std::vector<xk>::iterator iter_t ;
     typedef range<iter_t> rng ;
@@ -292,7 +293,7 @@ void prueba4()
 //****************************************************************************
 //                    TEST OF FULL_MERGE
 //****************************************************************************
-void prueba5 ()
+void test5 ()
 {   //---------------------------- begin -------------------------------------
     typedef std::less<uint64_t>  compare ;
     typedef range<uint64_t *> rng ;
@@ -337,7 +338,7 @@ void prueba5 ()
 //****************************************************************************
 //                          TEST OF FULL_MERGE
 //****************************************************************************
-void prueba6 ()
+void test6 ()
 {   //-------------------------- begin ---------------------------------------
 	typedef typename std::vector<uint64_t>::iterator iter_t ;
     typedef range<iter_t> rng ;
@@ -442,7 +443,7 @@ void prueba6 ()
 //                          TEST OF STABILITY
 //****************************************************************************
 
-void prueba7()
+void test7()
 {	//---------------------------------- begin ------------------------------
 	typedef typename std::vector<xk>::iterator iter_t ;
     typedef range<iter_t> rng ;
@@ -512,7 +513,7 @@ void prueba7()
 //****************************************************************************
 //      TEST OF UNINITIALIZED_FULL_MERGE
 //****************************************************************************
-void prueba8 ()
+void test8 ()
 {   //---------------------------- begin -------------------------------------
     typedef std::less<uint64_t>  compare ;
     typedef range<uint64_t *> rng ;
@@ -555,7 +556,7 @@ void prueba8 ()
 //****************************************************************************
 //                          TEST OF FULL_MERGE
 //****************************************************************************
-void prueba9 ()
+void test9 ()
 {   //-------------------------- begin ---------------------------------------
 	typedef typename std::vector<uint64_t>::iterator iter_t ;
     typedef range<iter_t> rng ;
@@ -658,7 +659,7 @@ void prueba9 ()
 //                          TEST OF STABILITY
 //****************************************************************************
 
-void prueba10()
+void test10()
 {	//---------------------------------- begin ------------------------------
 	typedef typename std::vector<xk>::iterator iter_t ;
     typedef range<iter_t> rng ;
@@ -726,16 +727,16 @@ void prueba10()
 }
 int test_main( int, char*[] )
 {   //-------------- begin------------
-    prueba1() ;
-    prueba2() ;
-    prueba3() ;
-    prueba4() ;
-    prueba5() ;
-    prueba6() ;
-    prueba7() ;
-    prueba8() ;
-    prueba9() ;
-    prueba10() ;
+    test1() ;
+    test2() ;
+    test3() ;
+    test4() ;
+    test5() ;
+    test6() ;
+    test7() ;
+    test8() ;
+    test9() ;
+    test10() ;
 
     return 0 ;
 };

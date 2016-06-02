@@ -18,30 +18,34 @@
 #include <boost/sort/parallel/sort.hpp>
 
 namespace bsp = boost::sort::parallel;
-using bsp::NThread ;
-using bsp::NThread_HW ;
+
 
 
 int main( void )
 {   //-------------- begin------------
     std::mt19937_64 my_rand(0);
+    uint32_t number_threads = std::thread::hardware_concurrency();
 
     const uint32_t NMAX = 1000000 ;
     std::vector <uint64_t> A , B ;
+
     for ( uint32_t i =0 ; i < NMAX ; ++i)
         A.push_back( my_rand() );
+
     B = A ;
     //------------------------------------------------------------------------
-    // If the result of NThread_HW / 6 is smaller than 1, is converted to 1
+    // If the result of number_thread / 6 is smaller than 1, is converted to 1
     //------------------------------------------------------------------------
-    bsp::parallel_introsort ( A.begin(), A.end(), NThread ( NThread_HW / 6));
+    bsp::parallel_sort ( A.begin(), A.end(), number_threads/ 6);
     //------------------------------------------------------------------------
-    // NThread ( 100) force to execute with 100 threads
+    //  force to execute with 100 threads
     //------------------------------------------------------------------------
-    bsp::sample_sort ( B.begin() , B.end(), NThread ( 100));
+    bsp::sample_sort ( B.begin() , B.end(), 100);
 
     for ( uint32_t i =0 ; i < NMAX ; ++i )
-        if ( A[i] != B[i])
-            std::cout<<"Error in the sorting process\n";
+    {	if ( A[i] != B[i])
+    	{	std::cout<<"Error in the sorting process\n";
+    	};
+    };
     return 0 ;
 };
