@@ -37,15 +37,16 @@ void insertion_sort (Iter_t first, Iter_t last, Compare comp )
     typedef typename std::iterator_traits<Iter_t>::value_type value_t ;
 
     if ( (last-first) < 2 ) return ;
-    for ( Iter_t alfa = first +1 ;alfa != last ; ++alfa)
-    {   value_t Aux = std::move ( *alfa);
-        Iter_t beta  = alfa ;
+    for (Iter_t curr = first + 1; curr != last; ++curr)
+    {   
+        value_t curr_value = std::move (*curr);
+        Iter_t target_location = curr;
 
-        while( beta != first and comp ( Aux, *(beta-1) ) )
-        {   *beta = std::move ( *(beta-1));
-            --beta ;
+        while(target_location != first and comp(curr_value, *(target_location - 1)))
+        {   *target_location = std::move(*(target_location - 1));
+            --target_location;
         };
-        *beta = std::move ( Aux );
+        *target_location = std::move (curr_value);
     };
 };
 //
