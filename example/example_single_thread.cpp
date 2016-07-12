@@ -18,21 +18,21 @@
 
 namespace bsp = boost::sort::parallel;
 
-int main( void )
-{   //-------------- begin------------
+int main(void)
+{ //-------------- begin------------
     std::mt19937_64 my_rand(0);
 
-    const uint32_t NMAX = 1000000 ;
-    std::vector <uint64_t> A , B ;
+    const uint32_t NMAX = 1000000;
+    std::vector<uint64_t> A, B;
 
-    for ( uint32_t i =0 ; i < NMAX ; ++i)   A.push_back( my_rand() );
+    for (uint32_t i = 0; i < NMAX; ++i) A.push_back(my_rand());
 
-    B = A ;
-    bsp::sort ( A.begin(), A.end());
-    bsp::stable_sort ( B.begin() , B.end());
+    B = A;
+    bsp::sort(A.begin(), A.end());
+    bsp::stable_sort(B.begin(), B.end());
 
-    for ( uint32_t i =0 ; i < NMAX ; ++i )
-    {	if ( A[i] != B[i]) std::cout<<"Error in the sorting process\n";
+    for (uint32_t i = 0; i < NMAX; ++i) {
+        if (A[i] != B[i]) std::cout << "Error in the sorting process\n";
     };
-    return 0 ;
+    return 0;
 };

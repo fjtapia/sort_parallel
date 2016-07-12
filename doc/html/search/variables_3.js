@@ -1,5 +1,6 @@
 var searchData=
 [
   ['global_5fbuf',['global_buf',['../structboost_1_1sort_1_1parallel_1_1detail_1_1sample__sort.html#a0d5be02e8af55f3148f6201b07707182',1,'boost::sort::parallel::detail::sample_sort']]],
-  ['global_5frange',['global_range',['../structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort_1_1backbone.html#a1f402e7aca0d771ff7c017e3e3fb5435',1,'boost::sort::parallel::detail::block_indirect_sort::backbone::global_range()'],['../structboost_1_1sort_1_1parallel_1_1detail_1_1sample__sort.html#a8c51affddfc2717396e7eaa0bdd23630',1,'boost::sort::parallel::detail::sample_sort::global_range()']]]
+  ['global_5ffirst',['global_first',['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1compare__block__pos.html#abe3de0811a8e004490c0b3219e9e6672',1,'boost::sort::parallel::detail::bis::compare_block_pos']]],
+  ['global_5frange',['global_range',['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1backbone.html#a7ed2b0178db25a31b22aab862c3982a6',1,'boost::sort::parallel::detail::bis::backbone::global_range()'],['../structboost_1_1sort_1_1parallel_1_1detail_1_1sample__sort.html#a8c51affddfc2717396e7eaa0bdd23630',1,'boost::sort::parallel::detail::sample_sort::global_range()']]]
 ];

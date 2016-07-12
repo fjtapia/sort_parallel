@@ -110,10 +110,8 @@ Public Types</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a21657d36725a33f3f6eb29fe7d0ae5c3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html#a21657d36725a33f3f6eb29fe7d0ae5c3">parallel_stable_sort</a> (Iter_t first, Iter_t last)</td></tr>
-<tr class="memdesc:a21657d36725a33f3f6eb29fe7d0ae5c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor of the class  <a href="#a21657d36725a33f3f6eb29fe7d0ae5c3">More...</a><br /></td></tr>
 <tr class="separator:a21657d36725a33f3f6eb29fe7d0ae5c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abee1786514cb5ebf89a10ad013d0a6b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html#abee1786514cb5ebf89a10ad013d0a6b2">parallel_stable_sort</a> (Iter_t first, Iter_t last, Compare cmp)</td></tr>
-<tr class="memdesc:abee1786514cb5ebf89a10ad013d0a6b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">envelope function for to call to a <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html" title="This a structure for to implement a parallel stable sort, exception safe. ">parallel_stable_sort</a> object  <a href="#abee1786514cb5ebf89a10ad013d0a6b2">More...</a><br /></td></tr>
 <tr class="separator:abee1786514cb5ebf89a10ad013d0a6b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a412508643529d3167b1922b2f45cf2ef"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html#a412508643529d3167b1922b2f45cf2ef">parallel_stable_sort</a> (Iter_t first, Iter_t last, uint32_t num_thread)</td></tr>
 <tr class="separator:a412508643529d3167b1922b2f45cf2ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,11 +128,11 @@ Public Attributes</h2></td></tr>
 <tr class="separator:aeb38ef699e58e2200dc0acde33045ba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29eff29be2b47244d3818ccf19dc0c89"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html#a31185eeb2d51c6f3cd9c32def7241166">value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html#a29eff29be2b47244d3818ccf19dc0c89">ptr</a></td></tr>
 <tr class="separator:a29eff29be2b47244d3818ccf19dc0c89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4664dd85d234bce6648ae0a8ff59814"><td class="memItemLeft" align="right" valign="top">const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html#ae4664dd85d234bce6648ae0a8ff59814">nelem_min</a> = 1&lt;&lt;16</td></tr>
+<tr class="memitem:ae4664dd85d234bce6648ae0a8ff59814"><td class="memItemLeft" align="right" valign="top">const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html#ae4664dd85d234bce6648ae0a8ff59814">nelem_min</a> = 1 &lt;&lt; 16</td></tr>
 <tr class="separator:ae4664dd85d234bce6648ae0a8ff59814"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt;<br />
+<div class="textblock"><h3>template&lt;class Iter_t, class Compare = util::compare_iter&lt;Iter_t&gt;&gt;<br />
 struct boost::sort::parallel::detail::parallel_stable_sort&lt; Iter_t, Compare &gt;</h3>
 
 <p>This a structure for to implement a parallel stable sort, exception safe. </p>
@@ -144,7 +142,7 @@ struct boost::sort::parallel::detail::parallel_stable_sort&lt; Iter_t, Compare &
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; </div>
+template&lt;class Iter_t, class Compare = util::compare_iter&lt;Iter_t&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef std::iterator_traits&lt;Iter_t&gt;::value_type <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html">boost::sort::parallel::detail::parallel_stable_sort</a>&lt; Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html#a31185eeb2d51c6f3cd9c32def7241166">value_t</a></td>
@@ -159,7 +157,7 @@ template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; </div>
+template&lt;class Iter_t, class Compare = util::compare_iter&lt;Iter_t&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -189,23 +187,13 @@ template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; 
 </table>
 </div><div class="memdoc">
 
-<p>constructor of the class </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">R</td><td>: range of elements to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to compare two elements </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nthread</td><td>: define the number of threads to use in the process. By default is the number of thread HW </td></tr>
-  </table>
-  </dd>
-</dl>
-
 </div>
 </div>
 <a class="anchor" id="abee1786514cb5ebf89a10ad013d0a6b2"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; </div>
+template&lt;class Iter_t, class Compare = util::compare_iter&lt;Iter_t&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -241,23 +229,13 @@ template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; 
 </table>
 </div><div class="memdoc">
 
-<p>envelope function for to call to a <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html" title="This a structure for to implement a parallel stable sort, exception safe. ">parallel_stable_sort</a> object </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>: iterator to the first element of the range </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator to next element after the last of the range </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nthread</td><td>: NThread object for to define the number of threads to use in the process. By default is the number of thread HW </td></tr>
-  </table>
-  </dd>
-</dl>
-
 </div>
 </div>
 <a class="anchor" id="a412508643529d3167b1922b2f45cf2ef"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; </div>
+template&lt;class Iter_t, class Compare = util::compare_iter&lt;Iter_t&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -336,9 +314,10 @@ template&lt;class Iter_t , class Compare &gt; </div>
 <p>constructor of the class </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">range_initial</td><td>: range of elements to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to compare two elements </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nthread</td><td>: define the number of threads to use in the process. By default is the number of thread HW </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two elements pointed by Iter_t iterators </td></tr>
+    <tr><td class="paramname">nthread</td><td>: Number of threads to use in the process. When this value is lower than 2, the sorting is done with 1 thread </td></tr>
   </table>
   </dd>
 </dl>
@@ -349,7 +328,7 @@ template&lt;class Iter_t , class Compare &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; </div>
+template&lt;class Iter_t, class Compare = util::compare_iter&lt;Iter_t&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -377,7 +356,7 @@ template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; </div>
+template&lt;class Iter_t, class Compare = util::compare_iter&lt;Iter_t&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">size_t <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html">boost::sort::parallel::detail::parallel_stable_sort</a>&lt; Iter_t, Compare &gt;::nelem</td>
@@ -391,10 +370,10 @@ template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; </div>
+template&lt;class Iter_t, class Compare = util::compare_iter&lt;Iter_t&gt;&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">const size_t <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html">boost::sort::parallel::detail::parallel_stable_sort</a>&lt; Iter_t, Compare &gt;::nelem_min = 1&lt;&lt;16</td>
+          <td class="memname">const size_t <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html">boost::sort::parallel::detail::parallel_stable_sort</a>&lt; Iter_t, Compare &gt;::nelem_min = 1 &lt;&lt; 16</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -405,7 +384,7 @@ template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; </div>
+template&lt;class Iter_t, class Compare = util::compare_iter&lt;Iter_t&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html#a31185eeb2d51c6f3cd9c32def7241166">value_t</a>* <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html">boost::sort::parallel::detail::parallel_stable_sort</a>&lt; Iter_t, Compare &gt;::ptr</td>
@@ -421,7 +400,7 @@ template&lt;class Iter_t, class Compare = util::compare_iter &lt;Iter_t&gt;&gt; 
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 2 2016 12:03:50 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 12 2016 12:41:19 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

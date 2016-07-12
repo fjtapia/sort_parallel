@@ -103,55 +103,67 @@ Namespaces</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a10c356b90a78dbcca1277dfce78e1ec6"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , typename Compare  = compare_iter&lt;Iter_t&gt;&gt; </td></tr>
 <tr class="memitem:a10c356b90a78dbcca1277dfce78e1ec6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a10c356b90a78dbcca1277dfce78e1ec6">sort</a> (Iter_t first, Iter_t last, Compare comp=Compare())</td></tr>
-<tr class="memdesc:a10c356b90a78dbcca1277dfce78e1ec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function implement a non stable sort, based internally in the intro_sort algorithm. Run with 1 thread  <a href="#a10c356b90a78dbcca1277dfce78e1ec6">More...</a><br /></td></tr>
+<tr class="memdesc:a10c356b90a78dbcca1277dfce78e1ec6"><td class="mdescLeft">&#160;</td><td class="mdescRight">non stable sort, based internally in the intro_sort algorithm  <a href="#a10c356b90a78dbcca1277dfce78e1ec6">More...</a><br /></td></tr>
 <tr class="separator:a10c356b90a78dbcca1277dfce78e1ec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23b45f06cdc9e9c43251048f9994d480"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , typename Compare  = compare_iter&lt;Iter_t&gt;&gt; </td></tr>
 <tr class="memitem:a23b45f06cdc9e9c43251048f9994d480"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a23b45f06cdc9e9c43251048f9994d480">indirect_sort</a> (Iter_t first, Iter_t last, Compare comp=Compare())</td></tr>
-<tr class="memdesc:a23b45f06cdc9e9c43251048f9994d480"><td class="mdescLeft">&#160;</td><td class="mdescRight">: function for to implement an indirect sort  <a href="#a23b45f06cdc9e9c43251048f9994d480">More...</a><br /></td></tr>
+<tr class="memdesc:a23b45f06cdc9e9c43251048f9994d480"><td class="mdescLeft">&#160;</td><td class="mdescRight">: indirect sort. This function sort a vector of iterators to the elements. And after, move the elements, for to be phisically sorted. This is useful with big objects  <a href="#a23b45f06cdc9e9c43251048f9994d480">More...</a><br /></td></tr>
 <tr class="separator:a23b45f06cdc9e9c43251048f9994d480"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcce8b47e74839047c6cd2677acbece1"><td class="memTemplParams" colspan="2">template&lt;class Iter_t &gt; </td></tr>
+<tr class="memitem:abcce8b47e74839047c6cd2677acbece1"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#abcce8b47e74839047c6cd2677acbece1">parallel_sort</a> (Iter_t first, Iter_t last)</td></tr>
+<tr class="memdesc:abcce8b47e74839047c6cd2677acbece1"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function implement a non stable parallel sort. The number of threads to use is the HW threads of the machine  <a href="#abcce8b47e74839047c6cd2677acbece1">More...</a><br /></td></tr>
+<tr class="separator:abcce8b47e74839047c6cd2677acbece1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb77dd7554bd4cc392e355de21183095"><td class="memTemplParams" colspan="2">template&lt;class Iter_t &gt; </td></tr>
+<tr class="memitem:adb77dd7554bd4cc392e355de21183095"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#adb77dd7554bd4cc392e355de21183095">parallel_sort</a> (Iter_t first, Iter_t last, uint32_t nthread)</td></tr>
+<tr class="memdesc:adb77dd7554bd4cc392e355de21183095"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function implement a non stable parallel sort.  <a href="#adb77dd7554bd4cc392e355de21183095">More...</a><br /></td></tr>
+<tr class="separator:adb77dd7554bd4cc392e355de21183095"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89cf87054779606fa0bc079fb8f08b7c"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare &gt; </td></tr>
 <tr class="memitem:a89cf87054779606fa0bc079fb8f08b7c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a89cf87054779606fa0bc079fb8f08b7c">parallel_sort</a> (Iter_t first, Iter_t last, Compare comp, uint32_t nthread)</td></tr>
 <tr class="memdesc:a89cf87054779606fa0bc079fb8f08b7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function implement a non stable parallel sort.  <a href="#a89cf87054779606fa0bc079fb8f08b7c">More...</a><br /></td></tr>
 <tr class="separator:a89cf87054779606fa0bc079fb8f08b7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade7af9791e3e0c92efab9842c101c58a"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare  = compare_iter&lt;Iter_t&gt;&gt; </td></tr>
-<tr class="memitem:ade7af9791e3e0c92efab9842c101c58a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#ade7af9791e3e0c92efab9842c101c58a">parallel_sort</a> (Iter_t first, Iter_t last)</td></tr>
-<tr class="memdesc:ade7af9791e3e0c92efab9842c101c58a"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function implement a non stable parallel sort. The number of threads to use is HW threads of the machine  <a href="#ade7af9791e3e0c92efab9842c101c58a">More...</a><br /></td></tr>
-<tr class="separator:ade7af9791e3e0c92efab9842c101c58a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2079dd754981d6410f680ff9a746a444"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class unknown &gt; </td></tr>
-<tr class="memitem:a2079dd754981d6410f680ff9a746a444"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a2079dd754981d6410f680ff9a746a444">parallel_sort</a> (Iter_t first, Iter_t last, unknown ukn)</td></tr>
-<tr class="memdesc:a2079dd754981d6410f680ff9a746a444"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function implement a non stable parallel sort.  <a href="#a2079dd754981d6410f680ff9a746a444">More...</a><br /></td></tr>
-<tr class="separator:a2079dd754981d6410f680ff9a746a444"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad400eddfdad7dd21e8202b5b56c2536c"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare , enable_if_not_integral&lt; Compare &gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:ad400eddfdad7dd21e8202b5b56c2536c"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#ad400eddfdad7dd21e8202b5b56c2536c">parallel_sort</a> (Iter_t first, Iter_t last, Compare comp)</td></tr>
+<tr class="memdesc:ad400eddfdad7dd21e8202b5b56c2536c"><td class="mdescLeft">&#160;</td><td class="mdescRight">: non stable parallel sort.  <a href="#ad400eddfdad7dd21e8202b5b56c2536c">More...</a><br /></td></tr>
+<tr class="separator:ad400eddfdad7dd21e8202b5b56c2536c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac233db31654f32bb9cc074edea35a2d2"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare  = compare_iter&lt;Iter_t&gt;&gt; </td></tr>
 <tr class="memitem:ac233db31654f32bb9cc074edea35a2d2"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#ac233db31654f32bb9cc074edea35a2d2">stable_sort</a> (Iter_t first, Iter_t last, Compare comp=Compare())</td></tr>
 <tr class="memdesc:ac233db31654f32bb9cc074edea35a2d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function implement a single thread stable sort  <a href="#ac233db31654f32bb9cc074edea35a2d2">More...</a><br /></td></tr>
 <tr class="separator:ac233db31654f32bb9cc074edea35a2d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0997aa610dd473888ec2f14d66f66b3a"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare  = compare_iter&lt;Iter_t&gt;&gt; </td></tr>
 <tr class="memitem:a0997aa610dd473888ec2f14d66f66b3a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a0997aa610dd473888ec2f14d66f66b3a">indirect_stable_sort</a> (Iter_t first, Iter_t last, Compare comp=Compare())</td></tr>
-<tr class="memdesc:a0997aa610dd473888ec2f14d66f66b3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function implement a single thread indirect_stable sort  <a href="#a0997aa610dd473888ec2f14d66f66b3a">More...</a><br /></td></tr>
+<tr class="memdesc:a0997aa610dd473888ec2f14d66f66b3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">: indirect stable sort. This function make a stable sort of a vector of iterators to the elements. And after, move the elements, for to be phisically sorted. This is useful with big objects  <a href="#a0997aa610dd473888ec2f14d66f66b3a">More...</a><br /></td></tr>
 <tr class="separator:a0997aa610dd473888ec2f14d66f66b3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17bd6b9728d2370507ef0daf42d888b5"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare  = compare_iter&lt;Iter_t&gt;&gt; </td></tr>
-<tr class="memitem:a17bd6b9728d2370507ef0daf42d888b5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a17bd6b9728d2370507ef0daf42d888b5">parallel_stable_sort</a> (Iter_t first, Iter_t last)</td></tr>
-<tr class="memdesc:a17bd6b9728d2370507ef0daf42d888b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">invocation to the parallel stable sort algorithm. The number of threads to use is HW threads of the machine  <a href="#a17bd6b9728d2370507ef0daf42d888b5">More...</a><br /></td></tr>
-<tr class="separator:a17bd6b9728d2370507ef0daf42d888b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7257dcc8b8084e47bbd090a6b96aebba"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class unknown &gt; </td></tr>
-<tr class="memitem:a7257dcc8b8084e47bbd090a6b96aebba"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a7257dcc8b8084e47bbd090a6b96aebba">parallel_stable_sort</a> (Iter_t first, Iter_t last, unknown ukn)</td></tr>
-<tr class="memdesc:a7257dcc8b8084e47bbd090a6b96aebba"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function implement a parallel stable sort.  <a href="#a7257dcc8b8084e47bbd090a6b96aebba">More...</a><br /></td></tr>
-<tr class="separator:a7257dcc8b8084e47bbd090a6b96aebba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad67fd9643a049678201f1291d9811d06"><td class="memTemplParams" colspan="2">template&lt;class Iter_t &gt; </td></tr>
+<tr class="memitem:ad67fd9643a049678201f1291d9811d06"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#ad67fd9643a049678201f1291d9811d06">parallel_stable_sort</a> (Iter_t first, Iter_t last)</td></tr>
+<tr class="memdesc:ad67fd9643a049678201f1291d9811d06"><td class="mdescLeft">&#160;</td><td class="mdescRight">: parallel stable sort algorithm.  <a href="#ad67fd9643a049678201f1291d9811d06">More...</a><br /></td></tr>
+<tr class="separator:ad67fd9643a049678201f1291d9811d06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19dc8a24bef16ed2e3f46f9264ef5f67"><td class="memTemplParams" colspan="2">template&lt;class Iter_t &gt; </td></tr>
+<tr class="memitem:a19dc8a24bef16ed2e3f46f9264ef5f67"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a19dc8a24bef16ed2e3f46f9264ef5f67">parallel_stable_sort</a> (Iter_t first, Iter_t last, uint32_t nthread)</td></tr>
+<tr class="memdesc:a19dc8a24bef16ed2e3f46f9264ef5f67"><td class="mdescLeft">&#160;</td><td class="mdescRight">parallel stable sort.  <a href="#a19dc8a24bef16ed2e3f46f9264ef5f67">More...</a><br /></td></tr>
+<tr class="separator:a19dc8a24bef16ed2e3f46f9264ef5f67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21469727921f210f282593217f51caea"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare , enable_if_not_integral&lt; Compare &gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:a21469727921f210f282593217f51caea"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a21469727921f210f282593217f51caea">parallel_stable_sort</a> (Iter_t first, Iter_t last, Compare comp)</td></tr>
+<tr class="memdesc:a21469727921f210f282593217f51caea"><td class="mdescLeft">&#160;</td><td class="mdescRight">: parallel stable sort.  <a href="#a21469727921f210f282593217f51caea">More...</a><br /></td></tr>
+<tr class="separator:a21469727921f210f282593217f51caea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a229ac18b8627103761e6839874a4452b"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , typename Compare &gt; </td></tr>
 <tr class="memitem:a229ac18b8627103761e6839874a4452b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a229ac18b8627103761e6839874a4452b">parallel_stable_sort</a> (Iter_t first, Iter_t last, Compare comp, uint32_t nthread)</td></tr>
-<tr class="memdesc:a229ac18b8627103761e6839874a4452b"><td class="mdescLeft">&#160;</td><td class="mdescRight">invocation to the parallel block_indirect_sort algorithm  <a href="#a229ac18b8627103761e6839874a4452b">More...</a><br /></td></tr>
+<tr class="memdesc:a229ac18b8627103761e6839874a4452b"><td class="mdescLeft">&#160;</td><td class="mdescRight">parallel stable sort  <a href="#a229ac18b8627103761e6839874a4452b">More...</a><br /></td></tr>
 <tr class="separator:a229ac18b8627103761e6839874a4452b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9381247f71b935e78c97081e2be09691"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare  = compare_iter&lt;Iter_t&gt;&gt; </td></tr>
-<tr class="memitem:a9381247f71b935e78c97081e2be09691"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a9381247f71b935e78c97081e2be09691">sample_sort</a> (Iter_t first, Iter_t last)</td></tr>
-<tr class="memdesc:a9381247f71b935e78c97081e2be09691"><td class="mdescLeft">&#160;</td><td class="mdescRight">invocation to the parallel stable sort algorithm. The number of threads to use is HW threads of the machine  <a href="#a9381247f71b935e78c97081e2be09691">More...</a><br /></td></tr>
-<tr class="separator:a9381247f71b935e78c97081e2be09691"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b36d01a653cf172b2b978cf1afea550"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class unknown &gt; </td></tr>
-<tr class="memitem:a6b36d01a653cf172b2b978cf1afea550"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a6b36d01a653cf172b2b978cf1afea550">sample_sort</a> (Iter_t first, Iter_t last, unknown ukn)</td></tr>
-<tr class="memdesc:a6b36d01a653cf172b2b978cf1afea550"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function implement a parallel stable sort by the sample sort algorithm  <a href="#a6b36d01a653cf172b2b978cf1afea550">More...</a><br /></td></tr>
-<tr class="separator:a6b36d01a653cf172b2b978cf1afea550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4334181533c9041ba7c1099a423ff83"><td class="memTemplParams" colspan="2">template&lt;class Iter_t &gt; </td></tr>
+<tr class="memitem:aa4334181533c9041ba7c1099a423ff83"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#aa4334181533c9041ba7c1099a423ff83">sample_sort</a> (Iter_t first, Iter_t last)</td></tr>
+<tr class="memdesc:aa4334181533c9041ba7c1099a423ff83"><td class="mdescLeft">&#160;</td><td class="mdescRight">parallel sample sort algorithm (stable sort)  <a href="#aa4334181533c9041ba7c1099a423ff83">More...</a><br /></td></tr>
+<tr class="separator:aa4334181533c9041ba7c1099a423ff83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7773b2db297f5b92693381354a4d8481"><td class="memTemplParams" colspan="2">template&lt;class Iter_t &gt; </td></tr>
+<tr class="memitem:a7773b2db297f5b92693381354a4d8481"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a7773b2db297f5b92693381354a4d8481">sample_sort</a> (Iter_t first, Iter_t last, uint32_t nthread)</td></tr>
+<tr class="memdesc:a7773b2db297f5b92693381354a4d8481"><td class="mdescLeft">&#160;</td><td class="mdescRight">parallel sample sort algorithm (stable sort)  <a href="#a7773b2db297f5b92693381354a4d8481">More...</a><br /></td></tr>
+<tr class="separator:a7773b2db297f5b92693381354a4d8481"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a4c6ee90db268dcea65bc668919f861"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare , enable_if_not_integral&lt; Compare &gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:a2a4c6ee90db268dcea65bc668919f861"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a2a4c6ee90db268dcea65bc668919f861">sample_sort</a> (Iter_t first, Iter_t last, Compare comp)</td></tr>
+<tr class="memdesc:a2a4c6ee90db268dcea65bc668919f861"><td class="mdescLeft">&#160;</td><td class="mdescRight">parallel sample sort algorithm (stable sort)  <a href="#a2a4c6ee90db268dcea65bc668919f861">More...</a><br /></td></tr>
+<tr class="separator:a2a4c6ee90db268dcea65bc668919f861"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51c87f3a7797f686ce12f16bf49cd759"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare &gt; </td></tr>
 <tr class="memitem:a51c87f3a7797f686ce12f16bf49cd759"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html#a51c87f3a7797f686ce12f16bf49cd759">sample_sort</a> (Iter_t first, Iter_t last, Compare comp, uint32_t nthread)</td></tr>
-<tr class="memdesc:a51c87f3a7797f686ce12f16bf49cd759"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function implement a parallel stable sort by the sample sort algorithm  <a href="#a51c87f3a7797f686ce12f16bf49cd759">More...</a><br /></td></tr>
+<tr class="memdesc:a51c87f3a7797f686ce12f16bf49cd759"><td class="mdescLeft">&#160;</td><td class="mdescRight">parallel sample sort algorithm (stable sort)  <a href="#a51c87f3a7797f686ce12f16bf49cd759">More...</a><br /></td></tr>
 <tr class="separator:a51c87f3a7797f686ce12f16bf49cd759"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -187,12 +199,12 @@ template&lt;class Iter_t , typename Compare  = compare_iter&lt;Iter_t&gt;&gt; </
       </table>
 </div><div class="memdoc">
 
-<p>: function for to implement an indirect sort </p>
+<p>: indirect sort. This function sort a vector of iterators to the elements. And after, move the elements, for to be phisically sorted. This is useful with big objects </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>: iterator to the first element </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator to the element after the last in the range </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to Compare elements </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two elements pointed by Iter_t iterators </td></tr>
   </table>
   </dd>
 </dl>
@@ -231,12 +243,93 @@ template&lt;class Iter_t , class Compare  = compare_iter&lt;Iter_t&gt;&gt; </div
       </table>
 </div><div class="memdoc">
 
-<p>this function implement a single thread indirect_stable sort </p>
+<p>: indirect stable sort. This function make a stable sort of a vector of iterators to the elements. And after, move the elements, for to be phisically sorted. This is useful with big objects </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">firts</td><td>: iterator to the first element of the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to compare two elements pointed by iter_t iterators </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two elements pointed by Iter_t iterators </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="abcce8b47e74839047c6cd2677acbece1"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Iter_t &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void boost::sort::parallel::parallel_sort </td>
+          <td>(</td>
+          <td class="paramtype">Iter_t&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iter_t&#160;</td>
+          <td class="paramname"><em>last</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>this function implement a non stable parallel sort. The number of threads to use is the HW threads of the machine </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="adb77dd7554bd4cc392e355de21183095"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Iter_t &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void boost::sort::parallel::parallel_sort </td>
+          <td>(</td>
+          <td class="paramtype">Iter_t&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iter_t&#160;</td>
+          <td class="paramname"><em>last</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nthread</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>this function implement a non stable parallel sort. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">nthread</td><td>: Number of threads to use in the process. When this value is lower than 2, the sorting is done with 1 thread </td></tr>
   </table>
   </dd>
 </dl>
@@ -284,58 +377,21 @@ template&lt;class Iter_t , class Compare &gt; </div>
 <p>this function implement a non stable parallel sort. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">firts</td><td>: iterator to the first element of the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to compare two elements pointed by iter_t iterators </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nthread</td><td>: integer from the ranges [1, UINT32_MAX]. by default is the number of HW threads of the machine </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two elements pointed by Iter_t iterators </td></tr>
+    <tr><td class="paramname">nthread</td><td>: Number of threads to use in the process. When this value is lower than 2, the sorting is done with 1 thread </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="ade7af9791e3e0c92efab9842c101c58a"></a>
+<a class="anchor" id="ad400eddfdad7dd21e8202b5b56c2536c"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter_t , class Compare  = compare_iter&lt;Iter_t&gt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">void boost::sort::parallel::parallel_sort </td>
-          <td>(</td>
-          <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>first</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>last</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>this function implement a non stable parallel sort. The number of threads to use is HW threads of the machine </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">firts</td><td>: iterator to the first element of the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a2079dd754981d6410f680ff9a746a444"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class Iter_t , class unknown &gt; </div>
+template&lt;class Iter_t , class Compare , enable_if_not_integral&lt; Compare &gt; *  = nullptr&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void boost::sort::parallel::parallel_sort </td>
@@ -352,8 +408,8 @@ template&lt;class Iter_t , class unknown &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unknown&#160;</td>
-          <td class="paramname"><em>ukn</em>&#160;</td>
+          <td class="paramtype">Compare&#160;</td>
+          <td class="paramname"><em>comp</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -363,23 +419,23 @@ template&lt;class Iter_t , class unknown &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>this function implement a non stable parallel sort. </p>
+<p>: non stable parallel sort. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">firts</td><td>: iterator to the first element of the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ukn</td><td>: If this patrameter is an integer, represent the number of threads to use in the sorting, otherwise, represent the comparison object </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two elements pointed by Iter_t iterators </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a17bd6b9728d2370507ef0daf42d888b5"></a>
+<a class="anchor" id="ad67fd9643a049678201f1291d9811d06"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter_t , class Compare  = compare_iter&lt;Iter_t&gt;&gt; </div>
+template&lt;class Iter_t &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void boost::sort::parallel::parallel_stable_sort </td>
@@ -401,22 +457,22 @@ template&lt;class Iter_t , class Compare  = compare_iter&lt;Iter_t&gt;&gt; </div
       </table>
 </div><div class="memdoc">
 
-<p>invocation to the parallel stable sort algorithm. The number of threads to use is HW threads of the machine </p>
+<p>: parallel stable sort algorithm. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">firts</td><td>: iterator to the first element of the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a7257dcc8b8084e47bbd090a6b96aebba"></a>
+<a class="anchor" id="a19dc8a24bef16ed2e3f46f9264ef5f67"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter_t , class unknown &gt; </div>
+template&lt;class Iter_t &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void boost::sort::parallel::parallel_stable_sort </td>
@@ -433,8 +489,8 @@ template&lt;class Iter_t , class unknown &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unknown&#160;</td>
-          <td class="paramname"><em>ukn</em>&#160;</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nthread</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -444,12 +500,56 @@ template&lt;class Iter_t , class unknown &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>this function implement a parallel stable sort. </p>
+<p>parallel stable sort. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">firts</td><td>: iterator to the first element of the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ukn</td><td>: If this patrameter is an integer, represent the number of threads to use in the sorting, otherwise, represent the comparison object </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">nthread</td><td>: Number of threads to use in the process. When this value is lower than 2, the sorting is done with 1 thread </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a21469727921f210f282593217f51caea"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Iter_t , class Compare , enable_if_not_integral&lt; Compare &gt; *  = nullptr&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void boost::sort::parallel::parallel_stable_sort </td>
+          <td>(</td>
+          <td class="paramtype">Iter_t&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iter_t&#160;</td>
+          <td class="paramname"><em>last</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Compare&#160;</td>
+          <td class="paramname"><em>comp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: parallel stable sort. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two elements pointed by Iter_t iterators </td></tr>
   </table>
   </dd>
 </dl>
@@ -494,24 +594,24 @@ template&lt;class Iter_t , typename Compare &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>invocation to the parallel block_indirect_sort algorithm </p>
+<p>parallel stable sort </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">firts</td><td>: iterator to the first element of the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to compare two elements pointed by iter_t iterators </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nthread</td><td>: integer from the ranges [1, UINT32_MAX]. by default is the number of HW threads of the machine </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two elements pointed by Iter_t iterators </td></tr>
+    <tr><td class="paramname">nthread</td><td>: Number of threads to use in the process. When this value is lower than 2, the sorting is done with 1 thread </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a9381247f71b935e78c97081e2be09691"></a>
+<a class="anchor" id="aa4334181533c9041ba7c1099a423ff83"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter_t , class Compare  = compare_iter&lt;Iter_t&gt;&gt; </div>
+template&lt;class Iter_t &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void boost::sort::parallel::sample_sort </td>
@@ -533,22 +633,22 @@ template&lt;class Iter_t , class Compare  = compare_iter&lt;Iter_t&gt;&gt; </div
       </table>
 </div><div class="memdoc">
 
-<p>invocation to the parallel stable sort algorithm. The number of threads to use is HW threads of the machine </p>
+<p>parallel sample sort algorithm (stable sort) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">firts</td><td>: iterator to the first element of the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="a6b36d01a653cf172b2b978cf1afea550"></a>
+<a class="anchor" id="a7773b2db297f5b92693381354a4d8481"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter_t , class unknown &gt; </div>
+template&lt;class Iter_t &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void boost::sort::parallel::sample_sort </td>
@@ -565,8 +665,8 @@ template&lt;class Iter_t , class unknown &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unknown&#160;</td>
-          <td class="paramname"><em>ukn</em>&#160;</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nthread</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -576,12 +676,56 @@ template&lt;class Iter_t , class unknown &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>this function implement a parallel stable sort by the sample sort algorithm </p>
+<p>parallel sample sort algorithm (stable sort) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">firts</td><td>: iterator to the first element of the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">ukn</td><td>: If this patrameter is an integer, represent the number of threads to use in the sorting, otherwise, represent the comparison object </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">nthread</td><td>: Number of threads to use in the process. When this value is lower than 2, the sorting is done with 1 thread </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a2a4c6ee90db268dcea65bc668919f861"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Iter_t , class Compare , enable_if_not_integral&lt; Compare &gt; *  = nullptr&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void boost::sort::parallel::sample_sort </td>
+          <td>(</td>
+          <td class="paramtype">Iter_t&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iter_t&#160;</td>
+          <td class="paramname"><em>last</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Compare&#160;</td>
+          <td class="paramname"><em>comp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>parallel sample sort algorithm (stable sort) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two elements pointed by Iter_t iterators </td></tr>
   </table>
   </dd>
 </dl>
@@ -626,13 +770,13 @@ template&lt;class Iter_t , class Compare &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>this function implement a parallel stable sort by the sample sort algorithm </p>
+<p>parallel sample sort algorithm (stable sort) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">firts</td><td>: iterator to the first element of the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to compare two elements pointed by iter_t iterators </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nthread</td><td>: integer from the ranges [1, UINT32_MAX]. by default is the number of HW threads of the machine </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two elements pointed by Iter_t iterators </td></tr>
+    <tr><td class="paramname">nthread</td><td>: Number of threads to use in the process. When this value is lower than 2, the sorting is done with 1 thread </td></tr>
   </table>
   </dd>
 </dl>
@@ -671,12 +815,12 @@ template&lt;class Iter_t , typename Compare  = compare_iter&lt;Iter_t&gt;&gt; </
       </table>
 </div><div class="memdoc">
 
-<p>this function implement a non stable sort, based internally in the intro_sort algorithm. Run with 1 thread </p>
+<p>non stable sort, based internally in the intro_sort algorithm </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">firts</td><td>: iterator to the first element of the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to compare two elements pointed by iter_t iterators </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two elements pointed by Iter_t iterators </td></tr>
   </table>
   </dd>
 </dl>
@@ -718,9 +862,9 @@ template&lt;class Iter_t , class Compare  = compare_iter&lt;Iter_t&gt;&gt; </div
 <p>this function implement a single thread stable sort </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">firts</td><td>: iterator to the first element of the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to compare two elements pointed by iter_t iterators </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range to sort </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator after the last element to the range to sort </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two elements pointed by Iter_t iterators </td></tr>
   </table>
   </dd>
 </dl>
@@ -730,7 +874,7 @@ template&lt;class Iter_t , class Compare  = compare_iter&lt;Iter_t&gt;&gt; </div
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 2 2016 12:03:50 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 12 2016 12:41:19 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

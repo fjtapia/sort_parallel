@@ -97,18 +97,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
 Namespaces</h2></td></tr>
+<tr class="memitem:namespaceboost_1_1sort_1_1parallel_1_1detail_1_1bis"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1bis.html">bis</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html">util</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">block_indirect_sort</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This a structure for to implement a sample sort, exception safe.  <a href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is the entry point of the block indirect sort. The code of this algorithm is divided in several classes: <a class="el" href="block_8hpp.html" title="This file contains the internal data structures used in the block_indirect_sort algorithm. ">bis/block.hpp</a> : basic structures used in the algorithm <a class="el" href="backbone_8hpp.html" title="This file constains the class backbone, which is part of the block_indirect_sort algorithm. ">bis/backbone.hpp</a> : data used by all the classes <a class="el" href="merge__blocks_8hpp.html" title="contains the class merge_blocks, which is part of the block_indirect_sort algorithm ...">bis/merge_blocks.hpp</a> : merge the internal blocks <a class="el" href="move__blocks_8hpp.html" title="contains the class move_blocks, which is part of the block_indirect_sort algorithm ...">bis/move_blocks.hpp</a> : move the blocks, and obtain all the elements phisicaly sorted <a class="el" href="parallel__sort_8hpp.html" title="Contains the parallel_sort class, which is part of the block_indirect_sort algorithm. ">bis/parallel_sort.hpp</a> : make the parallel sort of each part in the initial division of the data.  <a href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1heap__sort.html">heap_sort</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Heap sort algorithm  <a href="structboost_1_1sort_1_1parallel_1_1detail_1_1heap__sort.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1less__ptr__no__null.html">less_ptr_no_null</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1less__ptr__no__null.html">less_ptr_no_null</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html">parallel_stable_sort</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This a structure for to implement a parallel stable sort, exception safe.  <a href="structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html#details">More...</a><br /></td></tr>
@@ -117,34 +119,38 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This a structure for to implement a sample sort, exception safe.  <a href="structboost_1_1sort_1_1parallel_1_1detail_1_1sample__sort.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1spin__sort.html">spin_sort</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">this is a struct for to do a stable sort exception safe  <a href="classboost_1_1sort_1_1parallel_1_1detail_1_1spin__sort.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class implement s stable sort algorithm with 1 thread, with an auxiliary memory of N/2 elements.  <a href="classboost_1_1sort_1_1parallel_1_1detail_1_1spin__sort.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a351c5a49809f476f0b0bf80632600806"><td class="memTemplParams" colspan="2">template&lt;class iter_t &gt; </td></tr>
-<tr class="memitem:a351c5a49809f476f0b0bf80632600806"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#a351c5a49809f476f0b0bf80632600806">create_index</a> (iter_t first, iter_t last, std::vector&lt; iter_t &gt; &amp;v_iter)</td></tr>
-<tr class="memdesc:a351c5a49809f476f0b0bf80632600806"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a index of iterators to the elements.  <a href="#a351c5a49809f476f0b0bf80632600806">More...</a><br /></td></tr>
-<tr class="separator:a351c5a49809f476f0b0bf80632600806"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21a241aec9de3ccfe77737d406386dfa"><td class="memTemplParams" colspan="2">template&lt;class iter_t &gt; </td></tr>
-<tr class="memitem:a21a241aec9de3ccfe77737d406386dfa"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#a21a241aec9de3ccfe77737d406386dfa">sort_index</a> (iter_t first, std::vector&lt; iter_t &gt; &amp;v_iter)</td></tr>
-<tr class="memdesc:a21a241aec9de3ccfe77737d406386dfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">sort the elements according of the sort of the index  <a href="#a21a241aec9de3ccfe77737d406386dfa">More...</a><br /></td></tr>
-<tr class="separator:a21a241aec9de3ccfe77737d406386dfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b006a4319d14fc030894c8ae236ff8f"><td class="memTemplParams" colspan="2">template&lt;class Iter_t &gt; </td></tr>
+<tr class="memitem:a1b006a4319d14fc030894c8ae236ff8f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#a1b006a4319d14fc030894c8ae236ff8f">create_index</a> (Iter_t first, Iter_t last, std::vector&lt; Iter_t &gt; &amp;index)</td></tr>
+<tr class="memdesc:a1b006a4319d14fc030894c8ae236ff8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">From a vector of objects, create a vector of iterators to the objects.  <a href="#a1b006a4319d14fc030894c8ae236ff8f">More...</a><br /></td></tr>
+<tr class="separator:a1b006a4319d14fc030894c8ae236ff8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a737bec4efa584aadec7853a4d42b60f8"><td class="memTemplParams" colspan="2">template&lt;class Iter_t &gt; </td></tr>
+<tr class="memitem:a737bec4efa584aadec7853a4d42b60f8"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#a737bec4efa584aadec7853a4d42b60f8">sort_index</a> (Iter_t global_first, std::vector&lt; Iter_t &gt; &amp;index)</td></tr>
+<tr class="memdesc:a737bec4efa584aadec7853a4d42b60f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function transform a logical sort of the elements in the index in a physical sort.  <a href="#a737bec4efa584aadec7853a4d42b60f8">More...</a><br /></td></tr>
+<tr class="separator:a737bec4efa584aadec7853a4d42b60f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af1d01edd7a7e4225071435810a7e7215"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , typename Compare &gt; </td></tr>
 <tr class="memitem:af1d01edd7a7e4225071435810a7e7215"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#af1d01edd7a7e4225071435810a7e7215">insertion_sort</a> (Iter_t first, Iter_t last, Compare comp)</td></tr>
 <tr class="memdesc:af1d01edd7a7e4225071435810a7e7215"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Insertion sort algorithm  <a href="#af1d01edd7a7e4225071435810a7e7215">More...</a><br /></td></tr>
 <tr class="separator:af1d01edd7a7e4225071435810a7e7215"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab095842967117b040f3fc8f727ad786d"><td class="memTemplParams" colspan="2">template&lt;typename Iter_t , typename Compare &gt; </td></tr>
-<tr class="memitem:ab095842967117b040f3fc8f727ad786d"><td class="memTemplItemLeft" align="right" valign="top">Iter_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#ab095842967117b040f3fc8f727ad786d">mid3</a> (Iter_t it_l, Iter_t it_m, Iter_t it_r, Compare comp)</td></tr>
-<tr class="separator:ab095842967117b040f3fc8f727ad786d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32812e74677e0ae02ae98d60aa387b10"><td class="memTemplParams" colspan="2">template&lt;typename Iter_t , typename Compare &gt; </td></tr>
+<tr class="memitem:a32812e74677e0ae02ae98d60aa387b10"><td class="memTemplItemLeft" align="right" valign="top">Iter_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#a32812e74677e0ae02ae98d60aa387b10">mid3</a> (Iter_t iter_1, Iter_t iter_2, Iter_t iter_3, Compare comp)</td></tr>
+<tr class="memdesc:a32812e74677e0ae02ae98d60aa387b10"><td class="mdescLeft">&#160;</td><td class="mdescRight">: return the iterator to the mid value of the three values passsed as parameters  <a href="#a32812e74677e0ae02ae98d60aa387b10">More...</a><br /></td></tr>
+<tr class="separator:a32812e74677e0ae02ae98d60aa387b10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a402a57a4c45452499705b2e4bb0468a8"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare &gt; </td></tr>
 <tr class="memitem:a402a57a4c45452499705b2e4bb0468a8"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#a402a57a4c45452499705b2e4bb0468a8">pivot3</a> (Iter_t first, Iter_t last, Compare comp)</td></tr>
+<tr class="memdesc:a402a57a4c45452499705b2e4bb0468a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">: receive a range between first and last, calcule the mid iterator with the first, the previous to the last, and the central position. With this mid iterator swap with the first position  <a href="#a402a57a4c45452499705b2e4bb0468a8">More...</a><br /></td></tr>
 <tr class="separator:a402a57a4c45452499705b2e4bb0468a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6decb57d4ae0d1ed65fa3b6eeaa8747a"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare &gt; </td></tr>
-<tr class="memitem:a6decb57d4ae0d1ed65fa3b6eeaa8747a"><td class="memTemplItemLeft" align="right" valign="top">Iter_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#a6decb57d4ae0d1ed65fa3b6eeaa8747a">mid9</a> (Iter_t it1, Iter_t it2, Iter_t it3, Iter_t it4, Iter_t it5, Iter_t it6, Iter_t it7, Iter_t it8, Iter_t it9, Compare comp)</td></tr>
-<tr class="separator:a6decb57d4ae0d1ed65fa3b6eeaa8747a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a832ad6512371d06abf5af1aa4b012bc5"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare &gt; </td></tr>
+<tr class="memitem:a832ad6512371d06abf5af1aa4b012bc5"><td class="memTemplItemLeft" align="right" valign="top">Iter_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#a832ad6512371d06abf5af1aa4b012bc5">mid9</a> (Iter_t iter_1, Iter_t iter_2, Iter_t iter_3, Iter_t iter_4, Iter_t iter_5, Iter_t iter_6, Iter_t iter_7, Iter_t iter_8, Iter_t iter_9, Compare comp)</td></tr>
+<tr class="memdesc:a832ad6512371d06abf5af1aa4b012bc5"><td class="mdescLeft">&#160;</td><td class="mdescRight">: return the iterator to the mid value of the nine values passsed as parameters  <a href="#a832ad6512371d06abf5af1aa4b012bc5">More...</a><br /></td></tr>
+<tr class="separator:a832ad6512371d06abf5af1aa4b012bc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94671129274ada0bb19f7ba8f3cb26cf"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare &gt; </td></tr>
 <tr class="memitem:a94671129274ada0bb19f7ba8f3cb26cf"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#a94671129274ada0bb19f7ba8f3cb26cf">pivot9</a> (Iter_t first, Iter_t last, Compare comp)</td></tr>
+<tr class="memdesc:a94671129274ada0bb19f7ba8f3cb26cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">: receive a range between first and last, obtain 9 values between the elements including the first and the previous to the last. Obtain the iterator to the mid value and swap with the first position  <a href="#a94671129274ada0bb19f7ba8f3cb26cf">More...</a><br /></td></tr>
 <tr class="separator:a94671129274ada0bb19f7ba8f3cb26cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5085cc88d230b1bc94b13fa9d6ef7b87"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , typename Compare &gt; </td></tr>
 <tr class="memitem:a5085cc88d230b1bc94b13fa9d6ef7b87"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#a5085cc88d230b1bc94b13fa9d6ef7b87">intro_sort_internal</a> (Iter_t first, Iter_t last, uint32_t level, Compare comp)</td></tr>
@@ -154,35 +160,35 @@ Functions</h2></td></tr>
 <tr class="memitem:a8096b13b1b1fafb93ff9a29a49cc016a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#a8096b13b1b1fafb93ff9a29a49cc016a">intro_sort</a> (Iter_t first, Iter_t last, Compare comp)</td></tr>
 <tr class="memdesc:a8096b13b1b1fafb93ff9a29a49cc016a"><td class="mdescLeft">&#160;</td><td class="mdescRight">: function for to sort range [first, last )  <a href="#a8096b13b1b1fafb93ff9a29a49cc016a">More...</a><br /></td></tr>
 <tr class="separator:a8096b13b1b1fafb93ff9a29a49cc016a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0129c711424fad74e35fa8088f8c329"><td class="memTemplParams" colspan="2">template&lt;class iter1_t , class iter2_t , class compare &gt; </td></tr>
-<tr class="memitem:af0129c711424fad74e35fa8088f8c329"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#af0129c711424fad74e35fa8088f8c329">range_sort</a> (const range&lt; iter1_t &gt; &amp;rng_a, const range&lt; iter2_t &gt; &amp;rng_b, compare comp, uint32_t level)</td></tr>
-<tr class="memdesc:af0129c711424fad74e35fa8088f8c329"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function divide r_input in two parts, sort it ,and merge moving the elements to range_buf  <a href="#af0129c711424fad74e35fa8088f8c329">More...</a><br /></td></tr>
-<tr class="separator:af0129c711424fad74e35fa8088f8c329"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5778db260f3fc15d41cdcd2c0c463d5d"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </td></tr>
+<tr class="memitem:a5778db260f3fc15d41cdcd2c0c463d5d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#a5778db260f3fc15d41cdcd2c0c463d5d">range_sort</a> (const range&lt; Iter1_t &gt; &amp;range_input, const range&lt; Iter2_t &gt; &amp;range_buffer, Compare comp, uint32_t level)</td></tr>
+<tr class="memdesc:a5778db260f3fc15d41cdcd2c0c463d5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function divide r_input in two parts, sort it,and merge moving the elements to range_buf  <a href="#a5778db260f3fc15d41cdcd2c0c463d5d">More...</a><br /></td></tr>
+<tr class="separator:a5778db260f3fc15d41cdcd2c0c463d5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a351c5a49809f476f0b0bf80632600806"></a>
+<a class="anchor" id="a1b006a4319d14fc030894c8ae236ff8f"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class iter_t &gt; </div>
+template&lt;class Iter_t &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void boost::sort::parallel::detail::create_index </td>
           <td>(</td>
-          <td class="paramtype">iter_t&#160;</td>
+          <td class="paramtype">Iter_t&#160;</td>
           <td class="paramname"><em>first</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">iter_t&#160;</td>
+          <td class="paramtype">Iter_t&#160;</td>
           <td class="paramname"><em>last</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; iter_t &gt; &amp;&#160;</td>
-          <td class="paramname"><em>v_iter</em>&#160;</td>
+          <td class="paramtype">std::vector&lt; Iter_t &gt; &amp;&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -192,18 +198,12 @@ template&lt;class iter_t &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Create a index of iterators to the elements. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">iter_t</td><td>: iterator to store in the index vector </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>From a vector of objects, create a vector of iterators to the objects. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>: iterator to the first element of the range </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator to the element after the last of the range </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">[in/out]</td><td>v_iter : vector where store the iterators of the index </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element of the range </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator to the element after the last of the range </td></tr>
+    <tr><td class="paramname">index</td><td>: vector where store the iterators </td></tr>
   </table>
   </dd>
 </dl>
@@ -245,9 +245,9 @@ template&lt;class Iter_t , typename Compare &gt; </div>
 <p>: Insertion sort algorithm </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>iterator to the first element of the range </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator to the next element of the last in the range </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to do the comparison between the elements </td></tr>
+    <tr><td class="paramname">first</td><td>iterator to the first element of the range </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator to the next element of the last in the range </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to do the comparison between the elements </td></tr>
   </table>
   </dd>
 </dl>
@@ -290,9 +290,9 @@ template&lt;class Iter_t , typename Compare &gt; </div>
 <p>: function for to sort range [first, last ) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>: iterator to the first element </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator to the element after the last in the range </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to compare elements </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator to the element after the last in the range </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare elements </td></tr>
   </table>
   </dd>
 </dl>
@@ -340,17 +340,17 @@ template&lt;class Iter_t , typename Compare &gt; </div>
 <p>: internal function for to divide and sort the ranges </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>: iterator to the first element </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator to the element after the last in the range </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">level</td><td>: level of depth from the initial range </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to Compare elements </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator to the element after the last in the range </td></tr>
+    <tr><td class="paramname">level</td><td>: level of depth from the top level call </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to Compare elements </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="ab095842967117b040f3fc8f727ad786d"></a>
+<a class="anchor" id="a32812e74677e0ae02ae98d60aa387b10"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -363,19 +363,19 @@ template&lt;typename Iter_t , typename Compare &gt; </div>
           <td class="memname">Iter_t boost::sort::parallel::detail::mid3 </td>
           <td>(</td>
           <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>it_l</em>, </td>
+          <td class="paramname"><em>iter_1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>it_m</em>, </td>
+          <td class="paramname"><em>iter_2</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>it_r</em>, </td>
+          <td class="paramname"><em>iter_3</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -396,9 +396,21 @@ template&lt;typename Iter_t , typename Compare &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>: return the iterator to the mid value of the three values passsed as parameters </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iter_1</td><td>: iterator to the first value </td></tr>
+    <tr><td class="paramname">iter_2</td><td>: iterator to the second value </td></tr>
+    <tr><td class="paramname">iter_3</td><td>: iterator to the third value </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two values </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>iterator to the mid value </dd></dl>
+
 </div>
 </div>
-<a class="anchor" id="a6decb57d4ae0d1ed65fa3b6eeaa8747a"></a>
+<a class="anchor" id="a832ad6512371d06abf5af1aa4b012bc5"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -411,55 +423,55 @@ template&lt;class Iter_t , class Compare &gt; </div>
           <td class="memname">Iter_t boost::sort::parallel::detail::mid9 </td>
           <td>(</td>
           <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>it1</em>, </td>
+          <td class="paramname"><em>iter_1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>it2</em>, </td>
+          <td class="paramname"><em>iter_2</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>it3</em>, </td>
+          <td class="paramname"><em>iter_3</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>it4</em>, </td>
+          <td class="paramname"><em>iter_4</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>it5</em>, </td>
+          <td class="paramname"><em>iter_5</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>it6</em>, </td>
+          <td class="paramname"><em>iter_6</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>it7</em>, </td>
+          <td class="paramname"><em>iter_7</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>it8</em>, </td>
+          <td class="paramname"><em>iter_8</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>it9</em>, </td>
+          <td class="paramname"><em>iter_9</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -479,6 +491,23 @@ template&lt;class Iter_t , class Compare &gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>: return the iterator to the mid value of the nine values passsed as parameters </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iter_1</td><td>: iterator to the first value </td></tr>
+    <tr><td class="paramname">iter_2</td><td>: iterator to the second value </td></tr>
+    <tr><td class="paramname">iter_3</td><td>: iterator to the third value </td></tr>
+    <tr><td class="paramname">iter_4</td><td>: iterator to the fourth value </td></tr>
+    <tr><td class="paramname">iter_5</td><td>: iterator to the fifth value </td></tr>
+    <tr><td class="paramname">iter_6</td><td>: iterator to the sixth value </td></tr>
+    <tr><td class="paramname">iter_7</td><td>: iterator to the seventh value </td></tr>
+    <tr><td class="paramname">iter_8</td><td>: iterator to the eighth value </td></tr>
+    <tr><td class="paramname">iter_9</td><td>: iterator to the ninth value </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>iterator to the mid value </dd></dl>
 
 </div>
 </div>
@@ -522,6 +551,16 @@ template&lt;class Iter_t , class Compare &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>: receive a range between first and last, calcule the mid iterator with the first, the previous to the last, and the central position. With this mid iterator swap with the first position </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">first</td><td>: iterator to the first element </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator to the last element </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two elements </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <a class="anchor" id="a94671129274ada0bb19f7ba8f3cb26cf"></a>
@@ -564,30 +603,40 @@ template&lt;class Iter_t , class Compare &gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>: receive a range between first and last, obtain 9 values between the elements including the first and the previous to the last. Obtain the iterator to the mid value and swap with the first position </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">first</td><td>: iterator to the first element </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator to the last element </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two elements </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a class="anchor" id="af0129c711424fad74e35fa8088f8c329"></a>
+<a class="anchor" id="a5778db260f3fc15d41cdcd2c0c463d5d"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class iter1_t , class iter2_t , class compare &gt; </div>
+template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void boost::sort::parallel::detail::range_sort </td>
           <td>(</td>
-          <td class="paramtype">const range&lt; iter1_t &gt; &amp;&#160;</td>
-          <td class="paramname"><em>rng_a</em>, </td>
+          <td class="paramtype">const range&lt; Iter1_t &gt; &amp;&#160;</td>
+          <td class="paramname"><em>range_input</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const range&lt; iter2_t &gt; &amp;&#160;</td>
-          <td class="paramname"><em>rng_b</em>, </td>
+          <td class="paramtype">const range&lt; Iter2_t &gt; &amp;&#160;</td>
+          <td class="paramname"><em>range_buffer</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">compare&#160;</td>
+          <td class="paramtype">Compare&#160;</td>
           <td class="paramname"><em>comp</em>, </td>
         </tr>
         <tr>
@@ -604,37 +653,36 @@ template&lt;class iter1_t , class iter2_t , class compare &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>this function divide r_input in two parts, sort it ,and merge moving the elements to range_buf </p>
+<p>this function divide r_input in two parts, sort it,and merge moving the elements to range_buf </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">r_input</td><td>: range with the elements to sort </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">range_buf</td><td>: range with the elements sorted </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to compare two elements </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">level</td><td>: when is 0, sort with the insertion_sort algorithm if not make a recursive call swaping the ranges </td></tr>
+    <tr><td class="paramname">range_input</td><td>: range with the elements to sort </td></tr>
+    <tr><td class="paramname">range_buffer</td><td>: range with the elements sorted </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare two elements </td></tr>
+    <tr><td class="paramname">level</td><td>: when is 1, sort with the insertion_sort algorithm if not make a recursive call splitting the ranges </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>range with all the elements sorted and moved </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a21a241aec9de3ccfe77737d406386dfa"></a>
+<a class="anchor" id="a737bec4efa584aadec7853a4d42b60f8"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class iter_t &gt; </div>
+template&lt;class Iter_t &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void boost::sort::parallel::detail::sort_index </td>
           <td>(</td>
-          <td class="paramtype">iter_t&#160;</td>
-          <td class="paramname"><em>first</em>, </td>
+          <td class="paramtype">Iter_t&#160;</td>
+          <td class="paramname"><em>global_first</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; iter_t &gt; &amp;&#160;</td>
-          <td class="paramname"><em>v_iter</em>&#160;</td>
+          <td class="paramtype">std::vector&lt; Iter_t &gt; &amp;&#160;</td>
+          <td class="paramname"><em>index</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -644,17 +692,11 @@ template&lt;class iter_t &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>sort the elements according of the sort of the index </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">iter_t</td><td>: iterators of the index </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>This function transform a logical sort of the elements in the index in a physical sort. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>: iterator to the first element of the data </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">v_iter</td><td>: vector sorted of the iterators </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">global_first</td><td>: iterator to the first element of the data </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">index</td><td>: vector of the iterators </td></tr>
   </table>
   </dd>
 </dl>
@@ -664,7 +706,7 @@ template&lt;class iter_t &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 2 2016 12:03:50 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 12 2016 12:41:19 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -97,17 +97,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1comp__unknown.html">comp_unknown</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">In the parallel sorting algorithms, the two first parameters are the iterators to the first and the last element to sort. In the invocation with 4 parameter , the third is the comparison object , and the last is the number of threads to use . But in the invocation with 3 parameters, the third can be the comparison object, and the threads are the HW threads in the machine. or can be the number of threads, and then, comparison is done with the std::less &lt;value_t&gt; This class detect when the parameter is integral If true, consider as the number of threads and the value_type is the std::less of the value_t If false ,consider as the comparison object and the value_type is the same type than unknown.  <a href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1comp__unknown.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1comp__unknown_3_01iter__t_00_01unknown_00_01false_01_4.html">comp_unknown&lt; iter_t, unknown, false &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1comp__unknown_3_01iter__t_00_01unknown_00_01true_01_4.html">comp_unknown&lt; iter_t, unknown, true &gt;</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">this represent a range between two iterators  <a href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html">spinlock_t</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class implement, from atomic variables, a spinlock.  <a href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1stack__cnc.html">stack_cnc</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is a concurrent stack controled by a spin_lock.  <a href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1stack__cnc.html#details">More...</a><br /></td></tr>
@@ -115,9 +109,12 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:aff86eec3961b3651d835766fff1dfac2"><td class="memTemplParams" colspan="2">template&lt;class iter_t &gt; </td></tr>
-<tr class="memitem:aff86eec3961b3651d835766fff1dfac2"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#aff86eec3961b3651d835766fff1dfac2">compare_iter</a> = std::less&lt; typename iterator_traits&lt; iter_t &gt;::value_type &gt;</td></tr>
-<tr class="separator:aff86eec3961b3651d835766fff1dfac2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb53592e9fca3a2855ed638a4e873657"><td class="memTemplParams" colspan="2">template&lt;class iter_t &gt; </td></tr>
+<tr class="memitem:aeb53592e9fca3a2855ed638a4e873657"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#aeb53592e9fca3a2855ed638a4e873657">compare_iter</a> = std::less&lt; typename iterator_traits&lt; iter_t &gt;::value_type &gt;</td></tr>
+<tr class="separator:aeb53592e9fca3a2855ed638a4e873657"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1d14b59173ebdc0fe2f96a99465eb51"><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
+<tr class="memitem:aa1d14b59173ebdc0fe2f96a99465eb51"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#aa1d14b59173ebdc0fe2f96a99465eb51">enable_if_not_integral</a> = typename std::enable_if&lt;!std::is_integral&lt; T &gt;::value &gt;::type</td></tr>
+<tr class="separator:aa1d14b59173ebdc0fe2f96a99465eb51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -137,10 +134,10 @@ Functions</h2></td></tr>
 <tr class="memitem:a27fbd2be0e61e1af8da96faa36e13bf5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a27fbd2be0e61e1af8da96faa36e13bf5">atomic_write</a> (std::atomic&lt; T &gt; &amp;at_var, T2 num)</td></tr>
 <tr class="memdesc:a27fbd2be0e61e1af8da96faa36e13bf5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write a value in an atomic variable using memory model.  <a href="#a27fbd2be0e61e1af8da96faa36e13bf5">More...</a><br /></td></tr>
 <tr class="separator:a27fbd2be0e61e1af8da96faa36e13bf5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c8c63df529cfabff6a424eeda606e92"><td class="memTemplParams" colspan="2">template&lt;class Value_t , class... Args&gt; </td></tr>
-<tr class="memitem:a3c8c63df529cfabff6a424eeda606e92"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a3c8c63df529cfabff6a424eeda606e92">construct_object</a> (Value_t *ptr, Args &amp;&amp;...args)</td></tr>
-<tr class="memdesc:a3c8c63df529cfabff6a424eeda606e92"><td class="mdescLeft">&#160;</td><td class="mdescRight">create an object in the memory specified by ptr  <a href="#a3c8c63df529cfabff6a424eeda606e92">More...</a><br /></td></tr>
-<tr class="separator:a3c8c63df529cfabff6a424eeda606e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97c6e776348dddde550112f234e9e51f"><td class="memTemplParams" colspan="2">template&lt;class Value_t , class... Args&gt; </td></tr>
+<tr class="memitem:a97c6e776348dddde550112f234e9e51f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a97c6e776348dddde550112f234e9e51f">construct</a> (Value_t *ptr, Args &amp;&amp;...args)</td></tr>
+<tr class="memdesc:a97c6e776348dddde550112f234e9e51f"><td class="mdescLeft">&#160;</td><td class="mdescRight">create an object in the memory specified by ptr  <a href="#a97c6e776348dddde550112f234e9e51f">More...</a><br /></td></tr>
+<tr class="separator:a97c6e776348dddde550112f234e9e51f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f14811f301fd581d8be1d1719d7b62d"><td class="memTemplParams" colspan="2">template&lt;class Value_t &gt; </td></tr>
 <tr class="memitem:a2f14811f301fd581d8be1d1719d7b62d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a2f14811f301fd581d8be1d1719d7b62d">destroy_object</a> (Value_t *ptr)</td></tr>
 <tr class="memdesc:a2f14811f301fd581d8be1d1719d7b62d"><td class="mdescLeft">&#160;</td><td class="mdescRight">destroy an object in the memory specified by ptr  <a href="#a2f14811f301fd581d8be1d1719d7b62d">More...</a><br /></td></tr>
@@ -149,13 +146,9 @@ Functions</h2></td></tr>
 <tr class="memitem:aca2ef88aea1a77bc32a3d5a377fc58ae"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#aca2ef88aea1a77bc32a3d5a377fc58ae">init</a> (Iter_t first, Iter_t last, typename iterator_traits&lt; Iter_t &gt;::value_type &amp;val)</td></tr>
 <tr class="memdesc:aca2ef88aea1a77bc32a3d5a377fc58ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize a range of objects with the object val moving across them  <a href="#aca2ef88aea1a77bc32a3d5a377fc58ae">More...</a><br /></td></tr>
 <tr class="separator:aca2ef88aea1a77bc32a3d5a377fc58ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97c6e776348dddde550112f234e9e51f"><td class="memTemplParams" colspan="2">template&lt;class Value_t , class... Args&gt; </td></tr>
-<tr class="memitem:a97c6e776348dddde550112f234e9e51f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a97c6e776348dddde550112f234e9e51f">construct</a> (Value_t *ptr, Args &amp;&amp;...args)</td></tr>
-<tr class="memdesc:a97c6e776348dddde550112f234e9e51f"><td class="mdescLeft">&#160;</td><td class="mdescRight">create an object in the memory specified by ptr  <a href="#a97c6e776348dddde550112f234e9e51f">More...</a><br /></td></tr>
-<tr class="separator:a97c6e776348dddde550112f234e9e51f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a90d4d0b33c59dded3e2c156867e29451"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t &gt; </td></tr>
 <tr class="memitem:a90d4d0b33c59dded3e2c156867e29451"><td class="memTemplItemLeft" align="right" valign="top">Iter2_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a90d4d0b33c59dded3e2c156867e29451">init_move</a> (Iter2_t it_dest, Iter1_t first, Iter1_t last)</td></tr>
-<tr class="memdesc:a90d4d0b33c59dded3e2c156867e29451"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move objets.  <a href="#a90d4d0b33c59dded3e2c156867e29451">More...</a><br /></td></tr>
+<tr class="memdesc:a90d4d0b33c59dded3e2c156867e29451"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move initialized objets.  <a href="#a90d4d0b33c59dded3e2c156867e29451">More...</a><br /></td></tr>
 <tr class="separator:a90d4d0b33c59dded3e2c156867e29451"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab07c685a529475e97d31798c74d20f10"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Value_t  = typename iterator_traits&lt;Iter_t&gt;::value_type&gt; </td></tr>
 <tr class="memitem:ab07c685a529475e97d31798c74d20f10"><td class="memTemplItemLeft" align="right" valign="top">Value_t *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#ab07c685a529475e97d31798c74d20f10">uninit_move</a> (Value_t *ptr, Iter_t first, Iter_t last)</td></tr>
@@ -163,15 +156,15 @@ Functions</h2></td></tr>
 <tr class="separator:ab07c685a529475e97d31798c74d20f10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35652e14e4e483445b53a944d631667b"><td class="memTemplParams" colspan="2">template&lt;class Iter_t &gt; </td></tr>
 <tr class="memitem:a35652e14e4e483445b53a944d631667b"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a35652e14e4e483445b53a944d631667b">destroy</a> (Iter_t first, const Iter_t last)</td></tr>
-<tr class="memdesc:a35652e14e4e483445b53a944d631667b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move objets to uninitialized memory.  <a href="#a35652e14e4e483445b53a944d631667b">More...</a><br /></td></tr>
+<tr class="memdesc:a35652e14e4e483445b53a944d631667b"><td class="mdescLeft">&#160;</td><td class="mdescRight">destroy the elements between first and last  <a href="#a35652e14e4e483445b53a944d631667b">More...</a><br /></td></tr>
 <tr class="separator:a35652e14e4e483445b53a944d631667b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c593dad4c34bba44d18cd19d3a744f9"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </td></tr>
 <tr class="memitem:a6c593dad4c34bba44d18cd19d3a744f9"><td class="memTemplItemLeft" align="right" valign="top">Iter2_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a6c593dad4c34bba44d18cd19d3a744f9">full_merge</a> (Iter1_t buf1, const Iter1_t end_buf1, Iter1_t buf2, const Iter1_t end_buf2, Iter2_t buf_out, Compare comp)</td></tr>
-<tr class="memdesc:a6c593dad4c34bba44d18cd19d3a744f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge two contiguous buffers pointed by buf1 and buf2 , and put in the buffer pointed by buf_out.  <a href="#a6c593dad4c34bba44d18cd19d3a744f9">More...</a><br /></td></tr>
+<tr class="memdesc:a6c593dad4c34bba44d18cd19d3a744f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge two contiguous buffers pointed by buf1 and buf2, and put in the buffer pointed by buf_out.  <a href="#a6c593dad4c34bba44d18cd19d3a744f9">More...</a><br /></td></tr>
 <tr class="separator:a6c593dad4c34bba44d18cd19d3a744f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3d26aef055eb3a9bc0c02a3669d0d19"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Value_t , class Compare &gt; </td></tr>
 <tr class="memitem:af3d26aef055eb3a9bc0c02a3669d0d19"><td class="memTemplItemLeft" align="right" valign="top">Value_t *&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#af3d26aef055eb3a9bc0c02a3669d0d19">uninit_full_merge</a> (Iter_t first1, const Iter_t last1, Iter_t first2, const Iter_t last2, Value_t *it_out, Compare comp)</td></tr>
-<tr class="memdesc:af3d26aef055eb3a9bc0c02a3669d0d19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge two contiguous buffers pointed by first1 and first2 , and put in the uninitialized buffer pointed by it_out.  <a href="#af3d26aef055eb3a9bc0c02a3669d0d19">More...</a><br /></td></tr>
+<tr class="memdesc:af3d26aef055eb3a9bc0c02a3669d0d19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge two contiguous buffers pointed by first1 and first2, and put in the uninitialized buffer pointed by it_out.  <a href="#af3d26aef055eb3a9bc0c02a3669d0d19">More...</a><br /></td></tr>
 <tr class="separator:af3d26aef055eb3a9bc0c02a3669d0d19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c4ca8fa9d86e931719fbeca5818a730"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </td></tr>
 <tr class="memitem:a2c4ca8fa9d86e931719fbeca5818a730"><td class="memTemplItemLeft" align="right" valign="top">Iter2_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a2c4ca8fa9d86e931719fbeca5818a730">half_merge</a> (Iter1_t buf1, const Iter1_t end_buf1, Iter2_t buf2, const Iter2_t end_buf2, Iter2_t buf_out, Compare comp)</td></tr>
@@ -179,13 +172,13 @@ Functions</h2></td></tr>
 <tr class="separator:a2c4ca8fa9d86e931719fbeca5818a730"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5787ea4b9228fee3527975e589a38dbd"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Iter3_t , class Compare &gt; </td></tr>
 <tr class="memitem:a5787ea4b9228fee3527975e589a38dbd"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a5787ea4b9228fee3527975e589a38dbd">in_place_merge_uncontiguous</a> (Iter1_t src1, const Iter1_t end_src1, Iter2_t src2, const Iter2_t end_src2, Iter3_t aux, Compare comp)</td></tr>
-<tr class="memdesc:a5787ea4b9228fee3527975e589a38dbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">: merge two uncontiguous buffers, placing the results in the buffers for to do this use an auxiliary buffer pointed by aux  <a href="#a5787ea4b9228fee3527975e589a38dbd">More...</a><br /></td></tr>
+<tr class="memdesc:a5787ea4b9228fee3527975e589a38dbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">: merge two uncontiguous buffers, placing the results in the buffers Use an auxiliary buffer pointed by aux  <a href="#a5787ea4b9228fee3527975e589a38dbd">More...</a><br /></td></tr>
 <tr class="separator:a5787ea4b9228fee3527975e589a38dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c825c93be017e0678046d104188a232"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </td></tr>
 <tr class="memitem:a7c825c93be017e0678046d104188a232"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a7c825c93be017e0678046d104188a232">in_place_merge</a> (Iter1_t src1, Iter1_t src2, Iter1_t end_src2, Iter2_t buf, Compare comp)</td></tr>
-<tr class="memdesc:a7c825c93be017e0678046d104188a232"><td class="mdescLeft">&#160;</td><td class="mdescRight">: merge two contiguous buffers,using an auxiliary buffer pointed by buf  <a href="#a7c825c93be017e0678046d104188a232">More...</a><br /></td></tr>
+<tr class="memdesc:a7c825c93be017e0678046d104188a232"><td class="mdescLeft">&#160;</td><td class="mdescRight">: merge two contiguous buffers,using an auxiliary buffer pointed by buf. The results are in src1 and src2  <a href="#a7c825c93be017e0678046d104188a232">More...</a><br /></td></tr>
 <tr class="separator:a7c825c93be017e0678046d104188a232"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdbb9d59241d9f257056f7c31f7e6902"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare  = typename compare_iter &lt; Iter_t&gt;::value_type&gt; </td></tr>
+<tr class="memitem:afdbb9d59241d9f257056f7c31f7e6902"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare  = typename compare_iter&lt;Iter_t&gt;::value_type&gt; </td></tr>
 <tr class="memitem:afdbb9d59241d9f257056f7c31f7e6902"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#afdbb9d59241d9f257056f7c31f7e6902">less_range</a> (Iter_t it1, uint32_t pos1, Iter_t it2, uint32_t pos2, Compare comp=Compare())</td></tr>
 <tr class="memdesc:afdbb9d59241d9f257056f7c31f7e6902"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compare the elements pointed by it1 and it2, and if they are equals, compare their position, doing a stable comparison.  <a href="#afdbb9d59241d9f257056f7c31f7e6902">More...</a><br /></td></tr>
 <tr class="separator:afdbb9d59241d9f257056f7c31f7e6902"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -193,80 +186,94 @@ Functions</h2></td></tr>
 <tr class="memitem:a3afed035c037677bac0eca1d54dbb9f9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a3afed035c037677bac0eca1d54dbb9f9">full_merge4</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &amp;rdest, <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; vrange_input[4], uint32_t nrange_input, Compare comp)</td></tr>
 <tr class="memdesc:a3afed035c037677bac0eca1d54dbb9f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge four ranges.  <a href="#a3afed035c037677bac0eca1d54dbb9f9">More...</a><br /></td></tr>
 <tr class="separator:a3afed035c037677bac0eca1d54dbb9f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afbe7fc2f64934df1b273d54bdf1b9a4b"><td class="memTemplParams" colspan="2">template&lt;class value_t , class Iter_t , class Compare &gt; </td></tr>
-<tr class="memitem:afbe7fc2f64934df1b273d54bdf1b9a4b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; value_t * &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#afbe7fc2f64934df1b273d54bdf1b9a4b">uninit_full_merge4</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; value_t * &gt; &amp;dest, <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt; vrange_input[4], uint32_t nrange_input, Compare comp)</td></tr>
-<tr class="memdesc:afbe7fc2f64934df1b273d54bdf1b9a4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge four ranges and put the result in uninitialized memory.  <a href="#afbe7fc2f64934df1b273d54bdf1b9a4b">More...</a><br /></td></tr>
-<tr class="separator:afbe7fc2f64934df1b273d54bdf1b9a4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3afe5fb7da79a56ce49070caa077340"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </td></tr>
-<tr class="memitem:ae3afe5fb7da79a56ce49070caa077340"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#ae3afe5fb7da79a56ce49070caa077340">merge_level4</a> (<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; dest, std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &gt; &amp;v_input, std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &gt; &amp;v_output, Compare comp)</td></tr>
-<tr class="memdesc:ae3afe5fb7da79a56ce49070caa077340"><td class="mdescLeft">&#160;</td><td class="mdescRight">merge the ranges in the vector v_input using full_merge4. The v_output vector is used as auxiliary memory in the internal process The final results is in the dest range. All the ranges of v_output are inside the range dest  <a href="#ae3afe5fb7da79a56ce49070caa077340">More...</a><br /></td></tr>
-<tr class="separator:ae3afe5fb7da79a56ce49070caa077340"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefd92850a0079439c92bde9659acee60"><td class="memTemplParams" colspan="2">template&lt;class Value_t , class Iter_t , class Compare &gt; </td></tr>
-<tr class="memitem:aefd92850a0079439c92bde9659acee60"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#aefd92850a0079439c92bde9659acee60">uninit_merge_level4</a> (<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Value_t * &gt; dest, std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt; &gt; &amp;v_input, std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Value_t * &gt; &gt; &amp;v_output, Compare comp)</td></tr>
-<tr class="memdesc:aefd92850a0079439c92bde9659acee60"><td class="mdescLeft">&#160;</td><td class="mdescRight">merge the ranges over uninitialized memory,in the vector v_input using full_merge4. The v_output vector is used as auxiliary memory in the internal process. The final results is in the dest range. All the ranges of v_output are inside the range dest  <a href="#aefd92850a0079439c92bde9659acee60">More...</a><br /></td></tr>
-<tr class="separator:aefd92850a0079439c92bde9659acee60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c220e3f7d2a18ff277302db1aa1744f"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </td></tr>
-<tr class="memitem:a2c220e3f7d2a18ff277302db1aa1744f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a2c220e3f7d2a18ff277302db1aa1744f">merge_vector4</a> (<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; range_input, <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; range_output, std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &gt; &amp;v_input, std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &gt; &amp;v_output, Compare comp)</td></tr>
-<tr class="memdesc:a2c220e3f7d2a18ff277302db1aa1744f"><td class="mdescLeft">&#160;</td><td class="mdescRight">merge the ranges in the vector v_input using merge_level4. The v_output vector is used as auxiliary memory in the internal process The final results is in the range_output range. All the ranges of v_output are inside the range range_output All the ranges of v_input are inside the range range_input  <a href="#a2c220e3f7d2a18ff277302db1aa1744f">More...</a><br /></td></tr>
-<tr class="separator:a2c220e3f7d2a18ff277302db1aa1744f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab175e52b5487e46e68598d24f35391c9"><td class="memTemplParams" colspan="2">template&lt;class Value_t , class Iter_t , class Compare &gt; </td></tr>
+<tr class="memitem:ab175e52b5487e46e68598d24f35391c9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Value_t * &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#ab175e52b5487e46e68598d24f35391c9">uninit_full_merge4</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Value_t * &gt; &amp;dest, <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt; vrange_input[4], uint32_t nrange_input, Compare comp)</td></tr>
+<tr class="memdesc:ab175e52b5487e46e68598d24f35391c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge four ranges and put the result in uninitialized memory.  <a href="#ab175e52b5487e46e68598d24f35391c9">More...</a><br /></td></tr>
+<tr class="separator:ab175e52b5487e46e68598d24f35391c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca2d194e8ebc87649713c3eb001b3b81"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </td></tr>
+<tr class="memitem:aca2d194e8ebc87649713c3eb001b3b81"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#aca2d194e8ebc87649713c3eb001b3b81">merge_level4</a> (<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; dest, std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt;&gt; &amp;v_input, std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt;&gt; &amp;v_output, Compare comp)</td></tr>
+<tr class="memdesc:aca2d194e8ebc87649713c3eb001b3b81"><td class="mdescLeft">&#160;</td><td class="mdescRight">merge the ranges in the vector v_input with the full_merge4 function. The v_output vector is used as auxiliary memory in the internal process. The final results is in the dest range. All the ranges of v_output are inside the range dest  <a href="#aca2d194e8ebc87649713c3eb001b3b81">More...</a><br /></td></tr>
+<tr class="separator:aca2d194e8ebc87649713c3eb001b3b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbcfe1529458a0444461e5abf4cc173a"><td class="memTemplParams" colspan="2">template&lt;class Value_t , class Iter_t , class Compare &gt; </td></tr>
+<tr class="memitem:afbcfe1529458a0444461e5abf4cc173a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#afbcfe1529458a0444461e5abf4cc173a">uninit_merge_level4</a> (<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Value_t * &gt; dest, std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt;&gt; &amp;v_input, std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Value_t * &gt;&gt; &amp;v_output, Compare comp)</td></tr>
+<tr class="memdesc:afbcfe1529458a0444461e5abf4cc173a"><td class="mdescLeft">&#160;</td><td class="mdescRight">merge the ranges moving the objects and constructing them in uninitialized memory, in the vector v_input using full_merge4. The v_output vector is used as auxiliary memory in the internal process. The final results is in the dest range. All the ranges of v_output are inside the range dest  <a href="#afbcfe1529458a0444461e5abf4cc173a">More...</a><br /></td></tr>
+<tr class="separator:afbcfe1529458a0444461e5abf4cc173a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a489298e61699e6c2e324e6ba3b6803e9"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </td></tr>
+<tr class="memitem:a489298e61699e6c2e324e6ba3b6803e9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a489298e61699e6c2e324e6ba3b6803e9">merge_vector4</a> (<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; range_input, <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; range_output, std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt;&gt; &amp;v_input, std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt;&gt; &amp;v_output, Compare comp)</td></tr>
+<tr class="memdesc:a489298e61699e6c2e324e6ba3b6803e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">merge the ranges in the vector v_input using the merge_level4 function. The v_output vector is used as auxiliary memory in the internal process The final results is in the range_output range. All the ranges of v_output are inside the range range_output All the ranges of v_input are inside the range range_input  <a href="#a489298e61699e6c2e324e6ba3b6803e9">More...</a><br /></td></tr>
+<tr class="separator:a489298e61699e6c2e324e6ba3b6803e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3039a77ab40d718859b5cd2831d6eb0c"><td class="memTemplParams" colspan="2">template&lt;class Iter_t &gt; </td></tr>
 <tr class="memitem:a3039a77ab40d718859b5cd2831d6eb0c"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a3039a77ab40d718859b5cd2831d6eb0c">concat</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt; &amp;it1, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt; &amp;it2)</td></tr>
-<tr class="memdesc:a3039a77ab40d718859b5cd2831d6eb0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">concatebate two contiguous ranges  <a href="#a3039a77ab40d718859b5cd2831d6eb0c">More...</a><br /></td></tr>
+<tr class="memdesc:a3039a77ab40d718859b5cd2831d6eb0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">concatenate two contiguous ranges  <a href="#a3039a77ab40d718859b5cd2831d6eb0c">More...</a><br /></td></tr>
 <tr class="separator:a3039a77ab40d718859b5cd2831d6eb0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5672a14d5a30f98ed71d7ffa6f85f49d"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t &gt; </td></tr>
 <tr class="memitem:a5672a14d5a30f98ed71d7ffa6f85f49d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a5672a14d5a30f98ed71d7ffa6f85f49d">init_move</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &amp;dest, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &amp;src)</td></tr>
-<tr class="memdesc:a5672a14d5a30f98ed71d7ffa6f85f49d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move objets from the range src to dest.  <a href="#a5672a14d5a30f98ed71d7ffa6f85f49d">More...</a><br /></td></tr>
+<tr class="memdesc:a5672a14d5a30f98ed71d7ffa6f85f49d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move initialized objets from the range src to dest.  <a href="#a5672a14d5a30f98ed71d7ffa6f85f49d">More...</a><br /></td></tr>
 <tr class="separator:a5672a14d5a30f98ed71d7ffa6f85f49d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aff0533301c4dcdef38ea52b6fafd2bf8"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t &gt; </td></tr>
 <tr class="memitem:aff0533301c4dcdef38ea52b6fafd2bf8"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#aff0533301c4dcdef38ea52b6fafd2bf8">uninit_move</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &amp;dest, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &amp;src)</td></tr>
-<tr class="memdesc:aff0533301c4dcdef38ea52b6fafd2bf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move objets from the range src creatinf them in dest.  <a href="#aff0533301c4dcdef38ea52b6fafd2bf8">More...</a><br /></td></tr>
+<tr class="memdesc:aff0533301c4dcdef38ea52b6fafd2bf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move uninitialized objets from the range src creating them in dest.  <a href="#aff0533301c4dcdef38ea52b6fafd2bf8">More...</a><br /></td></tr>
 <tr class="separator:aff0533301c4dcdef38ea52b6fafd2bf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b160611803ed05402b359dabd56bcfd"><td class="memTemplParams" colspan="2">template&lt;class Iter_t &gt; </td></tr>
-<tr class="memitem:a9b160611803ed05402b359dabd56bcfd"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a9b160611803ed05402b359dabd56bcfd">destroy</a> (<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt; r)</td></tr>
-<tr class="memdesc:a9b160611803ed05402b359dabd56bcfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">destroy a range of objects  <a href="#a9b160611803ed05402b359dabd56bcfd">More...</a><br /></td></tr>
-<tr class="separator:a9b160611803ed05402b359dabd56bcfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07dfbb4f42fa81f995270536f0867fff"><td class="memTemplParams" colspan="2">template&lt;class Iter_t &gt; </td></tr>
-<tr class="memitem:a07dfbb4f42fa81f995270536f0867fff"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a07dfbb4f42fa81f995270536f0867fff">init</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt; &amp;r, typename iterator_traits&lt; Iter_t &gt;::value_type &amp;val)</td></tr>
-<tr class="memdesc:a07dfbb4f42fa81f995270536f0867fff"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize a range of objects with the object val moving across them  <a href="#a07dfbb4f42fa81f995270536f0867fff">More...</a><br /></td></tr>
-<tr class="separator:a07dfbb4f42fa81f995270536f0867fff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a007076e25e0372476000ce7874e3c103"><td class="memTemplParams" colspan="2">template&lt;class iter1_t , class iter2_t , class compare &gt; </td></tr>
-<tr class="memitem:a007076e25e0372476000ce7874e3c103"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a007076e25e0372476000ce7874e3c103">is_mergeable</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; iter1_t &gt; &amp;src1, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; iter2_t &gt; &amp;src2, compare comp)</td></tr>
-<tr class="memdesc:a007076e25e0372476000ce7874e3c103"><td class="mdescLeft">&#160;</td><td class="mdescRight">: indicate if two ranges have a possible merge  <a href="#a007076e25e0372476000ce7874e3c103">More...</a><br /></td></tr>
-<tr class="separator:a007076e25e0372476000ce7874e3c103"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c930a2e6e4baf7e1e0252f013dad7c3"><td class="memTemplParams" colspan="2">template&lt;class Iter_t &gt; </td></tr>
+<tr class="memitem:a9c930a2e6e4baf7e1e0252f013dad7c3"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a9c930a2e6e4baf7e1e0252f013dad7c3">destroy</a> (<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt; rng)</td></tr>
+<tr class="memdesc:a9c930a2e6e4baf7e1e0252f013dad7c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">destroy a range of objects  <a href="#a9c930a2e6e4baf7e1e0252f013dad7c3">More...</a><br /></td></tr>
+<tr class="separator:a9c930a2e6e4baf7e1e0252f013dad7c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a451b3a4418b189ed70e15245aa09e115"><td class="memTemplParams" colspan="2">template&lt;class Iter_t &gt; </td></tr>
+<tr class="memitem:a451b3a4418b189ed70e15245aa09e115"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a451b3a4418b189ed70e15245aa09e115">init</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt; &amp;rng, typename iterator_traits&lt; Iter_t &gt;::value_type &amp;val)</td></tr>
+<tr class="memdesc:a451b3a4418b189ed70e15245aa09e115"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialize a range of objects with the object val moving across them  <a href="#a451b3a4418b189ed70e15245aa09e115">More...</a><br /></td></tr>
+<tr class="separator:a451b3a4418b189ed70e15245aa09e115"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a186221ff2e48eb4147db586569db5a5e"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </td></tr>
+<tr class="memitem:a186221ff2e48eb4147db586569db5a5e"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a186221ff2e48eb4147db586569db5a5e">is_mergeable</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &amp;src1, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &amp;src2, Compare comp)</td></tr>
+<tr class="memdesc:a186221ff2e48eb4147db586569db5a5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">: indicate if two ranges have a possible merge  <a href="#a186221ff2e48eb4147db586569db5a5e">More...</a><br /></td></tr>
+<tr class="separator:a186221ff2e48eb4147db586569db5a5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9e3a8b10d5151c867091a5db1cd526f"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Iter3_t , class Compare &gt; </td></tr>
 <tr class="memitem:ac9e3a8b10d5151c867091a5db1cd526f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter3_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#ac9e3a8b10d5151c867091a5db1cd526f">full_merge</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter3_t &gt; &amp;dest, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &amp;src1, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &amp;src2, Compare comp)</td></tr>
-<tr class="memdesc:ac9e3a8b10d5151c867091a5db1cd526f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge two contiguous ranges src1 and src2 , and put the result in the range dest, returning the range merged.  <a href="#ac9e3a8b10d5151c867091a5db1cd526f">More...</a><br /></td></tr>
+<tr class="memdesc:ac9e3a8b10d5151c867091a5db1cd526f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge two contiguous ranges src1 and src2, and put the result in the range dest, returning the range merged.  <a href="#ac9e3a8b10d5151c867091a5db1cd526f">More...</a><br /></td></tr>
 <tr class="separator:ac9e3a8b10d5151c867091a5db1cd526f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabbce79d671a81ef6f4fe8a7ce51a81f"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class value_t , class Compare &gt; </td></tr>
-<tr class="memitem:aabbce79d671a81ef6f4fe8a7ce51a81f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; value_t * &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#aabbce79d671a81ef6f4fe8a7ce51a81f">uninit_full_merge</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; value_t * &gt; &amp;dest, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &amp;src1, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &amp;src2, Compare comp)</td></tr>
-<tr class="memdesc:aabbce79d671a81ef6f4fe8a7ce51a81f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge two contiguous ranges src1 and src2 , and create and move the result in the uninitialized range dest, returning the range merged.  <a href="#aabbce79d671a81ef6f4fe8a7ce51a81f">More...</a><br /></td></tr>
-<tr class="separator:aabbce79d671a81ef6f4fe8a7ce51a81f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab759267dd1954db7c761edcf698df676"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Value_t , class Compare &gt; </td></tr>
+<tr class="memitem:ab759267dd1954db7c761edcf698df676"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Value_t * &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#ab759267dd1954db7c761edcf698df676">uninit_full_merge</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Value_t * &gt; &amp;dest, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &amp;src1, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &amp;src2, Compare comp)</td></tr>
+<tr class="memdesc:ab759267dd1954db7c761edcf698df676"><td class="mdescLeft">&#160;</td><td class="mdescRight">Merge two contiguous uninitialized ranges src1 and src2, and create and move the result in the uninitialized range dest, returning the range merged.  <a href="#ab759267dd1954db7c761edcf698df676">More...</a><br /></td></tr>
+<tr class="separator:ab759267dd1954db7c761edcf698df676"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a418617fad6adfdc7f656d406dcc2d737"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </td></tr>
 <tr class="memitem:a418617fad6adfdc7f656d406dcc2d737"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a418617fad6adfdc7f656d406dcc2d737">half_merge</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &amp;dest, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &amp;src1, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &amp;src2, Compare comp)</td></tr>
-<tr class="memdesc:a418617fad6adfdc7f656d406dcc2d737"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Merge two buffers. The first buffer is in a separate memory  <a href="#a418617fad6adfdc7f656d406dcc2d737">More...</a><br /></td></tr>
+<tr class="memdesc:a418617fad6adfdc7f656d406dcc2d737"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Merge two initialized buffers. The first buffer is in a separate memory  <a href="#a418617fad6adfdc7f656d406dcc2d737">More...</a><br /></td></tr>
 <tr class="separator:a418617fad6adfdc7f656d406dcc2d737"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b4974086a7355189544755cd3369b60"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Iter3_t , class Compare &gt; </td></tr>
 <tr class="memitem:a1b4974086a7355189544755cd3369b60"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a1b4974086a7355189544755cd3369b60">in_place_merge_uncontiguous</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &amp;src1, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &amp;src2, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter3_t &gt; &amp;aux, Compare comp)</td></tr>
-<tr class="memdesc:a1b4974086a7355189544755cd3369b60"><td class="mdescLeft">&#160;</td><td class="mdescRight">: merge two non contiguous buffers src1 , src2, using the range aux as auxiliary memory  <a href="#a1b4974086a7355189544755cd3369b60">More...</a><br /></td></tr>
+<tr class="memdesc:a1b4974086a7355189544755cd3369b60"><td class="mdescLeft">&#160;</td><td class="mdescRight">: merge two non contiguous ranges src1, src2, using the range aux as auxiliary memory. The results are in the original ranges  <a href="#a1b4974086a7355189544755cd3369b60">More...</a><br /></td></tr>
 <tr class="separator:a1b4974086a7355189544755cd3369b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad23b4b93d17e864f4759b89c4613942f"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </td></tr>
 <tr class="memitem:ad23b4b93d17e864f4759b89c4613942f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#ad23b4b93d17e864f4759b89c4613942f">in_place_merge</a> (const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &amp;src1, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &amp;src2, const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &amp;buf, Compare comp)</td></tr>
-<tr class="memdesc:ad23b4b93d17e864f4759b89c4613942f"><td class="mdescLeft">&#160;</td><td class="mdescRight">: merge two contiguous buffers ( src1, src2) using buf as auxiliary memory  <a href="#ad23b4b93d17e864f4759b89c4613942f">More...</a><br /></td></tr>
+<tr class="memdesc:ad23b4b93d17e864f4759b89c4613942f"><td class="mdescLeft">&#160;</td><td class="mdescRight">: merge two contiguous ranges ( src1, src2) using buf as auxiliary memory. The results are in the same ranges  <a href="#ad23b4b93d17e864f4759b89c4613942f">More...</a><br /></td></tr>
 <tr class="separator:ad23b4b93d17e864f4759b89c4613942f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a96e0acd637c3f107cb09ac1514a6bdd0"><td class="memTemplParams" colspan="2">template&lt;class iter1_t , class iter2_t , class compare &gt; </td></tr>
-<tr class="memitem:a96e0acd637c3f107cb09ac1514a6bdd0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a96e0acd637c3f107cb09ac1514a6bdd0">merge_flow</a> (<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; iter1_t &gt; rng1, <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; iter2_t &gt; rbuf, <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; iter1_t &gt; rng2, compare cmp)</td></tr>
-<tr class="memdesc:a96e0acd637c3f107cb09ac1514a6bdd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">: merge two contiguous buffers  <a href="#a96e0acd637c3f107cb09ac1514a6bdd0">More...</a><br /></td></tr>
-<tr class="separator:a96e0acd637c3f107cb09ac1514a6bdd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f970837892f22b8e10a7a0dc0783a87"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </td></tr>
+<tr class="memitem:a5f970837892f22b8e10a7a0dc0783a87"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#a5f970837892f22b8e10a7a0dc0783a87">merge_flow</a> (<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; rng1, <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; rbuf, <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; rng2, Compare cmp)</td></tr>
+<tr class="memdesc:a5f970837892f22b8e10a7a0dc0783a87"><td class="mdescLeft">&#160;</td><td class="mdescRight">: merge two ranges, as part of a merge the ranges in a list. This function reduce the number of movements compared with inplace_merge when you need to merge a sequence of ranges. This function merge the ranges rbuf and rng2, and the results are in rng1 and rbuf  <a href="#a5f970837892f22b8e10a7a0dc0783a87">More...</a><br /></td></tr>
+<tr class="separator:a5f970837892f22b8e10a7a0dc0783a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a class="anchor" id="aff86eec3961b3651d835766fff1dfac2"></a>
+<a class="anchor" id="aeb53592e9fca3a2855ed638a4e873657"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class iter_t &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#aff86eec3961b3651d835766fff1dfac2">boost::sort::parallel::detail::util::compare_iter</a> = typedef std::less&lt; typename iterator_traits&lt;iter_t&gt;::value_type &gt;</td>
+          <td class="memname">using <a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#aeb53592e9fca3a2855ed638a4e873657">boost::sort::parallel::detail::util::compare_iter</a> = typedef std::less&lt;typename iterator_traits&lt;iter_t&gt;::value_type&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa1d14b59173ebdc0fe2f96a99465eb51"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail_1_1util.html#aa1d14b59173ebdc0fe2f96a99465eb51">boost::sort::parallel::detail::util::enable_if_not_integral</a> = typedef typename std::enable_if&lt;!std::is_integral&lt;T&gt;::value&gt;::type</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -311,13 +318,12 @@ template&lt;typename T , typename T2 &gt; </div>
 <p>Add a number to an atomic variable, using a memory model. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">at_var</td><td>: variable to add </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>: value to add to at_var </td></tr>
+    <tr><td class="paramname">at_var</td><td>: variable to add </td></tr>
+    <tr><td class="paramname">num</td><td>: value to add to at_var </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>result of the operation </dd></dl>
-<dl class="section remark"><dt>Remarks</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -348,7 +354,7 @@ template&lt;typename T &gt; </div>
 <p>make the atomic read of an atomic variable, using a memory model </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">at_var</td><td>: atomic variable to read </td></tr>
+    <tr><td class="paramname">at_var</td><td>: atomic variable to read </td></tr>
   </table>
   </dd>
 </dl>
@@ -393,13 +399,12 @@ template&lt;typename T , typename T2 &gt; </div>
 <p>Atomic subtract of an atomic variable using memory model. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">at_var</td><td>: Varibale to subtract </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>: value to sub to at_var </td></tr>
+    <tr><td class="paramname">at_var</td><td>: Varibale to subtract </td></tr>
+    <tr><td class="paramname">num</td><td>: value to sub to at_var </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>result of the operation </dd></dl>
-<dl class="section remark"><dt>Remarks</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -440,13 +445,11 @@ template&lt;typename T , typename T2 &gt; </div>
 <p>Write a value in an atomic variable using memory model. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">at_var</td><td>: varible to write </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">num</td><td>: value to write in at_var </td></tr>
+    <tr><td class="paramname">at_var</td><td>: varible to write </td></tr>
+    <tr><td class="paramname">num</td><td>: value to write in at_var </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>resuñlts of the operation </dd></dl>
-<dl class="section remark"><dt>Remarks</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -476,11 +479,11 @@ template&lt;class Iter_t &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>concatebate two contiguous ranges </p>
+<p>concatenate two contiguous ranges </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">it1</td><td>: first range </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">it2</td><td>: second range </td></tr>
+    <tr><td class="paramname">it1</td><td>: first range </td></tr>
+    <tr><td class="paramname">it2</td><td>: second range </td></tr>
   </table>
   </dd>
 </dl>
@@ -523,103 +526,10 @@ template&lt;class Value_t , class... Args&gt; </div>
 </div><div class="memdoc">
 
 <p>create an object in the memory specified by ptr </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Value_t</td><td>: class of the object to create </td></tr>
-    <tr><td class="paramname">Args</td><td>: parameters for the constructor </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>: pointer to the memory where to create the object </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>: arguments to the constructor </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a3c8c63df529cfabff6a424eeda606e92"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class Value_t , class... Args&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void boost::sort::parallel::detail::util::construct_object </td>
-          <td>(</td>
-          <td class="paramtype">Value_t *&#160;</td>
-          <td class="paramname"><em>ptr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Args &amp;&amp;...&#160;</td>
-          <td class="paramname"><em>args</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>create an object in the memory specified by ptr </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">value_t</td><td>: class of the object to create </td></tr>
-    <tr><td class="paramname">Args</td><td>: parameters for the constructor </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>: pointer to the memory where to create the object </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">args</td><td>: arguments to the constructor </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a9b160611803ed05402b359dabd56bcfd"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class Iter_t &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void boost::sort::parallel::detail::util::destroy </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt;&#160;</td>
-          <td class="paramname"><em>r</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>destroy a range of objects </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">r</td><td>: range to destroy </td></tr>
+    <tr><td class="paramname">ptr</td><td>: pointer to the memory where to create the object </td></tr>
+    <tr><td class="paramname">args</td><td>: arguments to the constructor </td></tr>
   </table>
   </dd>
 </dl>
@@ -631,9 +541,6 @@ template&lt;class Iter_t &gt; </div>
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class Iter_t &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void boost::sort::parallel::detail::util::destroy </td>
@@ -653,6 +560,36 @@ template&lt;class Iter_t &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+<p>destroy the elements between first and last </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">first</td><td>: iterator to the first element to destroy </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator to the last element to destroy </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a9c930a2e6e4baf7e1e0252f013dad7c3"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Iter_t &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void boost::sort::parallel::detail::util::destroy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt;&#160;</td>
+          <td class="paramname"><em>rng</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">inline</span></span>  </td>
@@ -660,18 +597,10 @@ template&lt;class Iter_t &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Move objets to uninitialized memory. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Iter_t</td><td>: iterator to the elements </td></tr>
-    <tr><td class="paramname">value_t</td><td>: class of the object to construct </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>destroy a range of objects </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>: pointer to the memory where to construct the object </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">R</td><td>: range to move </td></tr>
+    <tr><td class="paramname">rng</td><td>: range to destroy </td></tr>
   </table>
   </dd>
 </dl>
@@ -703,15 +632,9 @@ template&lt;class Value_t &gt; </div>
 </div><div class="memdoc">
 
 <p>destroy an object in the memory specified by ptr </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Value_t</td><td>: class of the object to create </td></tr>
-  </table>
-  </dd>
-</dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>: pointer to the object to destroy </td></tr>
+    <tr><td class="paramname">ptr</td><td>: pointer to the object to destroy </td></tr>
   </table>
   </dd>
 </dl>
@@ -723,9 +646,6 @@ template&lt;class Value_t &gt; </div>
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Iter2_t boost::sort::parallel::detail::util::full_merge </td>
@@ -769,22 +689,17 @@ template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Merge two contiguous buffers pointed by buf1 and buf2 , and put in the buffer pointed by buf_out. </p>
+<p>Merge two contiguous buffers pointed by buf1 and buf2, and put in the buffer pointed by buf_out. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">buf1</td><td>: iterator to the first element in the first buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">end_buf1</td><td>: final iterator of first buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">buf2</td><td>: iterator to the first iterator to the second buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">end_buf2</td><td>: final iterator of the second buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">buf_out</td><td>: buffer where move the elements merged </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: comparison object </td></tr>
+    <tr><td class="paramname">buf1</td><td>: iterator to the first element in the first buffer </td></tr>
+    <tr><td class="paramname">end_buf1</td><td>: final iterator of first buffer </td></tr>
+    <tr><td class="paramname">buf2</td><td>: iterator to the first iterator to the second buffer </td></tr>
+    <tr><td class="paramname">end_buf2</td><td>: final iterator of the second buffer </td></tr>
+    <tr><td class="paramname">buf_out</td><td>: buffer where move the elements merged </td></tr>
+    <tr><td class="paramname">comp</td><td>: comparison object </td></tr>
   </table>
   </dd>
 </dl>
@@ -837,13 +752,13 @@ template&lt;class Iter1_t , class Iter2_t , class Iter3_t , class Compare &gt; <
 </table>
 </div><div class="memdoc">
 
-<p>Merge two contiguous ranges src1 and src2 , and put the result in the range dest, returning the range merged. </p>
+<p>Merge two contiguous ranges src1 and src2, and put the result in the range dest, returning the range merged. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dest</td><td>: range where locate the lements merged. the size of dest must be greater or equal than the sum of the sizes of src1 and src2 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">src1</td><td>: first range to merge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">src2</td><td>: second range to merge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: comparison object </td></tr>
+    <tr><td class="paramname">dest</td><td>: range where locate the lements merged. the size of dest must be greater or equal than the sum of the sizes of src1 and src2 </td></tr>
+    <tr><td class="paramname">src1</td><td>: first range to merge </td></tr>
+    <tr><td class="paramname">src2</td><td>: second range to merge </td></tr>
+    <tr><td class="paramname">comp</td><td>: comparison object </td></tr>
   </table>
   </dd>
 </dl>
@@ -892,14 +807,14 @@ template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
 <p>Merge four ranges. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dest</td><td>range where move the elements merged. Their size must be greater or equal than the sum of the sizes of the ranges in the array R </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">R</td><td>: array of ranges to merge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nrange_input</td><td>: number of ranges in R </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: comparison object </td></tr>
+    <tr><td class="paramname">dest</td><td>range where move the elements merged. Their size must be greater or equal than the sum of the sizes of the ranges in vrange_input </td></tr>
+    <tr><td class="paramname">vrange_input</td><td>: array of ranges to merge </td></tr>
+    <tr><td class="paramname">nrange_input</td><td>: number of ranges in vrange_input </td></tr>
+    <tr><td class="paramname">comp</td><td>: comparison object </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>range with all the elements move with the size adjusted </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>range with all the elements moved with the size adjusted </dd></dl>
 
 </div>
 </div>
@@ -908,9 +823,6 @@ template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Iter2_t boost::sort::parallel::detail::util::half_merge </td>
@@ -954,26 +866,20 @@ template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>: Merge two buffers. The first buffer is in a separate memory. The second buffer have a empty space before buf2 of the same size than the (end_buf1 - buf1) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">buf1</td><td>: iterator to the first element of the first buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">end_buf1</td><td>: iterator to the last element of the first buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">buf2</td><td>: iterator to the first element of the second buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">end_buf2</td><td>: iterator to the last element of the second buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">buf_out</td><td>: iterator to the first element to the buffer where put the result </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for Compare two elements of the type pointed by the Iter1_t and Iter2_t </td></tr>
+    <tr><td class="paramname">buf1</td><td>: iterator to the first element of the first buffer </td></tr>
+    <tr><td class="paramname">end_buf1</td><td>: iterator to the last element of the first buffer </td></tr>
+    <tr><td class="paramname">buf2</td><td>: iterator to the first element of the second buffer </td></tr>
+    <tr><td class="paramname">end_buf2</td><td>: iterator to the last element of the second buffer </td></tr>
+    <tr><td class="paramname">buf_out</td><td>: iterator to the first element to the buffer where put the result </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for Compare two elements of the type pointed by the Iter1_t and Iter2_t </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section remark"><dt>Remarks</dt><dd>The elements pointed by Iter1_t and Iter2_t must be the same </dd></dl>
 
 </div>
 </div>
@@ -1023,17 +929,76 @@ template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>: Merge two buffers. The first buffer is in a separate memory </p>
+<p>: Merge two initialized buffers. The first buffer is in a separate memory </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dest</td><td>: range where finish the two buffers merged </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">src1</td><td>: first range to merge in a separate memory </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">src2</td><td>: second range to merge, in the final part of the range where deposit the final results </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for compare two elements of the type pointed by the Iter1_t and Iter2_t </td></tr>
+    <tr><td class="paramname">dest</td><td>: range where finish the two buffers merged </td></tr>
+    <tr><td class="paramname">src1</td><td>: first range to merge in a separate memory </td></tr>
+    <tr><td class="paramname">src2</td><td>: second range to merge, in the final part of the range where deposit the final results </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for compare two elements of the type pointed by the Iter1_t and Iter2_t </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>: range with the two buffers merged </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7c825c93be017e0678046d104188a232"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool boost::sort::parallel::detail::util::in_place_merge </td>
+          <td>(</td>
+          <td class="paramtype">Iter1_t&#160;</td>
+          <td class="paramname"><em>src1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iter1_t&#160;</td>
+          <td class="paramname"><em>src2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iter1_t&#160;</td>
+          <td class="paramname"><em>end_src2</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iter2_t&#160;</td>
+          <td class="paramname"><em>buf</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Compare&#160;</td>
+          <td class="paramname"><em>comp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>: merge two contiguous buffers,using an auxiliary buffer pointed by buf. The results are in src1 and src2 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">src1</td><td>iterator to the first position of the first buffer </td></tr>
+    <tr><td class="paramname">src2</td><td>final iterator of the first buffer and first iterator of the second buffer </td></tr>
+    <tr><td class="paramname">end_src2</td><td>: final iterator of the second buffer </td></tr>
+    <tr><td class="paramname">buf</td><td>: iterator to buffer used as auxiliary memory </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to Compare elements </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true : not changes done, false : changes in the buffers </dd></dl>
 
 </div>
 </div>
@@ -1083,94 +1048,17 @@ template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>: merge two contiguous buffers ( src1, src2) using buf as auxiliary memory </p>
+<p>: merge two contiguous ranges ( src1, src2) using buf as auxiliary memory. The results are in the same ranges </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">src1</td><td>: first range to merge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">src1</td><td>: second range to merge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">buf</td><td>: auxiliary memory used in the merge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to compare elements </td></tr>
+    <tr><td class="paramname">src1</td><td>: first range to merge </td></tr>
+    <tr><td class="paramname">src1</td><td>: second range to merge </td></tr>
+    <tr><td class="paramname">buf</td><td>: auxiliary memory used in the merge </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare elements </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"></td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a7c825c93be017e0678046d104188a232"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool boost::sort::parallel::detail::util::in_place_merge </td>
-          <td>(</td>
-          <td class="paramtype">Iter1_t&#160;</td>
-          <td class="paramname"><em>src1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Iter1_t&#160;</td>
-          <td class="paramname"><em>src2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Iter1_t&#160;</td>
-          <td class="paramname"><em>end_src2</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Iter2_t&#160;</td>
-          <td class="paramname"><em>buf</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Compare&#160;</td>
-          <td class="paramname"><em>comp</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>: merge two contiguous buffers,using an auxiliary buffer pointed by buf </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">src1</td><td>iterator to the first position of the first buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">src2</td><td>final iterator of the first buffer and first iterator of the second buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">end_src2</td><td>: final iterator of the second buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">buf</td><td>: iterator to buffer used as auxiliary memory </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to Compare elements </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"></td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>true : not changes done, false : changes in the buffers </dd></dl>
 
 </div>
 </div>
@@ -1224,24 +1112,20 @@ template&lt;class Iter1_t , class Iter2_t , class Iter3_t , class Compare &gt; <
       </table>
 </div><div class="memdoc">
 
-<p>: merge two uncontiguous buffers, placing the results in the buffers for to do this use an auxiliary buffer pointed by aux </p>
+<p>: merge two uncontiguous buffers, placing the results in the buffers Use an auxiliary buffer pointed by aux </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">src1</td><td>: iterator to the first element of the first buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">end_src1</td><td>: last iterator of the first buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">src2</td><td>: iterator to the first element of the second buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">end_src2</td><td>: last iterator of the second buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">aux</td><td>: iterator to the first element of the auxiliary buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to Compare elements </td></tr>
+    <tr><td class="paramname">src1</td><td>: iterator to the first element of the first buffer </td></tr>
+    <tr><td class="paramname">end_src1</td><td>: last iterator of the first buffer </td></tr>
+    <tr><td class="paramname">src2</td><td>: iterator to the first element of the second buffer </td></tr>
+    <tr><td class="paramname">end_src2</td><td>: last iterator of the second buffer </td></tr>
+    <tr><td class="paramname">aux</td><td>: iterator to the first element of the auxiliary buffer </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to Compare elements </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"></td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>true : not changes done, false : changes in the buffers </dd></dl>
+<dl class="section remark"><dt>Remarks</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -1250,6 +1134,9 @@ template&lt;class Iter1_t , class Iter2_t , class Iter3_t , class Compare &gt; <
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class Iter1_t , class Iter2_t , class Iter3_t , class Compare &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool boost::sort::parallel::detail::util::in_place_merge_uncontiguous </td>
@@ -1281,24 +1168,24 @@ template&lt;class Iter1_t , class Iter2_t , class Iter3_t , class Compare &gt; <
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
-<p>: merge two non contiguous buffers src1 , src2, using the range aux as auxiliary memory </p>
+<p>: merge two non contiguous ranges src1, src2, using the range aux as auxiliary memory. The results are in the original ranges </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">src1</td><td>: first range to merge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">src2</td><td>: second range to merge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">aux</td><td>: auxiliary range used in the merge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to compare elements </td></tr>
+    <tr><td class="paramname">src1</td><td>: first range to merge </td></tr>
+    <tr><td class="paramname">src2</td><td>: second range to merge </td></tr>
+    <tr><td class="paramname">aux</td><td>: auxiliary range used in the merge </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare elements </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"></td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>true : not changes done, false : changes in the buffers </dd></dl>
 
 </div>
 </div>
@@ -1307,9 +1194,6 @@ template&lt;class Iter1_t , class Iter2_t , class Iter3_t , class Compare &gt; <
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class Iter_t &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void boost::sort::parallel::detail::util::init </td>
@@ -1335,26 +1219,21 @@ template&lt;class Iter_t &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>initialize a range of objects with the object val moving across them </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">r</td><td>: range of elements not initialized </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">val</td><td>: object used for the initialization </td></tr>
+    <tr><td class="paramname">first</td><td>: itertor to the first element to initialize </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator to the last element to initialize </td></tr>
+    <tr><td class="paramname">val</td><td>: object used for the initialization </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>range initialized </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a07dfbb4f42fa81f995270536f0867fff"></a>
+<a class="anchor" id="a451b3a4418b189ed70e15245aa09e115"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -1367,7 +1246,7 @@ template&lt;class Iter_t &gt; </div>
           <td class="memname"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt;Iter_t&gt; boost::sort::parallel::detail::util::init </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt; &amp;&#160;</td>
-          <td class="paramname"><em>r</em>, </td>
+          <td class="paramname"><em>rng</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1391,12 +1270,56 @@ template&lt;class Iter_t &gt; </div>
 <p>initialize a range of objects with the object val moving across them </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">r</td><td>: range of elements not initialized </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">val</td><td>: object used for the initialization </td></tr>
+    <tr><td class="paramname">rng</td><td>: range of elements not initialized </td></tr>
+    <tr><td class="paramname">val</td><td>: object used for the initialization </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>range initialized </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a90d4d0b33c59dded3e2c156867e29451"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Iter1_t , class Iter2_t &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Iter2_t boost::sort::parallel::detail::util::init_move </td>
+          <td>(</td>
+          <td class="paramtype">Iter2_t&#160;</td>
+          <td class="paramname"><em>it_dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iter1_t&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iter1_t&#160;</td>
+          <td class="paramname"><em>last</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move initialized objets. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">it_dest</td><td>: iterator to the final place of the objects </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element to move </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator to the last element to move </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -1434,11 +1357,11 @@ template&lt;class Iter1_t , class Iter2_t &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Move objets from the range src to dest. </p>
+<p>Move initialized objets from the range src to dest. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dest</td><td>: range where move the objects </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td>: range from where move the objects </td></tr>
+    <tr><td class="paramname">dest</td><td>: range where move the objects </td></tr>
+    <tr><td class="paramname">src</td><td>: range from where move the objects </td></tr>
   </table>
   </dd>
 </dl>
@@ -1446,69 +1369,11 @@ template&lt;class Iter1_t , class Iter2_t &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a90d4d0b33c59dded3e2c156867e29451"></a>
+<a class="anchor" id="a186221ff2e48eb4147db586569db5a5e"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter1_t , class Iter2_t &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Iter2_t boost::sort::parallel::detail::util::init_move </td>
-          <td>(</td>
-          <td class="paramtype">Iter2_t&#160;</td>
-          <td class="paramname"><em>it_dest</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Iter1_t&#160;</td>
-          <td class="paramname"><em>first</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Iter1_t&#160;</td>
-          <td class="paramname"><em>last</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Move objets. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Iter_t</td><td>: iterator to the elements </td></tr>
-    <tr><td class="paramname">value_t</td><td>: class of the object to create </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">itdest</td><td>: iterator to the final place of the objects </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">R</td><td>: range to move </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a007076e25e0372476000ce7874e3c103"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class iter1_t , class iter2_t , class compare &gt; </div>
+template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1516,19 +1381,19 @@ template&lt;class iter1_t , class iter2_t , class compare &gt; </div>
         <tr>
           <td class="memname">bool boost::sort::parallel::detail::util::is_mergeable </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; iter1_t &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &amp;&#160;</td>
           <td class="paramname"><em>src1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; iter2_t &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &amp;&#160;</td>
           <td class="paramname"><em>src2</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">compare&#160;</td>
+          <td class="paramtype">Compare&#160;</td>
           <td class="paramname"><em>comp</em>&#160;</td>
         </tr>
         <tr>
@@ -1547,18 +1412,13 @@ template&lt;class iter1_t , class iter2_t , class compare &gt; </div>
 <p>: indicate if two ranges have a possible merge </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">src1</td><td>: first range </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">src2</td><td>: second range </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to compare elements </td></tr>
+    <tr><td class="paramname">src1</td><td>: first range </td></tr>
+    <tr><td class="paramname">src2</td><td>: second range </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare elements </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"></td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>true : they can be merged false : they can't be merged </dd></dl>
 
 </div>
 </div>
@@ -1566,7 +1426,7 @@ template&lt;class iter1_t , class iter2_t , class compare &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter_t , class Compare  = typename compare_iter &lt; Iter_t&gt;::value_type&gt; </div>
+template&lt;class Iter_t , class Compare  = typename compare_iter&lt;Iter_t&gt;::value_type&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -1617,11 +1477,11 @@ template&lt;class Iter_t , class Compare  = typename compare_iter &lt; Iter_t&gt
 <p>Compare the elements pointed by it1 and it2, and if they are equals, compare their position, doing a stable comparison. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">it1</td><td>: iterator to the first element </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">pos1</td><td>: position of the object pointed by it1 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">it2</td><td>: iterator to the second element </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">pos2</td><td>: position of the element ointed by it2 </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: comparison object </td></tr>
+    <tr><td class="paramname">it1</td><td>: iterator to the first element </td></tr>
+    <tr><td class="paramname">pos1</td><td>: position of the object pointed by it1 </td></tr>
+    <tr><td class="paramname">it2</td><td>: iterator to the second element </td></tr>
+    <tr><td class="paramname">pos2</td><td>: position of the element pointed by it2 </td></tr>
+    <tr><td class="paramname">comp</td><td>: comparison object </td></tr>
   </table>
   </dd>
 </dl>
@@ -1629,37 +1489,34 @@ template&lt;class Iter_t , class Compare  = typename compare_iter &lt; Iter_t&gt
 
 </div>
 </div>
-<a class="anchor" id="a96e0acd637c3f107cb09ac1514a6bdd0"></a>
+<a class="anchor" id="a5f970837892f22b8e10a7a0dc0783a87"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class iter1_t , class iter2_t , class compare &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
+template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">void boost::sort::parallel::detail::util::merge_flow </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; iter1_t &gt;&#160;</td>
+          <td class="paramtype"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt;&#160;</td>
           <td class="paramname"><em>rng1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; iter2_t &gt;&#160;</td>
+          <td class="paramtype"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt;&#160;</td>
           <td class="paramname"><em>rbuf</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; iter1_t &gt;&#160;</td>
+          <td class="paramtype"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt;&#160;</td>
           <td class="paramname"><em>rng2</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">compare&#160;</td>
+          <td class="paramtype">Compare&#160;</td>
           <td class="paramname"><em>cmp</em>&#160;</td>
         </tr>
         <tr>
@@ -1668,39 +1525,23 @@ template&lt;class iter1_t , class iter2_t , class compare &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>: merge two contiguous buffers </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">iter_t</td><td>: iterator to the elements </td></tr>
-    <tr><td class="paramname">compare</td><td>: object for to compare two elements pointed by iter_t iterators </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>: merge two ranges, as part of a merge the ranges in a list. This function reduce the number of movements compared with inplace_merge when you need to merge a sequence of ranges. This function merge the ranges rbuf and rng2, and the results are in rng1 and rbuf </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">first</td><td>: iterator to the first element </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: iterator to the element after the last in the range </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: object for to compare elements </td></tr>
+    <tr><td class="paramname">rng1</td><td>: range where locate the first elements of the merge </td></tr>
+    <tr><td class="paramname">rbuf</td><td>: range which provide the first elements, and where store the last results of the merge </td></tr>
+    <tr><td class="paramname">rng2</td><td>: range which provide the last elements to merge </td></tr>
+    <tr><td class="paramname">comp</td><td>: object for to compare elements </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname"></td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+<dl class="section return"><dt>Returns</dt><dd>true : not changes done, false : changes in the buffers </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="ae3afe5fb7da79a56ce49070caa077340"></a>
+<a class="anchor" id="aca2d194e8ebc87649713c3eb001b3b81"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -1715,13 +1556,13 @@ template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>v_input</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>v_output</em>, </td>
         </tr>
         <tr>
@@ -1738,13 +1579,13 @@ template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>merge the ranges in the vector v_input using full_merge4. The v_output vector is used as auxiliary memory in the internal process The final results is in the dest range. All the ranges of v_output are inside the range dest </p>
+<p>merge the ranges in the vector v_input with the full_merge4 function. The v_output vector is used as auxiliary memory in the internal process. The final results is in the dest range. All the ranges of v_output are inside the range dest </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dest</td><td>: range where move the elements merged </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">v_input</td><td>: vector of ranges to merge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">v_output</td><td>: vector of ranges obtained </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: comparison object </td></tr>
+    <tr><td class="paramname">dest</td><td>: range where move the elements merged </td></tr>
+    <tr><td class="paramname">v_input</td><td>: vector of ranges to merge </td></tr>
+    <tr><td class="paramname">v_output</td><td>: vector of ranges obtained </td></tr>
+    <tr><td class="paramname">comp</td><td>: comparison object </td></tr>
   </table>
   </dd>
 </dl>
@@ -1752,7 +1593,7 @@ template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a2c220e3f7d2a18ff277302db1aa1744f"></a>
+<a class="anchor" id="a489298e61699e6c2e324e6ba3b6803e9"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -1773,13 +1614,13 @@ template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter1_t &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>v_input</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter2_t &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>v_output</em>, </td>
         </tr>
         <tr>
@@ -1796,14 +1637,18 @@ template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>merge the ranges in the vector v_input using merge_level4. The v_output vector is used as auxiliary memory in the internal process The final results is in the range_output range. All the ranges of v_output are inside the range range_output All the ranges of v_input are inside the range range_input </p>
+<p>merge the ranges in the vector v_input using the merge_level4 function. The v_output vector is used as auxiliary memory in the internal process The final results is in the range_output range. All the ranges of v_output are inside the range range_output All the ranges of v_input are inside the range range_input </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">range_input</td><td>: range including all the ranges of v_input </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname"></td><td></td></tr>
+    <tr><td class="paramname">range_input</td><td>: range including all the ranges of v_input </td></tr>
+    <tr><td class="paramname">ange_output</td><td>: range including all the elements of v_output </td></tr>
+    <tr><td class="paramname">v_input</td><td>: vector of ranges to merge </td></tr>
+    <tr><td class="paramname">v_output</td><td>: vector of ranges obtained </td></tr>
+    <tr><td class="paramname">comp</td><td>: comparison object </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>range with all the elements moved </dd></dl>
 
 </div>
 </div>
@@ -1812,9 +1657,6 @@ template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class Iter_t , class Value_t , class Compare &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Value_t* boost::sort::parallel::detail::util::uninit_full_merge </td>
@@ -1858,41 +1700,36 @@ template&lt;class Iter_t , class Value_t , class Compare &gt; </div>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
-<p>Merge two contiguous buffers pointed by first1 and first2 , and put in the uninitialized buffer pointed by it_out. </p>
+<p>Merge two contiguous buffers pointed by first1 and first2, and put in the uninitialized buffer pointed by it_out. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">first1</td><td>: iterator to the first element in the first buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last</td><td>: last iterator of the first buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">first2</td><td>: iterator to the first element to the second buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">last22</td><td>: final iterator of the second buffer </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">it_out</td><td>: uninitialized buffer where move the elements merged </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: comparison object </td></tr>
+    <tr><td class="paramname">first1</td><td>: iterator to the first element in the first buffer </td></tr>
+    <tr><td class="paramname">last1</td><td>: last iterator of the first buffer </td></tr>
+    <tr><td class="paramname">first2</td><td>: iterator to the first element to the second buffer </td></tr>
+    <tr><td class="paramname">last2</td><td>: final iterator of the second buffer </td></tr>
+    <tr><td class="paramname">it_out</td><td>: uninitialized buffer where move the elements merged </td></tr>
+    <tr><td class="paramname">comp</td><td>: comparison object </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="aabbce79d671a81ef6f4fe8a7ce51a81f"></a>
+<a class="anchor" id="ab759267dd1954db7c761edcf698df676"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class Iter1_t , class Iter2_t , class value_t , class Compare &gt; </div>
+template&lt;class Iter1_t , class Iter2_t , class Value_t , class Compare &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt;value_t*&gt; boost::sort::parallel::detail::util::uninit_full_merge </td>
+          <td class="memname"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt;Value_t *&gt; boost::sort::parallel::detail::util::uninit_full_merge </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; value_t * &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Value_t * &gt; &amp;&#160;</td>
           <td class="paramname"><em>dest</em>, </td>
         </tr>
         <tr>
@@ -1926,13 +1763,13 @@ template&lt;class Iter1_t , class Iter2_t , class value_t , class Compare &gt; <
 </table>
 </div><div class="memdoc">
 
-<p>Merge two contiguous ranges src1 and src2 , and create and move the result in the uninitialized range dest, returning the range merged. </p>
+<p>Merge two contiguous uninitialized ranges src1 and src2, and create and move the result in the uninitialized range dest, returning the range merged. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dest</td><td>: range where locate the elements merged. the size of dest must be greater or equal than the sum of the sizes of src1 and src2. Initially is uninitialize memory </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">src1</td><td>: first range to merge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">src2</td><td>: second range to merge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: comparison object </td></tr>
+    <tr><td class="paramname">dest</td><td>: range where locate the elements merged. the size of dest must be greater or equal than the sum of the sizes of src1 and src2. Initially is uninitialize memory </td></tr>
+    <tr><td class="paramname">src1</td><td>: first range to merge </td></tr>
+    <tr><td class="paramname">src2</td><td>: second range to merge </td></tr>
+    <tr><td class="paramname">comp</td><td>: comparison object </td></tr>
   </table>
   </dd>
 </dl>
@@ -1940,16 +1777,16 @@ template&lt;class Iter1_t , class Iter2_t , class value_t , class Compare &gt; <
 
 </div>
 </div>
-<a class="anchor" id="afbe7fc2f64934df1b273d54bdf1b9a4b"></a>
+<a class="anchor" id="ab175e52b5487e46e68598d24f35391c9"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;class value_t , class Iter_t , class Compare &gt; </div>
+template&lt;class Value_t , class Iter_t , class Compare &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt;value_t*&gt; boost::sort::parallel::detail::util::uninit_full_merge4 </td>
+          <td class="memname"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt;Value_t *&gt; boost::sort::parallel::detail::util::uninit_full_merge4 </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; value_t * &gt; &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Value_t * &gt; &amp;&#160;</td>
           <td class="paramname"><em>dest</em>, </td>
         </tr>
         <tr>
@@ -1981,10 +1818,10 @@ template&lt;class value_t , class Iter_t , class Compare &gt; </div>
 <p>Merge four ranges and put the result in uninitialized memory. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dest</td><td>range where create and move the elements merged. Their size must be greater or equal than the sum of the sizes of the ranges in the array R </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">R</td><td>: array of ranges to merge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nrange_input</td><td>: number of ranges in vrange_input </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: comparison object </td></tr>
+    <tr><td class="paramname">dest</td><td>range where create and move the elements merged. Their size must be greater or equal than the sum of the sizes of the ranges in the array R </td></tr>
+    <tr><td class="paramname">vrange_input</td><td>: array of ranges to merge </td></tr>
+    <tr><td class="paramname">nrange_input</td><td>: number of ranges in vrange_input </td></tr>
+    <tr><td class="paramname">comp</td><td>: comparison object </td></tr>
   </table>
   </dd>
 </dl>
@@ -1992,7 +1829,7 @@ template&lt;class value_t , class Iter_t , class Compare &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="aefd92850a0079439c92bde9659acee60"></a>
+<a class="anchor" id="afbcfe1529458a0444461e5abf4cc173a"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -2007,13 +1844,13 @@ template&lt;class Value_t , class Iter_t , class Compare &gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Iter_t &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>v_input</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Value_t * &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">range</a>&lt; Value_t * &gt;&gt; &amp;&#160;</td>
           <td class="paramname"><em>v_output</em>, </td>
         </tr>
         <tr>
@@ -2030,17 +1867,61 @@ template&lt;class Value_t , class Iter_t , class Compare &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>merge the ranges over uninitialized memory,in the vector v_input using full_merge4. The v_output vector is used as auxiliary memory in the internal process. The final results is in the dest range. All the ranges of v_output are inside the range dest </p>
+<p>merge the ranges moving the objects and constructing them in uninitialized memory, in the vector v_input using full_merge4. The v_output vector is used as auxiliary memory in the internal process. The final results is in the dest range. All the ranges of v_output are inside the range dest </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dest</td><td>: range where move the elements merged </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">v_input</td><td>: vector of ranges to merge </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">v_output</td><td>: vector of ranges obtained </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">comp</td><td>: comparison object </td></tr>
+    <tr><td class="paramname">dest</td><td>: range where move the elements merged </td></tr>
+    <tr><td class="paramname">v_input</td><td>: vector of ranges to merge </td></tr>
+    <tr><td class="paramname">v_output</td><td>: vector of ranges obtained </td></tr>
+    <tr><td class="paramname">comp</td><td>: comparison object </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>range with all the elements moved </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>range with all the elements moved and constructed </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab07c685a529475e97d31798c74d20f10"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Iter_t , class Value_t  = typename iterator_traits&lt;Iter_t&gt;::value_type&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Value_t* boost::sort::parallel::detail::util::uninit_move </td>
+          <td>(</td>
+          <td class="paramtype">Value_t *&#160;</td>
+          <td class="paramname"><em>ptr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iter_t&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iter_t&#160;</td>
+          <td class="paramname"><em>last</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Move objets to uninitialized memory. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ptr</td><td>: pointer to the memory where to create the objects </td></tr>
+    <tr><td class="paramname">first</td><td>: iterator to the first element to move </td></tr>
+    <tr><td class="paramname">last</td><td>: iterator to the last element to move </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -2078,11 +1959,11 @@ template&lt;class Iter1_t , class Iter2_t &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Move objets from the range src creatinf them in dest. </p>
+<p>Move uninitialized objets from the range src creating them in dest. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">dest</td><td>: range where move and create the objects </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">src</td><td>: range from where move the objects </td></tr>
+    <tr><td class="paramname">dest</td><td>: range where move and create the objects </td></tr>
+    <tr><td class="paramname">src</td><td>: range from where move the objects </td></tr>
   </table>
   </dd>
 </dl>
@@ -2090,68 +1971,10 @@ template&lt;class Iter1_t , class Iter2_t &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ab07c685a529475e97d31798c74d20f10"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class Iter_t , class Value_t  = typename iterator_traits&lt;Iter_t&gt;::value_type&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Value_t* boost::sort::parallel::detail::util::uninit_move </td>
-          <td>(</td>
-          <td class="paramtype">Value_t *&#160;</td>
-          <td class="paramname"><em>ptr</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>first</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>last</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Move objets to uninitialized memory. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname">Iter_t</td><td>: iterator to the elements </td></tr>
-    <tr><td class="paramname">value_t</td><td>: class of the object to construct </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">ptr</td><td>: pointer to the memory where to create the object </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">R</td><td>: range to move </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 2 2016 12:03:50 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 12 2016 12:41:20 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

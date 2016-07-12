@@ -95,6 +95,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>This class implement, from atomic variables, a spinlock.  
+ <a href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="spinlock_8hpp_source.html">spinlock.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -103,17 +106,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:aa7a46c01eaac5b67a98757f6b815b02d"><td class="mdescLeft">&#160;</td><td class="mdescRight">class constructor  <a href="#aa7a46c01eaac5b67a98757f6b815b02d">More...</a><br /></td></tr>
 <tr class="separator:aa7a46c01eaac5b67a98757f6b815b02d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63f0b898cd657703abe6506f80a7c4df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html#a63f0b898cd657703abe6506f80a7c4df">lock</a> () noexcept</td></tr>
-<tr class="memdesc:a63f0b898cd657703abe6506f80a7c4df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock the <a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html">spinlock_t</a>.  <a href="#a63f0b898cd657703abe6506f80a7c4df">More...</a><br /></td></tr>
+<tr class="memdesc:a63f0b898cd657703abe6506f80a7c4df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock the <a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html" title="This class implement, from atomic variables, a spinlock. ">spinlock_t</a>.  <a href="#a63f0b898cd657703abe6506f80a7c4df">More...</a><br /></td></tr>
 <tr class="separator:a63f0b898cd657703abe6506f80a7c4df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a31b5a3092a2b071df5fb7b73e05a8f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html#a9a31b5a3092a2b071df5fb7b73e05a8f">try_lock</a> () noexcept</td></tr>
-<tr class="memdesc:a9a31b5a3092a2b071df5fb7b73e05a8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to lock the <a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html">spinlock_t</a>, if not, return false.  <a href="#a9a31b5a3092a2b071df5fb7b73e05a8f">More...</a><br /></td></tr>
+<tr class="memdesc:a9a31b5a3092a2b071df5fb7b73e05a8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Try to lock the <a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html" title="This class implement, from atomic variables, a spinlock. ">spinlock_t</a>, if not, return false.  <a href="#a9a31b5a3092a2b071df5fb7b73e05a8f">More...</a><br /></td></tr>
 <tr class="separator:a9a31b5a3092a2b071df5fb7b73e05a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0719df5280a38cc78df5a8c9ab225317"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html#a0719df5280a38cc78df5a8c9ab225317">unlock</a> () noexcept</td></tr>
-<tr class="memdesc:a0719df5280a38cc78df5a8c9ab225317"><td class="mdescLeft">&#160;</td><td class="mdescRight">unlock the <a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html">spinlock_t</a>  <a href="#a0719df5280a38cc78df5a8c9ab225317">More...</a><br /></td></tr>
+<tr class="memdesc:a0719df5280a38cc78df5a8c9ab225317"><td class="mdescLeft">&#160;</td><td class="mdescRight">unlock the <a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html" title="This class implement, from atomic variables, a spinlock. ">spinlock_t</a>  <a href="#a0719df5280a38cc78df5a8c9ab225317">More...</a><br /></td></tr>
 <tr class="separator:a0719df5280a38cc78df5a8c9ab225317"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><dl class="section remark"><dt>Remarks</dt><dd>This class meet the BasicLockable requirements ( lock, unlock ) </dd></dl>
+<div class="textblock"><p>This class implement, from atomic variables, a spinlock. </p>
+<dl class="section remark"><dt>Remarks</dt><dd>This class meet the BasicLockable requirements ( lock, unlock ) </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aa7a46c01eaac5b67a98757f6b815b02d"></a>
 <div class="memitem">
@@ -168,7 +172,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Lock the <a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html">spinlock_t</a>. </p>
+<p>Lock the <a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html" title="This class implement, from atomic variables, a spinlock. ">spinlock_t</a>. </p>
 
 </div>
 </div>
@@ -193,7 +197,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Try to lock the <a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html">spinlock_t</a>, if not, return false. </p>
+<p>Try to lock the <a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html" title="This class implement, from atomic variables, a spinlock. ">spinlock_t</a>, if not, return false. </p>
 <dl class="section return"><dt>Returns</dt><dd>true : locked false: not previous locked </dd></dl>
 
 </div>
@@ -219,7 +223,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>unlock the <a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html">spinlock_t</a> </p>
+<p>unlock the <a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html" title="This class implement, from atomic variables, a spinlock. ">spinlock_t</a> </p>
 
 </div>
 </div>
@@ -229,7 +233,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 2 2016 12:03:50 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Jul 12 2016 12:41:20 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
