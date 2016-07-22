@@ -151,10 +151,10 @@ move_blocks<Block_size, Group_size, Iter_t, Compare>
             pos_index_src = bk.index[pos_index_dest].pos();
             sequence.push_back(pos_index_src);
 
-            bk.index[pos_index_dest].pos(pos_index_dest);
+            bk.index[pos_index_dest].set_pos(pos_index_dest);
             pos_index_dest = pos_index_src;
         };
-        bk.index[pos_index_dest].pos(pos_index_dest);
+        bk.index[pos_index_dest].set_pos(pos_index_dest);
         vsequence.push_back(sequence);
         if (sequence.size() < Group_size) {
             function_move_sequence(vsequence.back(), counter);

@@ -57,7 +57,7 @@ struct parallel_sort
     //------------------------------------------------------------------------
     parallel_sort(backbone_t &bkbn, Iter_t first, Iter_t last);
 
-    void divide_sort(Iter_t first, Iter_t last);
+    void divide_sort(Iter_t first, Iter_t last, uint32_t level);
     //
     //------------------------------------------------------------------------
     //  function : function_divide_sort
@@ -67,17 +67,20 @@ struct parallel_sort
     /// @param first : iterator to the first element of the range to divide
     /// @param last : iterator to the next element after the last element of
     ///               the range to divide
+    /// @param level : level of depth in the division.When zero call to
+    ///                introsort
     /// @param son_counter : atomic variable which is decremented when finish
     ///                      the function. This variable is used for to know
     ///                      when are finished all the function_t created
     ///                      inside an object
     //------------------------------------------------------------------------
-    void function_divide_sort(Iter_t first, Iter_t last, atomic_t &son_counter)
+    void function_divide_sort(Iter_t first, Iter_t last, uint32_t level,
+                              atomic_t &son_counter)
     {
         //-------------------------- begin ---------------------------------
         util::atomic_add(son_counter, 1);
-        function_t f1 = [this, first, last, &son_counter]() -> void {
-            this->divide_sort(first, last);
+        function_t f1 = [this, first, last, level, &son_counter]() -> void {
+            this->divide_sort(first, last, level);
             util::atomic_sub(son_counter, 1);
         };
         bk.works.emplace_back(f1);
@@ -114,8 +117,7 @@ parallel_sort<Block_size, Iter_t, Compare>
     //------------------- check if sort --------------------------------------
     bool sorted = true;
     for (Iter_t it1 = first, it2 = first + 1;
-         it2 != last and (sorted = not bk.cmp(*it2, *it1)); it1 = it2++)
-        ;
+         it2 != last and (sorted = not bk.cmp(*it2, *it1)); it1 = it2++);
     if (sorted) return;
 
     //-------------------max_per_thread ---------------------------
@@ -123,13 +125,14 @@ parallel_sort<Block_size, Iter_t, Compare>
     if (nbits_size > 5) nbits_size = 5;
     max_per_thread = 1 << (18 - nbits_size);
 
+    uint32_t level = ((nbits64(nelem / max_per_thread) ) * 3) / 2;
     //---------------- check if only single thread -----------------------
     if (nelem < (max_per_thread)) {
         intro_sort(first, last, bk.cmp);
         return;
     };
 
-    divide_sort(first, last);
+    divide_sort(first, last, level);
     // wait until all the parts are finished
     bk.exec(counter);
 };
@@ -140,21 +143,21 @@ parallel_sort<Block_size, Iter_t, Compare>
 ///        a parallel mode
 /// @param first : iterator to the first element to sort
 /// @param last : iterator to the next element after the last
+/// @param level : level of depth before call to introsort
 //------------------------------------------------------------------------
 template <uint32_t Block_size, class Iter_t, class Compare>
 void parallel_sort<Block_size, Iter_t, Compare>
-    ::divide_sort(Iter_t first, Iter_t last)
+    ::divide_sort(Iter_t first, Iter_t last, uint32_t level)
 {
     //------------------- check if sort -----------------------------------
     bool sorted = true;
     for (Iter_t it1 = first, it2 = first + 1;
-         it2 != last and (sorted = not bk.cmp(*it2, *it1)); it1 = it2++)
-        ;
+         it2 != last and (sorted = not bk.cmp(*it2, *it1)); it1 = it2++);
     if (sorted) return;
 
     //---------------- check if finish the subdivision -------------------
     size_t nelem = last - first;
-    if (nelem < (max_per_thread)) {
+    if (level == 0 or nelem < (max_per_thread)) {
         return intro_sort(first, last, bk.cmp);
     };
 
@@ -173,10 +176,10 @@ void parallel_sort<Block_size, Iter_t, Compare>
     std::swap(*first, *c_last);
 
     // insert  the work of the second half in the stack of works
-    function_divide_sort(c_first, last, counter);
+    function_divide_sort(c_first, last, level - 1, counter);
 
     // The first half is done by the same thread
-    divide_sort(first, c_last);
+    divide_sort(first, c_last, level - 1);
 };
 //
 //****************************************************************************

@@ -64,7 +64,7 @@ class block_pos
     /// @brief store a position inside the block_pos
     /// @param position : value to store
     //-------------------------------------------------------------------------
-    void pos(size_t position) { num = (position << 1) + (num & 1); };
+    void set_pos(size_t position) { num = (position << 1) + (num & 1); };
     //
     //-------------------------------------------------------------------------
     //  function : side
@@ -78,7 +78,7 @@ class block_pos
     /// @brief store a bool value the block_pos
     /// @param sd : bool value to store
     //-------------------------------------------------------------------------
-    void side(bool sd) { num = (num & ~1) + ((sd) ? 1 : 0); };
+    void set_side(bool sd) { num = (num & ~1) + ((sd) ? 1 : 0); };
 
 }; // end struct block_pos
 

@@ -18,6 +18,8 @@ var searchData=
   ['block_5fpos_5ft',['block_pos_t',['../structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#abed28d39010fb510df3ecc21d7751c84',1,'boost::sort::parallel::detail::block_indirect_sort']]],
   ['block_5ft',['block_t',['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1backbone.html#a036c3a3dd02eea29ed64afea1bedbee5',1,'boost::sort::parallel::detail::bis::backbone::block_t()'],['../structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#ab6129f5a7bf1c11b052b0ca6a09d1ca9',1,'boost::sort::parallel::detail::block_indirect_sort::block_t()']]],
   ['boost',['boost',['../namespaceboost.html',1,'']]],
+  ['boost_5fblock_5fsize',['BOOST_BLOCK_SIZE',['../constants_8hpp.html#a9992e6c778948bde328b26cee896f5f0',1,'constants.hpp']]],
+  ['boost_5fgroup_5fsize',['BOOST_GROUP_SIZE',['../constants_8hpp.html#a13409a3fa2d9f44ca10e50e312712473',1,'constants.hpp']]],
   ['buf',['buf',['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1backbone.html#abe7fa8fd7029dd96c3e0d2cef82a7216',1,'boost::sort::parallel::detail::bis::backbone']]],
   ['detail',['detail',['../namespaceboost_1_1sort_1_1parallel_1_1detail.html',1,'boost::sort::parallel']]],
   ['parallel',['parallel',['../namespaceboost_1_1sort_1_1parallel.html',1,'boost::sort']]],

@@ -118,12 +118,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8409b458827e34a65d621dbc09a8ed09"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1parallel__sort.html#a8409b458827e34a65d621dbc09a8ed09">parallel_sort</a> (<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1parallel__sort.html#a8f76a829e0fba94c017837fb56bb6320">backbone_t</a> &amp;bkbn, Iter_t first, Iter_t last)</td></tr>
 <tr class="memdesc:a8409b458827e34a65d621dbc09a8ed09"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor of the class  <a href="#a8409b458827e34a65d621dbc09a8ed09">More...</a><br /></td></tr>
 <tr class="separator:a8409b458827e34a65d621dbc09a8ed09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0dde81b021d4ccbf6fd84bf6fae6a128"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1parallel__sort.html#a0dde81b021d4ccbf6fd84bf6fae6a128">divide_sort</a> (Iter_t first, Iter_t last)</td></tr>
-<tr class="memdesc:a0dde81b021d4ccbf6fd84bf6fae6a128"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function divide the data in two part, for to be sorted in a parallel mode  <a href="#a0dde81b021d4ccbf6fd84bf6fae6a128">More...</a><br /></td></tr>
-<tr class="separator:a0dde81b021d4ccbf6fd84bf6fae6a128"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab00c7549fb73964c0fd94ba66aac0f7d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1parallel__sort.html#ab00c7549fb73964c0fd94ba66aac0f7d">function_divide_sort</a> (Iter_t first, Iter_t last, <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1parallel__sort.html#ad3c53401e962aac0d669cae51808666b">atomic_t</a> &amp;son_counter)</td></tr>
-<tr class="memdesc:ab00c7549fb73964c0fd94ba66aac0f7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">create a function_t with a call to divide_sort, and inser in the stack of the backbone  <a href="#ab00c7549fb73964c0fd94ba66aac0f7d">More...</a><br /></td></tr>
-<tr class="separator:ab00c7549fb73964c0fd94ba66aac0f7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa216f9b8e6a9239734b644d3b718da8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1parallel__sort.html#aa216f9b8e6a9239734b644d3b718da8c">divide_sort</a> (Iter_t first, Iter_t last, uint32_t level)</td></tr>
+<tr class="memdesc:aa216f9b8e6a9239734b644d3b718da8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function divide the data in two part, for to be sorted in a parallel mode  <a href="#aa216f9b8e6a9239734b644d3b718da8c">More...</a><br /></td></tr>
+<tr class="separator:aa216f9b8e6a9239734b644d3b718da8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a4db63ab775ee38a03f8f0767bc2428"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1parallel__sort.html#a0a4db63ab775ee38a03f8f0767bc2428">function_divide_sort</a> (Iter_t first, Iter_t last, uint32_t level, <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1parallel__sort.html#ad3c53401e962aac0d669cae51808666b">atomic_t</a> &amp;son_counter)</td></tr>
+<tr class="memdesc:a0a4db63ab775ee38a03f8f0767bc2428"><td class="mdescLeft">&#160;</td><td class="mdescRight">create a function_t with a call to divide_sort, and inser in the stack of the backbone  <a href="#a0a4db63ab775ee38a03f8f0767bc2428">More...</a><br /></td></tr>
+<tr class="separator:a0a4db63ab775ee38a03f8f0767bc2428"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -243,7 +243,7 @@ template&lt;uint32_t Block_size, class Iter_t , class Compare &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a0dde81b021d4ccbf6fd84bf6fae6a128"></a>
+<a class="anchor" id="aa216f9b8e6a9239734b644d3b718da8c"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -259,7 +259,13 @@ template&lt;uint32_t Block_size, class Iter_t , class Compare &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Iter_t&#160;</td>
-          <td class="paramname"><em>last</em>&#160;</td>
+          <td class="paramname"><em>last</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>level</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -274,13 +280,14 @@ template&lt;uint32_t Block_size, class Iter_t , class Compare &gt; </div>
   <table class="params">
     <tr><td class="paramname">first</td><td>: iterator to the first element to sort </td></tr>
     <tr><td class="paramname">last</td><td>: iterator to the next element after the last </td></tr>
+    <tr><td class="paramname">level</td><td>: level of depth before call to introsort </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="ab00c7549fb73964c0fd94ba66aac0f7d"></a>
+<a class="anchor" id="a0a4db63ab775ee38a03f8f0767bc2428"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -300,6 +307,12 @@ template&lt;uint32_t Block_size, class Iter_t , class Compare &gt; </div>
           <td></td>
           <td class="paramtype">Iter_t&#160;</td>
           <td class="paramname"><em>last</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>level</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -325,6 +338,7 @@ template&lt;uint32_t Block_size, class Iter_t , class Compare &gt; </div>
   <table class="params">
     <tr><td class="paramname">first</td><td>: iterator to the first element of the range to divide </td></tr>
     <tr><td class="paramname">last</td><td>: iterator to the next element after the last element of the range to divide </td></tr>
+    <tr><td class="paramname">level</td><td>: level of depth in the division.When zero call to introsort </td></tr>
     <tr><td class="paramname">son_counter</td><td>: atomic variable which is decremented when finish the function. This variable is used for to know when are finished all the function_t created inside an object </td></tr>
   </table>
   </dd>
@@ -381,7 +395,7 @@ template&lt;uint32_t Block_size, class Iter_t , class Compare &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Jul 12 2016 12:41:19 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jul 22 2016 09:59:49 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

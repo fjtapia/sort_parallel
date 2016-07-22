@@ -159,8 +159,7 @@ block_indirect_sort<Block_size, Group_size, Iter_t,
     //------------------- check if sort --------------------------------------
     bool sorted = true;
     for (Iter_t it1 = first, it2 = first + 1;
-         it2 != last and (sorted = not bk.cmp(*it2, *it1)); it1 = it2++)
-        ;
+         it2 != last and (sorted = not bk.cmp(*it2, *it1)); it1 = it2++);
     if (sorted) return;
 
     //---------------- check if only single thread -----------------------

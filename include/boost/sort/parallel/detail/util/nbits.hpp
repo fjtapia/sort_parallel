@@ -27,6 +27,8 @@ namespace util     {
 //                                                                        ##
 //##########################################################################
 //
+// this array represent the number of bits needed for to represent the 
+// first 256 numbers
 static constexpr const uint32_t tmsb[256] = {
     0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5,
     5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
