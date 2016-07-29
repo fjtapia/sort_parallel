@@ -16,12 +16,16 @@
 
 #include <boost/sort/parallel/detail/bis/backbone.hpp>
 
-namespace boost      {
-namespace sort       {
-namespace parallel   {
-namespace detail     {
-namespace bis        {
-
+namespace boost
+{
+namespace sort
+{
+namespace parallel
+{
+namespace detail
+{
+namespace bis
+{
 using boost::sort::parallel::detail::util::nbits64;
 //
 ///---------------------------------------------------------------------------
@@ -30,16 +34,16 @@ using boost::sort::parallel::detail::util::nbits64;
 ///        splitting the data until the number of elements is smaller than a
 ///        predefined value (max_per_thread)
 //----------------------------------------------------------------------------
-template <uint32_t Block_size, class Iter_t, class Compare>
+template < uint32_t Block_size, class Iter_t, class Compare >
 struct parallel_sort
 {
     //-------------------------------------------------------------------------
     //                  D E F I N I T I O N S
     //-------------------------------------------------------------------------
-    typedef typename std::iterator_traits<Iter_t>::value_type value_t;
-    typedef std::atomic<uint32_t> atomic_t;
-    typedef std::function<void(void)> function_t;
-    typedef backbone<Block_size, Iter_t, Compare> backbone_t;
+    typedef typename std::iterator_traits< Iter_t >::value_type value_t;
+    typedef std::atomic< uint32_t > atomic_t;
+    typedef std::function< void( void ) > function_t;
+    typedef backbone< Block_size, Iter_t, Compare > backbone_t;
 
     //------------------------------------------------------------------------
     //                V A R I A B L E S
@@ -55,9 +59,9 @@ struct parallel_sort
     //------------------------------------------------------------------------
     //                F U N C T I O N S
     //------------------------------------------------------------------------
-    parallel_sort(backbone_t &bkbn, Iter_t first, Iter_t last);
+    parallel_sort( backbone_t &bkbn, Iter_t first, Iter_t last );
 
-    void divide_sort(Iter_t first, Iter_t last, uint32_t level);
+    void divide_sort( Iter_t first, Iter_t last, uint32_t level );
     //
     //------------------------------------------------------------------------
     //  function : function_divide_sort
@@ -69,21 +73,31 @@ struct parallel_sort
     ///               the range to divide
     /// @param level : level of depth in the division.When zero call to
     ///                introsort
-    /// @param son_counter : atomic variable which is decremented when finish
-    ///                      the function. This variable is used for to know
-    ///                      when are finished all the function_t created
-    ///                      inside an object
+    /// @param counter : atomic variable which is decremented when finish
+    ///                  the function. This variable is used for to know
+    ///                  when are finished all the function_t created
+    ///                  inside an object
+    /// @param error : global indicator of error.     
     //------------------------------------------------------------------------
-    void function_divide_sort(Iter_t first, Iter_t last, uint32_t level,
-                              atomic_t &son_counter)
+    void function_divide_sort( Iter_t first, Iter_t last, uint32_t level,
+                               atomic_t &counter, bool &error )
     {
         //-------------------------- begin ---------------------------------
-        util::atomic_add(son_counter, 1);
-        function_t f1 = [this, first, last, level, &son_counter]() -> void {
-            this->divide_sort(first, last, level);
-            util::atomic_sub(son_counter, 1);
+        util::atomic_add( counter, 1 );
+        function_t f1 = [this, first, last, level, &counter, &error]() {
+            if ( not error ) {
+                try
+                {
+                    this->divide_sort( first, last, level );
+                }
+                catch ( std::bad_alloc & )
+                {
+                    error = true;
+                };
+            };
+            util::atomic_sub( counter, 1 );
         };
-        bk.works.emplace_back(f1);
+        bk.works.emplace_back( f1 );
     };
     //
     //--------------------------------------------------------------------------
@@ -105,36 +119,36 @@ struct parallel_sort
 /// @param [in] first : iterator to the first element to sort
 /// @param [in] last : iterator to the next element after the last
 //------------------------------------------------------------------------
-template <uint32_t Block_size, class Iter_t, class Compare>
-parallel_sort<Block_size, Iter_t, Compare>
-    ::parallel_sort(backbone_t &bkbn, Iter_t first, Iter_t last)
-    : bk(bkbn), counter(0)
+template < uint32_t Block_size, class Iter_t, class Compare >
+parallel_sort< Block_size, Iter_t, Compare >::parallel_sort( backbone_t &bkbn,
+                                                             Iter_t first,
+                                                             Iter_t last )
+    : bk( bkbn ), counter( 0 )
 {
     //-------------------------- begin ------------------------------------
-    assert((last - first) >= 0);
-    size_t nelem = size_t(last - first);
+    assert( ( last - first ) >= 0 );
+    size_t nelem = size_t( last - first );
 
     //------------------- check if sort --------------------------------------
     bool sorted = true;
-    for (Iter_t it1 = first, it2 = first + 1;
-         it2 != last and (sorted = not bk.cmp(*it2, *it1)); it1 = it2++);
-    if (sorted) return;
+    for ( Iter_t it1 = first, it2 = first + 1;
+          it2 != last and ( sorted = not bk.cmp( *it2, *it1 ) ); it1 = it2++ );
+    if ( sorted ) return;
 
     //-------------------max_per_thread ---------------------------
-    uint32_t nbits_size = (nbits64(sizeof(value_t))) >> 1;
-    if (nbits_size > 5) nbits_size = 5;
-    max_per_thread = 1 << (18 - nbits_size);
+    uint32_t nbits_size = ( nbits64( sizeof( value_t ) ) ) >> 1;
+    if ( nbits_size > 5 ) nbits_size = 5;
+    max_per_thread = 1 << ( 18 - nbits_size );
 
-    uint32_t level = ((nbits64(nelem / max_per_thread) ) * 3) / 2;
+    uint32_t level = ( ( nbits64( nelem / max_per_thread ) ) * 3 ) / 2;
     //---------------- check if only single thread -----------------------
-    if (nelem < (max_per_thread)) {
-        intro_sort(first, last, bk.cmp);
+    if ( nelem < ( max_per_thread ) ) {
+        intro_sort( first, last, bk.cmp );
         return;
     };
-
-    divide_sort(first, last, level);
+    if ( not bk.error ) divide_sort( first, last, level );
     // wait until all the parts are finished
-    bk.exec(counter);
+    bk.exec( counter );
 };
 
 //------------------------------------------------------------------------
@@ -145,41 +159,42 @@ parallel_sort<Block_size, Iter_t, Compare>
 /// @param last : iterator to the next element after the last
 /// @param level : level of depth before call to introsort
 //------------------------------------------------------------------------
-template <uint32_t Block_size, class Iter_t, class Compare>
-void parallel_sort<Block_size, Iter_t, Compare>
-    ::divide_sort(Iter_t first, Iter_t last, uint32_t level)
+template < uint32_t Block_size, class Iter_t, class Compare >
+void parallel_sort< Block_size, Iter_t, Compare >::divide_sort( Iter_t first,
+                                                                Iter_t last,
+                                                                uint32_t level )
 {
     //------------------- check if sort -----------------------------------
     bool sorted = true;
-    for (Iter_t it1 = first, it2 = first + 1;
-         it2 != last and (sorted = not bk.cmp(*it2, *it1)); it1 = it2++);
-    if (sorted) return;
+    for ( Iter_t it1 = first, it2 = first + 1;
+          it2 != last and ( sorted = not bk.cmp( *it2, *it1 ) ); it1 = it2++ );
+    if ( sorted ) return;
 
     //---------------- check if finish the subdivision -------------------
     size_t nelem = last - first;
-    if (level == 0 or nelem < (max_per_thread)) {
-        return intro_sort(first, last, bk.cmp);
+    if ( level == 0 or nelem < ( max_per_thread ) ) {
+        return intro_sort( first, last, bk.cmp );
     };
 
     //-------------------- pivoting  ----------------------------------
-    pivot9(first, last, bk.cmp);
-    const value_t &val = const_cast<value_t &>(*first);
+    pivot9( first, last, bk.cmp );
+    const value_t &val = const_cast< value_t & >( *first );
     Iter_t c_first = first + 1, c_last = last - 1;
 
-    while (bk.cmp(*c_first, val)) ++c_first;
-    while (bk.cmp(val, *c_last)) --c_last;
-    while (not(c_first > c_last)) {
-        std::swap(*(c_first++), *(c_last--));
-        while (bk.cmp(*c_first, val)) ++c_first;
-        while (bk.cmp(val, *c_last)) --c_last;
+    while ( bk.cmp( *c_first, val ) ) ++c_first;
+    while ( bk.cmp( val, *c_last ) ) --c_last;
+    while ( not( c_first > c_last ) ) {
+        std::swap( *( c_first++ ), *( c_last-- ) );
+        while ( bk.cmp( *c_first, val ) ) ++c_first;
+        while ( bk.cmp( val, *c_last ) ) --c_last;
     }; // End while
-    std::swap(*first, *c_last);
+    std::swap( *first, *c_last );
 
     // insert  the work of the second half in the stack of works
-    function_divide_sort(c_first, last, level - 1, counter);
-
+    function_divide_sort( c_first, last, level - 1, counter, bk.error );
+    if ( bk.error ) return;
     // The first half is done by the same thread
-    divide_sort(first, c_last, level - 1);
+    function_divide_sort( first, c_last, level - 1, counter, bk.error );
 };
 //
 //****************************************************************************

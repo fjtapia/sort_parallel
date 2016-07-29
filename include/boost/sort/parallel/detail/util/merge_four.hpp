@@ -108,43 +108,7 @@ range<Iter1_t> full_merge4(const range<Iter1_t> &rdest,
     // Initial sort
     //------------------------------------------------------------------------
     uint32_t pos[4] = {0, 1, 2, 3}, npos = nrange_input;
-/*
-    if (less_range(vrange_input[pos[1]].first, pos[1],
-                   vrange_input[pos[0]].first, pos[0], comp))
-    {
-        std::swap(pos[0], pos[1]);
-    };
 
-    if (less_range(vrange_input[pos[2]].first, pos[2],
-                   vrange_input[pos[1]].first, pos[1], comp))
-    {
-        std::swap(pos[1], pos[2]);
-    };
-
-    if (npos == 4 and less_range(vrange_input[pos[3]].first, pos[3],
-                                 vrange_input[pos[2]].first, pos[2], comp))
-    {
-        std::swap(pos[3], pos[2]);
-    };
-
-    if (less_range(vrange_input[pos[1]].first, pos[1],
-                   vrange_input[pos[0]].first, pos[0], comp))
-    {
-        std::swap(pos[0], pos[1]);
-    };
-
-    if (npos == 4 and less_range(vrange_input[pos[2]].first, pos[2],
-                                 vrange_input[pos[1]].first, pos[1], comp))
-    {
-        std::swap(pos[1], pos[2]);
-    };
-
-    if (npos == 4 and less_range(vrange_input[pos[1]].first, pos[1],
-                                 vrange_input[pos[0]].first, pos[0], comp))
-    {
-        std::swap(pos[0], pos[1]);
-    };
-*/
     //-----------------------------------------------------------------------
     // thanks to Steven Ross by their suggestion about the optimal
     // sorting networks
@@ -264,42 +228,7 @@ range<Value_t *> uninit_full_merge4(const range<Value_t *> &dest,
     // Initial sort
     //------------------------------------------------------------------------
     uint32_t pos[4] = {0, 1, 2, 3}, npos = nrange_input;
-/*
-    if (less_range(vrange_input[pos[1]].first, pos[1],
-                   vrange_input[pos[0]].first, pos[0], comp))
-    {
-        std::swap(pos[0], pos[1]);
-    };
 
-    if (less_range(vrange_input[pos[2]].first, pos[2],
-                   vrange_input[pos[1]].first, pos[1], comp))
-    {
-        std::swap(pos[1], pos[2]);
-    };
-
-    if (npos == 4 and less_range(vrange_input[pos[3]].first, pos[3],
-                                 vrange_input[pos[2]].first, pos[2], comp))
-    {
-        std::swap(pos[3], pos[2]);
-    };
-
-    if (less_range(vrange_input[pos[1]].first, pos[1],
-                   vrange_input[pos[0]].first, pos[0], comp))
-    {
-        std::swap(pos[0], pos[1]);
-    };
-    if (npos == 4 and less_range(vrange_input[pos[2]].first, pos[2],
-                                 vrange_input[pos[1]].first, pos[1], comp))
-    {
-        std::swap(pos[1], pos[2]);
-    };
-
-    if (npos == 4 and less_range(vrange_input[pos[1]].first, pos[1],
-                                 vrange_input[pos[0]].first, pos[0], comp))
-    {
-        std::swap(pos[0], pos[1]);
-    };
-*/
     //-----------------------------------------------------------------------
     // thanks to Steven Ross by their suggestion about the optimal
     // sorting networks

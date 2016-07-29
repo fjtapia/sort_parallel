@@ -16,7 +16,7 @@ var searchData=
   ['spin_5fsort',['spin_sort',['../classboost_1_1sort_1_1parallel_1_1detail_1_1spin__sort.html#ac7f50af4fa3e4e07ea539e8f57a2b0af',1,'boost::sort::parallel::detail::spin_sort::spin_sort(Iter_t first, Iter_t last, Compare comp=Compare())'],['../classboost_1_1sort_1_1parallel_1_1detail_1_1spin__sort.html#ac0cf66bb5300a315491c6d42f1463634',1,'boost::sort::parallel::detail::spin_sort::spin_sort(Iter_t first, Iter_t last, Compare comp, range_buf range_aux)']]],
   ['spin_5fsort',['spin_sort',['../classboost_1_1sort_1_1parallel_1_1detail_1_1spin__sort.html',1,'boost::sort::parallel::detail']]],
   ['spin_5fsort_2ehpp',['spin_sort.hpp',['../spin__sort_8hpp.html',1,'']]],
-  ['spin_5fsort_5ft',['spin_sort_t',['../structboost_1_1sort_1_1parallel_1_1detail_1_1sample__sort.html#a5054e73f9bd575486bde5bf12d987e70',1,'boost::sort::parallel::detail::sample_sort']]],
+  ['spin_5fsort_5ft',['spin_sort_t',['../structboost_1_1sort_1_1parallel_1_1detail_1_1sample__sort.html#a73015eff2122494dcfc54a83d25fc93f',1,'boost::sort::parallel::detail::sample_sort']]],
   ['spinlock_2ehpp',['spinlock.hpp',['../spinlock_8hpp.html',1,'']]],
   ['spinlock_5ft',['spinlock_t',['../classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html',1,'boost::sort::parallel::detail::util']]],
   ['spinlock_5ft',['spinlock_t',['../classboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1spinlock__t.html#aa7a46c01eaac5b67a98757f6b815b02d',1,'boost::sort::parallel::detail::util::spinlock_t']]],

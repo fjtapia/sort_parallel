@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['range_5ftail',['range_tail',['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1backbone.html#af31dd1d05de7c7b87dbc729f06714be9',1,'boost::sort::parallel::detail::bis::backbone']]],
-  ['rglobal_5fbuf',['rglobal_buf',['../structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#aa20edf2ed7ef47810863c5740a282cfb',1,'boost::sort::parallel::detail::block_indirect_sort']]]
+  ['ptr',['ptr',['../structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#a57366f64705cfb5f0775b387f8a32d00',1,'boost::sort::parallel::detail::block_indirect_sort::ptr()'],['../structboost_1_1sort_1_1parallel_1_1detail_1_1parallel__stable__sort.html#a29eff29be2b47244d3818ccf19dc0c89',1,'boost::sort::parallel::detail::parallel_stable_sort::ptr()']]]
 ];

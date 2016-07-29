@@ -17,11 +17,14 @@
 #include <iterator>
 #include <utility> // std::swap
 
-
-namespace boost     {
-namespace sort      {
-namespace parallel  {
-namespace detail    {
+namespace boost
+{
+namespace sort
+{
+namespace parallel
+{
+namespace detail
+{
 //
 //-----------------------------------------------------------------------------
 //  function : insertion_sort
@@ -31,23 +34,24 @@ namespace detail    {
 /// @param comp : object for to do the comparison between the elements
 /// @remarks This algorithm is O(N²)
 //-----------------------------------------------------------------------------
-template <class Iter_t, typename Compare>
-void insertion_sort(Iter_t first, Iter_t last, Compare comp)
-{   //--------------------------- begin --------------------------------
-    typedef typename std::iterator_traits<Iter_t>::value_type value_t;
+template < class Iter_t, typename Compare >
+void insertion_sort( Iter_t first, Iter_t last, Compare comp )
+{ //--------------------------- begin --------------------------------
+    typedef typename std::iterator_traits< Iter_t >::value_type value_t;
 
-    if ((last - first) < 2) return;
-    for (Iter_t it_pos_examine = first + 1; it_pos_examine != last;
-         ++it_pos_examine)
+    if ( ( last - first ) < 2 ) return;
+    for ( Iter_t it_pos_examine = first + 1; it_pos_examine != last;
+          ++it_pos_examine )
     {
-        value_t Aux = std::move(*it_pos_examine);
+        value_t Aux = std::move( *it_pos_examine );
         Iter_t it_pos_insert = it_pos_examine;
 
-        while (it_pos_insert != first and comp(Aux, *(it_pos_insert - 1))) {
-            *it_pos_insert = std::move(*(it_pos_insert - 1));
+        while ( it_pos_insert != first and comp( Aux, *( it_pos_insert - 1 ) ) )
+        {
+            *it_pos_insert = std::move( *( it_pos_insert - 1 ) );
             --it_pos_insert;
         };
-        *it_pos_insert = std::move(Aux);
+        *it_pos_insert = std::move( Aux );
     };
 };
 //

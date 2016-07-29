@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['max_5fper_5fthread',['max_per_thread',['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1parallel__sort.html#a6bf204247e31a09b55cc7e92b11dbe57',1,'boost::sort::parallel::detail::bis::parallel_sort']]]
+  ['last',['last',['../structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html#aa3aadd0c8d5e963933362311eea499b9',1,'boost::sort::parallel::detail::util::range']]]
 ];

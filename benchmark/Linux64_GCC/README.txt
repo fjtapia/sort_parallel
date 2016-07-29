@@ -1,7 +1,8 @@
 README.TXT
 ==============
 
-This benchmark shows the time spent by each algorithm in the sorting
+This benchmark shows the time spent by each algorithm in the sorting.
+
 For to compile  and run the programs execute the shell script 
 
 ./compile_and_run.sh

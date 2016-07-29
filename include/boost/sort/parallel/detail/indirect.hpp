@@ -20,11 +20,14 @@
 #include <type_traits>
 #include <vector>
 
-
-namespace boost     {
-namespace sort      {
-namespace parallel  {
-namespace detail    {
+namespace boost
+{
+namespace sort
+{
+namespace parallel
+{
+namespace detail
+{
 //
 //---------------------------------------------------------------------------
 /// @struct less_ptr_no_null
@@ -32,18 +35,17 @@ namespace detail    {
 /// @remarks this is the comparison object for pointers. Compare the objects
 ///          pointed by the iterators
 //---------------------------------------------------------------------------
-template <class Iter_t, class Compare = util::compare_iter<Iter_t>>
+template < class Iter_t, class Compare = util::compare_iter< Iter_t > >
 struct less_ptr_no_null
-{   //----------------------------- Variables -----------------------
+{ //----------------------------- Variables -----------------------
     Compare comp; // comparison object of the elements pointed by Iter_t
 
     //------------------------------------------------------------------------
     //  function : less_ptr_no_null
     /// @brief constructor from a Compare object
-    //
     /// @param C1 : comparison object
     //-----------------------------------------------------------------------
-    inline less_ptr_no_null(Compare C1 = Compare()) : comp(C1){};
+    inline less_ptr_no_null( Compare C1 = Compare() ) : comp( C1 ){};
 
     //------------------------------------------------------------------------
     //  function : operator ( )
@@ -54,9 +56,9 @@ struct less_ptr_no_null
     /// @param  T2 : second iterator
     /// @return bool result of the comparison
     //-----------------------------------------------------------------------
-    inline bool operator()(Iter_t T1, Iter_t T2) const
+    inline bool operator()( Iter_t T1, Iter_t T2 ) const
     {
-        return comp(*T1, *T2);
+        return comp( *T1, *T2 );
     };
 };
 //
@@ -64,19 +66,19 @@ struct less_ptr_no_null
 //  function : create_index
 /// @brief From a vector of objects, create a vector of iterators to
 ///        the objects
-//
+///
 /// @param first : iterator to the first element of the range
 /// @param last : iterator to the element after the last of the range
 /// @param index : vector where store the iterators
 //-----------------------------------------------------------------------------
-template <class Iter_t>
-void create_index(Iter_t first, Iter_t last, std::vector<Iter_t> &index)
-{   //----------------------------- begin -------------------------------
+template < class Iter_t >
+void create_index( Iter_t first, Iter_t last, std::vector< Iter_t > &index )
+{ //----------------------------- begin -------------------------------
     auto nelem = last - first;
-    assert(nelem >= 0);
+    assert( nelem >= 0 );
     index.clear();
-    index.reserve(nelem);
-    for (; first != last; ++first) index.push_back(first);
+    index.reserve( nelem );
+    for ( ; first != last; ++first ) index.push_back( first );
 };
 //
 //-----------------------------------------------------------------------------
@@ -87,10 +89,10 @@ void create_index(Iter_t first, Iter_t last, std::vector<Iter_t> &index)
 /// @param global_first : iterator to the first element of the data
 /// @param [in] index : vector of the iterators
 //-----------------------------------------------------------------------------
-template <class Iter_t>
-void sort_index(Iter_t global_first, std::vector<Iter_t> &index)
+template < class Iter_t >
+void sort_index( Iter_t global_first, std::vector< Iter_t > &index )
 {   //-------------------------- begin -------------------------------------
-    typedef typename std::iterator_traits<Iter_t>::value_type value_t;
+    typedef typename std::iterator_traits< Iter_t >::value_type value_t;
 
     size_t pos_dest = 0;
     size_t pos_src = 0;
@@ -98,30 +100,31 @@ void sort_index(Iter_t global_first, std::vector<Iter_t> &index)
     size_t nelem = index.size();
     Iter_t it_dest, it_src;
 
-    while (pos_in_vector < nelem) {
-        while (pos_in_vector < nelem and
-               (size_t(index[pos_in_vector] - global_first)) == pos_in_vector)
+    while ( pos_in_vector < nelem ) {
+        while ( pos_in_vector < nelem and
+                ( size_t( index[ pos_in_vector ] - global_first ) ) ==
+                    pos_in_vector )
         {
             ++pos_in_vector;
         };
 
-        if (pos_in_vector == nelem) return;
+        if ( pos_in_vector == nelem ) return;
         pos_dest = pos_src = pos_in_vector;
         it_dest = global_first + pos_dest;
-        value_t Aux = std::move(*it_dest);
+        value_t Aux = std::move( *it_dest );
 
-        while ((pos_src = (size_t(index[pos_dest] - global_first))) !=
-               pos_in_vector)
+        while ( ( pos_src = ( size_t( index[ pos_dest ] - global_first ) ) ) !=
+                pos_in_vector )
         {
-            index[pos_dest] = it_dest;
+            index[ pos_dest ] = it_dest;
             it_src = global_first + pos_src;
-            *it_dest = std::move(*it_src);
+            *it_dest = std::move( *it_src );
             it_dest = it_src;
             pos_dest = pos_src;
         };
 
-        *it_dest = std::move(Aux);
-        index[pos_dest] = it_dest;
+        *it_dest = std::move( Aux );
+        index[ pos_dest ] = it_dest;
         ++pos_in_vector;
     };
 };

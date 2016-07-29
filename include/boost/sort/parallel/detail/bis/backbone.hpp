@@ -25,12 +25,16 @@
 
 #include <boost/sort/parallel/detail/bis/block.hpp>
 
-namespace boost      {
-namespace sort       {
-namespace parallel   {
-namespace detail     {
-namespace bis        {
-
+namespace boost
+{
+namespace sort
+{
+namespace parallel
+{
+namespace detail
+{
+namespace bis
+{
 using boost::sort::parallel::detail::util::stack_cnc;
 ///---------------------------------------------------------------------------
 /// @struct backbone
@@ -38,27 +42,27 @@ using boost::sort::parallel::detail::util::stack_cnc;
 ///        block indirect sort algorithm
 
 //----------------------------------------------------------------------------
-template <uint32_t Block_size, class Iter_t, class Compare>
+template < uint32_t Block_size, class Iter_t, class Compare >
 struct backbone
 {
     //-------------------------------------------------------------------------
     //                  D E F I N I T I O N S
     //-------------------------------------------------------------------------
-    typedef typename std::iterator_traits<Iter_t>::value_type value_t;
-    typedef std::atomic<uint32_t> atomic_t;
-    typedef range<size_t> range_pos;
-    typedef range<Iter_t> range_it;
-    typedef range<value_t *> range_buf;
-    typedef std::function<void(void)> function_t;
-    typedef block<Block_size, Iter_t> block_t;
+    typedef typename std::iterator_traits< Iter_t >::value_type value_t;
+    typedef std::atomic< uint32_t > atomic_t;
+    typedef range< size_t > range_pos;
+    typedef range< Iter_t > range_it;
+    typedef range< value_t * > range_buf;
+    typedef std::function< void( void ) > function_t;
+    typedef block< Block_size, Iter_t > block_t;
 
     //------------------------------------------------------------------------
     //                V A R I A B L E S
     //------------------------------------------------------------------------
     // range with all the element to sort
-    util::range<Iter_t> global_range;
+    util::range< Iter_t > global_range;
     // index vector of block_pos elements
-    std::vector<block_pos> index;
+    std::vector< block_pos > index;
     // Number of elements to sort
     size_t nelem;
     // Number of blocks to sort
@@ -72,12 +76,14 @@ struct backbone
     // thread local varible. It is a pointer to the buffer
     static thread_local value_t *buf;
     // concurrent stack where store the function_t elements
-    stack_cnc<function_t> works;
+    stack_cnc< function_t > works;
+    // global indicator of error
+    bool error;
     //
     //------------------------------------------------------------------------
     //                F U N C T I O N S
     //------------------------------------------------------------------------
-    backbone(Iter_t first, Iter_t last, Compare comp);
+    backbone( Iter_t first, Iter_t last, Compare comp );
 
     //------------------------------------------------------------------------
     //  function : get_block
@@ -85,9 +91,9 @@ struct backbone
     /// @param pos : position of the range
     /// @return block required
     //------------------------------------------------------------------------
-    block_t get_block(size_t pos) const
+    block_t get_block( size_t pos ) const
     {
-        return block_t(global_range.first + (pos * Block_size));
+        return block_t( global_range.first + ( pos * Block_size ) );
     };
     //-------------------------------------------------------------------------
     //  function : get_range
@@ -95,13 +101,13 @@ struct backbone
     /// @param pos : position of the range
     /// @return range required
     //-------------------------------------------------------------------------
-    range_it get_range(size_t pos) const
+    range_it get_range( size_t pos ) const
     {
         //--------------------------- begin --------------------------------
-        Iter_t it1 = global_range.first + (pos * Block_size);
+        Iter_t it1 = global_range.first + ( pos * Block_size );
         Iter_t it2 =
-            (pos == (nblock - 1)) ? global_range.last : it1 + Block_size;
-        return range_it(it1, it2);
+            ( pos == ( nblock - 1 ) ) ? global_range.last : it1 + Block_size;
+        return range_it( it1, it2 );
     };
     //-------------------------------------------------------------------------
     //  function : get_range_buf
@@ -109,7 +115,7 @@ struct backbone
     //-------------------------------------------------------------------------
     range_buf get_range_buf() const
     {
-        return range_buf(buf, buf + Block_size);
+        return range_buf( buf, buf + Block_size );
     };
 
     //-------------------------------------------------------------------------
@@ -122,15 +128,15 @@ struct backbone
     /// @param counter : atomic counter for to invoke to the exec function
     ///                  with only 1 parameter
     //-------------------------------------------------------------------------
-    void exec(value_t *ptr_buf, atomic_t &counter)
+    void exec( value_t *ptr_buf, atomic_t &counter )
     {
         buf = ptr_buf;
-        exec(counter);
+        exec( counter );
     };
 
-    void exec(atomic_t &counter);
+    void exec( atomic_t &counter );
     //
-//---------------------------------------------------------------------------
+    //---------------------------------------------------------------------------
 }; // end struct backbone
 //---------------------------------------------------------------------------
 //
@@ -143,9 +149,9 @@ struct backbone
 //############################################################################
 //
 // initialization of the thread_local pointer to the auxiliary buffer
-template <uint32_t Block_size, class Iter_t, class Compare>
-thread_local typename std::iterator_traits<Iter_t>::value_type
-    *backbone<Block_size, Iter_t, Compare>::buf = nullptr;
+template < uint32_t Block_size, class Iter_t, class Compare >
+thread_local typename std::iterator_traits< Iter_t >::value_type
+    *backbone< Block_size, Iter_t, Compare >::buf = nullptr;
 
 //------------------------------------------------------------------------
 //  function : backbone
@@ -156,23 +162,23 @@ thread_local typename std::iterator_traits<Iter_t>::value_type
 /// @param comp : object for to compare two elements pointed by Iter_t
 ///               iterators
 //------------------------------------------------------------------------
-template <uint32_t Block_size, class Iter_t, class Compare>
-backbone<Block_size, Iter_t, Compare>
-    ::backbone(Iter_t first, Iter_t last, Compare comp)
-    : global_range(first, last), cmp(comp)
-{   //------------------------- begin ---------------------------------
-    assert((last - first) >= 0);
-    if (first == last) return; // nothing to do
+template < uint32_t Block_size, class Iter_t, class Compare >
+backbone< Block_size, Iter_t, Compare >::backbone( Iter_t first, Iter_t last,
+                                                   Compare comp )
+    : global_range( first, last ), cmp( comp ), error( false )
+{ //------------------------- begin ---------------------------------
+    assert( ( last - first ) >= 0 );
+    if ( first == last ) return; // nothing to do
 
-    nelem = size_t(last - first);
-    nblock = (nelem + Block_size - 1) / Block_size;
-    ntail = (nelem % Block_size);
-    index.reserve(nblock + 1);
+    nelem = size_t( last - first );
+    nblock = ( nelem + Block_size - 1 ) / Block_size;
+    ntail = ( nelem % Block_size );
+    index.reserve( nblock + 1 );
 
-    for (size_t i = 0; i < nblock; ++i) index.emplace_back(block_pos(i));
+    for ( size_t i = 0; i < nblock; ++i ) index.emplace_back( block_pos( i ) );
 
     range_tail.first =
-        (ntail == 0) ? last : (first + ((nblock - 1) * Block_size));
+        ( ntail == 0 ) ? last : ( first + ( ( nblock - 1 ) * Block_size ) );
     range_tail.last = last;
 };
 //
@@ -182,12 +188,12 @@ backbone<Block_size, Iter_t, Compare>
 //
 /// @param counter : atomic counter. When 0 exits the function
 //-------------------------------------------------------------------------
-template <uint32_t Block_size, class Iter_t, class Compare>
-void backbone<Block_size, Iter_t, Compare>::exec(atomic_t &counter)
-{   //------------------------ begin --------------------------------
+template < uint32_t Block_size, class Iter_t, class Compare >
+void backbone< Block_size, Iter_t, Compare >::exec( atomic_t &counter )
+{ //------------------------ begin --------------------------------
     function_t func_exec;
-    while (util::atomic_read(counter) != 0) {
-        if (works.pop_move_back(func_exec))
+    while ( util::atomic_read( counter ) != 0 ) {
+        if ( works.pop_move_back( func_exec ) )
             func_exec();
         else
             std::this_thread::yield();
