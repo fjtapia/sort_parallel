@@ -1,6 +1,0 @@
-var searchData=
-[
-  ['backbone_5ft',['backbone_t',['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1merge__blocks.html#ae01befc2504cd8a1ca36b08494b07ddb',1,'boost::sort::parallel::detail::bis::merge_blocks::backbone_t()'],['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1move__blocks.html#a814b1a0ad075cc4b22c8691e93b13496',1,'boost::sort::parallel::detail::bis::move_blocks::backbone_t()'],['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1parallel__sort.html#a62c63040ab586fbc923fcfcd66f5e57e',1,'boost::sort::parallel::detail::bis::parallel_sort::backbone_t()'],['../structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#ac1ff1385da53bec1b53795665263cc2f',1,'boost::sort::parallel::detail::block_indirect_sort::backbone_t()']]],
-  ['block_5fpos_5ft',['block_pos_t',['../structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#abed28d39010fb510df3ecc21d7751c84',1,'boost::sort::parallel::detail::block_indirect_sort']]],
-  ['block_5ft',['block_t',['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1backbone.html#ada713039e2e8b42013b1e155f33b2acd',1,'boost::sort::parallel::detail::bis::backbone::block_t()'],['../structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#a4bc162eb71a79b61d581765c6990448d',1,'boost::sort::parallel::detail::block_indirect_sort::block_t()']]]
-];

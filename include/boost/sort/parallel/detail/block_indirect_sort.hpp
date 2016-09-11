@@ -14,6 +14,7 @@
 #define __BOOST_SORT_PARALLEL_DETAIL_BLOCK_INDIRECT_SORT_HPP
 
 #include <atomic>
+#include <boost/sort/parallel/detail/constants.hpp>
 #include <boost/sort/parallel/detail/bis/merge_blocks.hpp>
 #include <boost/sort/parallel/detail/bis/move_blocks.hpp>
 #include <boost/sort/parallel/detail/bis/parallel_sort.hpp>
@@ -320,7 +321,7 @@ void block_indirect_sort< Block_size, Group_size, Iter_t,
                           Compare >::start_function( void )
 {
 	//----------------------- begin -----------------------------------
-    if ( nthread < 9 ) {
+    if ( nthread < BOOST_NTHREAD_BORDER ) {
         parallel_sort_t( bk, bk.global_range.first, bk.global_range.last );
     }
     else

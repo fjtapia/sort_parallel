@@ -1,4 +1,0 @@
-var searchData=
-[
-  ['function_5ft',['function_t',['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1backbone.html#a14a31d4f7094c607d6cc4e96309e4e7f',1,'boost::sort::parallel::detail::bis::backbone::function_t()'],['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1merge__blocks.html#aa1d69bc3abfcece8f01233249536b014',1,'boost::sort::parallel::detail::bis::merge_blocks::function_t()'],['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1move__blocks.html#a4ff93996a9519583457b4826eed38fee',1,'boost::sort::parallel::detail::bis::move_blocks::function_t()'],['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1parallel__sort.html#a6c170cbb885bdd5844a8026bb69f7109',1,'boost::sort::parallel::detail::bis::parallel_sort::function_t()'],['../structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#af7da807493d5b984304b121d400d468a',1,'boost::sort::parallel::detail::block_indirect_sort::function_t()']]]
-];
