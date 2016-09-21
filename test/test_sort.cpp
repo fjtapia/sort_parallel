@@ -14,7 +14,6 @@
 #include <boost/sort/parallel/sort.hpp>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
-#include <iostream>
 #include <random>
 #include <stdlib.h>
 #include <vector>
@@ -23,207 +22,187 @@
 using namespace std;
 namespace bps = boost::sort::parallel;
 
-void test_two_parameters(void)
+void test_two_parameters (void)
 {
-    std::mt19937 my_rand(0);
-    vector<uint64_t> A, B, C;
-    A.reserve(NELEM);
+    std::mt19937 my_rand (0);
+    vector< uint64_t > A, B, C;
+    A.reserve (NELEM);
 
-    for (uint32_t i = 0; i < NELEM; ++i) A.push_back(my_rand());
+    for (uint32_t i = 0; i < NELEM; ++i) A.push_back (my_rand ( ));
     B = A;
-    std::sort(B.begin(), B.end());
-    std::cout << "-----------------------------------\n";
+    std::sort (B.begin ( ), B.end ( ));
 
     C = A;
-    bps::sort(C.begin(), C.end());
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::sort (C.begin ( ), C.end ( ));
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
+
 
     C = A;
-    bps::indirect_sort(C.begin(), C.end());
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::indirect_sort (C.begin ( ), C.end ( ));
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::stable_sort(C.begin(), C.end());
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::stable_sort (C.begin ( ), C.end ( ));
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::indirect_stable_sort(C.begin(), C.end());
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::indirect_stable_sort (C.begin ( ), C.end ( ));
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::parallel_sort(C.begin(), C.end());
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::parallel_sort (C.begin ( ), C.end ( ));
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::sample_sort(C.begin(), C.end());
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::sample_sort (C.begin ( ), C.end ( ));
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::parallel_stable_sort(C.begin(), C.end());
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n\n\n\n";
+    bps::parallel_stable_sort (C.begin ( ), C.end ( ));
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
+
 };
-void test_three_parameters(void)
+void test_three_parameters (void)
 {
-    std::mt19937 my_rand(0);
-    vector<uint64_t> A, B, C;
-    A.reserve(NELEM);
-    std::less<uint64_t> comp;
+    std::mt19937 my_rand (0);
+    vector< uint64_t > A, B, C;
+    A.reserve (NELEM);
+    std::less< uint64_t > comp;
 
-    for (uint32_t i = 0; i < NELEM; ++i) A.push_back(my_rand());
+    for (uint32_t i = 0; i < NELEM; ++i) A.push_back (my_rand ( ));
     B = A;
-    std::sort(B.begin(), B.end(), comp);
-    std::cout << "-----------------------------------\n";
+    std::sort (B.begin ( ), B.end ( ), comp);
 
     C = A;
-    bps::sort(C.begin(), C.end(), comp);
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::sort (C.begin ( ), C.end ( ), comp);
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
     C = A;
-    bps::indirect_sort(C.begin(), C.end(), comp);
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::indirect_sort (C.begin ( ), C.end ( ), comp);
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::stable_sort(C.begin(), C.end(), comp);
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::stable_sort (C.begin ( ), C.end ( ), comp);
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::indirect_stable_sort(C.begin(), C.end(), comp);
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::indirect_stable_sort (C.begin ( ), C.end ( ), comp);
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::parallel_sort(C.begin(), C.end(), comp);
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::parallel_sort (C.begin ( ), C.end ( ), comp);
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::sample_sort(C.begin(), C.end(), comp);
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::sample_sort (C.begin ( ), C.end ( ), comp);
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::parallel_stable_sort(C.begin(), C.end(), comp);
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::parallel_stable_sort (C.begin ( ), C.end ( ), comp);
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::parallel_sort(C.begin(), C.end(), 8);
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::parallel_sort (C.begin ( ), C.end ( ), 8);
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::sample_sort(C.begin(), C.end(), 8);
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::sample_sort (C.begin ( ), C.end ( ), 8);
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::parallel_stable_sort(C.begin(), C.end(), 8);
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n\n\n";
+    bps::parallel_stable_sort (C.begin ( ), C.end ( ), 8);
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
+
 };
 
-void test_four_parameters(void)
+void test_four_parameters (void)
 {
-    std::mt19937 my_rand(0);
-    vector<uint64_t> A, B, C;
-    A.reserve(NELEM);
-    std::less<uint64_t> comp;
+    std::mt19937 my_rand (0);
+    vector< uint64_t > A, B, C;
+    A.reserve (NELEM);
+    std::less< uint64_t > comp;
 
-    for (uint32_t i = 0; i < NELEM; ++i) A.push_back(my_rand());
+    for (uint32_t i = 0; i < NELEM; ++i) A.push_back (my_rand ( ));
     B = A;
-    std::sort(B.begin(), B.end(), comp);
-    std::cout << "-----------------------------------\n";
+    std::sort (B.begin ( ), B.end ( ), comp);
 
     C = A;
-    bps::parallel_sort(C.begin(), C.end(), comp, 100);
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::parallel_sort (C.begin ( ), C.end ( ), comp, 100);
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::sample_sort(C.begin(), C.end(), comp, 100);
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n";
+    bps::sample_sort (C.begin ( ), C.end ( ), comp, 100);
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
 
     C = A;
-    bps::parallel_stable_sort(C.begin(), C.end(), comp, 100);
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i] == C[i]);
-    std::cout << "-----------------------------------\n\n\n";
+    bps::parallel_stable_sort (C.begin ( ), C.end ( ), comp, 100);
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i) BOOST_CHECK (B[ i ] == C[ i ]);
+
 };
-void test_stability(void)
+void test_stability (void)
 {
     struct xk
     {
         uint64_t num;
-        xk(uint64_t h) : num(h){};
-        bool operator<(xk A) const { return ((num >> 3) < (A.num >> 3)); };
+        xk (uint64_t h) : num (h){};
+        bool operator< (xk A) const { return ((num >> 3) < (A.num >> 3)); };
     };
-    std::mt19937 my_rand(0);
-    vector<xk> A, B, C;
-    A.reserve(NELEM);
+    std::mt19937 my_rand (0);
+    vector< xk > A, B, C;
+    A.reserve (NELEM);
 
-    for (uint32_t i = 0; i < NELEM; ++i) A.emplace_back(my_rand());
+    for (uint32_t i = 0; i < NELEM; ++i) A.emplace_back (my_rand ( ));
     B = A;
-    std::stable_sort(B.begin(), B.end());
-    std::cout << "-----------------------------------\n";
+    std::stable_sort (B.begin ( ), B.end ( ));
 
     C = A;
-    bps::stable_sort(C.begin(), C.end());
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i].num == C[i].num);
-    std::cout << "-----------------------------------\n";
+    bps::stable_sort (C.begin ( ), C.end ( ));
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i)
+        BOOST_CHECK (B[ i ].num == C[ i ].num);
 
     C = A;
-    bps::indirect_stable_sort(C.begin(), C.end());
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i].num == C[i].num);
-    std::cout << "-----------------------------------\n";
+    bps::indirect_stable_sort (C.begin ( ), C.end ( ));
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i)
+        BOOST_CHECK (B[ i ].num == C[ i ].num);
 
     C = A;
-    bps::sample_sort(C.begin(), C.end());
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i].num == C[i].num);
-    std::cout << "-----------------------------------\n";
+    bps::sample_sort (C.begin ( ), C.end ( ));
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i)
+        BOOST_CHECK (B[ i ].num == C[ i ].num);
 
     C = A;
-    bps::parallel_stable_sort(C.begin(), C.end());
-    BOOST_CHECK(C.size() == B.size());
-    for (uint32_t i = 0; i < B.size(); ++i) BOOST_CHECK(B[i].num == C[i].num);
-    std::cout << "-----------------------------------\n\n\n\n";
+    bps::parallel_stable_sort (C.begin ( ), C.end ( ));
+    BOOST_CHECK (C.size ( ) == B.size ( ));
+    for (uint32_t i = 0; i < B.size ( ); ++i)
+        BOOST_CHECK (B[ i ].num == C[ i ].num);
 }
-int test_main(int argc, char *argv[])
+int test_main (int argc, char *argv[])
 {
-    test_two_parameters();
-    test_three_parameters();
-    test_four_parameters();
-    test_stability();
+    test_two_parameters ( );
+    test_three_parameters ( );
+    test_four_parameters ( );
+    test_stability ( );
     return 0;
 }

@@ -21,11 +21,16 @@
 #include <type_traits>
 #include <vector>
 
-namespace boost    {
-namespace sort     {
-namespace parallel {
-namespace detail   {
-namespace util     {
+namespace boost
+{
+namespace sort
+{
+namespace parallel
+{
+namespace detail
+{
+namespace util
+{
 //
 //############################################################################
 //                                                                          ##
@@ -49,13 +54,13 @@ using std::iterator_traits;
 /// @param comp : comparison object
 /// @return result of the comparison
 //-----------------------------------------------------------------------------
-template <class Iter_t,
-          class Compare = typename compare_iter<Iter_t>::value_type>
-inline bool less_range(Iter_t it1, uint32_t pos1, Iter_t it2, uint32_t pos2,
-                       Compare comp = Compare())
+template < class Iter_t,
+           class Compare = typename compare_iter< Iter_t >::value_type >
+inline bool less_range (Iter_t it1, uint32_t pos1, Iter_t it2, uint32_t pos2,
+                        Compare comp = Compare ( ))
 {
-    return (comp(*it1, *it2)) ? true : (pos2 < pos1) ? false
-                                                     : not(comp(*it2, *it1));
+    return (comp (*it1, *it2)) ? true : (pos2 < pos1) ? false
+                                                      : not(comp (*it2, *it1));
 };
 
 //-----------------------------------------------------------------------------
@@ -70,24 +75,22 @@ inline bool less_range(Iter_t it1, uint32_t pos1, Iter_t it2, uint32_t pos2,
 /// @param comp : comparison object
 /// @return range with all the elements moved with the size adjusted
 //-----------------------------------------------------------------------------
-template <class Iter1_t, class Iter2_t, class Compare>
-range<Iter1_t> full_merge4(const range<Iter1_t> &rdest,
-                           range<Iter2_t> vrange_input[4],
-                           uint32_t nrange_input, Compare comp)
+template < class Iter1_t, class Iter2_t, class Compare >
+range< Iter1_t > full_merge4 (const range< Iter1_t > &rdest,
+                              range< Iter2_t > vrange_input[4],
+                              uint32_t nrange_input, Compare comp)
 {
-    //----------------------------------------------------------------------
-    typedef range<Iter1_t> range1_t;
-    typedef typename iterator_traits<Iter1_t>::value_type type1;
-    typedef typename iterator_traits<Iter2_t>::value_type type2;
-    static_assert(std::is_same<type1, type2>::value,
-                  "Incompatible iterators\n");
+    typedef range< Iter1_t > range1_t;
+    typedef typename iterator_traits< Iter1_t >::value_type type1;
+    typedef typename iterator_traits< Iter2_t >::value_type type2;
+    static_assert (std::is_same< type1, type2 >::value,
+                   "Incompatible iterators\n");
 
-    //----------------------------- begin ------------------------------------
     size_t ndest = 0;
     uint32_t i = 0;
     while (i < nrange_input) {
-        if (vrange_input[i].size() != 0) {
-            ndest += vrange_input[i++].size();
+        if (vrange_input[i].size ( ) != 0) {
+            ndest += vrange_input[i++].size ( );
         }
         else
         {
@@ -98,10 +101,10 @@ range<Iter1_t> full_merge4(const range<Iter1_t> &rdest,
         };
     };
 
-    if (nrange_input == 0) return range1_t(rdest.first, rdest.first);
-    if (nrange_input == 1) return init_move(rdest, vrange_input[0]);
+    if (nrange_input == 0) return range1_t (rdest.first, rdest.first);
+    if (nrange_input == 1) return init_move (rdest, vrange_input[0]);
     if (nrange_input == 2) {
-        return full_merge(rdest, vrange_input[0], vrange_input[1], comp);
+        return full_merge (rdest, vrange_input[0], vrange_input[1], comp);
     };
 
     //------------------------------------------------------------------------
@@ -113,36 +116,36 @@ range<Iter1_t> full_merge4(const range<Iter1_t> &rdest,
     // thanks to Steven Ross by their suggestion about the optimal
     // sorting networks
     //-----------------------------------------------------------------------
-    if (less_range(vrange_input[pos[1]].first, pos[1],
-                   vrange_input[pos[0]].first, pos[0], comp))
+    if (less_range (vrange_input[pos[1]].first, pos[1],
+                    vrange_input[pos[0]].first, pos[0], comp))
     {
-        std::swap(pos[0], pos[1]);
+        std::swap (pos[0], pos[1]);
     };
-    if (npos == 4 and less_range(vrange_input[pos[3]].first, pos[3],
-                                 vrange_input[pos[2]].first, pos[2], comp))
+    if (npos == 4 and less_range (vrange_input[pos[3]].first, pos[3],
+                                  vrange_input[pos[2]].first, pos[2], comp))
     {
-        std::swap(pos[3], pos[2]);
+        std::swap (pos[3], pos[2]);
     };
-    if (less_range(vrange_input[pos[2]].first, pos[2],
-                   vrange_input[pos[0]].first, pos[0], comp))
+    if (less_range (vrange_input[pos[2]].first, pos[2],
+                    vrange_input[pos[0]].first, pos[0], comp))
     {
-        std::swap(pos[0], pos[2]);
+        std::swap (pos[0], pos[2]);
     };
-    if (npos == 4 and less_range(vrange_input[pos[3]].first, pos[3],
-                                 vrange_input[pos[1]].first, pos[1], comp))
+    if (npos == 4 and less_range (vrange_input[pos[3]].first, pos[3],
+                                  vrange_input[pos[1]].first, pos[1], comp))
     {
-        std::swap(pos[1], pos[3]);
+        std::swap (pos[1], pos[3]);
     };
-    if (less_range(vrange_input[pos[2]].first, pos[2],
-                   vrange_input[pos[1]].first, pos[1], comp))
+    if (less_range (vrange_input[pos[2]].first, pos[2],
+                    vrange_input[pos[1]].first, pos[1], comp))
     {
-        std::swap(pos[1], pos[2]);
+        std::swap (pos[1], pos[2]);
     };
 
     Iter1_t it_dest = rdest.first;
     while (npos > 2) {
-        *(it_dest++) = std::move(*(vrange_input[pos[0]].first++));
-        if (vrange_input[pos[0]].size() == 0) {
+        *(it_dest++) = std::move (*(vrange_input[pos[0]].first++));
+        if (vrange_input[pos[0]].size ( ) == 0) {
             pos[0] = pos[1];
             pos[1] = pos[2];
             pos[2] = pos[3];
@@ -150,34 +153,34 @@ range<Iter1_t> full_merge4(const range<Iter1_t> &rdest,
         }
         else
         {
-            if (less_range(vrange_input[pos[1]].first, pos[1],
-                           vrange_input[pos[0]].first, pos[0], comp))
+            if (less_range (vrange_input[pos[1]].first, pos[1],
+                            vrange_input[pos[0]].first, pos[0], comp))
             {
-                std::swap(pos[0], pos[1]);
-                if (less_range(vrange_input[pos[2]].first, pos[2],
-                               vrange_input[pos[1]].first, pos[1], comp))
+                std::swap (pos[0], pos[1]);
+                if (less_range (vrange_input[pos[2]].first, pos[2],
+                                vrange_input[pos[1]].first, pos[1], comp))
                 {
-                    std::swap(pos[1], pos[2]);
+                    std::swap (pos[1], pos[2]);
                     if (npos == 4 and
-                        less_range(vrange_input[pos[3]].first, pos[3],
-                                   vrange_input[pos[2]].first, pos[2], comp))
+                        less_range (vrange_input[pos[3]].first, pos[3],
+                                    vrange_input[pos[2]].first, pos[2], comp))
                     {
-                        std::swap(pos[2], pos[3]);
+                        std::swap (pos[2], pos[3]);
                     };
                 };
             };
         };
     };
 
-    range1_t raux1(rdest.first, it_dest), raux2(it_dest, rdest.last);
+    range1_t raux1 (rdest.first, it_dest), raux2 (it_dest, rdest.last);
     if (pos[0] < pos[1]) {
-        return concat(raux1, full_merge(raux2, vrange_input[pos[0]],
-                                        vrange_input[pos[1]], comp));
+        return concat (raux1, full_merge (raux2, vrange_input[pos[0]],
+                                          vrange_input[pos[1]], comp));
     }
     else
     {
-        return concat(raux1, full_merge(raux2, vrange_input[pos[1]],
-                                        vrange_input[pos[0]], comp));
+        return concat (raux1, full_merge (raux2, vrange_input[pos[1]],
+                                          vrange_input[pos[0]], comp));
     };
 };
 
@@ -193,22 +196,20 @@ range<Iter1_t> full_merge4(const range<Iter1_t> &rdest,
 /// @param comp : comparison object
 /// @return range with all the elements move with the size adjusted
 //-----------------------------------------------------------------------------
-template <class Value_t, class Iter_t, class Compare>
-range<Value_t *> uninit_full_merge4(const range<Value_t *> &dest,
-                                    range<Iter_t> vrange_input[4],
-                                    uint32_t nrange_input, Compare comp)
+template < class Value_t, class Iter_t, class Compare >
+range< Value_t * > uninit_full_merge4 (const range< Value_t * > &dest,
+                                       range< Iter_t > vrange_input[4],
+                                       uint32_t nrange_input, Compare comp)
 {
-    //-----------------------------------------------------------------------
-    typedef typename iterator_traits<Iter_t>::value_type type1;
-    static_assert(std::is_same<type1, Value_t>::value,
-                  "Incompatible iterators\n");
+    typedef typename iterator_traits< Iter_t >::value_type type1;
+    static_assert (std::is_same< type1, Value_t >::value,
+                   "Incompatible iterators\n");
 
-    //----------------------------- begin ------------------------------------
     size_t ndest = 0;
     uint32_t i = 0;
     while (i < nrange_input) {
-        if (vrange_input[i].size() != 0) {
-            ndest += vrange_input[i++].size();
+        if (vrange_input[i].size ( ) != 0) {
+            ndest += vrange_input[i++].size ( );
         }
         else
         {
@@ -218,10 +219,10 @@ range<Value_t *> uninit_full_merge4(const range<Value_t *> &dest,
             --nrange_input;
         };
     };
-    if (nrange_input == 0) return range<Value_t *>(dest.first, dest.first);
-    if (nrange_input == 1) return uninit_move(dest, vrange_input[0]);
+    if (nrange_input == 0) return range< Value_t * > (dest.first, dest.first);
+    if (nrange_input == 1) return uninit_move (dest, vrange_input[0]);
     if (nrange_input == 2) {
-        return uninit_full_merge(dest, vrange_input[0], vrange_input[1], comp);
+        return uninit_full_merge (dest, vrange_input[0], vrange_input[1], comp);
     };
 
     //------------------------------------------------------------------------
@@ -233,37 +234,37 @@ range<Value_t *> uninit_full_merge4(const range<Value_t *> &dest,
     // thanks to Steven Ross by their suggestion about the optimal
     // sorting networks
     //-----------------------------------------------------------------------
-    if (less_range(vrange_input[pos[1]].first, pos[1],
-                   vrange_input[pos[0]].first, pos[0], comp))
+    if (less_range (vrange_input[pos[1]].first, pos[1],
+                    vrange_input[pos[0]].first, pos[0], comp))
     {
-        std::swap(pos[0], pos[1]);
+        std::swap (pos[0], pos[1]);
     };
-    if (npos == 4 and less_range(vrange_input[pos[3]].first, pos[3],
-                                 vrange_input[pos[2]].first, pos[2], comp))
+    if (npos == 4 and less_range (vrange_input[pos[3]].first, pos[3],
+                                  vrange_input[pos[2]].first, pos[2], comp))
     {
-        std::swap(pos[3], pos[2]);
+        std::swap (pos[3], pos[2]);
     };
-    if (less_range(vrange_input[pos[2]].first, pos[2],
-                   vrange_input[pos[0]].first, pos[0], comp))
+    if (less_range (vrange_input[pos[2]].first, pos[2],
+                    vrange_input[pos[0]].first, pos[0], comp))
     {
-        std::swap(pos[0], pos[2]);
+        std::swap (pos[0], pos[2]);
     };
-    if (npos == 4 and less_range(vrange_input[pos[3]].first, pos[3],
-                                 vrange_input[pos[1]].first, pos[1], comp))
+    if (npos == 4 and less_range (vrange_input[pos[3]].first, pos[3],
+                                  vrange_input[pos[1]].first, pos[1], comp))
     {
-        std::swap(pos[1], pos[3]);
+        std::swap (pos[1], pos[3]);
     };
-    if (less_range(vrange_input[pos[2]].first, pos[2],
-                   vrange_input[pos[1]].first, pos[1], comp))
+    if (less_range (vrange_input[pos[2]].first, pos[2],
+                    vrange_input[pos[1]].first, pos[1], comp))
     {
-        std::swap(pos[1], pos[2]);
+        std::swap (pos[1], pos[2]);
     };
-
 
     Value_t *it_dest = dest.first;
     while (npos > 2) {
-        construct(&(*(it_dest++)), std::move(*(vrange_input[pos[0]].first++)));
-        if (vrange_input[pos[0]].size() == 0) {
+        construct (&(*(it_dest++)),
+                   std::move (*(vrange_input[pos[0]].first++)));
+        if (vrange_input[pos[0]].size ( ) == 0) {
             pos[0] = pos[1];
             pos[1] = pos[2];
             pos[2] = pos[3];
@@ -271,34 +272,36 @@ range<Value_t *> uninit_full_merge4(const range<Value_t *> &dest,
         }
         else
         {
-            if (less_range(vrange_input[pos[1]].first, pos[1],
-                           vrange_input[pos[0]].first, pos[0], comp))
+            if (less_range (vrange_input[pos[1]].first, pos[1],
+                            vrange_input[pos[0]].first, pos[0], comp))
             {
-                std::swap(pos[0], pos[1]);
-                if (less_range(vrange_input[pos[2]].first, pos[2],
-                               vrange_input[pos[1]].first, pos[1], comp))
+                std::swap (pos[0], pos[1]);
+                if (less_range (vrange_input[pos[2]].first, pos[2],
+                                vrange_input[pos[1]].first, pos[1], comp))
                 {
-                    std::swap(pos[1], pos[2]);
+                    std::swap (pos[1], pos[2]);
                     if (npos == 4 and
-                        less_range(vrange_input[pos[3]].first, pos[3],
-                                   vrange_input[pos[2]].first, pos[2], comp))
+                        less_range (vrange_input[pos[3]].first, pos[3],
+                                    vrange_input[pos[2]].first, pos[2], comp))
                     {
-                        std::swap(pos[2], pos[3]);
+                        std::swap (pos[2], pos[3]);
                     };
                 };
             };
         };
     }; // end while (npos > 2)
 
-    range<Value_t *> raux1(dest.first, it_dest), raux2(it_dest, dest.last);
+    range< Value_t * > raux1 (dest.first, it_dest), raux2 (it_dest, dest.last);
     if (pos[0] < pos[1]) {
-        return concat(raux1, uninit_full_merge(raux2, vrange_input[pos[0]],
-                                               vrange_input[pos[1]], comp));
+        return concat (raux1,
+                       uninit_full_merge (raux2, vrange_input[pos[0]],
+                                          vrange_input[pos[1]], comp));
     }
     else
     {
-        return concat(raux1, uninit_full_merge(raux2, vrange_input[pos[1]],
-                                               vrange_input[pos[0]], comp));
+        return concat (raux1,
+                       uninit_full_merge (raux2, vrange_input[pos[1]],
+                                          vrange_input[pos[0]], comp));
     };
 };
 

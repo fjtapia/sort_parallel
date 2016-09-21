@@ -35,23 +35,24 @@ namespace detail
 /// @remarks This algorithm is O(N²)
 //-----------------------------------------------------------------------------
 template < class Iter_t, typename Compare >
-void insertion_sort( Iter_t first, Iter_t last, Compare comp )
-{ //--------------------------- begin --------------------------------
+void insertion_sort (Iter_t first, Iter_t last, Compare comp)
+{
+    //--------------------------------------------------------------------
+    //                   DEFINITIONS
+    //--------------------------------------------------------------------
     typedef typename std::iterator_traits< Iter_t >::value_type value_t;
 
-    if ( ( last - first ) < 2 ) return;
-    for ( Iter_t it_pos_examine = first + 1; it_pos_examine != last;
-          ++it_pos_examine )
-    {
-        value_t Aux = std::move( *it_pos_examine );
-        Iter_t it_pos_insert = it_pos_examine;
+    if ((last - first) < 2) return;
 
-        while ( it_pos_insert != first and comp( Aux, *( it_pos_insert - 1 ) ) )
-        {
-            *it_pos_insert = std::move( *( it_pos_insert - 1 ) );
-            --it_pos_insert;
+    for (Iter_t it_examine = first + 1; it_examine != last; ++it_examine) {
+        value_t Aux = std::move (*it_examine);
+        Iter_t it_insertion = it_examine;
+
+        while (it_insertion != first and comp (Aux, *(it_insertion - 1))) {
+            *it_insertion = std::move (*(it_insertion - 1));
+            --it_insertion;
         };
-        *it_pos_insert = std::move( Aux );
+        *it_insertion = std::move (Aux);
     };
 };
 //

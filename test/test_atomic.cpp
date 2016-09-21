@@ -13,20 +13,19 @@
 #include <boost/sort/parallel/detail/util/atomic.hpp>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
-#include <iostream>
 
 namespace bsp_util = boost::sort::parallel::detail::util;
 
-int test_main(int, char *[])
+int test_main (int, char *[])
 {
-    //----------------- begin ------------
-    std::atomic<uint32_t> A(7);
+    std::atomic< uint32_t > A (7);
 
-    std::atomic_uint B(6);
-    auto X = std::atomic_load_explicit<uint32_t>(&A, std::memory_order_acquire);
+    std::atomic_uint B (6);
+    auto X =
+        std::atomic_load_explicit< uint32_t > (&A, std::memory_order_acquire);
 
-    std::cout << X << std::endl;
-    X = bsp_util::atomic_read<uint32_t>(A);
-    std::cout << X << std::endl;
+    BOOST_CHECK (X == 7);
+    X = bsp_util::atomic_read< uint32_t > (A);
+    BOOST_CHECK (X == 7);
     return 0;
 };

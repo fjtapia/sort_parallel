@@ -15,11 +15,16 @@
 
 #include <cstdint>
 
-namespace boost    {
-namespace sort     {
-namespace parallel {
-namespace detail   {
-namespace util     {
+namespace boost
+{
+namespace sort
+{
+namespace parallel
+{
+namespace detail
+{
+namespace util
+{
 //
 //##########################################################################
 //                                                                        ##
@@ -27,7 +32,7 @@ namespace util     {
 //                                                                        ##
 //##########################################################################
 //
-// this array represent the number of bits needed for to represent the 
+// this array represent the number of bits needed for to represent the
 // first 256 numbers
 static constexpr const uint32_t tmsb[256] = {
     0, 1, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5,
@@ -54,8 +59,8 @@ static constexpr const uint32_t tmsb[256] = {
 /// @param num : Number to examine
 /// @return Number of bits
 //---------------------------------------------------------------------------
-static inline uint32_t nbits32(uint32_t num) noexcept
-{ 
+static inline uint32_t nbits32 (uint32_t num) noexcept
+{
     int Pos = (num & 0xffff0000U) ? 16 : 0;
     if ((num >> Pos) & 0xff00U) Pos += 8;
     return (tmsb[num >> Pos] + Pos);
@@ -68,8 +73,8 @@ static inline uint32_t nbits32(uint32_t num) noexcept
 /// @exception none
 /// @return Number of bits
 //---------------------------------------------------------------------------
-static inline uint32_t nbits64(uint64_t num)
-{ 
+static inline uint32_t nbits64 (uint64_t num)
+{
     uint32_t Pos = (num & 0xffffffff00000000ULL) ? 32 : 0;
     if ((num >> Pos) & 0xffff0000ULL) Pos += 16;
     if ((num >> Pos) & 0xff00ULL) Pos += 8;

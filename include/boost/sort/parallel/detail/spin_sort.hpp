@@ -34,9 +34,9 @@ namespace parallel
 namespace detail
 {
 //
-//****************************************************************************
-//                 NAMESPACES AND USING SENTENCES
-//****************************************************************************
+//----------------------------------------------------------------------------
+//                USING SENTENCES
+//----------------------------------------------------------------------------
 using util::range;
 using util::nbits64;
 using std::iterator_traits;
@@ -52,32 +52,32 @@ using std::iterator_traits;
 ///                if not make a recursive call splitting the ranges
 //-----------------------------------------------------------------------------
 template < class Iter1_t, class Iter2_t, class Compare >
-void range_sort( const range< Iter1_t > &range_input,
+void range_sort (const range< Iter1_t > &range_input,
                  const range< Iter2_t > &range_buffer, Compare comp,
-                 uint32_t level )
-{   //---------------------------- begin ------------------------------------
+                 uint32_t level)
+{
     typedef range< Iter1_t > range_it1;
     typedef range< Iter2_t > range_it2;
-    assert( range_input.size() == range_buffer.size() and level != 0 );
+    assert (range_input.size ( ) == range_buffer.size ( ) and level != 0);
 
-    size_t nelem1 = ( range_input.size() + 1 ) >> 1;
-    range_it1 range_input1( range_input.first, range_input.first + nelem1 ),
-        range_input2( range_input.first + nelem1, range_input.last );
+    size_t nelem1 = (range_input.size ( ) + 1) >> 1;
+    range_it1 range_input1 (range_input.first, range_input.first + nelem1),
+        range_input2 (range_input.first + nelem1, range_input.last);
 
-    if ( level < 2 ) {
-        insertion_sort( range_input1.first, range_input1.last, comp );
-        insertion_sort( range_input2.first, range_input2.last, comp );
+    if (level < 2) {
+        insertion_sort (range_input1.first, range_input1.last, comp);
+        insertion_sort (range_input2.first, range_input2.last, comp);
     }
     else
     {
-        range_sort(
-            range_it2( range_buffer.first, range_buffer.first + nelem1 ),
-            range_input1, comp, level - 1 );
+        range_sort (range_it2 (range_buffer.first, range_buffer.first + nelem1),
+                    range_input1, comp, level - 1);
 
-        range_sort( range_it2( range_buffer.first + nelem1, range_buffer.last ),
-                    range_input2, comp, level - 1 );
+        range_sort (range_it2 (range_buffer.first + nelem1, range_buffer.last),
+                    range_input2, comp, level - 1);
     };
-    full_merge( range_buffer, range_input1, range_input2, comp );
+
+    full_merge (range_buffer, range_input1, range_input2, comp);
 };
 
 //---------------------------------------------------------------------------
@@ -88,9 +88,9 @@ void range_sort( const range< Iter1_t > &range_input,
 template < class Iter_t, typename Compare = util::compare_iter< Iter_t > >
 class spin_sort
 {
-    //************************************************************************
+    //------------------------------------------------------------------------
     //               DEFINITIONS AND CONSTANTS
-    //************************************************************************
+    //------------------------------------------------------------------------
     typedef typename iterator_traits< Iter_t >::value_type value_t;
     typedef range< Iter_t > range_it;
     typedef range< value_t * > range_buf;
@@ -98,31 +98,36 @@ class spin_sort
     // by the insertion sort algorithm
     static const uint32_t Sort_min = 36;
 
-    //***********************************************************************
+    //------------------------------------------------------------------------
     //                      VARIABLES
-    //***********************************************************************
+    //------------------------------------------------------------------------
     // Pointer to the auxiliary memory
     value_t *ptr;
+
     // Number of elements in the auxiliary memory
     size_t nptr;
+
     // construct indicate if the auxiliary memory in initialized, and owner
     // indicate if the auxiliary memory had been created inside the object or
     // had
     // been received as a parameter
     bool construct = false, owner = false;
 
-    //************************************************************************
+    //------------------------------------------------------------------------
     //                   PRIVATE FUNCTIONS
-    //************************************************************************
-    spin_sort( Iter_t first, Iter_t last, Compare comp, value_t *paux,
-               size_t naux );
+    //-------------------------------------------------------------------------
+    spin_sort (Iter_t first, Iter_t last, Compare comp, value_t *paux,
+               size_t naux);
 
-  public:
-    spin_sort( Iter_t first, Iter_t last, Compare comp = Compare() )
-        : spin_sort( first, last, comp, nullptr, 0 ){};
+public:
+    //------------------------------------------------------------------------
+    //                   PUBLIC FUNCTIONS
+    //-------------------------------------------------------------------------
+    spin_sort (Iter_t first, Iter_t last, Compare comp = Compare ( ))
+        : spin_sort (first, last, comp, nullptr, 0){};
 
-    spin_sort( Iter_t first, Iter_t last, Compare comp, range_buf range_aux )
-        : spin_sort( first, last, comp, range_aux.first, range_aux.size() ){};
+    spin_sort (Iter_t first, Iter_t last, Compare comp, range_buf range_aux)
+        : spin_sort (first, last, comp, range_aux.first, range_aux.size ( )){};
     //
     //-----------------------------------------------------------------------
     //  function :~spin_sort
@@ -130,13 +135,13 @@ class spin_sort
     /// true,
     ///        and return the memory if owner is true
     //-----------------------------------------------------------------------
-    ~spin_sort( void )
-    { //----------------------------------- begin -------------------------
-        if ( construct ) {
-            destroy( range< value_t * >( ptr, ptr + nptr ) );
+    ~spin_sort (void)
+    {
+        if (construct) {
+            destroy (range< value_t * > (ptr, ptr + nptr));
             construct = false;
         };
-        if ( owner and ptr != nullptr ) std::return_temporary_buffer( ptr );
+        if (owner and ptr != nullptr) std::return_temporary_buffer (ptr);
     };
 }; //        End of class spin_sort
 //
@@ -160,61 +165,60 @@ class spin_sort
 /// @param naux : number of elements pointed by paux
 //-----------------------------------------------------------------------------
 template < class Iter_t, class Compare >
-spin_sort< Iter_t, Compare >::spin_sort( Iter_t first, Iter_t last,
-                                         Compare comp, value_t *paux,
-                                         size_t naux )
-    : ptr( paux ), nptr( naux ), construct( false ), owner( false )
-{ //-------------------------- begin -------------------------------------
-    range< Iter_t > range_input( first, last );
-    assert( range_input.valid() );
+spin_sort< Iter_t, Compare >
+  ::spin_sort (Iter_t first, Iter_t last, Compare comp, value_t *paux,
+               size_t naux)
+    : ptr (paux), nptr (naux), construct (false), owner (false)
+{
+    range< Iter_t > range_input (first, last);
+    assert (range_input.valid ( ));
 
-    size_t nelem = range_input.size();
+    size_t nelem = range_input.size ( );
     owner = construct = false;
 
-    nptr = ( nelem + 1 ) >> 1;
+    nptr = (nelem + 1) >> 1;
     size_t nelem_1 = nptr;
     size_t nelem_2 = nelem - nelem_1;
 
-    if ( nelem <= ( Sort_min << 1 ) ) {
-        insertion_sort( range_input.first, range_input.last, comp );
+    if (nelem <= (Sort_min << 1)) {
+        insertion_sort (range_input.first, range_input.last, comp);
         return;
     };
     //------------------- check if sort --------------------------------------
     bool sw = true;
-    for ( Iter_t it1 = range_input.first, it2 = range_input.first + 1;
-          it2 != range_input.last and ( sw = not comp( *it2, *it1 ) );
-          it1 = it2++ );
-    if ( sw ) return;
+    for (Iter_t it1 = range_input.first, it2 = range_input.first + 1;
+         it2 != range_input.last and (sw = not comp (*it2, *it1)); it1 = it2++)
+        ;
+    if (sw) return;
 
-    if ( ptr == nullptr ) {
-        ptr = std::get_temporary_buffer< value_t >( nptr ).first;
-        if ( ptr == nullptr ) throw std::bad_alloc();
+    if (ptr == nullptr) {
+        ptr = std::get_temporary_buffer< value_t > (nptr).first;
+        if (ptr == nullptr) throw std::bad_alloc ( );
         owner = true;
     };
-    range_buf range_aux( ptr, ( ptr + nptr ) );
+    range_buf range_aux (ptr, (ptr + nptr));
 
     //------------------------------------------------------------------------
     //                  Process
     //------------------------------------------------------------------------
-    uint32_t nlevel =
-        nbits64( ( ( nelem + Sort_min - 1 ) / Sort_min ) - 1 ) - 1;
-    assert( nlevel != 0 );
+    uint32_t nlevel = nbits64 (((nelem + Sort_min - 1) / Sort_min) - 1) - 1;
+    assert (nlevel != 0);
 
-    if ( ( nlevel & 1 ) == 1 ) {
+    if ((nlevel & 1) == 1) {
         //---------------------------------------------------------------------
         // if the number of levels is odd, the data are in the first parameter
         // of range_sort, and the results appear in the second parameter
         //---------------------------------------------------------------------
-        range_it range_1( first, first + nelem_2 ),
-            range_2( first + nelem_2, last );
-        range_aux = uninit_move( range_aux, range_2 );
+        range_it range_1 (first, first + nelem_2),
+            range_2 (first + nelem_2, last);
+        range_aux = uninit_move (range_aux, range_2);
         construct = true;
 
-        range_sort( range_aux, range_2, comp, nlevel );
-        range_buf rng_bx( range_aux.first, range_aux.first + nelem_2 );
+        range_sort (range_aux, range_2, comp, nlevel);
+        range_buf rng_bx (range_aux.first, range_aux.first + nelem_2);
 
-        range_sort( range_1, rng_bx, comp, nlevel );
-        half_merge( range_input, rng_bx, range_2, comp );
+        range_sort (range_1, rng_bx, comp, nlevel);
+        half_merge (range_input, rng_bx, range_2, comp);
     }
     else
     {
@@ -222,16 +226,16 @@ spin_sort< Iter_t, Compare >::spin_sort( Iter_t first, Iter_t last,
         // If the number of levels is even, the data are in the second
         // parameter of range_sort, and the results are in the same parameter
         //---------------------------------------------------------------------
-        range_it range_1( first, first + nelem_1 ),
-            range_2( first + nelem_1, last );
-        range_aux = uninit_move( range_aux, range_1 );
+        range_it range_1 (first, first + nelem_1),
+            range_2 (first + nelem_1, last);
+        range_aux = uninit_move (range_aux, range_1);
         construct = true;
 
-        range_sort( range_1, range_aux, comp, nlevel );
+        range_sort (range_1, range_aux, comp, nlevel);
 
-        range_1.last = range_1.first + range_2.size();
-        range_sort( range_1, range_2, comp, nlevel );
-        half_merge( range_input, range_aux, range_2, comp );
+        range_1.last = range_1.first + range_2.size ( );
+        range_sort (range_1, range_2, comp, nlevel);
+        half_merge (range_input, range_aux, range_2, comp);
     };
 };
 

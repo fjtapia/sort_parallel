@@ -10,67 +10,65 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#include <boost/sort/parallel/detail/util/spinlock.hpp>
 #include <chrono>
-#include <iostream>
 #include <mutex>
 #include <thread>
-
+#include <boost/sort/parallel/detail/util/spinlock.hpp>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
 
 int N = 0;
-void start(void);
-int function1();
-int function2();
+void start (void);
+int function1 ( );
+int function2 ( );
 
 using boost::sort::parallel::detail::util::spinlock_t;
 spinlock_t s;
-std::chrono::seconds sec(1);
+std::chrono::seconds sec (1);
 
-int test_main(int, char *[])
+int test_main (int, char *[])
 {
-    start();
+    start ( );
     return 0;
 };
 
-void start(void)
+void start (void)
 {
-    BOOST_CHECK(N == 0);
+    BOOST_CHECK (N == 0);
 
     N++;
-    s.try_lock();
+    s.try_lock ( );
     N++;
-    std::thread T1(function1);
-    std::thread T2(function2);
+    std::thread T1 (function1);
+    std::thread T2 (function2);
 
-    std::this_thread::sleep_for(std::chrono::seconds(3));
-    BOOST_CHECK(N == 4);
+    std::this_thread::sleep_for (std::chrono::seconds (3));
+    BOOST_CHECK (N == 4);
     N++;
-    s.unlock();
-    T1.join();
-    T2.join();
-    BOOST_CHECK(N == 9);
+    s.unlock ( );
+    T1.join ( );
+    T2.join ( );
+    BOOST_CHECK (N == 9);
 }
-int function1()
+int function1 ( )
 {
     N++;
-    std::unique_lock<spinlock_t> ul(s);
-    BOOST_CHECK(N == 5 or N == 7);
+    std::unique_lock< spinlock_t > ul (s);
+    BOOST_CHECK (N == 5 or N == 7);
 
     N++;
-    std::this_thread::sleep_for(std::chrono::seconds(2));
+    std::this_thread::sleep_for (std::chrono::seconds (2));
     N++;
     return 0;
 }
-int function2()
+int function2 ( )
 {
     N++;
-    std::unique_lock<spinlock_t> ul(s);
-    BOOST_CHECK(N == 5 or N == 7);
+    std::unique_lock< spinlock_t > ul (s);
+    BOOST_CHECK (N == 5 or N == 7);
     N++;
 
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for (std::chrono::seconds (1));
     N++;
     return 0;
 }

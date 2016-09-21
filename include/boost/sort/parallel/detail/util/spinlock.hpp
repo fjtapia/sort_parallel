@@ -20,17 +20,17 @@
 #include <mutex>
 #include <thread>
 
-namespace boost    {
-namespace sort     {
-namespace parallel {
-namespace detail   {
-namespace util     {
+namespace boost
+{
+namespace sort
+{
+namespace parallel
+{
+namespace detail
+{
+namespace util
+{
 //
-//##########################################################################
-//                                                                        ##
-//                 C L A S S     S P I N L O C K                          ##
-//                                                                        ##
-//##########################################################################
 //---------------------------------------------------------------------------
 /// @class spinlock_t
 /// @brief This class implement, from atomic variables, a spinlock
@@ -39,9 +39,9 @@ namespace util     {
 class spinlock_t
 {
   private:
-    //*************************************************************************
+    //------------------------------------------------------------------------
     //             P R I V A T E      V A R I A B L E S
-    //*************************************************************************
+    //------------------------------------------------------------------------
     std::atomic_flag af;
 
   public:
@@ -51,18 +51,18 @@ class spinlock_t
     /// @brief  class constructor
     /// @param [in]
     //-------------------------------------------------------------------------
-    explicit spinlock_t() noexcept { af.clear(); };
+    explicit spinlock_t ( ) noexcept { af.clear ( ); };
     //
     //-------------------------------------------------------------------------
     //  function : lock
     /// @brief  Lock the spinlock_t
     //-------------------------------------------------------------------------
-    void lock() noexcept
+    void lock ( ) noexcept
     {
-        if (af.test_and_set(std::memory_order_acquire)) {
-            std::this_thread::yield();
-            while (af.test_and_set(std::memory_order_relaxed)) {
-                std::this_thread::yield();
+        if (af.test_and_set (std::memory_order_acquire)) {
+            std::this_thread::yield ( );
+            while (af.test_and_set (std::memory_order_relaxed)) {
+                std::this_thread::yield ( );
             };
         };
     };
@@ -73,20 +73,17 @@ class spinlock_t
     /// @return true : locked
     ///         false: not previous locked
     //-------------------------------------------------------------------------
-    bool try_lock() noexcept
+    bool try_lock ( ) noexcept
     {
-        return not af.test_and_set(std::memory_order_acquire);
+        return not af.test_and_set (std::memory_order_acquire);
     };
     //
     //-------------------------------------------------------------------------
     //  function : unlock
     /// @brief  unlock the spinlock_t
     //-------------------------------------------------------------------------
-    void unlock() noexcept
-    { 
-        af.clear(std::memory_order_release);
-    };
- 
+    void unlock ( ) noexcept { af.clear (std::memory_order_release); };
+
 }; // E N D    C L A S S     S P I N L O C K
 //
 //***************************************************************************

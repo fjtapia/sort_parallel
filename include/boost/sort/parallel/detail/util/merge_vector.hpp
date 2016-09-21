@@ -21,18 +21,21 @@
 #include <type_traits>
 #include <vector>
 
-namespace boost    {
-namespace sort     {
-namespace parallel {
-namespace detail   {
-namespace util     {
-//
-//
+namespace boost
+{
+namespace sort
+{
+namespace parallel
+{
+namespace detail
+{
+namespace util
+{
 //############################################################################
 //                                                                          ##
 //                       F U S I O N     O F                                ##
 //                                                                          ##
-//              F O U R     E L E M E N T S    R A N G E                    ##
+//              A  V E C T O R   O F    R A N G E S                         ##
 //                                                                          ##
 //############################################################################
 using std::iterator_traits;
@@ -49,33 +52,31 @@ using std::iterator_traits;
 /// @param comp : comparison object
 /// @return range with all the elements moved
 //-----------------------------------------------------------------------------
-template <class Iter1_t, class Iter2_t, class Compare>
-void merge_level4(range<Iter1_t> dest, 
-                  std::vector<range<Iter2_t>> &v_input,
-                  std::vector<range<Iter1_t>> &v_output, Compare comp)
+template < class Iter1_t, class Iter2_t, class Compare >
+void merge_level4 (range< Iter1_t > dest,
+                   std::vector< range< Iter2_t > > &v_input,
+                   std::vector< range< Iter1_t > > &v_output, Compare comp)
 {
-    //------------------------------------------------------------------------
-    typedef range<Iter1_t> range1_t;
-    typedef typename iterator_traits<Iter1_t>::value_type type1;
-    typedef typename iterator_traits<Iter2_t>::value_type type2;
-    static_assert(std::is_same<type1, type2>::value,
-                  "Incompatible iterators\n");
+    typedef range< Iter1_t > range1_t;
+    typedef typename iterator_traits< Iter1_t >::value_type type1;
+    typedef typename iterator_traits< Iter2_t >::value_type type2;
+    static_assert (std::is_same< type1, type2 >::value,
+                   "Incompatible iterators\n");
 
-    //------------------------------- begin ----------------------------------
-    v_output.clear();
-    if (v_input.size() == 0) return;
-    if (v_input.size() == 1) {
-        v_output.emplace_back(init_move(dest, v_input[0]));
+    v_output.clear ( );
+    if (v_input.size ( ) == 0) return;
+    if (v_input.size ( ) == 1) {
+        v_output.emplace_back (init_move (dest, v_input[0]));
         return;
     };
 
-    uint32_t nrange = v_input.size();
+    uint32_t nrange = v_input.size ( );
     uint32_t pos_ini = 0;
-    while (pos_ini < v_input.size()) {
+    while (pos_ini < v_input.size ( )) {
         uint32_t nmerge = (nrange + 3) >> 2;
         uint32_t nelem = (nrange + nmerge - 1) / nmerge;
-        range1_t rz = full_merge4(dest, &v_input[pos_ini], nelem, comp);
-        v_output.emplace_back(rz);
+        range1_t rz = full_merge4 (dest, &v_input[pos_ini], nelem, comp);
+        v_output.emplace_back (rz);
         dest.first = rz.last;
         pos_ini += nelem;
         nrange -= nelem;
@@ -97,32 +98,31 @@ void merge_level4(range<Iter1_t> dest,
 /// @param comp : comparison object
 /// @return range with all the elements moved and constructed
 //-----------------------------------------------------------------------------
-template <class Value_t, class Iter_t, class Compare>
-void uninit_merge_level4(range<Value_t *> dest,
-                         std::vector<range<Iter_t>> &v_input,
-                         std::vector<range<Value_t *>> &v_output, Compare comp)
+template < class Value_t, class Iter_t, class Compare >
+void uninit_merge_level4 (range< Value_t * > dest,
+                          std::vector< range< Iter_t > > &v_input,
+                          std::vector< range< Value_t * > > &v_output,
+                          Compare comp)
 {
-    //-------------------------------------------------------------------------
-    typedef range<Value_t *> range1_t;
-    typedef typename iterator_traits<Iter_t>::value_type type1;
-    static_assert(std::is_same<type1, Value_t>::value,
-                  "Incompatible iterators\n");
+    typedef range< Value_t * > range1_t;
+    typedef typename iterator_traits< Iter_t >::value_type type1;
+    static_assert (std::is_same< type1, Value_t >::value,
+                   "Incompatible iterators\n");
 
-    //------------------------------- begin ----------------------------------
-    v_output.clear();
-    if (v_input.size() == 0) return;
-    if (v_input.size() == 1) {
-        v_output.emplace_back(uninit_move(dest, v_input[0]));
+    v_output.clear ( );
+    if (v_input.size ( ) == 0) return;
+    if (v_input.size ( ) == 1) {
+        v_output.emplace_back (uninit_move (dest, v_input[0]));
         return;
     };
 
-    uint32_t nrange = v_input.size();
+    uint32_t nrange = v_input.size ( );
     uint32_t pos_ini = 0;
-    while (pos_ini < v_input.size()) {
+    while (pos_ini < v_input.size ( )) {
         uint32_t nmerge = (nrange + 3) >> 2;
         uint32_t nelem = (nrange + nmerge - 1) / nmerge;
-        range1_t rz = uninit_full_merge4(dest, &v_input[pos_ini], nelem, comp);
-        v_output.emplace_back(rz);
+        range1_t rz = uninit_full_merge4 (dest, &v_input[pos_ini], nelem, comp);
+        v_output.emplace_back (rz);
         dest.first = rz.last;
         pos_ini += nelem;
         nrange -= nelem;
@@ -145,45 +145,42 @@ void uninit_merge_level4(range<Value_t *> dest,
 /// @param comp : comparison object
 /// @return range with all the elements moved
 //-----------------------------------------------------------------------------
-template <class Iter1_t, class Iter2_t, class Compare>
-range<Iter2_t>
-    merge_vector4(range<Iter1_t> range_input, 
-                  range<Iter2_t> range_output,
-                  std::vector<range<Iter1_t>> &v_input,
-                  std::vector<range<Iter2_t>> &v_output, Compare comp)
+template < class Iter1_t, class Iter2_t, class Compare >
+range< Iter2_t >
+    merge_vector4 (range< Iter1_t > range_input, range< Iter2_t > range_output,
+                   std::vector< range< Iter1_t > > &v_input,
+                   std::vector< range< Iter2_t > > &v_output, Compare comp)
 {
-    //--------------------------------------------------------------------------
-    typedef range<Iter2_t> range2_t;
-    typedef typename iterator_traits<Iter1_t>::value_type type1;
-    typedef typename iterator_traits<Iter2_t>::value_type type2;
-    static_assert(std::is_same<type1, type2>::value,
-                  "Incompatible iterators\n");
+    typedef range< Iter2_t > range2_t;
+    typedef typename iterator_traits< Iter1_t >::value_type type1;
+    typedef typename iterator_traits< Iter2_t >::value_type type2;
+    static_assert (std::is_same< type1, type2 >::value,
+                   "Incompatible iterators\n");
 
-    //--------------------- code -------------------------------------------
-    v_output.clear();
-    if (v_input.size() == 0) {
-        return range2_t(range_output.first, range_output.first);
+    v_output.clear ( );
+    if (v_input.size ( ) == 0) {
+        return range2_t (range_output.first, range_output.first);
     };
-    if (v_input.size() == 1) {
-        return init_move(range_output, v_input[0]);
+    if (v_input.size ( ) == 1) {
+        return init_move (range_output, v_input[0]);
     };
     bool sw = false;
-    uint32_t nrange = v_input.size();
+    uint32_t nrange = v_input.size ( );
 
     while (nrange > 1) {
         if (sw) {
-            merge_level4(range_input, v_output, v_input, comp);
+            merge_level4 (range_input, v_output, v_input, comp);
             sw = false;
-            nrange = v_input.size();
+            nrange = v_input.size ( );
         }
         else
         {
-            merge_level4(range_output, v_input, v_output, comp);
+            merge_level4 (range_output, v_input, v_output, comp);
             sw = true;
-            nrange = v_output.size();
+            nrange = v_output.size ( );
         };
     };
-    return (sw) ? v_output[0] : init_move(range_output, v_input[0]);
+    return (sw) ? v_output[0] : init_move (range_output, v_input[0]);
 };
 
 //****************************************************************************

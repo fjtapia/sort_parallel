@@ -16,13 +16,21 @@
 #include <iterator>
 #include <type_traits>
 
-namespace boost    {
-namespace sort     {
-namespace parallel {
-namespace detail   {
-namespace util     {
-//
+namespace boost
+{
+namespace sort
+{
+namespace parallel
+{
+namespace detail
+{
+namespace util
+{
+//----------------------------------------------------------------------------
+//                  USING SENTENCES
+//----------------------------------------------------------------------------
 using std::iterator_traits;
+
 //---------------------------------------------------------------------------
 /// @class compare_iter
 /// @brief From the iterator, received as template parameter, obtain the type
@@ -31,8 +39,9 @@ using std::iterator_traits;
 /// @remarks The main utility of this, is simplify the default template
 ///          parameter of comparison
 //---------------------------------------------------------------------------
-template <class iter_t>
-using compare_iter = std::less<typename iterator_traits<iter_t>::value_type>;
+template < class iter_t >
+using compare_iter =
+    std::less< typename iterator_traits< iter_t >::value_type >;
 //
 //---------------------------------------------------------------------------
 /// @class enable_if_not_integral
@@ -41,9 +50,9 @@ using compare_iter = std::less<typename iterator_traits<iter_t>::value_type>;
 ///        representing the number of threads to use or is a comparison object
 /// @remarks
 //---------------------------------------------------------------------------
-template <class T>
+template < class T >
 using enable_if_not_integral =
-    typename std::enable_if<!std::is_integral<T>::value>::type;
+    typename std::enable_if< !std::is_integral< T >::value >::type;
 //
 //****************************************************************************
 }; // End namespace util

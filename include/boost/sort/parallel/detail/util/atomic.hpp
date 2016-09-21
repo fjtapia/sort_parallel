@@ -16,11 +16,16 @@
 #include <cassert>
 #include <type_traits>
 
-namespace boost    {
-namespace sort     {
-namespace parallel {
-namespace detail   {
-namespace util     {
+namespace boost
+{
+namespace sort
+{
+namespace parallel
+{
+namespace detail
+{
+namespace util
+{
 //
 //-----------------------------------------------------------------------------
 //  function : atomic_read
@@ -28,10 +33,10 @@ namespace util     {
 /// @param at_var : atomic variable to read
 /// @return value obtained
 //-----------------------------------------------------------------------------
-template <typename T>
-inline T atomic_read(std::atomic<T> &at_var)
+template < typename T >
+inline T atomic_read (std::atomic< T > &at_var)
 {
-    return std::atomic_load_explicit<T>(&at_var, std::memory_order_acquire);
+    return std::atomic_load_explicit< T > (&at_var, std::memory_order_acquire);
 };
 //
 //-----------------------------------------------------------------------------
@@ -41,12 +46,12 @@ inline T atomic_read(std::atomic<T> &at_var)
 /// @param num : value to add to at_var
 /// @return result of the operation
 //-----------------------------------------------------------------------------
-template <typename T, typename T2>
-inline T atomic_add(std::atomic<T> &at_var, T2 num)
+template < typename T, typename T2 >
+inline T atomic_add (std::atomic< T > &at_var, T2 num)
 {
-    static_assert(std::is_integral<T2>::value, "Bad parameter");
-    return std::atomic_fetch_add_explicit<T>(&at_var, (T)num,
-                                             std::memory_order_acq_rel);
+    static_assert (std::is_integral< T2 >::value, "Bad parameter");
+    return std::atomic_fetch_add_explicit< T > (&at_var, (T)num,
+                                                std::memory_order_acq_rel);
 };
 //
 //-----------------------------------------------------------------------------
@@ -56,12 +61,12 @@ inline T atomic_add(std::atomic<T> &at_var, T2 num)
 /// @param num : value to sub to at_var
 /// @return result of the operation
 //-----------------------------------------------------------------------------
-template <typename T, typename T2>
-inline T atomic_sub(std::atomic<T> &at_var, T2 num)
+template < typename T, typename T2 >
+inline T atomic_sub (std::atomic< T > &at_var, T2 num)
 {
-    static_assert(std::is_integral<T2>::value, "Bad parameter");
-    return std::atomic_fetch_sub_explicit<T>(&at_var, (T)num,
-                                             std::memory_order_acq_rel);
+    static_assert (std::is_integral< T2 >::value, "Bad parameter");
+    return std::atomic_fetch_sub_explicit< T > (&at_var, (T)num,
+                                                std::memory_order_acq_rel);
 };
 //
 //-----------------------------------------------------------------------------
@@ -70,11 +75,12 @@ inline T atomic_sub(std::atomic<T> &at_var, T2 num)
 /// @param at_var : varible to write
 /// @param num : value to write in at_var
 //-----------------------------------------------------------------------------
-template <typename T, typename T2>
-inline void atomic_write(std::atomic<T> &at_var, T2 num)
+template < typename T, typename T2 >
+inline void atomic_write (std::atomic< T > &at_var, T2 num)
 {
-    static_assert(std::is_integral<T2>::value, "Bad parameter");
-    std::atomic_store_explicit<T>(&at_var, (T)num, std::memory_order_release);
+    static_assert (std::is_integral< T2 >::value, "Bad parameter");
+    std::atomic_store_explicit< T > (&at_var, (T)num,
+                                     std::memory_order_release);
 };
 
 //****************************************************************************

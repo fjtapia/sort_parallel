@@ -26,6 +26,9 @@ namespace detail
 {
 namespace bis
 {
+//---------------------------------------------------------------------------
+//                 USING SENTENCES
+//---------------------------------------------------------------------------
 using boost::sort::parallel::detail::util::range;
 //
 //---------------------------------------------------------------------------
@@ -37,12 +40,14 @@ using boost::sort::parallel::detail::util::range;
 //----------------------------------------------------------------------------
 class block_pos
 {
-    //------------------------------ VARIABLES -----------------------------
+    //------------------------------------------------------------------------
+    //                   VARIABLES
+    //-----------------------------------------------------------------------
     size_t num; // number which store a position and a bool side
 
   public:
     //----------------------------- FUNCTIONS ------------------------------
-    block_pos( void ) : num( 0 ){};
+    block_pos (void) : num (0){};
     //
     //-------------------------------------------------------------------------
     //  function : block_pos
@@ -50,9 +55,9 @@ class block_pos
     /// @param position : position to sotre
     /// @param side : side to store
     //-------------------------------------------------------------------------
-    block_pos( size_t position, bool side = false )
+    block_pos (size_t position, bool side = false)
     {
-        num = ( position << 1 ) + ( ( side ) ? 1 : 0 );
+        num = (position << 1) + ((side) ? 1 : 0);
     };
     //
     //-------------------------------------------------------------------------
@@ -60,28 +65,28 @@ class block_pos
     /// @brief obtain the position stored inside the block_pos
     /// @return position
     //-------------------------------------------------------------------------
-    size_t pos( void ) const { return ( num >> 1 ); };
+    size_t pos (void) const { return (num >> 1); };
     //
     //-------------------------------------------------------------------------
     //  function : pos
     /// @brief store a position inside the block_pos
     /// @param position : value to store
     //-------------------------------------------------------------------------
-    void set_pos( size_t position ) { num = ( position << 1 ) + ( num & 1 ); };
+    void set_pos (size_t position) { num = (position << 1) + (num & 1); };
     //
     //-------------------------------------------------------------------------
     //  function : side
     /// @brief obtain the side stored inside the block_pos
     /// @return bool value
     //-------------------------------------------------------------------------
-    bool side( void ) const { return ( ( num & 1 ) != 0 ); };
+    bool side (void) const { return ((num & 1) != 0); };
     //
     //-------------------------------------------------------------------------
     //  function : side
     /// @brief store a bool value the block_pos
     /// @param sd : bool value to store
     //-------------------------------------------------------------------------
-    void set_side( bool sd ) { num = ( num & ~1 ) + ( ( sd ) ? 1 : 0 ); };
+    void set_side (bool sd) { num = (num & ~1) + ((sd) ? 1 : 0); };
 }; // end struct block_pos
 
 //
@@ -93,7 +98,9 @@ class block_pos
 template < uint32_t Block_size, class Iter_t >
 struct block
 {
-    //------------------------------ VARIABLES ------------------------------
+    //----------------------------------------------------------------------
+    //                     VARIABLES
+    //----------------------------------------------------------------------
     Iter_t first; // iterator to the first element of the block
 
     //-------------------------------------------------------------------------
@@ -101,16 +108,16 @@ struct block
     /// @brief constructor from an iterator to the first element of the block
     /// @param it : iterator to the first element of the block
     //-------------------------------------------------------------------------
-    block( Iter_t it ) : first( it ){};
+    block (Iter_t it) : first (it){};
 
     //-------------------------------------------------------------------------
     //  function : get_range
     /// @brief convert a block in a range
     /// @return range
     //-------------------------------------------------------------------------
-    range< Iter_t > get_range( void )
+    range< Iter_t > get_range (void)
     {
-        return range_it( first, first + Block_size );
+        return range_it (first, first + Block_size);
     };
 
 }; // end struct block
@@ -124,12 +131,11 @@ struct block
 /// @param cmp : comparison operator
 //-------------------------------------------------------------------------
 template < uint32_t Block_size, class Iter_t, class Compare >
-bool compare_block( block< Block_size, Iter_t > block1,
+bool compare_block (block< Block_size, Iter_t > block1,
                     block< Block_size, Iter_t > block2,
-                    Compare cmp = Compare() )
+                    Compare cmp = Compare ( ))
 {
-    //---------------------------- begin ----------------------------------
-    return cmp( *block1.first, *block2.first );
+    return cmp (*block1.first, *block2.first);
 };
 //
 ///---------------------------------------------------------------------------
@@ -138,7 +144,10 @@ bool compare_block( block< Block_size, Iter_t > block1,
 //----------------------------------------------------------------------------
 template < uint32_t Block_size, class Iter_t, class Compare >
 struct compare_block_pos
-{ //-------------------------- VARIABLES --------------------------------
+{
+    //-----------------------------------------------------------------------
+    //                        VARIABLES
+    //-----------------------------------------------------------------------
     Iter_t global_first; // iterator to the first element to sort
     Compare comp;        // comparison object for to compare two elements
 
@@ -148,8 +157,8 @@ struct compare_block_pos
     /// @param g_first : itertor to the first element to sort
     /// @param cmp : comparison operator
     //-------------------------------------------------------------------------
-    compare_block_pos( Iter_t g_first, Compare cmp )
-        : global_first( g_first ), comp( cmp ){};
+    compare_block_pos (Iter_t g_first, Compare cmp)
+        : global_first (g_first), comp (cmp){};
     //
     //-------------------------------------------------------------------------
     //  function : operator ()
@@ -158,10 +167,10 @@ struct compare_block_pos
     /// @param block_pos1 : first block to compare
     /// @param block_pos2 : second block to compare
     //-------------------------------------------------------------------------
-    bool operator()( block_pos block_pos1, block_pos block_pos2 ) const
+    bool operator( ) (block_pos block_pos1, block_pos block_pos2) const
     {
-        return comp( *( global_first + ( block_pos1.pos() * Block_size ) ),
-                     *( global_first + ( block_pos2.pos() * Block_size ) ) );
+        return comp (*(global_first + (block_pos1.pos ( ) * Block_size)),
+                     *(global_first + (block_pos2.pos ( ) * Block_size)));
     };
 
 }; // end struct compare_block_pos

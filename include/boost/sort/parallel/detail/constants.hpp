@@ -14,13 +14,13 @@
 #define __BOOST_SORT_PARALLEL_DETAIL_CONSTANTS_HPP
 
 // This value is the block size in the block_indirect_sort algorithm
-#define BOOST_BLOCK_SIZE  1024
+#define BOOST_BLOCK_SIZE 1024
 
 // This value represent the group size in the block_indirect_sort algorithm
-#define BOOST_GROUP_SIZE   64
+#define BOOST_GROUP_SIZE 64
 
-//This value is the minimal number of threads for to use the
-//block_indirect_sort algorithm
+// This value is the minimal number of threads for to use the
+// block_indirect_sort algorithm
 #define BOOST_NTHREAD_BORDER 6
 
 #endif

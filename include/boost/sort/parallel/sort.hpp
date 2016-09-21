@@ -13,8 +13,8 @@
 #ifndef __BOOST_SORT_PARALLEL_SORT_HPP
 #define __BOOST_SORT_PARALLEL_SORT_HPP
 
-#include <boost/sort/parallel/detail/constants.hpp>
 #include <boost/sort/parallel/detail/block_indirect_sort.hpp>
+#include <boost/sort/parallel/detail/constants.hpp>
 #include <boost/sort/parallel/detail/parallel_stable_sort.hpp>
 #include <boost/sort/parallel/detail/util/compare_traits.hpp>
 #include <iterator>
@@ -49,10 +49,10 @@ using detail::util::enable_if_not_integral;
 /// @param comp : object for to compare two elements pointed by Iter_t
 ///               iterators
 //-----------------------------------------------------------------------------
-template <class Iter_t, typename Compare = compare_iter<Iter_t>>
-void sort(Iter_t first, Iter_t last, Compare comp = Compare())
+template < class Iter_t, typename Compare = compare_iter< Iter_t > >
+void sort (Iter_t first, Iter_t last, Compare comp = Compare ( ))
 {
-    detail::intro_sort(first, last, comp);
+    detail::intro_sort (first, last, comp);
 };
 //
 //-----------------------------------------------------------------------------
@@ -66,15 +66,15 @@ void sort(Iter_t first, Iter_t last, Compare comp = Compare())
 /// @param comp : object for to compare two elements pointed by Iter_t
 ///               iterators
 //-----------------------------------------------------------------------------
-template <class Iter_t, typename Compare = compare_iter<Iter_t>>
-void indirect_sort(Iter_t first, Iter_t last, Compare comp = Compare())
+template < class Iter_t, typename Compare = compare_iter< Iter_t > >
+void indirect_sort (Iter_t first, Iter_t last, Compare comp = Compare ( ))
 {
-    typedef less_ptr_no_null<Iter_t, Compare> compare_ptr;
+    typedef less_ptr_no_null< Iter_t, Compare > compare_ptr;
 
-    std::vector<Iter_t> v_iter;
-    detail::create_index(first, last, v_iter);
-    detail::intro_sort(v_iter.begin(), v_iter.end(), compare_ptr(comp));
-    detail::sort_index(first, v_iter);
+    std::vector< Iter_t > v_iter;
+    detail::create_index (first, last, v_iter);
+    detail::intro_sort (v_iter.begin ( ), v_iter.end ( ), compare_ptr (comp));
+    detail::sort_index (first, v_iter);
 };
 //
 //############################################################################
@@ -93,12 +93,12 @@ void indirect_sort(Iter_t first, Iter_t last, Compare comp = Compare())
 /// @param first : iterator to the first element of the range to sort
 /// @param last : iterator after the last element to the range to sort
 //-----------------------------------------------------------------------------
-template <class Iter_t>
-void parallel_sort(Iter_t first, Iter_t last)
+template < class Iter_t >
+void parallel_sort (Iter_t first, Iter_t last)
 {
-    typedef compare_iter<Iter_t> Compare;
-    detail::block_indirect_sort<BOOST_BLOCK_SIZE, BOOST_GROUP_SIZE,
-                                Iter_t, Compare>  (first, last);
+    typedef compare_iter< Iter_t > Compare;
+    detail::block_indirect_sort< BOOST_BLOCK_SIZE, BOOST_GROUP_SIZE, Iter_t,
+                                 Compare > (first, last);
 };
 //
 //-----------------------------------------------------------------------------
@@ -110,12 +110,12 @@ void parallel_sort(Iter_t first, Iter_t last)
 /// @param nthread : Number of threads to use in the process. When this value
 ///                  is lower than 2, the sorting is done with 1 thread
 //-----------------------------------------------------------------------------
-template <class Iter_t>
-void parallel_sort(Iter_t first, Iter_t last, uint32_t nthread)
+template < class Iter_t >
+void parallel_sort (Iter_t first, Iter_t last, uint32_t nthread)
 {
-    typedef compare_iter<Iter_t> Compare;
-    detail::block_indirect_sort<BOOST_BLOCK_SIZE, BOOST_GROUP_SIZE,
-                                Iter_t, Compare> (first, last, nthread);
+    typedef compare_iter< Iter_t > Compare;
+    detail::block_indirect_sort< BOOST_BLOCK_SIZE, BOOST_GROUP_SIZE, Iter_t,
+                                 Compare > (first, last, nthread);
 };
 //-----------------------------------------------------------------------------
 //  function : parallel_sort
@@ -128,11 +128,11 @@ void parallel_sort(Iter_t first, Iter_t last, uint32_t nthread)
 /// @param nthread : Number of threads to use in the process. When this value
 ///                  is lower than 2, the sorting is done with 1 thread
 //-----------------------------------------------------------------------------
-template <class Iter_t, class Compare>
-void parallel_sort(Iter_t first, Iter_t last, Compare comp, uint32_t nthread)
+template < class Iter_t, class Compare >
+void parallel_sort (Iter_t first, Iter_t last, Compare comp, uint32_t nthread)
 {
-    detail::block_indirect_sort<BOOST_BLOCK_SIZE, BOOST_GROUP_SIZE,
-                                Iter_t, Compare> (first, last, comp, nthread);
+    detail::block_indirect_sort< BOOST_BLOCK_SIZE, BOOST_GROUP_SIZE, Iter_t,
+                                 Compare > (first, last, comp, nthread);
 };
 //
 //-----------------------------------------------------------------------------
@@ -144,12 +144,12 @@ void parallel_sort(Iter_t first, Iter_t last, Compare comp, uint32_t nthread)
 /// @param comp : object for to compare two elements pointed by Iter_t
 ///               iterators
 //-----------------------------------------------------------------------------
-template <class Iter_t, class Compare,
-          enable_if_not_integral<Compare> * = nullptr>
-void parallel_sort(Iter_t first, Iter_t last, Compare comp)
+template < class Iter_t, class Compare,
+           enable_if_not_integral< Compare > * = nullptr >
+void parallel_sort (Iter_t first, Iter_t last, Compare comp)
 {
-    detail::block_indirect_sort<BOOST_BLOCK_SIZE, BOOST_GROUP_SIZE,
-                                Iter_t, Compare> (first, last, comp);
+    detail::block_indirect_sort< BOOST_BLOCK_SIZE, BOOST_GROUP_SIZE, Iter_t,
+                                 Compare > (first, last, comp);
 };
 
 //
@@ -170,10 +170,10 @@ void parallel_sort(Iter_t first, Iter_t last, Compare comp)
 /// @param comp : object for to compare two elements pointed by Iter_t
 ///               iterators
 //-----------------------------------------------------------------------------
-template <class Iter_t, class Compare = compare_iter<Iter_t>>
-void stable_sort(Iter_t first, Iter_t last, Compare comp = Compare())
+template < class Iter_t, class Compare = compare_iter< Iter_t > >
+void stable_sort (Iter_t first, Iter_t last, Compare comp = Compare ( ))
 {
-    detail::spin_sort<Iter_t, Compare>(first, last, comp);
+    detail::spin_sort< Iter_t, Compare > (first, last, comp);
 };
 //
 //-----------------------------------------------------------------------------
@@ -187,17 +187,18 @@ void stable_sort(Iter_t first, Iter_t last, Compare comp = Compare())
 /// @param comp : object for to compare two elements pointed by Iter_t
 ///               iterators
 //-----------------------------------------------------------------------------
-template <class Iter_t, class Compare = compare_iter<Iter_t>>
-void indirect_stable_sort(Iter_t first, Iter_t last, Compare comp = Compare())
+template < class Iter_t, class Compare = compare_iter< Iter_t > >
+void indirect_stable_sort (Iter_t first, Iter_t last,
+                           Compare comp = Compare ( ))
 {
-    typedef less_ptr_no_null<Iter_t, Compare> compare_ptr;
-    typedef typename std::vector<Iter_t>::iterator iter_ptr;
+    typedef less_ptr_no_null< Iter_t, Compare > compare_ptr;
+    typedef typename std::vector< Iter_t >::iterator iter_ptr;
 
-    std::vector<Iter_t> v_iter;
-    detail::create_index(first, last, v_iter);
-    detail::spin_sort<iter_ptr, compare_ptr>(v_iter.begin(), v_iter.end(),
-                                             compare_ptr(comp));
-    detail::sort_index(first, v_iter);
+    std::vector< Iter_t > v_iter;
+    detail::create_index (first, last, v_iter);
+    detail::spin_sort< iter_ptr, compare_ptr >
+      (v_iter.begin ( ), v_iter.end ( ), compare_ptr (comp));
+    detail::sort_index (first, v_iter);
 };
 //
 //############################################################################
@@ -215,11 +216,11 @@ void indirect_stable_sort(Iter_t first, Iter_t last, Compare comp = Compare())
 /// @param first : iterator to the first element of the range to sort
 /// @param last : iterator after the last element to the range to sort
 //-----------------------------------------------------------------------------
-template <class Iter_t>
-void parallel_stable_sort(Iter_t first, Iter_t last)
+template < class Iter_t >
+void parallel_stable_sort (Iter_t first, Iter_t last)
 {
-    typedef compare_iter<Iter_t> Compare;
-    detail::parallel_stable_sort<Iter_t, Compare>(first, last);
+    typedef compare_iter< Iter_t > Compare;
+    detail::parallel_stable_sort< Iter_t, Compare > (first, last);
 };
 //
 //-----------------------------------------------------------------------------
@@ -231,11 +232,11 @@ void parallel_stable_sort(Iter_t first, Iter_t last)
 /// @param nthread : Number of threads to use in the process. When this value
 ///                  is lower than 2, the sorting is done with 1 thread
 //-----------------------------------------------------------------------------
-template <class Iter_t>
-void parallel_stable_sort(Iter_t first, Iter_t last, uint32_t nthread)
+template < class Iter_t >
+void parallel_stable_sort (Iter_t first, Iter_t last, uint32_t nthread)
 {
-    typedef compare_iter<Iter_t> Compare;
-    detail::parallel_stable_sort<Iter_t, Compare>(first, last, nthread);
+    typedef compare_iter< Iter_t > Compare;
+    detail::parallel_stable_sort< Iter_t, Compare > (first, last, nthread);
 };
 //
 //-----------------------------------------------------------------------------
@@ -247,11 +248,11 @@ void parallel_stable_sort(Iter_t first, Iter_t last, uint32_t nthread)
 /// @param comp : object for to compare two elements pointed by Iter_t
 ///               iterators
 //-----------------------------------------------------------------------------
-template <class Iter_t, class Compare,
-          enable_if_not_integral<Compare> * = nullptr>
-void parallel_stable_sort(Iter_t first, Iter_t last, Compare comp)
+template < class Iter_t, class Compare,
+           enable_if_not_integral< Compare > * = nullptr >
+void parallel_stable_sort (Iter_t first, Iter_t last, Compare comp)
 {
-    detail::parallel_stable_sort<Iter_t, Compare>(first, last, comp);
+    detail::parallel_stable_sort< Iter_t, Compare > (first, last, comp);
 };
 //
 //-----------------------------------------------------------------------------
@@ -265,11 +266,12 @@ void parallel_stable_sort(Iter_t first, Iter_t last, Compare comp)
 /// @param nthread : Number of threads to use in the process. When this value
 ///                  is lower than 2, the sorting is done with 1 thread
 //-----------------------------------------------------------------------------
-template <class Iter_t, typename Compare>
-void parallel_stable_sort(Iter_t first, Iter_t last, Compare comp,
-                          uint32_t nthread)
+template < class Iter_t, typename Compare >
+void parallel_stable_sort (Iter_t first, Iter_t last, Compare comp,
+                           uint32_t nthread)
 {
-    detail::parallel_stable_sort<Iter_t, Compare>(first, last, comp, nthread);
+    detail::parallel_stable_sort< Iter_t, Compare > (first, last, comp,
+                                                     nthread);
 };
 //
 //############################################################################
@@ -287,11 +289,11 @@ void parallel_stable_sort(Iter_t first, Iter_t last, Compare comp,
 /// @param first : iterator to the first element of the range to sort
 /// @param last : iterator after the last element to the range to sort
 //-----------------------------------------------------------------------------
-template <class Iter_t>
-void sample_sort(Iter_t first, Iter_t last)
+template < class Iter_t >
+void sample_sort (Iter_t first, Iter_t last)
 {
-    typedef compare_iter<Iter_t> Compare;
-    detail::sample_sort<Iter_t, Compare>(first, last);
+    typedef compare_iter< Iter_t > Compare;
+    detail::sample_sort< Iter_t, Compare > (first, last);
 };
 //
 //-----------------------------------------------------------------------------
@@ -303,11 +305,11 @@ void sample_sort(Iter_t first, Iter_t last)
 /// @param nthread : Number of threads to use in the process. When this value
 ///                  is lower than 2, the sorting is done with 1 thread
 //-----------------------------------------------------------------------------
-template <class Iter_t>
-void sample_sort(Iter_t first, Iter_t last, uint32_t nthread)
+template < class Iter_t >
+void sample_sort (Iter_t first, Iter_t last, uint32_t nthread)
 {
-    typedef compare_iter<Iter_t> Compare;
-    detail::sample_sort<Iter_t, Compare>(first, last, nthread);
+    typedef compare_iter< Iter_t > Compare;
+    detail::sample_sort< Iter_t, Compare > (first, last, nthread);
 };
 //
 //-----------------------------------------------------------------------------
@@ -319,11 +321,11 @@ void sample_sort(Iter_t first, Iter_t last, uint32_t nthread)
 /// @param comp : object for to compare two elements pointed by Iter_t
 ///               iterators
 //-----------------------------------------------------------------------------
-template <class Iter_t, class Compare,
-          enable_if_not_integral<Compare> * = nullptr>
-void sample_sort(Iter_t first, Iter_t last, Compare comp)
+template < class Iter_t, class Compare,
+           enable_if_not_integral< Compare > * = nullptr >
+void sample_sort (Iter_t first, Iter_t last, Compare comp)
 {
-    detail::sample_sort<Iter_t, Compare>(first, last, comp);
+    detail::sample_sort< Iter_t, Compare > (first, last, comp);
 };
 //
 //-----------------------------------------------------------------------------
@@ -337,16 +339,16 @@ void sample_sort(Iter_t first, Iter_t last, Compare comp)
 /// @param nthread : Number of threads to use in the process. When this value
 ///                  is lower than 2, the sorting is done with 1 thread
 //-----------------------------------------------------------------------------
-template <class Iter_t, class Compare>
-void sample_sort(Iter_t first, Iter_t last, Compare comp, uint32_t nthread)
+template < class Iter_t, class Compare >
+void sample_sort (Iter_t first, Iter_t last, Compare comp, uint32_t nthread)
 {
-    detail::sample_sort<Iter_t, Compare>(first, last, comp, nthread);
+    detail::sample_sort< Iter_t, Compare > (first, last, comp, nthread);
 };
 //
 //****************************************************************************
-}; //    End namespace parallel
-}; //    End namespace sort
-}; //    End namespace boost
+};   // End namespace parallel
+};   // End namespace sort
+};   // End namespace boost
 //****************************************************************************
 //
 #endif
