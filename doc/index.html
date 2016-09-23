@@ -85,7 +85,7 @@
                 <a href="index.html#parallel_stable_sort">2.4.-
                   parallel_stable_sort</a><br />
                 <a href="index.html#sample_sort">2.5.- sample_sort</a><br />
-                <a href="file:///home/francisco/Projects/Sort/Boost_dev/doc/index.html#less_ptr">2.6.-
+                <a href="index.html#less_ptr">2.6.-
                   less_ptr_no_null</a> </div><br />
               3<a href="benchmark.html#benchmarks">.- Benchmarks</a> <br />
               <div style="margin-left: 40px;"><a href="benchmark.html#bdescription">3.1.-
@@ -267,6 +267,7 @@ Present
           case</span> for the algorithm is when there are <span style="font-weight: bold;">very
           big elements</span> and <span style="font-weight: bold;">many threads</span>.
         With big elements (512 bytes), and 32 threads, The memory measured was:
+        <p>  </p>
         <table style="width: 558px; height: 122px;">
           <thead>
             <tr>
@@ -296,12 +297,12 @@ Present
           by the author.</em><br />
         <em>If you are interested in a <span style="font-weight: bold;">brief
             description</span> of the algorithm, you can find in the next link</em>
-        <a href="file:///home/francisco/Projects/Sort/Hpx_dev/block_indirect_sort_brief_en.pdf"
+        <a href="../block_indirect_sort_brief_en.pdf"
           target="_blank" data-original-href="../block_indirect_sort_brief_en.pdf">
           Block Indirect Sort Brief </a> <br />
         <em>If you are interested in a <span style="font-weight: bold;">detailed
             description</span> of the algorithm, you can find in the next link</em>
-        <a target="_blank" href="file:///home/francisco/Projects/Sort/Hpx_dev/block_indirect_sort_en.pdf"
+        <a target="_blank" href="../block_indirect_sort_en.pdf"
           data-original-href="../block_indirect_sort_en.pdf"> Block Indirect
           Sort </a><br />
         <span style="font-style: italic;">If you want run the <span style="font-weight: bold;">benchmarks
@@ -574,6 +575,16 @@ class="style10">;
         <p>  </p>
         <p style="margin-bottom: 0cm; line-height: 100%"><font face="Arimo, sans-serif">Sort
 is
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+            a implementation of the Introsort algorithm. Initially it uses quicksort, but when the numbers
+            of division is greater than a number, it changes to the heapsort
+            algorithm.</font></p>
+        <p>  </p>
+        <p style="margin-bottom: 0cm; line-height: 100%"><font face="Arimo, sans-serif">Heapsort is
+=======
+>>>>>>> Stashed changes
             a hybrid algorithm. Initially it uses quicksort, but when the numbers
             of division is greater than a number, it changes to the heapsort
             algorithm.</font></p>
@@ -583,9 +594,13 @@ is
           </font></p>
         <p style="margin-bottom: 0cm; line-height: 100%"><font face="Arimo, sans-serif">Heapsort
 is
+<<<<<<< Updated upstream
+=======
+>>>>>>> d27f075783648b8e0af2d4b6d821ac7b501bddb7
+>>>>>>> Stashed changes
             a O(NlogN) algorithm but slower than quick_sort. This is to
             prevent the worst case of QuickSort (N²).</font></p>
-        
+        <p>  </p>
         
         <table border="1" style="width: 855px; height: 86px;">
           <tbody>
@@ -717,7 +732,7 @@ the
             benchmarks you can find a detailed description of the results in time
             and memory obtained. This algorithm uses an auxiliary memory of (N/2)
             elements.</font></p>
-        
+        <p>  </p>
         
         <table border="1" style="width: 855px; height: 86px;">
           <tbody>
@@ -766,7 +781,14 @@ class="style10">;</span></span></code></pre>
         This is a parallel stable sort algorithm, built on top of the sample sort
         algorithm , bust using less auxiliary memory (N / 2 elements) in
         exchange for slowing it down about 10%.
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+        <p>  </p>
+=======
+>>>>>>> Stashed changes
         
+>>>>>>> d27f075783648b8e0af2d4b6d821ac7b501bddb7
         <table border="1" style="width: 855px; height: 86px;">
           <tbody>
             <tr>
