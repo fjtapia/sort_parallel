@@ -13,7 +13,8 @@
 #ifndef __BOOST_SORT_PARALLEL_SORT_HPP
 #define __BOOST_SORT_PARALLEL_SORT_HPP
 
-#include <boost/sort/parallel/detail/select_block_indirect.hpp>
+#include <boost/sort/parallel/detail/block_indirect_sort.hpp>
+#include <boost/sort/parallel/detail/constants.hpp>
 #include <boost/sort/parallel/detail/parallel_stable_sort.hpp>
 #include <boost/sort/parallel/detail/util/compare_traits.hpp>
 #include <iterator>
@@ -96,7 +97,8 @@ template < class Iter_t >
 void parallel_sort (Iter_t first, Iter_t last)
 {
     typedef compare_iter< Iter_t > Compare;
-    detail::select_block_indirect (first, last, Compare());
+    detail::block_indirect_sort< BOOST_BLOCK_SIZE, BOOST_GROUP_SIZE, Iter_t,
+                                 Compare > (first, last);
 };
 //
 //-----------------------------------------------------------------------------
@@ -112,7 +114,8 @@ template < class Iter_t >
 void parallel_sort (Iter_t first, Iter_t last, uint32_t nthread)
 {
     typedef compare_iter< Iter_t > Compare;
-    detail::select_block_indirect (first, last, Compare(), nthread);
+    detail::block_indirect_sort< BOOST_BLOCK_SIZE, BOOST_GROUP_SIZE, Iter_t,
+                                 Compare > (first, last, nthread);
 };
 //-----------------------------------------------------------------------------
 //  function : parallel_sort
@@ -128,7 +131,8 @@ void parallel_sort (Iter_t first, Iter_t last, uint32_t nthread)
 template < class Iter_t, class Compare >
 void parallel_sort (Iter_t first, Iter_t last, Compare comp, uint32_t nthread)
 {
-    detail::select_block_indirect (first, last, comp, nthread);
+    detail::block_indirect_sort< BOOST_BLOCK_SIZE, BOOST_GROUP_SIZE, Iter_t,
+                                 Compare > (first, last, comp, nthread);
 };
 //
 //-----------------------------------------------------------------------------
@@ -144,7 +148,8 @@ template < class Iter_t, class Compare,
            enable_if_not_integral< Compare > * = nullptr >
 void parallel_sort (Iter_t first, Iter_t last, Compare comp)
 {
-    detail::select_block_indirect (first, last, comp);
+    detail::block_indirect_sort< BOOST_BLOCK_SIZE, BOOST_GROUP_SIZE, Iter_t,
+                                 Compare > (first, last, comp);
 };
 
 //

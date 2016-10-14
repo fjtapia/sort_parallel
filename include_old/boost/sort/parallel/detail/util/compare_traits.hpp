@@ -44,17 +44,6 @@ using compare_iter =
     std::less< typename iterator_traits< iter_t >::value_type >;
 //
 //---------------------------------------------------------------------------
-/// @class value_iter
-/// @brief From the iterator, obtain the type pointed by it
-/// @remarks The main utility of this, is simplify the default template
-///          parameter of comparison
-//---------------------------------------------------------------------------
-template < class iter_t >
-using value_iter = typename iterator_traits< iter_t >::value_type ;
-
-
-//
-//---------------------------------------------------------------------------
 /// @class enable_if_not_integral
 /// @brief This is a SFINAE class for to detect if the third parameter in the
 ///        invocation of the parallel sorting algorithms is an integer
@@ -64,30 +53,6 @@ using value_iter = typename iterator_traits< iter_t >::value_type ;
 template < class T >
 using enable_if_not_integral =
     typename std::enable_if< !std::is_integral< T >::value >::type;
-
-//
-//---------------------------------------------------------------------------
-/// @class enable_if_string
-/// @brief This is a SFINAE class for to detect if the parameter is a
-///        std::string for to apply specialized parameters in the invocation
-///        of the block_indirect_sort algorithm
-/// @remarks
-//---------------------------------------------------------------------------
-template < class T >
-using enable_if_string =
-    typename std::enable_if< std::is_same< T, std::string >::value >::type;
-
-//
-//---------------------------------------------------------------------------
-/// @class enable_if_not_string
-/// @brief This is a SFINAE class for to detect if the parameter is a
-///        std::string for to apply specialized parameters in the invocation
-///        of the block_indirect_sort algorithm
-/// @remarks
-//---------------------------------------------------------------------------
-template < class T >
-using enable_if_not_string =
-    typename std::enable_if<! std::is_same< T, std::string >::value >::type;
 //
 //****************************************************************************
 }; // End namespace util

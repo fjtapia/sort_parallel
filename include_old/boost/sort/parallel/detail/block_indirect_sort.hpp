@@ -17,14 +17,10 @@
 #include <boost/sort/parallel/detail/bis/merge_blocks.hpp>
 #include <boost/sort/parallel/detail/bis/move_blocks.hpp>
 #include <boost/sort/parallel/detail/bis/parallel_sort.hpp>
-
+#include <boost/sort/parallel/detail/constants.hpp>
 #include <boost/sort/parallel/detail/util/compare_traits.hpp>
 #include <future>
 #include <iterator>
-
-// This value is the minimal number of threads for to use the
-// block_indirect_sort algorithm
-#define BOOST_NTHREAD_BORDER 6
 
 namespace boost
 {
@@ -141,9 +137,8 @@ struct block_indirect_sort
 
     void start_function (void);
 
-    //-------------------------------------------------------------------------
-};
-// End class block_indirect_sort
+//-------------------------------------------------------------------------
+}; // End class block_indirect_sort
 //----------------------------------------------------------------------------
 //
 //############################################################################
@@ -166,9 +161,8 @@ struct block_indirect_sort
 //-------------------------------------------------------------------------
 template < uint32_t Block_size, uint32_t Group_size, class Iter_t,
            class Compare >
-block_indirect_sort< Block_size, Group_size, Iter_t,
-                     Compare >::block_indirect_sort (Iter_t first, Iter_t last,
-                                                     Compare cmp, uint32_t nthr)
+block_indirect_sort< Block_size, Group_size, Iter_t, Compare >
+  ::block_indirect_sort (Iter_t first, Iter_t last, Compare cmp, uint32_t nthr)
     : bk (first, last, cmp), counter (0), ptr (nullptr), construct (false),
       nthread (nthr)
 {
@@ -257,10 +251,8 @@ block_indirect_sort< Block_size, Group_size, Iter_t,
 //-----------------------------------------------------------------------------
 template < uint32_t Block_size, uint32_t Group_size, class Iter_t,
            class Compare >
-void block_indirect_sort< Block_size, Group_size, Iter_t,
-                          Compare >::split_range (size_t pos_index1,
-                                                  size_t pos_index2,
-                                                  uint32_t level_thread)
+void block_indirect_sort< Block_size, Group_size, Iter_t, Compare >
+  ::split_range (size_t pos_index1, size_t pos_index2, uint32_t level_thread)
 {
     size_t nblock = pos_index2 - pos_index1;
 
@@ -314,8 +306,8 @@ void block_indirect_sort< Block_size, Group_size, Iter_t,
 //-----------------------------------------------------------------------------
 template < uint32_t Block_size, uint32_t Group_size, class Iter_t,
            class Compare >
-void block_indirect_sort< Block_size, Group_size, Iter_t,
-                          Compare >::start_function (void)
+void block_indirect_sort< Block_size, Group_size, Iter_t, Compare >
+  ::start_function (void)
 {
     if (nthread < BOOST_NTHREAD_BORDER) {
         parallel_sort_t (bk, bk.global_range.first, bk.global_range.last);
@@ -330,10 +322,10 @@ void block_indirect_sort< Block_size, Group_size, Iter_t,
 };
 //
 //****************************************************************************
-};//    End namespace detail
-};//    End namespace parallel
-};//    End namespace sort
-};//    End namespace boost
+}; //    End namespace detail
+}; //    End namespace parallel
+}; //    End namespace sort
+}; //    End namespace boost
 //****************************************************************************
 //
 #endif
