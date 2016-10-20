@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['error',['error',['../structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1backbone.html#adf4c953707ebcb6eede6fe7216a4bb68',1,'boost::sort::parallel::detail::bis::backbone::error()'],['../structboost_1_1sort_1_1parallel_1_1detail_1_1sample__sort.html#a2fadcbed2ac214fd523ea943fc27999c',1,'boost::sort::parallel::detail::sample_sort::error()']]]
+  ['data',['data',['../structboost_1_1sort_1_1parallel_1_1detail_1_1block__size.html#a73e80131cf98701efe51977cd8e59958',1,'boost::sort::parallel::detail::block_size']]]
 ];

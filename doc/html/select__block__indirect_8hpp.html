@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Sort Parallel: include/boost/sort/parallel/detail/constants.hpp File Reference</title>
+<title>Boost Sort Parallel: include/boost/sort/parallel/detail/select_block_indirect.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sort Parallel
+   <div id="projectname">Boost Sort Parallel
    </div>
    <div id="projectbrief">Sorting Algorithms for the Boost Library</div>
   </td>
@@ -87,74 +87,57 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
-<div class="title">constants.hpp File Reference</div>  </div>
+<div class="title">select_block_indirect.hpp File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>This file contains the constants values used in the algorithms.  
+<p>block indirect sort algorithm  
 <a href="#details">More...</a></p>
-
-<p><a href="constants_8hpp_source.html">Go to the source code of this file.</a></p>
+<div class="textblock"><code>#include &lt;<a class="el" href="block__indirect__sort_8hpp_source.html">boost/sort/parallel/detail/block_indirect_sort.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="compare__traits_8hpp_source.html">boost/sort/parallel/detail/util/compare_traits.hpp</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="nbits_8hpp_source.html">boost/sort/parallel/detail/util/nbits.hpp</a>&gt;</code><br />
+</div>
+<p><a href="select__block__indirect_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a9992e6c778948bde328b26cee896f5f0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="constants_8hpp.html#a9992e6c778948bde328b26cee896f5f0">BOOST_BLOCK_SIZE</a>&#160;&#160;&#160;1024</td></tr>
-<tr class="separator:a9992e6c778948bde328b26cee896f5f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13409a3fa2d9f44ca10e50e312712473"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="constants_8hpp.html#a13409a3fa2d9f44ca10e50e312712473">BOOST_GROUP_SIZE</a>&#160;&#160;&#160;64</td></tr>
-<tr class="separator:a13409a3fa2d9f44ca10e50e312712473"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af90d4033bfef1fded523e8cb232aae6a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="constants_8hpp.html#af90d4033bfef1fded523e8cb232aae6a">BOOST_NTHREAD_BORDER</a>&#160;&#160;&#160;6</td></tr>
-<tr class="separator:af90d4033bfef1fded523e8cb232aae6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__size.html">boost::sort::parallel::detail::block_size&lt; Size &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceboost"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboost.html">boost</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceboost_1_1sort"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort.html">boost::sort</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceboost_1_1sort_1_1parallel"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel.html">boost::sort::parallel</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceboost_1_1sort_1_1parallel_1_1detail"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html">boost::sort::parallel::detail</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:aa0fa68828e0252974412887a2f15bc3a"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare , util::enable_if_string&lt; util::value_iter&lt; Iter_t &gt; &gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:aa0fa68828e0252974412887a2f15bc3a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#aa0fa68828e0252974412887a2f15bc3a">boost::sort::parallel::detail::select_block_indirect</a> (Iter_t first, Iter_t last, Compare cmp, uint32_t nthr=std::thread::hardware_concurrency())</td></tr>
+<tr class="memdesc:aa0fa68828e0252974412887a2f15bc3a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><hr/>
+  <a href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#aa0fa68828e0252974412887a2f15bc3a">More...</a><br /></td></tr>
+<tr class="separator:aa0fa68828e0252974412887a2f15bc3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This file contains the constants values used in the algorithms. </p>
-<dl class="section author"><dt>Author</dt><dd>Copyright (c) 2016 Francisco José Tapia (<a href="#" onclick="location.href='mai'+'lto:'+'fjt'+'ap'+'ia@'+'gm'+'ail'+'.c'+'om'; return false;">fjtap<span style="display: none;">.nosp@m.</span>ia@g<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a> )<br />
+<div class="textblock"><p>block indirect sort algorithm </p>
+<dl class="section author"><dt>Author</dt><dd>Copyright (c) 2016 Francisco Jose Tapia (<a href="#" onclick="location.href='mai'+'lto:'+'fjt'+'ap'+'ia@'+'gm'+'ail'+'.c'+'om'; return false;">fjtap<span style="display: none;">.nosp@m.</span>ia@g<span style="display: none;">.nosp@m.</span>mail.<span style="display: none;">.nosp@m.</span>com</a> )<br />
  Distributed under the Boost Software License, Version 1.0.<br />
  ( See accompanying file LICENSE_1_0.txt or copy at <a href="http://www.boost.org/LICENSE_1_0.txt">http://www.boost.org/LICENSE_1_0.txt</a> ) </dd></dl>
 <dl class="section version"><dt>Version</dt><dd>0.1</dd></dl>
 <dl class="section remark"><dt>Remarks</dt><dd></dd></dl>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a class="anchor" id="a9992e6c778948bde328b26cee896f5f0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BOOST_BLOCK_SIZE&#160;&#160;&#160;1024</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a13409a3fa2d9f44ca10e50e312712473"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BOOST_GROUP_SIZE&#160;&#160;&#160;64</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="af90d4033bfef1fded523e8cb232aae6a"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define BOOST_NTHREAD_BORDER&#160;&#160;&#160;6</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 11 2016 19:22:53 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Oct 20 2016 18:18:28 for Boost Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Sort Parallel: boost::sort::parallel::detail::block_indirect_sort&lt; Block_size, Group_size, Iter_t, Compare &gt; Struct Template Reference</title>
+<title>Boost Sort Parallel: boost::sort::parallel::detail::block_indirect_sort&lt; Block_size, Group_size, Iter_t, Compare &gt; Struct Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sort Parallel
+   <div id="projectname">Boost Sort Parallel
    </div>
    <div id="projectbrief">Sorting Algorithms for the Boost Library</div>
   </td>
@@ -114,8 +114,8 @@ Public Types</h2></td></tr>
 <tr class="separator:a7191f919597aeffa9c668879403f04be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac48f30dcff49d3faf97577a45547443d"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">util::range</a>&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#aa16bb5eda014f38c0704936ab84f2885">value_t</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#ac48f30dcff49d3faf97577a45547443d">range_buf</a></td></tr>
 <tr class="separator:ac48f30dcff49d3faf97577a45547443d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7da807493d5b984304b121d400d468a"><td class="memItemLeft" align="right" valign="top">typedef std::function&lt; void(void) &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#af7da807493d5b984304b121d400d468a">function_t</a></td></tr>
-<tr class="separator:af7da807493d5b984304b121d400d468a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4deb4e4b109eba6f2ed4f0dbe18483bb"><td class="memItemLeft" align="right" valign="top">typedef std::function&lt; void(void) &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#a4deb4e4b109eba6f2ed4f0dbe18483bb">function_t</a></td></tr>
+<tr class="separator:a4deb4e4b109eba6f2ed4f0dbe18483bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abed28d39010fb510df3ecc21d7751c84"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1block__pos.html">bis::block_pos</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#abed28d39010fb510df3ecc21d7751c84">block_pos_t</a></td></tr>
 <tr class="separator:abed28d39010fb510df3ecc21d7751c84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4bc162eb71a79b61d581765c6990448d"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1block.html">bis::block</a>&lt; Block_size, Iter_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#a4bc162eb71a79b61d581765c6990448d">block_t</a></td></tr>
@@ -181,7 +181,7 @@ struct boost::sort::parallel::detail::block_indirect_sort&lt; Block_size, Group_
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef std::atomic&lt; uint32_t &gt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#af28785238c0288a739a60a89d6c0cbf5">atomic_t</a></td>
@@ -195,7 +195,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1backbone.html">bis::backbone</a>&lt; Block_size, Iter_t, Compare &gt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#ac1ff1385da53bec1b53795665263cc2f">backbone_t</a></td>
@@ -209,7 +209,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef <a class="el" href="classboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1block__pos.html">bis::block_pos</a> <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#abed28d39010fb510df3ecc21d7751c84">block_pos_t</a></td>
@@ -223,7 +223,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1block.html">bis::block</a>&lt; Block_size, Iter_t &gt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#a4bc162eb71a79b61d581765c6990448d">block_t</a></td>
@@ -237,7 +237,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1compare__block__pos.html">bis::compare_block_pos</a>&lt; Block_size, Iter_t, Compare &gt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#a1e7d9bef8bff35a64b8673c9aaedf37a">compare_block_pos_t</a></td>
@@ -247,14 +247,14 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 
 </div>
 </div>
-<a class="anchor" id="af7da807493d5b984304b121d400d468a"></a>
+<a class="anchor" id="a4deb4e4b109eba6f2ed4f0dbe18483bb"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef std::function&lt; void( void ) &gt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#af7da807493d5b984304b121d400d468a">function_t</a></td>
+          <td class="memname">typedef std::function&lt; void(void) &gt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#a4deb4e4b109eba6f2ed4f0dbe18483bb">function_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -265,7 +265,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1merge__blocks.html">bis::merge_blocks</a>&lt; Block_size, Group_size, Iter_t, Compare &gt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#ad297db79a5076db49f70022123e87f38">merge_blocks_t</a></td>
@@ -279,7 +279,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1move__blocks.html">bis::move_blocks</a>&lt; Block_size, Group_size, Iter_t, Compare &gt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#a2f6d2a5a6340106dda84b1a7220144f0">move_blocks_t</a></td>
@@ -293,7 +293,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1bis_1_1parallel__sort.html">bis::parallel_sort</a>&lt; Block_size, Iter_t, Compare &gt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#a7076d16874baabc62a49f5d127f90424">parallel_sort_t</a></td>
@@ -307,7 +307,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">util::range</a>&lt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#aa16bb5eda014f38c0704936ab84f2885">value_t</a> * &gt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#ac48f30dcff49d3faf97577a45547443d">range_buf</a></td>
@@ -321,7 +321,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">util::range</a>&lt; Iter_t &gt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#a7191f919597aeffa9c668879403f04be">range_it</a></td>
@@ -335,7 +335,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1util_1_1range.html">util::range</a>&lt; size_t &gt; <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#a574a6aca023e3b16501c8c7c7d246587">range_pos</a></td>
@@ -349,7 +349,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef std::iterator_traits&lt; Iter_t &gt;::value_type <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::<a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#aa16bb5eda014f38c0704936ab84f2885">value_t</a></td>
@@ -415,7 +415,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -451,7 +451,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -493,7 +493,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -535,7 +535,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -564,7 +564,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -657,7 +657,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#ac1ff1385da53bec1b53795665263cc2f">backbone_t</a> <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::bk</td>
@@ -671,7 +671,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">bool <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::construct</td>
@@ -685,7 +685,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#af28785238c0288a739a60a89d6c0cbf5">atomic_t</a> <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::counter</td>
@@ -699,7 +699,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">uint32_t <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::nthread</td>
@@ -713,7 +713,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#aa16bb5eda014f38c0704936ab84f2885">value_t</a>* <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::ptr</td>
@@ -727,7 +727,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compare  = util::compare_iter&lt; Iter_t &gt;&gt; </div>
+template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t, class Compare = util::compare_iter&lt; Iter_t &gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#ac48f30dcff49d3faf97577a45547443d">range_buf</a> <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">boost::sort::parallel::detail::block_indirect_sort</a>&lt; Block_size, Group_size, Iter_t, Compare &gt;::rglobal_buf</td>
@@ -743,7 +743,7 @@ template&lt;uint32_t Block_size, uint32_t Group_size, class Iter_t , class Compa
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 11 2016 19:22:53 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Oct 20 2016 18:18:28 for Boost Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>

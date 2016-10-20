@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.11"/>
-<title>Sort Parallel: boost::sort::parallel::detail Namespace Reference</title>
+<title>Boost Sort Parallel: boost::sort::parallel::detail Namespace Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Sort Parallel
+   <div id="projectname">Boost Sort Parallel
    </div>
    <div id="projectbrief">Sorting Algorithms for the Boost Library</div>
   </td>
@@ -107,6 +107,8 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html">block_indirect_sort</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class is the entry point of the block indirect sort. The code of this algorithm is divided in several classes: <a class="el" href="block_8hpp.html" title="This file contains the internal data structures used in the block_indirect_sort algorithm. ">bis/block.hpp</a> : basic structures used in the algorithm <a class="el" href="backbone_8hpp.html" title="This file constains the class backbone, which is part of the block_indirect_sort algorithm. ">bis/backbone.hpp</a> : data used by all the classes <a class="el" href="merge__blocks_8hpp.html" title="contains the class merge_blocks, which is part of the block_indirect_sort algorithm ...">bis/merge_blocks.hpp</a> : merge the internal blocks <a class="el" href="move__blocks_8hpp.html" title="contains the class move_blocks, which is part of the block_indirect_sort algorithm ...">bis/move_blocks.hpp</a> : move the blocks, and obtain all the elements phisicaly sorted <a class="el" href="parallel__sort_8hpp.html" title="Contains the parallel_sort class, which is part of the block_indirect_sort algorithm. ">bis/parallel_sort.hpp</a> : make the parallel sort of each part in the initial division of the data.  <a href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__size.html">block_size</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1heap__sort.html">heap_sort</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">: Heap sort algorithm  <a href="structboost_1_1sort_1_1parallel_1_1detail_1_1heap__sort.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -160,6 +162,11 @@ Functions</h2></td></tr>
 <tr class="memitem:a8096b13b1b1fafb93ff9a29a49cc016a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#a8096b13b1b1fafb93ff9a29a49cc016a">intro_sort</a> (Iter_t first, Iter_t last, Compare comp)</td></tr>
 <tr class="memdesc:a8096b13b1b1fafb93ff9a29a49cc016a"><td class="mdescLeft">&#160;</td><td class="mdescRight">: function for to sort range [first, last )  <a href="#a8096b13b1b1fafb93ff9a29a49cc016a">More...</a><br /></td></tr>
 <tr class="separator:a8096b13b1b1fafb93ff9a29a49cc016a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0fa68828e0252974412887a2f15bc3a"><td class="memTemplParams" colspan="2">template&lt;class Iter_t , class Compare , util::enable_if_string&lt; util::value_iter&lt; Iter_t &gt; &gt; *  = nullptr&gt; </td></tr>
+<tr class="memitem:aa0fa68828e0252974412887a2f15bc3a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#aa0fa68828e0252974412887a2f15bc3a">select_block_indirect</a> (Iter_t first, Iter_t last, Compare cmp, uint32_t nthr=std::thread::hardware_concurrency())</td></tr>
+<tr class="memdesc:aa0fa68828e0252974412887a2f15bc3a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><hr/>
+  <a href="#aa0fa68828e0252974412887a2f15bc3a">More...</a><br /></td></tr>
+<tr class="separator:aa0fa68828e0252974412887a2f15bc3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5778db260f3fc15d41cdcd2c0c463d5d"><td class="memTemplParams" colspan="2">template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </td></tr>
 <tr class="memitem:a5778db260f3fc15d41cdcd2c0c463d5d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1sort_1_1parallel_1_1detail.html#a5778db260f3fc15d41cdcd2c0c463d5d">range_sort</a> (const range&lt; Iter1_t &gt; &amp;range_input, const range&lt; Iter2_t &gt; &amp;range_buffer, Compare comp, uint32_t level)</td></tr>
 <tr class="memdesc:a5778db260f3fc15d41cdcd2c0c463d5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">this function divide r_input in two parts, sort it,and merge moving the elements to range_buf  <a href="#a5778db260f3fc15d41cdcd2c0c463d5d">More...</a><br /></td></tr>
@@ -406,7 +413,7 @@ template&lt;typename Iter_t , typename Compare &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>iterator to the mid value </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>iterator to mid value </dd></dl>
 
 </div>
 </div>
@@ -666,6 +673,50 @@ template&lt;class Iter1_t , class Iter2_t , class Compare &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="aa0fa68828e0252974412887a2f15bc3a"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class Iter_t , class Compare , util::enable_if_string&lt; util::value_iter&lt; Iter_t &gt; &gt; *  = nullptr&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void boost::sort::parallel::detail::select_block_indirect </td>
+          <td>(</td>
+          <td class="paramtype">Iter_t&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Iter_t&#160;</td>
+          <td class="paramname"><em>last</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Compare&#160;</td>
+          <td class="paramname"><em>cmp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>nthr</em> = <code>std::thread::hardware_concurrency&#160;()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p><hr/>
+ </p>
+<p>This class is select the block size in the <a class="el" href="structboost_1_1sort_1_1parallel_1_1detail_1_1block__indirect__sort.html" title="This class is the entry point of the block indirect sort. The code of this algorithm is divided in se...">block_indirect_sort</a> algorithm depending of the type and size of the data to sort </p>
+
+</div>
+</div>
 <a class="anchor" id="a737bec4efa584aadec7853a4d42b60f8"></a>
 <div class="memitem">
 <div class="memproto">
@@ -706,7 +757,7 @@ template&lt;class Iter_t &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Sep 11 2016 19:22:53 for Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Oct 20 2016 18:18:28 for Boost Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.11
 </small></address>
