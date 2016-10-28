@@ -629,7 +629,7 @@ class="style10">];
               <td style="width: 209.133px;">Boost parallel sort</td>
               <td style="background-color: white; text-align: center;">No</td>
               <td style="text-align: center; background-color: white;">N
-                +1024*num threads</td>
+                +block_size*num threads</td>
               <td style="text-align: center; background-color: white;"> New
                 parallel algorithm<br />
               </td>
@@ -667,6 +667,59 @@ class="style10">];
           </tbody>
         </table>
         <br />
+        The block_size is an internal parameter of the algorithm, which  in
+        order to achieve the highest speed, change according the size of the
+        objects to sort according to the next table. The strings use a
+        block_size of 128.<br />
+        <br />
+        <table cellspacing="0" border="1" style="width: 803px; height: 84px;">
+          <tbody>
+            <tr>
+              <td style="width: 104.95px;">object size (bytes)</td>
+              <td style="width: 62px; background-color: white; text-align: center;">1
+                - 15<br />
+              </td>
+              <td style="width: 62px; background-color: white; text-align: center;">16
+                - 31<br />
+              </td>
+              <td style="width: 62px; background-color: white; text-align: center;">32
+                - 63<br />
+              </td>
+              <td style="width: 62px; background-color: white; text-align: center;">64
+                - 127<br />
+              </td>
+              <td style="width: 62px; background-color: white; text-align: center;">128
+                - 255<br />
+              </td>
+              <td style="width: 62px; background-color: white; text-align: center;">256
+                - 511<br />
+              </td>
+              <td style="width: 62px; background-color: white; text-align: left;">512
+                - <br />
+              </td>
+            </tr>
+            <tr>
+              <td>block_size <br />
+              </td>
+              <td style="width: 62px; background-color: white; text-align: center;">4096<br />
+              </td>
+              <td style="width: 62px; background-color: white; text-align: center;">2048<br />
+              </td>
+              <td style="width: 62px; background-color: white; text-align: center;">1024<br />
+              </td>
+              <td style="width: 62px; background-color: white; text-align: center;">768<br />
+              </td>
+              <td style="width: 62px; background-color: white; text-align: center;">512<br />
+              </td>
+              <td style="width: 62px; background-color: white; text-align: center;">256<br />
+              </td>
+              <td style="width: 62px; background-color: white; text-align: center;">128<br />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br />
+        <br />
         For the benchmark I use the next additional code:<br />
         <ul style="margin-left: 40px;">
           <li>Threading Building Blocks ( TBB)</li>
@@ -684,8 +737,8 @@ class="style10">];
         The Boost Parallel Sort (internally named Block Indirect Sort), is a new
         algorithm created and implemented by the author for this library, which
         combine the speed of GCC Parallel sort, with a small memory consumption
-        (1024 elements for each thread). The worst case for this algorithm is
-        when have very big elements and many threads. With big elements (512
+        (block_size elements for each thread). The worst case for this algorithm
+        is when have very big elements and many threads. With big elements (512
         bytes), and 12 threads, The memory measured was:<br />
         <br />
         <table cellspacing="0" border="0" style="width: 418px; height: 88px; margin-left: 40px;">
@@ -1255,7 +1308,8 @@ Windows
           <colgroup width="178"></colgroup> <colgroup width="85" span="2"></colgroup>
           <tbody>
             <tr>
-              <td height="17" align="left">Algorithm</td>
+              <td height="17" align="left"><br />
+              </td>
               <td align="left" style="text-align: center; background-color: white;">Time<br />
                 (secs)</td>
               <td align="left" style="text-align: center; background-color: white;">Memory<br />
@@ -1539,7 +1593,8 @@ Windows
           <colgroup width="175"></colgroup> <colgroup width="85" span="2"></colgroup>
           <tbody>
             <tr>
-              <td height="17" align="left">Algorithm</td>
+              <td height="17" align="left"><br />
+              </td>
               <td align="left" style="text-align: center; background-color: white;">Time<br />
                 (secs)</td>
               <td align="left" style="text-align: center; background-color: white;">Memory<br />
@@ -1591,7 +1646,8 @@ Windows
           <colgroup width="178"></colgroup> <colgroup width="85" span="2"></colgroup>
           <tbody>
             <tr>
-              <td height="17" align="left">Algorithm</td>
+              <td height="17" align="left"><br />
+              </td>
               <td align="left" style="text-align: center; background-color: white;">Time<br />
                 (secs)</td>
               <td align="left" style="text-align: center; background-color: white;">Memory<br />
