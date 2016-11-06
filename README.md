@@ -26,9 +26,19 @@ This table provide you a brief description of the sort algorithms of the library
 | --- | --- | --- | --- | --- |
 | sort | no | no | Log N  | NLogN, NLogN, NLogN |
 | stable\_sort | no | yes| N / 2 | NLogN, NLogN, NLogN   |
-| parallel\_sort | yes | no | 1024\*number_threads | NLogN, NLogN, NLogN  |
+| parallel\_sort | yes | no | block_size\* num_threads | NLogN, NLogN, NLogN  |
 | parallel\_stable\_sort| yes | yes | N / 2 | NLogN, NLogN, NLogN   |
 | sample\_sort | yes | yes | N  | NLogN, NLogN, NLogN  |
+
+
+The block_size is an internal parameter of the algorithm, which  in order to achieve the highest speed, change according the size of the objects to sort according the next table. The **strings** use a block_size of 128.
+
+| object size (bytes) |1 - 15| 16 - 31 | 32 - 63 | 64 - 127 |	128 - 255 | 256 - 511 |	512 - |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| block_size |4096 |2048 | 1024| 768 | 512 | 256 | 128 |
+
+
+
 
 <h3>PRESENT PERSPECTIVE</h3>
 
@@ -59,11 +69,17 @@ This generate an **undesirable duality**. With a small number of threads use one
 
 This version have as novelty a **new parallel\_sort algorithm** *( internally named Block Indirect)*, created for processors connected with **shared memory**.
 
-It is a hybrid algorithm. With small number of threads, it is a subdivision algorithm, but with many threads is a merging algorithms, which need a small  auxiliary memory ( 1024 * number of threads).
+It is a hybrid algorithm. With small number of threads, it is a subdivision algorithm, but with many threads is a merging algorithms, which need a small  auxiliary memory ( block\_size * num\_threads).
+
+The block_size is an internal parameter of the algorithm, which  in order to achieve the highest speed, change according the size of the objects to sort according the next table. The **strings** use a block_size of 128.
+
+| object size (bytes) |1 - 15| 16 - 31 | 32 - 63 | 64 - 127 |	128 - 255 | 256 - 511 |	512 - |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| block_size |4096 |2048 | 1024| 768 | 512 | 256 | 128 |
 
 This algorithm permit to eliminate the duality. When run in a machine with small number of threads have the performance of TBB, and when run in a machine with many threads, the same code have the performance of GCC Parallel Sort, with the **additional advantage** of the **small memory consumption**.
 
-The algorithm use as **auxiliary memory a 1024 elements** for each thread. The worst case is when have very big elements and many threads. With big elements (512 bytes), and 32 threads, The memory measured was:
+The algorithm use as **auxiliary memory a block_size elements** for each thread. The worst case is when have very big elements and many threads. With big elements (512 bytes), and 12 threads, The memory measured was:
 
 | Algorithm | Memory used in MB |
 | --- | --- |
