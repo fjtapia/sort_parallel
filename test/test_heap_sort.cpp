@@ -10,13 +10,14 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#include "boost/sort/parallel/detail/heap_sort.hpp"
-#include <boost/test/included/test_exec_monitor.hpp>
-#include <boost/test/test_tools.hpp>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include <vector>
+#include <ciso646>
+#include "boost/sort/parallel/detail/heap_sort.hpp"
+#include <boost/test/included/test_exec_monitor.hpp>
+#include <boost/test/test_tools.hpp>
 
 using namespace boost::sort::parallel::detail;
 using namespace std;

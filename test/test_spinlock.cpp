@@ -10,6 +10,7 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
+#include <ciso646>
 #include <chrono>
 #include <mutex>
 #include <thread>

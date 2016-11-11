@@ -10,15 +10,17 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
+#include <ciso646>
 #include <algorithm>
+#include <iostream>
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
+#include <vector>
+#include <random>
 #include <boost/sort/parallel/detail/spin_sort.hpp>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
-#include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <vector>
 
 using boost::sort::parallel::detail::spin_sort;
 using boost::sort::parallel::detail::range_sort;

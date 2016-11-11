@@ -10,7 +10,6 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#include "boost/sort/parallel/detail/block_indirect_sort.hpp"
 #include <algorithm>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
@@ -19,6 +18,8 @@
 #include <stdlib.h>
 #include <time.h>
 #include <vector>
+#include <ciso646>
+#include <boost/sort/parallel/detail/block_indirect_sort.hpp>
 
 namespace bs_util = boost::sort::parallel::detail::util;
 namespace bsp = boost::sort::parallel::detail;

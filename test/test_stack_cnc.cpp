@@ -10,12 +10,13 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
-#include <boost/sort/parallel/detail/util/stack_cnc.hpp>
-#include <boost/test/included/test_exec_monitor.hpp>
-#include <boost/test/test_tools.hpp>
+#include <ciso646>
 #include <chrono>
 #include <mutex>
 #include <thread>
+#include <boost/sort/parallel/detail/util/stack_cnc.hpp>
+#include <boost/test/included/test_exec_monitor.hpp>
+#include <boost/test/test_tools.hpp>
 
 namespace bsp_util = boost::sort::parallel::detail::util;
 using bsp_util::stack_cnc;

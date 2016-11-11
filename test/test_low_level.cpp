@@ -10,15 +10,15 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
+#include <cassert>
+#include <cstdlib>
+#include <ctime>
+#include <vector>
+#include <algorithm>
+#include <ciso646>
 #include <boost/sort/parallel/detail/util/low_level.hpp>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
-#include <cassert>
-#include <stdlib.h>
-#include <time.h>
-#include <vector>
-
-#include <algorithm>
 
 using namespace boost::sort::parallel::detail::util;
 

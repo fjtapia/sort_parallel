@@ -10,15 +10,16 @@
 ///
 /// @remarks
 //-----------------------------------------------------------------------------
+#include <ciso646>
+#include <cstdio>
+#include <cstdlib>
+#include <ctime>
+#include <vector>
+#include <random>
+#include <algorithm>
 #include <boost/sort/parallel/detail/parallel_stable_sort.hpp>
 #include <boost/test/included/test_exec_monitor.hpp>
 #include <boost/test/test_tools.hpp>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <vector>
-
-#include <algorithm>
 
 using namespace std;
 namespace bsort = boost::sort::parallel::detail;
