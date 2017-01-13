@@ -1,0 +1,17 @@
+[
+  {
+    "key": "parallel_sort",
+    "name": "Parallel Sort",
+    "authors": [
+      "Francisco Tapia"
+    ],
+    "maintainers": [
+      "Francisco Tapia <fjtapia -at- gmail.com>"
+    ],
+    "description":
+      "High-performance sort functions.",
+    "category": [
+      "Algorithms"
+    ]
+  }
+]

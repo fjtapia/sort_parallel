@@ -1,0 +1,1016 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>3.2.2.- Parallel Algorithms</title>
+<link rel="stylesheet" href="../../../../../../../doc/src/boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="../../../index.html" title="Boost.Parallel_Sort">
+<link rel="up" href="../3_2_windows_10_visual_studio_201.html" title="3.2.- Windows 10 Visual Studio 2015 64 bits Benchmarks">
+<link rel="prev" href="../3_2_windows_10_visual_studio_201.html" title="3.2.- Windows 10 Visual Studio 2015 64 bits Benchmarks">
+<link rel="next" href="../../4_bibliography.html" title="4.- Bibliography">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../../../boost.png"></td>
+<td align="center"><a href="../../../../../../../index.html">Home</a></td>
+<td align="center"><a href="../../../../../../../libs/libraries.htm">Libraries</a></td>
+<td align="center"><a href="http://www.boost.org/users/people.html">People</a></td>
+<td align="center"><a href="http://www.boost.org/users/faq.html">FAQ</a></td>
+<td align="center"><a href="../../../../../../../more/index.htm">More</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../3_2_windows_10_visual_studio_201.html"><img src="../../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../3_2_windows_10_visual_studio_201.html"><img src="../../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../../4_bibliography.html"><img src="../../../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_2_parallel_algorithms"></a><a class="link" href="3_2_2_parallel_algorithms.html" title="3.2.2.- Parallel Algorithms">3.2.2.-
+        Parallel Algorithms</a>
+</h4></div></div></div>
+<p>
+          The algorithms involved in this benchmark are :
+        </p>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                  <p>
+                    Algorithm
+                  </p>
+                </th>
+<th>
+                  <p>
+                    Stable
+                  </p>
+                </th>
+<th>
+                  <p>
+                    Memory used
+                  </p>
+                </th>
+<th>
+                  <p>
+                    Comments
+                  </p>
+                </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                  <p>
+                    PPL parallel sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    No
+                  </p>
+                </td>
+<td>
+                  <p>
+                    N
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    PPL parallel buffered sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    No
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2 N
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost parallel sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    No
+                  </p>
+                </td>
+<td>
+                  <p>
+                    N +block_size*num threads
+                  </p>
+                </td>
+<td>
+                  <p>
+                    New parallel algorithm
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost parallel stable sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Yes
+                  </p>
+                </td>
+<td>
+                  <p>
+                    N + N / 2
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost sample sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Yes
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2 N
+                  </p>
+                </td>
+</tr>
+</tbody>
+</table></div>
+<p>
+          If you are interested in a brief description of the new Boost parallel
+          sort algorithm, you can find here, and if you are interested in a detailed
+          description of the algorithm, you can find here
+        </p>
+<h5>
+<a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_2_parallel_algorithms.h0"></a>
+          <span class="phrase"><a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_2_parallel_algorithms.integer_benchmark_sort_of_100_00"></a></span><a class="link" href="3_2_2_parallel_algorithms.html#parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_2_parallel_algorithms.integer_benchmark_sort_of_100_00">Integer
+          Benchmark Sort of 100 000 000 64 bits numbers, randomly filled</a>
+        </h5>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                  <p>
+                    Algorithm
+                  </p>
+                </th>
+<th>
+                  <p>
+                    time (secs)
+                  </p>
+                </th>
+<th>
+                  <p>
+                    memory (MB)
+                  </p>
+                </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                  <p>
+                    PPL parallel sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.11
+                  </p>
+                </td>
+<td>
+                  <p>
+                    764
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    PPL parallel buffered sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.74
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1527
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost parallel sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.1
+                  </p>
+                </td>
+<td>
+                  <p>
+                    764
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost sample sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.78
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1511
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost parallel stable sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.3
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1145
+                  </p>
+                </td>
+</tr>
+</tbody>
+</table></div>
+<h5>
+<a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_2_parallel_algorithms.h1"></a>
+          <span class="phrase"><a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_2_parallel_algorithms.strings_benchmark_sort_of_100000"></a></span><a class="link" href="3_2_2_parallel_algorithms.html#parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_2_parallel_algorithms.strings_benchmark_sort_of_100000">Strings
+          Benchmark Sort of 10000000 strings randomly filled</a>
+        </h5>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                  <p>
+                    Algorithm
+                  </p>
+                </th>
+<th>
+                  <p>
+                    time (secs)
+                  </p>
+                </th>
+<th>
+                  <p>
+                    memory (MB)
+                  </p>
+                </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                  <p>
+                    PPL parallel sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.76
+                  </p>
+                </td>
+<td>
+                  <p>
+                    864
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    PPL parallel buffered sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.77
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1169
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost parallel sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.41
+                  </p>
+                </td>
+<td>
+                  <p>
+                    866
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost sample sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.74
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1168
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost parallel stable sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    5.7
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1015
+                  </p>
+                </td>
+</tr>
+</tbody>
+</table></div>
+<h5>
+<a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_2_parallel_algorithms.h2"></a>
+          <span class="phrase"><a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_2_parallel_algorithms.objects_benchmark"></a></span><a class="link" href="3_2_2_parallel_algorithms.html#parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_2_parallel_algorithms.objects_benchmark">Objects
+          Benchmark</a>
+        </h5>
+<p>
+          Sorting of objects of different sizes. The objects are arrays of 64 bits
+          number. This benchmark is done using two kinds of comparison.
+        </p>
+<p>
+          Heavy comparison : The comparison is done with the sum of all the numbers
+          of the array. In each comparison, make the sum.
+        </p>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                  <p>
+                    Algorithm
+                  </p>
+                </th>
+<th>
+                  <p>
+                    8 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    16 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    32 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    64 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    128 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    256 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    512 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    Memory used
+                  </p>
+                </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                  <p>
+                    PPL parallel sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.84
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.71
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.01
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.84
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.89
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.77
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.65
+                  </p>
+                </td>
+<td>
+                  <p>
+                    764 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    PPL parallel buffered sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.2
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.29
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.88
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.98
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.32
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.82
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1527 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost parallel sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.93
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.82
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.9
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.72
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.77
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.68
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.69
+                  </p>
+                </td>
+<td>
+                  <p>
+                    764 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost sample sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.02
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.03
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.15
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.41
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.55
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.82
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.39
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1526 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost parallel stable sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.36
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.67
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.62
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.45
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.38
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.19
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.37
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1145 MB
+                  </p>
+                </td>
+</tr>
+</tbody>
+</table></div>
+<p>
+          Light comparison : It's done using only the first number of the array,
+          as a key in a register.
+        </p>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                  <p>
+                    Algorithm
+                  </p>
+                </th>
+<th>
+                  <p>
+                    8 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    16 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    32 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    64 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    128 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    256 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    512 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    Memory used
+                  </p>
+                </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                  <p>
+                    PPL parallel sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.1
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.37
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.97
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.7
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.61
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.58
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.57
+                  </p>
+                </td>
+<td>
+                  <p>
+                    764 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    PPL parallel buffered sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.31
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.39
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.9
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.88
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.1
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.89
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.44
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1527 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost parallel sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.15
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.21
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.7
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.72
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.41
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.51
+                  </p>
+                </td>
+<td>
+                  <p>
+                    0.54
+                  </p>
+                </td>
+<td>
+                  <p>
+                    764 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost sample sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.4
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.94
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.56
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.41
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.41
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.96
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1526 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost parallel stable sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.56
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.37
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.79
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.45
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.72
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.34
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.44
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1145 MB
+                  </p>
+                </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2017 Francisco Tapia<p>
+        Distributed under the <a href="http://boost.org/LICENSE_1_0.txt" target="_top">Boost
+        Software License, Version 1.0</a>.
+      </p>
+</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../3_2_windows_10_visual_studio_201.html"><img src="../../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../3_2_windows_10_visual_studio_201.html"><img src="../../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../../index.html"><img src="../../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../../4_bibliography.html"><img src="../../../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

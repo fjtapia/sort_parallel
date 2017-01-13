@@ -1,0 +1,169 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>2.3.- less_ptr_no_null</title>
+<link rel="stylesheet" href="../../../../../../doc/src/boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="../../index.html" title="Boost.Parallel_Sort">
+<link rel="up" href="../2_algorithms.html" title="2.- Algorithms">
+<link rel="prev" href="2_2_parallel_parallel_sort_paral.html" title="2.2.- Parallel ( parallel_sort, parallel_stable_sort, sample_sort)">
+<link rel="next" href="../3_benchmarks.html" title="3.- Benchmarks">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../../boost.png"></td>
+<td align="center"><a href="../../../../../../index.html">Home</a></td>
+<td align="center"><a href="../../../../../../libs/libraries.htm">Libraries</a></td>
+<td align="center"><a href="http://www.boost.org/users/people.html">People</a></td>
+<td align="center"><a href="http://www.boost.org/users/faq.html">FAQ</a></td>
+<td align="center"><a href="../../../../../../more/index.htm">More</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="2_2_parallel_parallel_sort_paral.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../2_algorithms.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../3_benchmarks.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="parallel_sort.2_algorithms.2_3_less_ptr_no_null"></a><a class="link" href="2_3_less_ptr_no_null.html" title="2.3.- less_ptr_no_null">2.3.-
+      less_ptr_no_null</a>
+</h3></div></div></div>
+<p>
+        Sometimes, we don't want sort physically the data by a concept. In such cases
+        we can create a vector of pointers or iterators to the elements, named index,
+        and sort the index. This permits keeping separate indexes into the the same
+        data set at the same time, each sorted by different concepts.
+      </p>
+<p>
+        To sort an index , we have a special comparison object less_ptr_no_null ,
+        which permits calls to the internal comparison between objects, from the
+        pointers to the iterators. The less_ptr_no_null object receives in the constructor
+        the comparison object between two objects. This comparison object make trivial
+        the sorting of a index
+      </p>
+<pre class="programlisting"><span class="comment">//---------------------------------------------------------------------------</span>
+<span class="comment">/// @class less_ptr_no_null</span>
+<span class="comment">///</span>
+<span class="comment">/// @remarks this is the comparison object for a pair of (non-null) pointers.</span>
+<span class="comment">//---------------------------------------------------------------------------</span>
+<span class="keyword">template</span>    <span class="special">&lt;</span>   <span class="keyword">class</span> <span class="identifier">iter_t</span> <span class="special">,</span>
+                <span class="keyword">class</span> <span class="identifier">comp_t</span>
+                <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">less</span> <span class="special">&lt;</span><span class="keyword">typename</span> <span class="identifier">iterator_traits</span><span class="special">&lt;</span><span class="identifier">iter_t</span><span class="special">&gt;::</span><span class="identifier">value_type</span><span class="special">&gt;</span> <span class="special">&gt;</span>
+<span class="keyword">struct</span> <span class="identifier">less_ptr_no_null</span>
+<span class="special">{</span>   <span class="comment">//----------------------------- Variables -----------------------</span>
+    <span class="identifier">comp_t</span> <span class="identifier">comp</span> <span class="special">;</span>
+    <span class="comment">//----------------------------- Functions ----------------------</span>
+    <span class="keyword">inline</span> <span class="identifier">less_ptr_no_null</span> <span class="special">(</span><span class="identifier">comp_t</span> <span class="identifier">C1</span> <span class="special">=</span> <span class="identifier">comp_t</span><span class="special">()):</span> <span class="identifier">comp</span> <span class="special">(</span><span class="identifier">C1</span><span class="special">)</span> <span class="special">{};</span>
+
+    <span class="keyword">inline</span> <span class="keyword">bool</span> <span class="keyword">operator</span> <span class="special">()</span> <span class="special">(</span><span class="identifier">iter_t</span> <span class="identifier">T1</span><span class="special">,</span> <span class="identifier">iter_t</span> <span class="identifier">T2</span><span class="special">)</span> <span class="keyword">const</span>
+    <span class="special">{</span>   <span class="keyword">return</span>  <span class="identifier">comp</span> <span class="special">(*</span><span class="identifier">T1</span> <span class="special">,*</span><span class="identifier">T2</span><span class="special">);</span>
+    <span class="special">};</span>
+<span class="special">};</span>
+</pre>
+<p>
+        In this example, there are structures sorted by the num field , but we create
+        an index with the elements sorted by name, and another for to sorted by weight.
+        It creates the less_ptr_no_null comparison objects, and sorts the indices,
+        and then prints the results.
+      </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">vector</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iterator</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">cassert</span><span class="special">&gt;</span>
+
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">sort</span><span class="special">/</span><span class="identifier">parallel</span><span class="special">/</span><span class="identifier">sort</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="identifier">std</span><span class="special">;</span>
+<span class="keyword">namespace</span> <span class="identifier">bs_sort</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">sort</span><span class="special">::</span><span class="identifier">parallel</span><span class="special">;</span>
+<span class="keyword">using</span> <span class="identifier">bs_sort</span><span class="special">::</span><span class="identifier">less_ptr_no_null</span><span class="special">;</span>
+
+<span class="keyword">struct</span> <span class="identifier">member</span>
+<span class="special">{</span>   <span class="identifier">uint32_t</span> <span class="identifier">num</span><span class="special">;</span>
+	<span class="identifier">std</span><span class="special">::</span><span class="identifier">string</span> <span class="identifier">name</span><span class="special">;</span>
+	<span class="keyword">float</span> <span class="identifier">weight</span><span class="special">;</span>
+<span class="special">};</span>
+<span class="keyword">typedef</span> <span class="keyword">typename</span> <span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">member</span><span class="special">&gt;::</span><span class="identifier">iterator</span> <span class="identifier">iter_t</span><span class="special">;</span>
+
+<span class="keyword">struct</span> <span class="identifier">cmp_num</span>
+<span class="special">{</span>   <span class="keyword">bool</span> <span class="keyword">operator</span><span class="special">()</span> <span class="special">(</span> <span class="keyword">const</span> <span class="identifier">member</span> <span class="special">&amp;</span><span class="identifier">m1</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">member</span> <span class="special">&amp;</span><span class="identifier">m2</span><span class="special">)</span> <span class="keyword">const</span>
+	<span class="special">{</span>   <span class="keyword">return</span> <span class="special">(</span><span class="identifier">m1</span><span class="special">.</span><span class="identifier">num</span> <span class="special">&lt;</span> <span class="identifier">m2</span><span class="special">.</span><span class="identifier">num</span><span class="special">);</span> <span class="special">};</span>
+<span class="special">};</span>
+
+<span class="keyword">struct</span> <span class="identifier">cmp_name</span>
+<span class="special">{</span>   <span class="keyword">bool</span> <span class="keyword">operator</span><span class="special">()</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">member</span> <span class="special">&amp;</span><span class="identifier">m1</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">member</span> <span class="special">&amp;</span><span class="identifier">m2</span><span class="special">)</span><span class="keyword">const</span>
+	<span class="special">{</span>   <span class="keyword">return</span> <span class="special">(</span><span class="identifier">m1</span><span class="special">.</span><span class="identifier">name</span> <span class="special">&lt;</span> <span class="identifier">m2</span><span class="special">.</span><span class="identifier">name</span><span class="special">);</span> <span class="special">};</span>
+<span class="special">};</span>
+
+<span class="keyword">struct</span> <span class="identifier">cmp_weight</span>
+<span class="special">{</span>   <span class="keyword">bool</span> <span class="keyword">operator</span><span class="special">()</span> <span class="special">(</span><span class="keyword">const</span> <span class="identifier">member</span> <span class="special">&amp;</span><span class="identifier">m1</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">member</span> <span class="special">&amp;</span><span class="identifier">m2</span><span class="special">)</span> <span class="keyword">const</span>
+	<span class="special">{</span>   <span class="keyword">return</span> <span class="special">(</span><span class="identifier">m1</span><span class="special">.</span><span class="identifier">weight</span> <span class="special">&lt;</span> <span class="identifier">m2</span><span class="special">.</span><span class="identifier">weight</span><span class="special">);</span> <span class="special">};</span>
+<span class="special">};</span>
+
+<span class="identifier">ostream</span> <span class="special">&amp;</span> <span class="keyword">operator</span> <span class="special">&lt;&lt;</span> <span class="special">(</span><span class="identifier">ostream</span> <span class="special">&amp;</span> <span class="identifier">out</span><span class="special">,</span> <span class="keyword">const</span> <span class="identifier">member</span> <span class="special">&amp;</span><span class="identifier">m</span><span class="special">)</span>
+<span class="special">{</span>   <span class="identifier">out</span><span class="special">&lt;&lt;</span><span class="identifier">m</span><span class="special">.</span><span class="identifier">num</span><span class="special">&lt;&lt;</span><span class="string">" - "</span><span class="special">&lt;&lt;</span><span class="identifier">m</span><span class="special">.</span><span class="identifier">name</span><span class="special">&lt;&lt;</span><span class="string">" - "</span><span class="special">&lt;&lt;</span><span class="identifier">m</span><span class="special">.</span><span class="identifier">weight</span><span class="special">&lt;&lt;</span><span class="identifier">endl</span><span class="special">;</span>
+	<span class="keyword">return</span> <span class="identifier">out</span> <span class="special">;</span>
+<span class="special">};</span>
+
+<span class="keyword">int</span> <span class="identifier">main</span> <span class="special">(</span><span class="keyword">int</span><span class="special">,</span> <span class="keyword">char</span><span class="special">*[])</span>
+<span class="special">{</span>
+	<span class="comment">// The data are sorted by number</span>
+	<span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">member</span><span class="special">&gt;</span> <span class="identifier">VM</span> <span class="special">=</span> <span class="special">{</span> <span class="special">{</span><span class="number">1</span><span class="special">,</span> <span class="string">"Peter"</span><span class="special">,</span> <span class="number">85.6</span><span class="special">},</span>   <span class="special">{</span><span class="number">2</span><span class="special">,</span> <span class="string">"Hanna"</span><span class="special">,</span> <span class="number">63.4</span><span class="special">},</span>
+	                      <span class="special">{</span><span class="number">3</span><span class="special">,</span> <span class="string">"John"</span><span class="special">,</span>  <span class="number">83.6</span><span class="special">},</span>   <span class="special">{</span><span class="number">4</span><span class="special">,</span> <span class="string">"Elsa"</span><span class="special">,</span>  <span class="number">56.6</span><span class="special">}</span> <span class="special">};</span>
+	
+	<span class="identifier">vector</span><span class="special">&lt;</span><span class="identifier">iter_t</span><span class="special">&gt;</span> <span class="identifier">Ix_name</span><span class="special">,</span> <span class="identifier">Ix_weight</span><span class="special">;</span>
+	<span class="keyword">for</span> <span class="special">(</span><span class="identifier">iter_t</span> <span class="identifier">it</span><span class="special">=</span> <span class="identifier">VM</span><span class="special">.</span><span class="identifier">begin</span><span class="special">();</span> <span class="identifier">it</span> <span class="special">!=</span> <span class="identifier">VM</span><span class="special">.</span><span class="identifier">end</span><span class="special">();</span> <span class="special">++</span><span class="identifier">it</span><span class="special">)</span>
+	<span class="special">{</span>   <span class="identifier">Ix_name</span><span class="special">.</span><span class="identifier">push_back</span> <span class="special">(</span><span class="identifier">it</span><span class="special">);</span>
+	    <span class="identifier">Ix_weight</span><span class="special">.</span><span class="identifier">push_back</span><span class="special">(</span><span class="identifier">it</span><span class="special">);</span>
+	<span class="special">};</span>
+
+	<span class="keyword">typedef</span> <span class="identifier">less_ptr_no_null</span> <span class="special">&lt;</span><span class="identifier">iter_t</span><span class="special">,</span> <span class="identifier">cmp_name</span><span class="special">&gt;</span>     <span class="identifier">compare_name</span> <span class="special">;</span>
+	<span class="keyword">typedef</span> <span class="identifier">less_ptr_no_null</span> <span class="special">&lt;</span><span class="identifier">iter_t</span><span class="special">,</span> <span class="identifier">cmp_weight</span><span class="special">&gt;</span>   <span class="identifier">compare_weight</span> <span class="special">;</span>
+
+	<span class="identifier">bs_sort</span><span class="special">::</span><span class="identifier">sort</span> <span class="special">(</span><span class="identifier">Ix_name</span><span class="special">.</span><span class="identifier">begin</span><span class="special">(),</span>   <span class="identifier">Ix_name</span><span class="special">.</span><span class="identifier">end</span><span class="special">(),</span>   <span class="identifier">compare_name</span>  <span class="special">());</span>
+	<span class="identifier">bs_sort</span><span class="special">::</span><span class="identifier">sort</span> <span class="special">(</span><span class="identifier">Ix_weight</span><span class="special">.</span><span class="identifier">begin</span><span class="special">(),</span> <span class="identifier">Ix_weight</span><span class="special">.</span><span class="identifier">end</span><span class="special">(),</span> <span class="identifier">compare_weight</span><span class="special">());</span>
+
+	<span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="string">"Printing sorted by number \n"</span><span class="special">;</span>
+	<span class="keyword">for</span> <span class="special">(</span><span class="keyword">auto</span> <span class="identifier">it</span> <span class="special">=</span> <span class="identifier">VM</span><span class="special">.</span><span class="identifier">begin</span><span class="special">();</span> <span class="identifier">it</span> <span class="special">!=</span> <span class="identifier">VM</span><span class="special">.</span><span class="identifier">end</span><span class="special">();</span> <span class="special">++</span><span class="identifier">it</span><span class="special">)</span> <span class="identifier">cout</span><span class="special">&lt;&lt;(*</span><span class="identifier">it</span><span class="special">);</span>
+
+	<span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="string">"Printing sorted by name \n"</span><span class="special">;</span>
+	<span class="keyword">for</span> <span class="special">(</span><span class="keyword">auto</span> <span class="identifier">it</span> <span class="special">=</span> <span class="identifier">Ix_name</span><span class="special">.</span><span class="identifier">begin</span><span class="special">();</span> <span class="identifier">it</span> <span class="special">!=</span> <span class="identifier">Ix_name</span><span class="special">.</span><span class="identifier">end</span><span class="special">();</span> <span class="special">++</span><span class="identifier">it</span><span class="special">)</span> <span class="identifier">cout</span><span class="special">&lt;&lt;(*(*</span><span class="identifier">it</span><span class="special">));</span>
+
+	<span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="string">"Printing sorted by weight \n"</span><span class="special">;</span>
+	<span class="keyword">for</span> <span class="special">(</span><span class="keyword">auto</span> <span class="identifier">it</span> <span class="special">=</span> <span class="identifier">Ix_weight</span><span class="special">.</span><span class="identifier">begin</span><span class="special">();</span> <span class="identifier">it</span> <span class="special">!=</span> <span class="identifier">Ix_weight</span><span class="special">.</span><span class="identifier">end</span><span class="special">();</span> <span class="special">++</span><span class="identifier">it</span><span class="special">)</span> <span class="identifier">cout</span><span class="special">&lt;&lt;(*(*</span><span class="identifier">it</span><span class="special">));</span>
+
+	<span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
+<span class="special">};</span>
+</pre>
+<p>
+        The output of the program is
+      </p>
+<pre class="programlisting"><span class="identifier">Printing</span> <span class="identifier">sorted</span> <span class="identifier">by</span> <span class="identifier">number</span>
+<span class="number">1</span> <span class="special">-</span> <span class="identifier">Peter</span> <span class="special">-</span> <span class="number">85.6</span>
+<span class="number">2</span> <span class="special">-</span> <span class="identifier">Hanna</span> <span class="special">-</span> <span class="number">63.4</span>
+<span class="number">3</span> <span class="special">-</span> <span class="identifier">John</span> <span class="special">-</span> <span class="number">83.6</span>
+<span class="number">4</span> <span class="special">-</span> <span class="identifier">Elsa</span> <span class="special">-</span> <span class="number">56.6</span>
+<span class="identifier">Printing</span> <span class="identifier">sorted</span> <span class="identifier">by</span> <span class="identifier">name</span>
+<span class="number">4</span> <span class="special">-</span> <span class="identifier">Elsa</span> <span class="special">-</span> <span class="number">56.6</span>
+<span class="number">2</span> <span class="special">-</span> <span class="identifier">Hanna</span> <span class="special">-</span> <span class="number">63.4</span>
+<span class="number">3</span> <span class="special">-</span> <span class="identifier">John</span> <span class="special">-</span> <span class="number">83.6</span>
+<span class="number">1</span> <span class="special">-</span> <span class="identifier">Peter</span> <span class="special">-</span> <span class="number">85.6</span>
+<span class="identifier">Printing</span> <span class="identifier">sorted</span> <span class="identifier">by</span> <span class="identifier">weight</span>
+<span class="number">4</span> <span class="special">-</span> <span class="identifier">Elsa</span> <span class="special">-</span> <span class="number">56.6</span>
+<span class="number">2</span> <span class="special">-</span> <span class="identifier">Hanna</span> <span class="special">-</span> <span class="number">63.4</span>
+<span class="number">3</span> <span class="special">-</span> <span class="identifier">John</span> <span class="special">-</span> <span class="number">83.6</span>
+<span class="number">1</span> <span class="special">-</span> <span class="identifier">Peter</span> <span class="special">-</span> <span class="number">85.6</span>
+</pre>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2017 Francisco Tapia<p>
+        Distributed under the <a href="http://boost.org/LICENSE_1_0.txt" target="_top">Boost
+        Software License, Version 1.0</a>.
+      </p>
+</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="2_2_parallel_parallel_sort_paral.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../2_algorithms.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="../3_benchmarks.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

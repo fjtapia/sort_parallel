@@ -4,9 +4,9 @@
 
 <h3>PRELIMINARY</h3>
 
-The **Boost Sort Parallel Library**, had been designed to be included in the Boost Sort Library, created by Steven Ross, which actually have the SpreadSort algorithms.
+The **Boost Sort Parallel Library**, is part of the Boost Sort Library, created by Steven Ross.
 
-This library is pending of the final approval to be included in the Boost Sort Libray, due this, can suffer some changes until the final version and definitive approval in the Boost Library.
+
 
 <h3>DESCRIPTION</h3>
 
@@ -65,6 +65,7 @@ With a small number of threads, have similar speed than the subdivision algorith
  - Microsoft PPL Parallel Buffered Sort
 
 <h3>NEW PARALLEL SORT ALGORITHM</h3>
+
 This generate an **undesirable duality**. With a small number of threads use one algorithm, and with a big number use other. Due this, the SW designed for a small machine is inadequate for a big machine and vice versa. But the main problem, in the merging algorithms is the memory used, usually of the same size than the data.
 
 This version have as novelty a **new parallel\_sort algorithm** *( internally named Block Indirect)*, created for processors connected with **shared memory**.
@@ -73,9 +74,11 @@ It is a hybrid algorithm. With small number of threads, it is a subdivision algo
 
 The block_size is an internal parameter of the algorithm, which  in order to achieve the highest speed, change according the size of the objects to sort according the next table. The **strings** use a block_size of 128.
 
+
 | object size (bytes) |1 - 15| 16 - 31 | 32 - 63 | 64 - 127 |	128 - 255 | 256 - 511 |	512 - |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | block_size |4096 |2048 | 1024| 768 | 512 | 256 | 128 |
+
 
 This algorithm permit to eliminate the duality. When run in a machine with small number of threads have the performance of TBB, and when run in a machine with many threads, the same code have the performance of GCC Parallel Sort, with the **additional advantage** of the **small memory consumption**.
 
@@ -87,18 +90,13 @@ The algorithm use as **auxiliary memory a block_size elements** for each thread.
 | Threading Building Blocks (TBB) | 783 MB |
 | Block Indirect Sort | 812 MB |
 
+
 *This **new parallel\_sort algorithm had been  created and implemented specifically for this library** by the author.*
 
-*You can obtain more information in the Documentation Page of the Project  * [index.html](index.html)
+*In the documentation of the project, you can find all the information about the algorithm ( description, characteristics, how to program,  and articles with the detailed description of the new algorithm)  [index.html](index.html)
 
-*If you  are interested in a brief description of the algorithm, you can find in the next link* 
-[(block_indirect_sort_brief_en.pdf)](block_indirect_sort_brief_en.pdf)
-
-*If you  are interested in a detailed description of the algorithm, you can find in the next link* 
-[(block_indirect_sort_en.pdf)](block_indirect_sort_en.pdf)
-
-*If you want run the benchmarks in your machine, you have all the code, intructions and procedures in*
-<a href="https://github.com/fjtapia/sort_parallel_benchmark">https://github.com/fjtapia/sort_parallel_benchmark</a>
+*In the project you have a small benchmarks. If you want run in your machine the full benchmarks with non free SW, you have all the code, intructions and procedures in 
+[(https://github.com/fjtapia/sort_parallel_benchmark)](https://github.com/fjtapia/sort_parallel_benchmark)
 
 <h2>Installation </h2>
  * This library is **include only**.  
@@ -114,15 +112,18 @@ The algorithm use as **auxiliary memory a block_size elements** for each thread.
 | Visual C++ 2013, 2015 |
 
 
+
 <h2>Author and Copyright</h2>
-This library had been create to be integrated in the [Boost](http://www.boost.org) library, inside the [boost::sort library](http://www.boost.org/doc/libs/release/libs/sort),
+
+This library is integrated in the [Boost](http://www.boost.org) library, inside the [boost::sort library](http://www.boost.org/doc/libs/release/libs/sort),
 with the spreadsort algorithms designed and implemented by Steven Ross.
 
-It's pending of the final approval, due this can suffer some changes until the final version and definitive approval in the boost library.  You can find in  [https://github.com/fjtapia/sort_parallel](https://github.com/fjtapia/sort_parallel)
+You can find in  [https://github.com/fjtapia/sort_parallel](https://github.com/fjtapia/sort_parallel)
 
 This algorithm had been ideate, designed and implemented beginning from zero. After read hundreds of articles and books, I didn't find any similar. If someone knows something about this or something similar, please, say me.
 
 Anyway, the important is not the author, is provide a fast, robust, and easy to use algorithm to the community of programmers.
+
 
 Copyright 2016  [Francisco Tapia *(fjtapia@gmail.com)* ](mail:fjtapia@gmail.com)
 Distributed under the [Boost Software License, Version 1.0. ](http://www.boost.org/LICENSE_1_0.txt)  (See http://www.boost.org/LICENSE_1_0.txt)

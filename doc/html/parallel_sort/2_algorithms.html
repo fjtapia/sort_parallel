@@ -1,0 +1,221 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>2.- Algorithms</title>
+<link rel="stylesheet" href="../../../../../doc/src/boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="../index.html" title="Boost.Parallel_Sort">
+<link rel="up" href="../index.html" title="Boost.Parallel_Sort">
+<link rel="prev" href="../index.html" title="Boost.Parallel_Sort">
+<link rel="next" href="2_algorithms/2_2_parallel_parallel_sort_paral.html" title="2.2.- Parallel ( parallel_sort, parallel_stable_sort, sample_sort)">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../boost.png"></td>
+<td align="center"><a href="../../../../../index.html">Home</a></td>
+<td align="center"><a href="../../../../../libs/libraries.htm">Libraries</a></td>
+<td align="center"><a href="http://www.boost.org/users/people.html">People</a></td>
+<td align="center"><a href="http://www.boost.org/users/faq.html">FAQ</a></td>
+<td align="center"><a href="../../../../../more/index.htm">More</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../index.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="2_algorithms/2_2_parallel_parallel_sort_paral.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="parallel_sort.2_algorithms"></a><a class="link" href="2_algorithms.html" title="2.- Algorithms">2.- Algorithms</a>
+</h2></div></div></div>
+<div class="toc"><dl class="toc">
+<dt><span class="section"><a href="2_algorithms.html#parallel_sort.2_algorithms.2_1_single_thread_sort_stable_so">2.1.-
+      Single Thread ( sort, stable_sort)</a></span></dt>
+<dt><span class="section"><a href="2_algorithms/2_2_parallel_parallel_sort_paral.html">2.2.-
+      Parallel ( parallel_sort, parallel_stable_sort, sample_sort)</a></span></dt>
+<dt><span class="section"><a href="2_algorithms/2_3_less_ptr_no_null.html">2.3.-
+      less_ptr_no_null</a></span></dt>
+</dl></div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="parallel_sort.2_algorithms.2_1_single_thread_sort_stable_so"></a><a class="link" href="2_algorithms.html#parallel_sort.2_algorithms.2_1_single_thread_sort_stable_so" title="2.1.- Single Thread ( sort, stable_sort)">2.1.-
+      Single Thread ( sort, stable_sort)</a>
+</h3></div></div></div>
+<h4>
+<a name="parallel_sort.2_algorithms.2_1_single_thread_sort_stable_so.h0"></a>
+        <span class="phrase"><a name="parallel_sort.2_algorithms.2_1_single_thread_sort_stable_so.sort"></a></span><a class="link" href="2_algorithms.html#parallel_sort.2_algorithms.2_1_single_thread_sort_stable_so.sort">sort</a>
+      </h4>
+<p>
+        Sort is a implementation of the Introsort algorithm. Initially it uses quicksort,
+        but when the numbers of division is greater than a number, it changes to
+        the heapsort algorithm.
+      </p>
+<p>
+        Heapsort is a O(NlogN) algorithm but slower than quick_sort. This is to prevent
+        the worst case of QuickSort (N&#178;).
+      </p>
+<div class="table">
+<a name="parallel_sort.2_algorithms.2_1_single_thread_sort_stable_so.sort0"></a><p class="title"><b>Table&#160;5.&#160;sort</b></p>
+<div class="table-contents"><table class="table" summary="sort">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                <p>
+                  Algorithm
+                </p>
+              </th>
+<th>
+                <p>
+                  Parallel
+                </p>
+              </th>
+<th>
+                <p>
+                  Stable
+                </p>
+              </th>
+<th>
+                <p>
+                  Additional Memory
+                </p>
+              </th>
+<th>
+                <p>
+                  Best, average, and worst case
+                </p>
+              </th>
+</tr></thead>
+<tbody><tr>
+<td>
+                <p>
+                  sort
+                </p>
+              </td>
+<td>
+                <p>
+                  No
+                </p>
+              </td>
+<td>
+                <p>
+                  No
+                </p>
+              </td>
+<td>
+                <p>
+                  Log N
+                </p>
+              </td>
+<td>
+                <p>
+                  NlogN, NlogN , NlogN
+                </p>
+              </td>
+</tr></tbody>
+</table></div>
+</div>
+<br class="table-break"><pre class="programlisting"><span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">iter_t</span><span class="special">,</span> <span class="keyword">typename</span> <span class="identifier">compare</span><span class="special">&gt;</span>
+<span class="keyword">void</span> <span class="identifier">sort</span> <span class="special">(</span><span class="identifier">iter_t</span> <span class="identifier">first</span><span class="special">,</span> <span class="identifier">iter_t</span> <span class="identifier">last</span><span class="special">,</span> <span class="identifier">compare</span> <span class="identifier">comp</span> <span class="special">=</span> <span class="identifier">compare</span><span class="special">())</span> <span class="special">;</span>
+</pre>
+<h4>
+<a name="parallel_sort.2_algorithms.2_1_single_thread_sort_stable_so.h1"></a>
+        <span class="phrase"><a name="parallel_sort.2_algorithms.2_1_single_thread_sort_stable_so.stable_sort"></a></span><a class="link" href="2_algorithms.html#parallel_sort.2_algorithms.2_1_single_thread_sort_stable_so.stable_sort">stable_sort</a>
+      </h4>
+<p>
+        This is a new single threaded stable sort algorithm, internally named spin_sort,
+        created and developed specifically for this library. This algorithm combines
+        several ideas to improve on other stable sort algorithms.
+      </p>
+<p>
+        In the benchmarks you can find a detailed description of the results in time
+        and memory obtained. This algorithm uses an auxiliary memory of (N/2) elements.
+      </p>
+<div class="table">
+<a name="parallel_sort.2_algorithms.2_1_single_thread_sort_stable_so.stable_sort0"></a><p class="title"><b>Table&#160;6.&#160;stable_sort</b></p>
+<div class="table-contents"><table class="table" summary="stable_sort">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                <p>
+                  Algorithm
+                </p>
+              </th>
+<th>
+                <p>
+                  Parallel
+                </p>
+              </th>
+<th>
+                <p>
+                  Stable
+                </p>
+              </th>
+<th>
+                <p>
+                  Additional Memory
+                </p>
+              </th>
+<th>
+                <p>
+                  Best, average, and worst case
+                </p>
+              </th>
+</tr></thead>
+<tbody><tr>
+<td>
+                <p>
+                  stable sort
+                </p>
+              </td>
+<td>
+                <p>
+                  No
+                </p>
+              </td>
+<td>
+                <p>
+                  Yes
+                </p>
+              </td>
+<td>
+                <p>
+                  N / 2
+                </p>
+              </td>
+<td>
+                <p>
+                  NlogN, NlogN , NlogN
+                </p>
+              </td>
+</tr></tbody>
+</table></div>
+</div>
+<br class="table-break"><pre class="programlisting"><span class="keyword">template</span> <span class="special">&lt;</span><span class="keyword">class</span> <span class="identifier">iter_t</span><span class="special">,</span>  <span class="keyword">typename</span> <span class="identifier">compare</span><span class="special">&gt;</span>
+<span class="keyword">void</span> <span class="identifier">stable_sort</span> <span class="special">(</span><span class="identifier">iter_t</span> <span class="identifier">first</span><span class="special">,</span> <span class="identifier">iter_t</span> <span class="identifier">last</span><span class="special">,</span> <span class="identifier">compare</span> <span class="identifier">comp</span> <span class="special">=</span> <span class="identifier">compare</span><span class="special">());</span>
+</pre>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2017 Francisco Tapia<p>
+        Distributed under the <a href="http://boost.org/LICENSE_1_0.txt" target="_top">Boost
+        Software License, Version 1.0</a>.
+      </p>
+</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../index.html"><img src="../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../index.html"><img src="../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../index.html"><img src="../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="2_algorithms/2_2_parallel_parallel_sort_paral.html"><img src="../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

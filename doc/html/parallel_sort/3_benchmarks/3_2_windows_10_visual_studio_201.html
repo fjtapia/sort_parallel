@@ -1,0 +1,932 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>3.2.- Windows 10 Visual Studio 2015 64 bits Benchmarks</title>
+<link rel="stylesheet" href="../../../../../../doc/src/boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="../../index.html" title="Boost.Parallel_Sort">
+<link rel="up" href="../3_benchmarks.html" title="3.- Benchmarks">
+<link rel="prev" href="../3_benchmarks.html" title="3.- Benchmarks">
+<link rel="next" href="3_2_windows_10_visual_studio_201/3_2_2_parallel_algorithms.html" title="3.2.2.- Parallel Algorithms">
+</head>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../../../boost.png"></td>
+<td align="center"><a href="../../../../../../index.html">Home</a></td>
+<td align="center"><a href="../../../../../../libs/libraries.htm">Libraries</a></td>
+<td align="center"><a href="http://www.boost.org/users/people.html">People</a></td>
+<td align="center"><a href="http://www.boost.org/users/faq.html">FAQ</a></td>
+<td align="center"><a href="../../../../../../more/index.htm">More</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../3_benchmarks.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../3_benchmarks.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="3_2_windows_10_visual_studio_201/3_2_2_parallel_algorithms.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201"></a><a class="link" href="3_2_windows_10_visual_studio_201.html" title="3.2.- Windows 10 Visual Studio 2015 64 bits Benchmarks">3.2.-
+      Windows 10 Visual Studio 2015 64 bits Benchmarks</a>
+</h3></div></div></div>
+<p>
+        The benchmark are running in a virtual machine with Windows 10 and 10 threads
+        over a I7 5820 3.3 GHz with Visual Studio 2015 C++ compiler
+      </p>
+<div class="section">
+<div class="titlepage"><div><div><h4 class="title">
+<a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_1_single_thread_algorithms"></a><a class="link" href="3_2_windows_10_visual_studio_201.html#parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_1_single_thread_algorithms" title="3.2.1 -Single Thread Algorithms">3.2.1
+        -Single Thread Algorithms</a>
+</h4></div></div></div>
+<p>
+          The algorithms involved in this benchmark are :
+        </p>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                  <p>
+                    Algorithm
+                  </p>
+                </th>
+<th>
+                  <p>
+                    Stable
+                  </p>
+                </th>
+<th>
+                  <p>
+                    Memory used
+                  </p>
+                </th>
+<th>
+                  <p>
+                    Comments
+                  </p>
+                </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                  <p>
+                    std::sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    no
+                  </p>
+                </td>
+<td>
+                  <p>
+                    N + Log N
+                  </p>
+                </td>
+<td class="auto-generated">&#160;</td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    no
+                  </p>
+                </td>
+<td>
+                  <p>
+                    N + Log N
+                  </p>
+                </td>
+<td class="auto-generated">&#160;</td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    std::stable_sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    yes
+                  </p>
+                </td>
+<td>
+                  <p>
+                    N + N / 2
+                  </p>
+                </td>
+<td class="auto-generated">&#160;</td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost stable_sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    yes
+                  </p>
+                </td>
+<td>
+                  <p>
+                    N + N / 2
+                  </p>
+                </td>
+<td class="auto-generated">&#160;</td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost spreadsort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    yes
+                  </p>
+                </td>
+<td>
+                  <p>
+                    N + Log N
+                  </p>
+                </td>
+<td>
+                  <p>
+                    Extremely fast algorithm, only for integers, floats and strings
+                  </p>
+                </td>
+</tr>
+</tbody>
+</table></div>
+<h5>
+<a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_1_single_thread_algorithms.h0"></a>
+          <span class="phrase"><a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_1_single_thread_algorithms.integer_benchmark_sort_of_100000"></a></span><a class="link" href="3_2_windows_10_visual_studio_201.html#parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_1_single_thread_algorithms.integer_benchmark_sort_of_100000">Integer
+          Benchmark Sort of 100000000 64 bits numbers, randomly filled</a>
+        </h5>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                  <p>
+                    Algorithm
+                  </p>
+                </th>
+<th>
+                  <p>
+                    time (secs)
+                  </p>
+                </th>
+<th>
+                  <p>
+                    memory (MB)
+                  </p>
+                </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                  <p>
+                    std::sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    13
+                  </p>
+                </td>
+<td>
+                  <p>
+                    763 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    10.74
+                  </p>
+                </td>
+<td>
+                  <p>
+                    763 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    std::stable_sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    14.94
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1144 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost stable_sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    13.37
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1144 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost spreadsort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    9.58
+                  </p>
+                </td>
+<td>
+                  <p>
+                    763 MB
+                  </p>
+                </td>
+</tr>
+</tbody>
+</table></div>
+<h5>
+<a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_1_single_thread_algorithms.h1"></a>
+          <span class="phrase"><a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_1_single_thread_algorithms.strings_benchmark_sort_of_10_000"></a></span><a class="link" href="3_2_windows_10_visual_studio_201.html#parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_1_single_thread_algorithms.strings_benchmark_sort_of_10_000">Strings
+          Benchmark Sort of 10 000 000 strings randomly filled</a>
+        </h5>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                  <p>
+                    Algorithm
+                  </p>
+                </th>
+<th>
+                  <p>
+                    time (secs)
+                  </p>
+                </th>
+<th>
+                  <p>
+                    memory (MB)
+                  </p>
+                </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                  <p>
+                    std::sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    13.3
+                  </p>
+                </td>
+<td>
+                  <p>
+                    862 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    13.6
+                  </p>
+                </td>
+<td>
+                  <p>
+                    862 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    std::stable_sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    26.99
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1015 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost stable_sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    20.64
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1015 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost spreadsort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    5.7
+                  </p>
+                </td>
+<td>
+                  <p>
+                    862 MB
+                  </p>
+                </td>
+</tr>
+</tbody>
+</table></div>
+<h5>
+<a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_1_single_thread_algorithms.h2"></a>
+          <span class="phrase"><a name="parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_1_single_thread_algorithms.objects_benchmark"></a></span><a class="link" href="3_2_windows_10_visual_studio_201.html#parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_1_single_thread_algorithms.objects_benchmark">Objects
+          Benchmark</a>
+        </h5>
+<p>
+          Sorting of objects of different sizes. The objects are arrays of 64 bits
+          numbers. This benchmark is done using two kinds of comparison.
+        </p>
+<p>
+          Heavy comparison : The comparison is done with the sum of all the numbers
+          of the array. In each comparison, make the sum.
+        </p>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                  <p>
+                    Algorithm
+                  </p>
+                </th>
+<th>
+                  <p>
+                    8 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    16 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    32 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    64 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    128 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    256 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    512 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    Memory used
+                  </p>
+                </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                  <p>
+                    std::sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    13.36
+                  </p>
+                </td>
+<td>
+                  <p>
+                    6.98
+                  </p>
+                </td>
+<td>
+                  <p>
+                    4.2
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.58
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.87
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.37
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.29
+                  </p>
+                </td>
+<td>
+                  <p>
+                    763 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    10.54
+                  </p>
+                </td>
+<td>
+                  <p>
+                    5.61
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.26
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.72
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.45
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.76
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.73
+                  </p>
+                </td>
+<td>
+                  <p>
+                    763 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    std::stable_sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    15.49
+                  </p>
+                </td>
+<td>
+                  <p>
+                    8.47
+                  </p>
+                </td>
+<td>
+                  <p>
+                    5.47
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.97
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.85
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.55
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.99
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1144 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost stable_sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    13.11
+                  </p>
+                </td>
+<td>
+                  <p>
+                    8.86
+                  </p>
+                </td>
+<td>
+                  <p>
+                    5.06
+                  </p>
+                </td>
+<td>
+                  <p>
+                    4.16
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.9
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.06
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.32
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1144 MB
+                  </p>
+                </td>
+</tr>
+</tbody>
+</table></div>
+<p>
+          Light comparison : It's done using only the first number of the array,
+          as a key in a register.
+        </p>
+<div class="informaltable"><table class="table">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                  <p>
+                    Algorithm
+                  </p>
+                </th>
+<th>
+                  <p>
+                    8 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    16 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    32 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    64 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    128 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    256 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    512 bytes
+                  </p>
+                </th>
+<th>
+                  <p>
+                    Memory used
+                  </p>
+                </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                  <p>
+                    std::sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    14.15
+                  </p>
+                </td>
+<td>
+                  <p>
+                    7.26
+                  </p>
+                </td>
+<td>
+                  <p>
+                    4.33
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.69
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.92
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.98
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.73
+                  </p>
+                </td>
+<td>
+                  <p>
+                    763 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    10.33
+                  </p>
+                </td>
+<td>
+                  <p>
+                    5
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.99
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.85
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.53
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.46
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1.4
+                  </p>
+                </td>
+<td>
+                  <p>
+                    763 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    std::stable_sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    14.68
+                  </p>
+                </td>
+<td>
+                  <p>
+                    7.64
+                  </p>
+                </td>
+<td>
+                  <p>
+                    4.29
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.33
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.22
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.86
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.08
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1144 MB
+                  </p>
+                </td>
+</tr>
+<tr>
+<td>
+                  <p>
+                    Boost stable_sort
+                  </p>
+                </td>
+<td>
+                  <p>
+                    13.59
+                  </p>
+                </td>
+<td>
+                  <p>
+                    8.36
+                  </p>
+                </td>
+<td>
+                  <p>
+                    4.45
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.73
+                  </p>
+                </td>
+<td>
+                  <p>
+                    3.16
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.81
+                  </p>
+                </td>
+<td>
+                  <p>
+                    2.6
+                  </p>
+                </td>
+<td>
+                  <p>
+                    1144 MB
+                  </p>
+                </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"></td>
+<td align="right"><div class="copyright-footer">Copyright &#169; 2017 Francisco Tapia<p>
+        Distributed under the <a href="http://boost.org/LICENSE_1_0.txt" target="_top">Boost
+        Software License, Version 1.0</a>.
+      </p>
+</div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav">
+<a accesskey="p" href="../3_benchmarks.html"><img src="../../../../../../doc/src/images/prev.png" alt="Prev"></a><a accesskey="u" href="../3_benchmarks.html"><img src="../../../../../../doc/src/images/up.png" alt="Up"></a><a accesskey="h" href="../../index.html"><img src="../../../../../../doc/src/images/home.png" alt="Home"></a><a accesskey="n" href="3_2_windows_10_visual_studio_201/3_2_2_parallel_algorithms.html"><img src="../../../../../../doc/src/images/next.png" alt="Next"></a>
+</div>
+</body>
+</html>

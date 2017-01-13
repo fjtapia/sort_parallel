@@ -1,91 +1,830 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<meta name="generator" content="Doxygen 1.8.11"/>
-<title>Boost Sort Parallel: Main Page</title>
-<link href="tabs.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="jquery.js"></script>
-<script type="text/javascript" src="dynsections.js"></script>
-<link href="search/search.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="search/searchdata.js"></script>
-<script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-  $(document).ready(function() { init_search(); });
-</script>
-<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<title>Boost.Parallel_Sort</title>
+<link rel="stylesheet" href="../../../../doc/src/boostbook.css" type="text/css">
+<meta name="generator" content="DocBook XSL Stylesheets V1.79.1">
+<link rel="home" href="index.html" title="Boost.Parallel_Sort">
+<link rel="next" href="parallel_sort/2_algorithms.html" title="2.- Algorithms">
 </head>
-<body>
-<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
-<div id="titlearea">
-<table cellspacing="0" cellpadding="0">
- <tbody>
- <tr style="height: 56px;">
-  <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Boost Sort Parallel
-   </div>
-   <div id="projectbrief">Sorting Algorithms for the Boost Library</div>
-  </td>
- </tr>
- </tbody>
-</table>
+<body bgcolor="white" text="black" link="#0000FF" vlink="#840084" alink="#0000FF">
+<table cellpadding="2" width="100%"><tr>
+<td valign="top"><img alt="Boost C++ Libraries" width="277" height="86" src="../../../../boost.png"></td>
+<td align="center"><a href="../../../../index.html">Home</a></td>
+<td align="center"><a href="../../../../libs/libraries.htm">Libraries</a></td>
+<td align="center"><a href="http://www.boost.org/users/people.html">People</a></td>
+<td align="center"><a href="http://www.boost.org/users/faq.html">FAQ</a></td>
+<td align="center"><a href="../../../../more/index.htm">More</a></td>
+</tr></table>
+<hr>
+<div class="spirit-nav"><a accesskey="n" href="parallel_sort/2_algorithms.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a></div>
+<div class="chapter">
+<div class="titlepage"><div>
+<div><h2 class="title">
+<a name="parallel_sort"></a>Boost.Parallel_Sort</h2></div>
+<div><div class="author"><h3 class="author">
+<span class="firstname">Francisco</span> <span class="surname">Tapia</span>
+</h3></div></div>
+<div><p class="copyright">Copyright &#169; 2017 Francisco Tapia</p></div>
+<div><div class="legalnotice">
+<a name="parallel_sort.legal"></a><p>
+        Distributed under the <a href="http://boost.org/LICENSE_1_0.txt" target="_top">Boost
+        Software License, Version 1.0</a>.
+      </p>
+</div></div>
+</div></div>
+<div class="toc">
+<p><b>Table of Contents</b></p>
+<dl class="toc">
+<dt><span class="section"><a href="index.html#parallel_sort.1_introduction">1.- Introduction</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="index.html#parallel_sort.1_introduction.1_1_description">1.1.- Description</a></span></dt>
+<dt><span class="section"><a href="index.html#parallel_sort.1_introduction.1_2_present_perspective">1.2.-
+      Present Perspective</a></span></dt>
+<dt><span class="section"><a href="index.html#parallel_sort.1_introduction.1_3_new_parallel_sort_algorithm">1.3.-
+      New Parallel Sort Algorithm</a></span></dt>
+<dt><span class="section"><a href="index.html#parallel_sort.1_introduction.1_4_thread_specification_in_the_">1.4.-
+      Thread specification in the parallel algorithms</a></span></dt>
+<dt><span class="section"><a href="index.html#parallel_sort.1_introduction.1_5_programing">1.5.- Programing</a></span></dt>
+<dt><span class="section"><a href="index.html#parallel_sort.1_introduction.1_6_examples">1.6.- Examples</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="parallel_sort/2_algorithms.html">2.- Algorithms</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="parallel_sort/2_algorithms.html#parallel_sort.2_algorithms.2_1_single_thread_sort_stable_so">2.1.-
+      Single Thread ( sort, stable_sort)</a></span></dt>
+<dt><span class="section"><a href="parallel_sort/2_algorithms/2_2_parallel_parallel_sort_paral.html">2.2.-
+      Parallel ( parallel_sort, parallel_stable_sort, sample_sort)</a></span></dt>
+<dt><span class="section"><a href="parallel_sort/2_algorithms/2_3_less_ptr_no_null.html">2.3.-
+      less_ptr_no_null</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="parallel_sort/3_benchmarks.html">3.- Benchmarks </a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="parallel_sort/3_benchmarks.html#parallel_sort.3_benchmarks.3_1_linux_64_gcc_5_2_benchmarks">3.1.-
+      Linux 64 GCC 5.2 Benchmarks</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="parallel_sort/3_benchmarks.html#parallel_sort.3_benchmarks.3_1_linux_64_gcc_5_2_benchmarks.3_1_1_single_thread_algorithms">3.1.1.-
+        Single Thread Algorithms</a></span></dt>
+<dt><span class="section"><a href="parallel_sort/3_benchmarks.html#parallel_sort.3_benchmarks.3_1_linux_64_gcc_5_2_benchmarks.3_1_2_parallel_algorithms">3.1.2.-
+        Parallel Algorithms</a></span></dt>
+</dl></dd>
+<dt><span class="section"><a href="parallel_sort/3_benchmarks/3_2_windows_10_visual_studio_201.html">3.2.-
+      Windows 10 Visual Studio 2015 64 bits Benchmarks</a></span></dt>
+<dd><dl>
+<dt><span class="section"><a href="parallel_sort/3_benchmarks/3_2_windows_10_visual_studio_201.html#parallel_sort.3_benchmarks.3_2_windows_10_visual_studio_201.3_2_1_single_thread_algorithms">3.2.1
+        -Single Thread Algorithms</a></span></dt>
+<dt><span class="section"><a href="parallel_sort/3_benchmarks/3_2_windows_10_visual_studio_201/3_2_2_parallel_algorithms.html">3.2.2.-
+        Parallel Algorithms</a></span></dt>
+</dl></dd>
+</dl></dd>
+<dt><span class="section"><a href="parallel_sort/4_bibliography.html">4.- Bibliography</a></span></dt>
+<dt><span class="section"><a href="parallel_sort/5_gratitude.html">5.- Gratitude</a></span></dt>
+</dl>
 </div>
-<!-- end header part -->
-<!-- Generated by Doxygen 1.8.11 -->
-<script type="text/javascript">
-var searchBox = new SearchBox("searchBox", "search",false,'Search');
-</script>
-  <div id="navrow1" class="tabs">
-    <ul class="tablist">
-      <li class="current"><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
-      <li><a href="annotated.html"><span>Classes</span></a></li>
-      <li><a href="files.html"><span>Files</span></a></li>
-      <li>
-        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <img id="MSearchSelect" src="search/mag_sel.png"
-               onmouseover="return searchBox.OnSearchSelectShow()"
-               onmouseout="return searchBox.OnSearchSelectHide()"
-               alt=""/>
-          <input type="text" id="MSearchField" value="Search" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
-          </span>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div><!-- top -->
-<!-- window showing the filter options -->
-<div id="MSearchSelectWindow"
-     onmouseover="return searchBox.OnSearchSelectShow()"
-     onmouseout="return searchBox.OnSearchSelectHide()"
-     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<div class="section">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both">
+<a name="parallel_sort.1_introduction"></a><a class="link" href="index.html#parallel_sort.1_introduction" title="1.- Introduction">1.- Introduction</a>
+</h2></div></div></div>
+<div class="toc"><dl class="toc">
+<dt><span class="section"><a href="index.html#parallel_sort.1_introduction.1_1_description">1.1.- Description</a></span></dt>
+<dt><span class="section"><a href="index.html#parallel_sort.1_introduction.1_2_present_perspective">1.2.-
+      Present Perspective</a></span></dt>
+<dt><span class="section"><a href="index.html#parallel_sort.1_introduction.1_3_new_parallel_sort_algorithm">1.3.-
+      New Parallel Sort Algorithm</a></span></dt>
+<dt><span class="section"><a href="index.html#parallel_sort.1_introduction.1_4_thread_specification_in_the_">1.4.-
+      Thread specification in the parallel algorithms</a></span></dt>
+<dt><span class="section"><a href="index.html#parallel_sort.1_introduction.1_5_programing">1.5.- Programing</a></span></dt>
+<dt><span class="section"><a href="index.html#parallel_sort.1_introduction.1_6_examples">1.6.- Examples</a></span></dt>
+</dl></div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="parallel_sort.1_introduction.1_1_description"></a><a class="link" href="index.html#parallel_sort.1_introduction.1_1_description" title="1.1.- Description">1.1.- Description</a>
+</h3></div></div></div>
+<p>
+        This library provides both <span class="bold"><strong>stable and unstable</strong></span>
+        sorting algorithms, in <span class="bold"><strong>single threaded and parallel</strong></span>
+        versions.
+      </p>
+<p>
+        These algorithms <span class="bold"><strong>do not use any other library or utility</strong></span>.
+        Compiling this library requires a <span class="bold"><strong>C++11 compliant compiler</strong></span>.
+      </p>
+<p>
+        The algorithms use a <span class="bold"><strong>comparison object</strong></span>,
+        in the same way as the standard library sort algorithms. If you don't define
+        it, the comparison object defaults to std::less, which uses the &lt; operator
+        internally for comparisons.
+      </p>
+<p>
+        The algorithms are <span class="bold"><strong>exception safe</strong></span>, meaning
+        that, the exceptions generated by the algorithms guarantee the integrity
+        of the objects to sort, but not their relative order. If the exception is
+        generated inside the objects (in the move or in the copy constructor.. )
+        the results can be unpredictable.
+      </p>
+<p>
+        This library is <span class="bold"><strong>include only</strong></span>. There is no
+        need to link with any external static or dynamic library. This doesn't depend
+        on any other boost files, variables or libraries or any other external libraries.
+        To use this library, just include the files in the boost/sort/parallel folder.
+      </p>
+<p>
+        This table provides you a brief description of the sort algorithms in the
+        library.
+      </p>
+<div class="table">
+<a name="parallel_sort.1_introduction.1_1_description.algorithmdescription"></a><p class="title"><b>Table&#160;1.&#160;AlgorithmDescription</b></p>
+<div class="table-contents"><table class="table" summary="AlgorithmDescription">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                <p>
+                  Algorithm
+                </p>
+              </th>
+<th>
+                <p>
+                  Parallel
+                </p>
+              </th>
+<th>
+                <p>
+                  Stable
+                </p>
+              </th>
+<th>
+                <p>
+                  Additional Memory
+                </p>
+              </th>
+<th>
+                <p>
+                  Best, average, and worst case
+                </p>
+              </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                <p>
+                  sort
+                </p>
+              </td>
+<td>
+                <p>
+                  No
+                </p>
+              </td>
+<td>
+                <p>
+                  No
+                </p>
+              </td>
+<td>
+                <p>
+                  Log N
+                </p>
+              </td>
+<td>
+                <p>
+                  NlogN, NlogN , NlogN
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  stable sort
+                </p>
+              </td>
+<td>
+                <p>
+                  No
+                </p>
+              </td>
+<td>
+                <p>
+                  Yes
+                </p>
+              </td>
+<td>
+                <p>
+                  N / 2
+                </p>
+              </td>
+<td>
+                <p>
+                  NlogN, NlogN , NlogN
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  parallel_sort
+                </p>
+              </td>
+<td>
+                <p>
+                  Yes
+                </p>
+              </td>
+<td>
+                <p>
+                  No
+                </p>
+              </td>
+<td>
+                <p>
+                  block_size * num_threads
+                </p>
+              </td>
+<td>
+                <p>
+                  NlogN, NlogN , NlogN
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  parallel_stable_sort
+                </p>
+              </td>
+<td>
+                <p>
+                  Yes
+                </p>
+              </td>
+<td>
+                <p>
+                  Yes
+                </p>
+              </td>
+<td>
+                <p>
+                  N / 2
+                </p>
+              </td>
+<td>
+                <p>
+                  NlogN, NlogN , NlogN
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  sample_sort
+                </p>
+              </td>
+<td>
+                <p>
+                  Yes
+                </p>
+              </td>
+<td>
+                <p>
+                  Yes
+                </p>
+              </td>
+<td>
+                <p>
+                  N
+                </p>
+              </td>
+<td>
+                <p>
+                  NlogN, NlogN , NlogN
+                </p>
+              </td>
+</tr>
+</tbody>
+</table></div>
 </div>
+<br class="table-break"><p>
+        The block_size is an internal parameter of the algorithm, which in order
+        to achieve the highest speed, change according the size of the objects to
+        sort according the next table. The strings use a block_size of 128.
+      </p>
+<div class="table">
+<a name="parallel_sort.1_introduction.1_1_description.blocksize"></a><p class="title"><b>Table&#160;2.&#160;BlockSize</b></p>
+<div class="table-contents"><table class="table" summary="BlockSize">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                <p>
+                  object size (bytes)
+                </p>
+              </th>
+<th>
+                <p>
+                  1 - 15
+                </p>
+              </th>
+<th>
+                <p>
+                  16 - 31
+                </p>
+              </th>
+<th>
+                <p>
+                  32 - 63
+                </p>
+              </th>
+<th>
+                <p>
+                  64 - 127
+                </p>
+              </th>
+<th>
+                <p>
+                  128 - 255
+                </p>
+              </th>
+<th>
+                <p>
+                  256 - 511
+                </p>
+              </th>
+<th>
+                <p>
+                  512 -
+                </p>
+              </th>
+</tr></thead>
+<tbody><tr>
+<td>
+                <p>
+                  block_size (number of elements)
+                </p>
+              </td>
+<td>
+                <p>
+                  4096
+                </p>
+              </td>
+<td>
+                <p>
+                  2048
+                </p>
+              </td>
+<td>
+                <p>
+                  1024
+                </p>
+              </td>
+<td>
+                <p>
+                  768
+                </p>
+              </td>
+<td>
+                <p>
+                  512
+                </p>
+              </td>
+<td>
+                <p>
+                  256
+                </p>
+              </td>
+<td>
+                <p>
+                  128
+                </p>
+              </td>
+</tr></tbody>
+</table></div>
+</div>
+<br class="table-break">
+</div>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="parallel_sort.1_introduction.1_2_present_perspective"></a><a class="link" href="index.html#parallel_sort.1_introduction.1_2_present_perspective" title="1.2.- Present Perspective">1.2.-
+      Present Perspective</a>
+</h3></div></div></div>
+<p>
+        There are two primary categories of parallelization in sorting algorithms.
+      </p>
+<p>
+        <span class="bold"><strong>SUBDIVISION ALGORITHMS</strong></span>
+      </p>
+<div class="blockquote"><blockquote class="blockquote">
+<p>
+          Filter the data and generate two or more parts. Each part obtained is filtered
+          and divided by other threads, until the size of the data to sort is smaller
+          than a predefined size, then it is sorted by a single thread. The algorithm
+          most frequently used in the filter and sorting is quick sort
+        </p>
+<p>
+          These algorithms are fast with a small number of threads, but are inefficient
+          with a great number of HW (hardware) threads. Examples of this category
+          are # Intel Threading Building Blocks (TBB) # Microsoft PPL Parallel Sort.
+        </p>
+</blockquote></div>
+<p>
+        <span class="bold"><strong>MERGING ALGORITHMS</strong></span>
+      </p>
+<div class="blockquote"><blockquote class="blockquote">
+<p>
+          Divide the data in parts, and each part is sorted by a thread. When the
+          parts are sorted, they are merged to obtain the final results. The problem
+          of these algorithms is they need additional memory for the merge, usually
+          the same size as the data.
+        </p>
+<p>
+          With a small number of threads, these algorithms have similar speed to
+          than the subdivision algorithms, but with span style=font-weight: bold;many
+          threads they are much faster/span . Examples of this category are # GCC
+          Parallel Sort (based on OpenMP) # Microsoft PPL Parallel Buffered Sort
+        </p>
+</blockquote></div>
+</div>
+<p>
+      <br>
+    </p>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="parallel_sort.1_introduction.1_3_new_parallel_sort_algorithm"></a><a class="link" href="index.html#parallel_sort.1_introduction.1_3_new_parallel_sort_algorithm" title="1.3.- New Parallel Sort Algorithm">1.3.-
+      New Parallel Sort Algorithm</a>
+</h3></div></div></div>
+<p>
+        This generates an undesirable duality. With a small number of threads the
+        optimal algorithm is not the optimal for a big number of threads. For this
+        reason, the SW designed for a small machine is inadequate for a big machine
+        and vice versa. But the main problem for the merging algorithms is the additional
+        memory used, usually of the same size as the data.
+      </p>
+<p>
+        This version have as a <span class="bold"><strong>new parallel_sort algorithm</strong></span>
+        (internally named Block Indirect), created for processors connected with
+        shared memory. It is a hybrid algorithm. With small number of threads, it
+        is a subdivision algorithm, but with many threads is a merging algorithms,
+        which need a small auxiliary memory ( block_size * number of threads).
+      </p>
+<p>
+        The block_size is an internal parameter of the algorithm, which in order
+        to achieve the highest speed, change according the size of the objects to
+        sort according the next table. The strings use a block_size of 128.
+      </p>
+<div class="table">
+<a name="parallel_sort.1_introduction.1_3_new_parallel_sort_algorithm.blocksize"></a><p class="title"><b>Table&#160;3.&#160;BlockSize</b></p>
+<div class="table-contents"><table class="table" summary="BlockSize">
+<colgroup>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                <p>
+                  object size (bytes)
+                </p>
+              </th>
+<th>
+                <p>
+                  1 - 15
+                </p>
+              </th>
+<th>
+                <p>
+                  16 - 31
+                </p>
+              </th>
+<th>
+                <p>
+                  32 - 63
+                </p>
+              </th>
+<th>
+                <p>
+                  64 - 127
+                </p>
+              </th>
+<th>
+                <p>
+                  128 - 255
+                </p>
+              </th>
+<th>
+                <p>
+                  256 - 511
+                </p>
+              </th>
+<th>
+                <p>
+                  512 -
+                </p>
+              </th>
+</tr></thead>
+<tbody><tr>
+<td>
+                <p>
+                  block_size (number of elements)
+                </p>
+              </td>
+<td>
+                <p>
+                  4096
+                </p>
+              </td>
+<td>
+                <p>
+                  2048
+                </p>
+              </td>
+<td>
+                <p>
+                  1024
+                </p>
+              </td>
+<td>
+                <p>
+                  768
+                </p>
+              </td>
+<td>
+                <p>
+                  512
+                </p>
+              </td>
+<td>
+                <p>
+                  256
+                </p>
+              </td>
+<td>
+                <p>
+                  128
+                </p>
+              </td>
+</tr></tbody>
+</table></div>
+</div>
+<br class="table-break"><p>
+        This algorithm eliminates the duality. You compile your program using the
+        new algorithms. When your program runs on a machine with a small number of
+        threads the algorithm internally uses a subdivision algorithm and has similar
+        performance to TBB, and when run on a machine with many threads, internally
+        uses the new algorithm and has the performance of GCC Parallel Sort, with
+        the additional advantage of reduced memory consumption.
+      </p>
+<p>
+        The algorithm uses an auxiliary memory of block_size elements for each thread.
+        The worst case for the algorithm is when there are very big elements and
+        many threads. With big elements (512 bytes), and 12 threads, The memory measured
+        was:
+      </p>
+<div class="table">
+<a name="parallel_sort.1_introduction.1_3_new_parallel_sort_algorithm.memoryused"></a><p class="title"><b>Table&#160;4.&#160;MemoryUsed</b></p>
+<div class="table-contents"><table class="table" summary="MemoryUsed">
+<colgroup>
+<col>
+<col>
+</colgroup>
+<thead><tr>
+<th>
+                <p>
+                  Algorithm
+                </p>
+              </th>
+<th>
+                <p>
+                  Memory used in MB
+                </p>
+              </th>
+</tr></thead>
+<tbody>
+<tr>
+<td>
+                <p>
+                  GCC Parallel Sort (OpenMP)
+                </p>
+              </td>
+<td>
+                <p>
+                  1565 MB
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  Threading Building Blocks (TBB)
+                </p>
+              </td>
+<td>
+                <p>
+                  783 MB
+                </p>
+              </td>
+</tr>
+<tr>
+<td>
+                <p>
+                  Block Indirect Sort
+                </p>
+              </td>
+<td>
+                <p>
+                  812 MB
+                </p>
+              </td>
+</tr>
+</tbody>
+</table></div>
+</div>
+<br class="table-break"><p>
+        This new parallel_sort algorithm had been created and implemented specifically
+        for this library by the author.
+      </p>
+<p>
+        If you are interested in a brief description of the algorithm, you can find
+        in the next link <a href="../../doc/papers/block_indirect_sort_brief_en.pdf" target="_top">Block
+        Indirect Sort Brief</a>.
+      </p>
+<p>
+        If you are interested in a detailed description of the algorithm, you can
+        find in the next link <a href="../../doc/papers/block_indirect_sort_en.pdf" target="_top">Block
+        Indirect Sort</a>. .
+      </p>
+<p>
+        If you want run the benchmarks in your machine, all the code, instructions
+        and procedures are in (<a href="https://github.com/fjtapia/sort_parallel_benchmark" target="_top">Sort
+        Parallel Benchmarks</a>)
+      </p>
+</div>
+<p>
+      <br>
+    </p>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="parallel_sort.1_introduction.1_4_thread_specification_in_the_"></a><a class="link" href="index.html#parallel_sort.1_introduction.1_4_thread_specification_in_the_" title="1.4.- Thread specification in the parallel algorithms">1.4.-
+      Thread specification in the parallel algorithms</a>
+</h3></div></div></div>
+<p>
+        The parallel algorithms have a parameter indicating the number of thread
+        to use in the sorting process, which always is the last value in the call.
+        The default value (if left unspecified) is the number of HW threads of the
+        machine where the program is running.
+      </p>
+<p>
+        The parallel algorithms have 4 invocation formats:
+      </p>
+<pre class="programlisting"><span class="identifier">algorithm</span> <span class="special">(</span> <span class="identifier">first</span> <span class="identifier">iterator</span><span class="special">,</span> <span class="identifier">last</span> <span class="identifier">iterator</span><span class="special">,</span> <span class="identifier">comparison</span> <span class="identifier">object</span><span class="special">,</span> <span class="identifier">number</span> <span class="identifier">of</span> <span class="identifier">threads</span> <span class="special">)</span>
+<span class="identifier">algorithm</span> <span class="special">(</span> <span class="identifier">first</span> <span class="identifier">iterator</span><span class="special">,</span> <span class="identifier">last</span> <span class="identifier">iterator</span><span class="special">,</span> <span class="identifier">comparison</span> <span class="identifier">object</span> <span class="special">)</span>
+<span class="identifier">algorithm</span> <span class="special">(</span> <span class="identifier">first</span> <span class="identifier">iterator</span><span class="special">,</span> <span class="identifier">last</span> <span class="identifier">iterator</span><span class="special">,</span> <span class="identifier">number</span> <span class="identifier">of</span> <span class="identifier">threads</span> <span class="special">)</span>
+<span class="identifier">algorithm</span> <span class="special">(</span> <span class="identifier">first</span> <span class="identifier">iterator</span><span class="special">,</span> <span class="identifier">last</span> <span class="identifier">iterator</span> <span class="special">)</span>
+</pre>
+<p>
+        If no comparison object is specified, the default class ( std::less&lt;value_t&gt;
+        ) is used.
+      </p>
+<p>
+        If the number of threads is unspecified, the number of HW threads on the
+        machine where the the program is running is used
+      </p>
+</div>
+<p>
+      <br>
+    </p>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="parallel_sort.1_introduction.1_5_programing"></a><a class="link" href="index.html#parallel_sort.1_introduction.1_5_programing" title="1.5.- Programing">1.5.- Programing</a>
+</h3></div></div></div>
+<p>
+        You only need to include the file boost/sort/parallel/sort.hpp if you wish
+        to use this
+      </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">sort</span><span class="special">/</span><span class="identifier">parallel</span><span class="special">/</span><span class="identifier">sort</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+</pre>
+<p>
+        All the functions and definitions are in the namespace boost::sort::parallel
+      </p>
+</div>
+<p>
+      <br>
+    </p>
+<div class="section">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="parallel_sort.1_introduction.1_6_examples"></a><a class="link" href="index.html#parallel_sort.1_introduction.1_6_examples" title="1.6.- Examples">1.6.- Examples</a>
+</h3></div></div></div>
+<p>
+        This example uses the single threaded sort and stable_sort.
+      </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">vector</span><span class="special">&gt;#</span><span class="identifier">include</span> <span class="special">&lt;</span><span class="identifier">random</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">sort</span><span class="special">/</span><span class="identifier">parallel</span><span class="special">/</span><span class="identifier">sort</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span><span class="keyword">namespace</span> <span class="identifier">bsp</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">sort</span><span class="special">::</span><span class="identifier">parallel</span><span class="special">;</span>
+		
+<span class="keyword">int</span> <span class="identifier">main</span> <span class="special">(</span><span class="keyword">void</span><span class="special">)</span>
+<span class="special">{</span>   <span class="comment">//-------------- begin------------</span>
+	<span class="identifier">std</span><span class="special">::</span><span class="identifier">mt19937_64</span> <span class="identifier">my_rand</span><span class="special">(</span><span class="number">0</span><span class="special">);</span>
+	<span class="keyword">const</span> <span class="identifier">uint32_t</span> <span class="identifier">NMAX</span> <span class="special">=</span> <span class="number">1000000</span><span class="special">;</span>
+	<span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span> <span class="special">&lt;</span><span class="identifier">uint64_t</span><span class="special">&gt;</span> <span class="identifier">A</span><span class="special">,</span> <span class="identifier">B</span><span class="special">;</span>
 
-<!-- iframe showing the search results (closed by default) -->
-<div id="MSearchResultsWindow">
-<iframe src="javascript:void(0)" frameborder="0" 
-        name="MSearchResults" id="MSearchResults">
-</iframe>
-</div>
+	<span class="keyword">for</span> <span class="special">(</span><span class="identifier">uint32_t</span> <span class="identifier">i</span> <span class="special">=</span> <span class="number">0</span><span class="special">;</span> <span class="identifier">i</span> <span class="special">&lt;</span> <span class="identifier">NMAX</span><span class="special">;</span> <span class="special">++</span><span class="identifier">i</span><span class="special">)</span>  <span class="identifier">A</span><span class="special">.</span><span class="identifier">push_back</span><span class="special">(</span><span class="identifier">my_rand</span><span class="special">());</span>
+	<span class="identifier">B</span> <span class="special">=</span> <span class="identifier">A</span><span class="special">;</span>
+	<span class="identifier">bsp</span><span class="special">::</span><span class="identifier">sort</span> <span class="special">(</span><span class="identifier">A</span><span class="special">.</span><span class="identifier">begin</span><span class="special">(),</span> <span class="identifier">A</span><span class="special">.</span><span class="identifier">end</span><span class="special">());</span>
+	<span class="identifier">bsp</span><span class="special">::</span><span class="identifier">stable_sort</span> <span class="special">(</span><span class="identifier">B</span><span class="special">.</span><span class="identifier">begin</span><span class="special">(),</span> <span class="identifier">B</span><span class="special">.</span><span class="identifier">end</span><span class="special">());</span>
 
-<div class="header">
-  <div class="headertitle">
-<div class="title">Boost Sort Parallel Documentation</div>  </div>
-</div><!--header-->
-<div class="contents">
-</div><!-- contents -->
-<!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated on Thu Oct 20 2016 18:18:28 for Boost Sort Parallel by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.11
-</small></address>
+	<span class="keyword">for</span> <span class="special">(</span><span class="identifier">uint32_t</span> <span class="identifier">i</span> <span class="special">=</span> <span class="number">0</span><span class="special">;</span> <span class="identifier">i</span> <span class="special">&lt;</span> <span class="identifier">NMAX</span><span class="special">;</span> <span class="special">++</span><span class="identifier">i</span><span class="special">)</span>
+	    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">A</span><span class="special">[</span><span class="identifier">i</span><span class="special">]</span> <span class="special">!=</span> <span class="identifier">B</span><span class="special">[</span><span class="identifier">i</span><span class="special">])</span>  <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="string">"Error in the sorting process\n"</span><span class="special">;</span>
+	<span class="keyword">return</span> <span class="number">0</span><span class="special">;</span>
+<span class="special">};</span>
+</pre>
+<p>
+        This example uses parallel_sort and sample_sort.
+      </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">vector</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">random</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">sort</span><span class="special">/</span><span class="identifier">parallel</span><span class="special">/</span><span class="identifier">sort</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="keyword">namespace</span> <span class="identifier">bsp</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">sort</span><span class="special">::</span><span class="identifier">parallel</span><span class="special">;</span>
+
+<span class="keyword">int</span> <span class="identifier">main</span><span class="special">(</span> <span class="keyword">void</span> <span class="special">)</span>
+<span class="special">{</span>   <span class="comment">//-------------- begin------------</span>
+	<span class="identifier">std</span><span class="special">::</span><span class="identifier">mt19937_64</span> <span class="identifier">my_rand</span><span class="special">(</span><span class="number">0</span><span class="special">);</span>
+	<span class="keyword">const</span> <span class="identifier">uint32_t</span> <span class="identifier">NMAX</span> <span class="special">=</span> <span class="number">1000000</span><span class="special">;</span>    <span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span> <span class="special">&lt;</span><span class="identifier">uint64_t</span><span class="special">&gt;</span> <span class="identifier">A</span><span class="special">,</span> <span class="identifier">B</span><span class="special">;</span>
+	
+	<span class="keyword">for</span> <span class="special">(</span><span class="identifier">uint32_t</span> <span class="identifier">i</span> <span class="special">=</span> <span class="number">0</span><span class="special">;</span> <span class="identifier">i</span> <span class="special">&lt;</span> <span class="identifier">NMAX</span><span class="special">;</span> <span class="special">++</span><span class="identifier">i</span><span class="special">)</span> <span class="identifier">A</span><span class="special">.</span><span class="identifier">push_back</span> <span class="special">(</span><span class="identifier">my_rand</span><span class="special">());</span>
+	<span class="identifier">B</span> <span class="special">=</span> <span class="identifier">A</span> <span class="special">;</span>
+	<span class="comment">//------------------------------------------------------------------------</span>
+	<span class="comment">// if the thread parameter is not specified, the number of thread used</span>
+	<span class="comment">// is the number of HW threads of the machine where the program is running.</span>
+	<span class="comment">// This number is calculate in each execution of the code</span>
+	<span class="comment">//------------------------------------------------------------------------</span>
+	<span class="identifier">bsp</span><span class="special">::</span><span class="identifier">parallel_sort</span> <span class="special">(</span><span class="identifier">A</span><span class="special">.</span><span class="identifier">begin</span><span class="special">(),</span> <span class="identifier">A</span><span class="special">.</span><span class="identifier">end</span><span class="special">());</span>
+	<span class="identifier">bsp</span><span class="special">::</span><span class="identifier">sample_sort</span> <span class="special">(</span><span class="identifier">B</span><span class="special">.</span><span class="identifier">begin</span><span class="special">(),</span> <span class="identifier">B</span><span class="special">.</span><span class="identifier">end</span><span class="special">());</span>
+
+	<span class="keyword">for</span> <span class="special">(</span><span class="identifier">uint32_t</span> <span class="identifier">i</span> <span class="special">=</span> <span class="number">0</span><span class="special">;</span> <span class="identifier">i</span> <span class="special">&lt;</span> <span class="identifier">NMAX</span><span class="special">;</span> <span class="special">++</span><span class="identifier">i</span><span class="special">)</span>
+	    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">A</span><span class="special">[</span><span class="identifier">i</span><span class="special">]</span> <span class="special">!=</span> <span class="identifier">B</span><span class="special">[</span><span class="identifier">i</span><span class="special">])</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="string">"Error in the sorting process\n"</span><span class="special">;</span>
+	<span class="keyword">return</span> <span class="number">0</span> <span class="special">;</span>
+<span class="special">};</span>
+</pre>
+<p>
+        This example uses parallel_sort and sample_sort and specifies the thread
+        count.
+      </p>
+<pre class="programlisting"><span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">iostream</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">vector</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">random</span><span class="special">&gt;</span>
+<span class="preprocessor">#include</span> <span class="special">&lt;</span><span class="identifier">boost</span><span class="special">/</span><span class="identifier">sort</span><span class="special">/</span><span class="identifier">parallel</span><span class="special">/</span><span class="identifier">sort</span><span class="special">.</span><span class="identifier">hpp</span><span class="special">&gt;</span>
+<span class="keyword">namespace</span> <span class="identifier">bsp</span> <span class="special">=</span> <span class="identifier">boost</span><span class="special">::</span><span class="identifier">sort</span><span class="special">::</span><span class="identifier">parallel</span><span class="special">;</span><span class="keyword">int</span> <span class="identifier">main</span> <span class="special">(</span><span class="keyword">void</span><span class="special">)</span>
+<span class="special">{</span>   <span class="comment">//-------------- begin------------</span>
+	<span class="identifier">std</span><span class="special">::</span><span class="identifier">mt19937_64</span> <span class="identifier">my_rand</span><span class="special">(</span><span class="number">0</span><span class="special">);</span>
+	<span class="keyword">const</span> <span class="identifier">uint32_t</span> <span class="identifier">NMAX</span> <span class="special">=</span> <span class="number">1000000</span><span class="special">;</span>
+	    <span class="identifier">uint32_t</span> <span class="identifier">number_threads</span> <span class="special">=</span> <span class="identifier">std</span><span class="special">::</span><span class="identifier">thread</span><span class="special">::</span><span class="identifier">hardware_concurrency</span><span class="special">();</span>
+	<span class="identifier">std</span><span class="special">::</span><span class="identifier">vector</span> <span class="special">&lt;</span><span class="identifier">uint64_t</span><span class="special">&gt;</span> <span class="identifier">A</span><span class="special">,</span> <span class="identifier">B</span> <span class="special">;</span>
+	<span class="keyword">for</span> <span class="special">(</span><span class="identifier">uint32_t</span> <span class="identifier">i</span> <span class="special">=</span> <span class="number">0</span><span class="special">;</span> <span class="identifier">i</span> <span class="special">&lt;</span> <span class="identifier">NMAX</span><span class="special">;</span> <span class="special">++</span><span class="identifier">i</span><span class="special">)</span>  <span class="identifier">A</span><span class="special">.</span><span class="identifier">push_back</span> <span class="special">(</span><span class="identifier">my_rand</span><span class="special">());</span>
+	<span class="identifier">B</span> <span class="special">=</span> <span class="identifier">A</span> <span class="special">;</span>
+	<span class="comment">//------------------------------------------------------------------------</span>
+	<span class="comment">// If the result of number_threads / 6 is smaller than 1, internally use 1 thread</span>
+	<span class="comment">//------------------------------------------------------------------------</span>
+	<span class="identifier">bsp</span><span class="special">::</span><span class="identifier">parallel_sort</span> <span class="special">(</span><span class="identifier">A</span><span class="special">.</span><span class="identifier">begin</span><span class="special">(),</span> <span class="identifier">A</span><span class="special">.</span><span class="identifier">end</span><span class="special">(),</span> <span class="identifier">number_threads</span> <span class="special">/</span> <span class="number">6</span><span class="special">);</span>
+	<span class="comment">//------------------------------------------------------------------------</span>
+	<span class="comment">//  force to execute with 100 threads</span>
+	<span class="comment">//------------------------------------------------------------------------</span>
+	<span class="identifier">bsp</span><span class="special">::</span><span class="identifier">sample_sort</span> <span class="special">(</span><span class="identifier">B</span><span class="special">.</span><span class="identifier">begin</span><span class="special">(),</span> <span class="identifier">B</span><span class="special">.</span><span class="identifier">end</span><span class="special">(),</span> <span class="number">100</span><span class="special">);</span>
+
+	<span class="keyword">for</span> <span class="special">(</span><span class="identifier">uint32_t</span> <span class="identifier">i</span> <span class="special">=</span> <span class="number">0</span><span class="special">;</span> <span class="identifier">i</span> <span class="special">&lt;</span> <span class="identifier">NMAX</span> <span class="special">;</span> <span class="special">++</span><span class="identifier">i</span><span class="special">)</span>
+	    <span class="keyword">if</span> <span class="special">(</span><span class="identifier">A</span><span class="special">[</span><span class="identifier">i</span><span class="special">]</span> <span class="special">!=</span> <span class="identifier">B</span><span class="special">[</span><span class="identifier">i</span><span class="special">])</span>  <span class="identifier">std</span><span class="special">::</span><span class="identifier">cout</span><span class="special">&lt;&lt;</span><span class="string">"Error in the sorting process\n"</span><span class="special">;</span>
+	<span class="keyword">return</span> <span class="number">0</span> <span class="special">;</span>
+<span class="special">};</span>
+</pre>
+</div>
+</div>
+<p>
+    <br>
+  </p>
+<p>
+    <br>
+  </p>
+</div>
+<table xmlns:rev="http://www.cs.rpi.edu/~gregod/boost/tools/doc/revision" width="100%"><tr>
+<td align="left"><p><small>Last revised: January 12, 2017 at 08:57:31 GMT</small></p></td>
+<td align="right"><div class="copyright-footer"></div></td>
+</tr></table>
+<hr>
+<div class="spirit-nav"><a accesskey="n" href="parallel_sort/2_algorithms.html"><img src="../../../../doc/src/images/next.png" alt="Next"></a></div>
 </body>
 </html>
