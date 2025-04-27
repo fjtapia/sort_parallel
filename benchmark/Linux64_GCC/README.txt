@@ -9,6 +9,7 @@ For to compile  and run the programs execute the shell script
 
 The compilation need around 3 , 4 minutes.
 The execution need between 5 to 20 minutes depending of your processor.
+Be patient
 When finish, the results are in the file Results.txt
 
 If you want see the benchmarks of this library with other non free SW, you can 
